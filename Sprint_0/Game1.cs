@@ -26,9 +26,6 @@ namespace Sprint_0
         //Integer to keep track of the last drawn sprite
         private int lastDrawn;
 
-        //Initial Sprite
-        private ChangeToNonAnimatedNonMovingCommand _changeToNonAnimatedNonMovingCommand;
-
         public Game1()
         {
 

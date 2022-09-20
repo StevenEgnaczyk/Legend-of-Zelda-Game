@@ -21,16 +21,29 @@ public class KeyboardController : IController
 		//Initialize the different commands
 		_quitCommand = new QuitCommand();
 
+		RegisterCommand(Keys.D0, _quitCommand);
+		RegisterCommand(Keys.NumPad0, _quitCommand);
+
     }
+
+	public void RegisterCommand(Keys key, ICommand command)
+	{
+		controllerMappings.Add(key, command);
+	}
 
 	public void HandleEvents()
 	{
 		throw new NotImplementedException();
 	}
 
-	public int ProcessInput(Keys[] pressedKeys, SpriteBatch spriteBatch, int lastDrawn)
+	public int ProcessInput(SpriteBatch spriteBatch, int lastDrawn)
 	{
-		return -1;
+		Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+
+		foreach(Keys key in pressedKeys)
+		{
+			controllerMappings[key].Execute();
+		}
 	}
 
 	public void ProcessInput()
