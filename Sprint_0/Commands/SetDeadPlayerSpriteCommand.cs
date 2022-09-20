@@ -1,6 +1,8 @@
+using Microsoft.Xna.Framework.Graphics;
+using System;
+
 public class SetDeadPlayerSpriteCommand : ICommand
-{
-	private Game1 myGame;
+{ 
 
 	public SetDeadPlayerSpriteCommand(Game1 game)
 	{

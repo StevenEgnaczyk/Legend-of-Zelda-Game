@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-public interface ISprite
+public interface IPlayer
 {
 
     void Update();
