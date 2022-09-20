@@ -32,9 +32,16 @@ public class MouseController : IController
 		throw new NotImplementedException();
 	}
 
-    internal int ProcessInput(MouseState mouseState, SpriteBatch spriteBatch, int lastDrawn)
+    internal int ProcessInput(SpriteBatch spriteBatch, int lastDrawn)
     {
+		MouseState mouseState = Mouse.GetState();
 
-        return -1;
+		if (mouseState.LeftButton == ButtonState.Pressed)
+		{
+			return -1;
+		} else if (mouseState.RightButton == ButtonState.Pressed)
+		{
+			_quitCommand.Execute();
+		}
     }
 }

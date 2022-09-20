@@ -70,13 +70,11 @@ namespace Sprint_0
             GraphicsDevice.Clear(Color.CornflowerBlue);
             text.Draw(_spriteBatch);
 
-            //Process keyboard input
-            _keyboardState = Keyboard.GetState();
-            lastDrawn = _keyboardController.ProcessInput(_keyboardState.GetPressedKeys(), _spriteBatch, lastDrawn);
+            //Process Keyboard Input
+            lastDrawn = _keyboardController.ProcessInput(_spriteBatch, lastDrawn);
 
             //Process Mouse Input
-            _mouseState = Mouse.GetState();
-            lastDrawn = _mouseController.ProcessInput(_mouseState, _spriteBatch, lastDrawn);
+            lastDrawn = _mouseController.ProcessInput(_spriteBatch, lastDrawn);
 
             base.Draw(gameTime);
         }
