@@ -1,3 +1,9 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Reflection.Metadata;
+
 public class DownMovingLinkState : ILinkState
 {
     private Link link;
@@ -25,6 +31,7 @@ public class DownMovingLinkState : ILinkState
 
     public void TurnDown()
     {
+        throw new NotImplementedException();
     }
 
     public void Die()
@@ -33,6 +40,7 @@ public class DownMovingLinkState : ILinkState
     }
     public void Update()
     {
+        link.move(0,0);
         // call something like goomba.MoveLeft() or goomba.Move(-x,0);
     }
 }

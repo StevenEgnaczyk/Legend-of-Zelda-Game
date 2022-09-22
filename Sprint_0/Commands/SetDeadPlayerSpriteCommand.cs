@@ -1,18 +1,18 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 
 public class SetDeadPlayerSpriteCommand : ICommand
 { 
 
-	public SetDeadPlayerSpriteCommand(Game1 game)
+	public SetDeadPlayerSpriteCommand()
 	{
-		myGame = game;
 	}
 
 	public void Execute()
 	{
-
-		//Change links state to dead
-		myGame.setSprite(new DeadPlayerSprite());
-	}
+        throw new NotImplementedException();
+    }
 }

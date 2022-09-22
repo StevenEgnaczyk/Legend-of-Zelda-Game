@@ -12,8 +12,7 @@ namespace Sprint_0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        //Sprite for the text-field
-        private ISprite text;
+        private Link link;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
@@ -40,20 +39,17 @@ namespace Sprint_0
 
             //Initialize text, keyboard, and mouse
             base.Initialize();
-            text = new TextSprite(Content);
             _keyboardController = new KeyboardController(Content);
             _mouseController = new MouseController(Content);
+            link = new Link();
 
-            //Set last drawn to 1
-            lastDrawn = 1;
         }
 
         protected override void LoadContent()
         {
-            //Load initial Mario state
-            _changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(Content);
+            //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _changeToNonAnimatedNonMovingCommand.drawSprite(_spriteBatch);
+            //Texture2DStorage.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,13 +64,12 @@ namespace Sprint_0
         {
             //Clear the background and draw the text
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            text.Draw(_spriteBatch);
 
             //Process Keyboard Input
-            lastDrawn = _keyboardController.ProcessInput(_spriteBatch, lastDrawn);
+            _keyboardController.ProcessInput();
 
             //Process Mouse Input
-            lastDrawn = _mouseController.ProcessInput(_spriteBatch, lastDrawn);
+            _mouseController.ProcessInput();
 
             base.Draw(gameTime);
         }
