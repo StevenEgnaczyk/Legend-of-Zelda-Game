@@ -22,24 +22,16 @@ public class MouseController : IController
 		throw new NotImplementedException();
 	}
 
-	public void ProcessInput()
-	{
-		throw new NotImplementedException();
-	}
-
 	public void Update()
 	{
 		throw new NotImplementedException();
 	}
 
-    internal int ProcessInput(SpriteBatch spriteBatch, int lastDrawn)
+    public void ProcessInput()
     {
 		MouseState mouseState = Mouse.GetState();
 
-		if (mouseState.LeftButton == ButtonState.Pressed)
-		{
-			return -1;
-		} else if (mouseState.RightButton == ButtonState.Pressed)
+		if (mouseState.RightButton == ButtonState.Pressed)
 		{
 			_quitCommand.Execute();
 		}

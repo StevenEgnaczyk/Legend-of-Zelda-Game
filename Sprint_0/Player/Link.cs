@@ -1,7 +1,12 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Reflection.Metadata;
+
 public class Link
 {
     public ILinkState state;
-    public LinkSprite link;
 
     public Link()
     {
@@ -10,26 +15,33 @@ public class Link
 
     public void TurnLeft()
     {
-        state.turnLeft();
+        state.TurnLeft();
     }
 
     public void TurnRight()
     {
-        state.turnRight();
+        state.TurnRight();
     }
 
     public void TurnUp()
     {
-        state.turnUp();
+        state.TurnUp();
     }
 
     public void TurnDown()
     {
-        state.turnDown();
+        state.TurnDown();
+    }
+
+    public void Update()
+    {
+        throw new NotImplementedException();
     }
 
     public void move(int x, int y)
     {
+
+
 
     }
 

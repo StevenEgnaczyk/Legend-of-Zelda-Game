@@ -36,7 +36,7 @@ public class KeyboardController : IController
 		throw new NotImplementedException();
 	}
 
-	public int ProcessInput(SpriteBatch spriteBatch, int lastDrawn)
+	public void ProcessInput()
 	{
 		Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
@@ -44,11 +44,6 @@ public class KeyboardController : IController
 		{
 			controllerMappings[key].Execute();
 		}
-	}
-
-	public void ProcessInput()
-	{
-		throw new NotImplementedException();
 	}
 
 	public void Update()
