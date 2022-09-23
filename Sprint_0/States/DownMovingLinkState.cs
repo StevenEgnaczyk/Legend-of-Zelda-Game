@@ -38,6 +38,11 @@ public class DownMovingLinkState : ILinkState
     {
 
     }
+
+    public void Draw()
+    {
+
+    }
     public void Update()
     {
         link.move(0,0);

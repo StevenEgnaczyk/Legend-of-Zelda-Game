@@ -7,10 +7,12 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
+    public LinkSprite sprite;
 
     public Link()
     {
         state = new RightMovingLinkState(this);
+        sprite = new LinkSprite();
     }
 
     public void TurnLeft()
@@ -41,8 +43,11 @@ public class Link
     public void move(int x, int y)
     {
 
+    }
 
-
+    public void Draw()
+    {
+        sprite.Draw();
     }
 
 

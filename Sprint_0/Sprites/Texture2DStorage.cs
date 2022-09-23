@@ -15,7 +15,7 @@ public static class Texture2DStorage
 	// static classes have no constructor, but we need a method to initialize the Texture2D fields
 	public static void LoadAllTextures(ContentManager content)
 	{
-		//linkSpriteSheet = content.Load<Texture2D>("Link");
+		linkSpriteSheet = content.Load<Texture2D>("Link");
 	}
 
 	public static Texture2D GetLinkSpriteSheet()

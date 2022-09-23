@@ -6,5 +6,5 @@ public interface ISprite
 
     void Update();
 
-    void Draw(SpriteBatch spriteBatch);
+    void Draw();
 }
