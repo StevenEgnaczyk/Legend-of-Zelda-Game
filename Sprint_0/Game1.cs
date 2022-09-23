@@ -9,21 +9,16 @@ namespace Sprint_0
     public class Game1 : Game
     {
         //Set up graphics objects
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager _graphics;
+        public SpriteBatch _spriteBatch;
 
         private Link link;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
-        private KeyboardState _keyboardState;
 
         //Mouse variables
         private MouseController _mouseController;
-        private MouseState _mouseState;
-
-        //Integer to keep track of the last drawn sprite
-        private int lastDrawn;
 
         public Game1()
         {
@@ -49,7 +44,7 @@ namespace Sprint_0
         {
             //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Texture2DStorage.LoadAllTextures(Content);
+            Texture2DStorage.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -70,6 +65,8 @@ namespace Sprint_0
 
             //Process Mouse Input
             _mouseController.ProcessInput();
+
+            link.Draw();
 
             base.Draw(gameTime);
         }
