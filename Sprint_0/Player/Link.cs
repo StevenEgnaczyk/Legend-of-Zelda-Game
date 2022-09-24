@@ -9,10 +9,17 @@ public class Link
     public ILinkState state;
     public LinkSprite sprite;
 
+    public float xPos, yPos;
+
+    public SpriteBatch _spriteBatch;
+
     public Link()
     {
-        state = new RightMovingLinkState(this);
-        sprite = new LinkSprite();
+
+        state = new DownMovingLinkState(this);
+
+        xPos = 100;
+        yPos = 100;
     }
 
     public void TurnLeft()
@@ -45,9 +52,15 @@ public class Link
 
     }
 
-    public void Draw()
+    public void Draw(SpriteBatch _spriteBatch)
     {
-        sprite.Draw();
+        state.Draw(_spriteBatch);
+    }
+
+    public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)
+    {
+        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width, sourceRect.Height);
+        _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
 

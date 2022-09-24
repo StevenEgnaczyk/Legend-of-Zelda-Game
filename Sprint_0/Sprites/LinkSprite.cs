@@ -7,11 +7,9 @@ using Microsoft.Xna.Framework.Content;
 public class LinkSprite : ISprite
 
 {
-    private Sprint_0.Game1 game1;
-    private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    private Texture2D linkSprite;
+    private Texture2D linkTexture;
 
     private Rectangle destinationRectangle;
     private Rectangle sourceRectangle;
@@ -24,12 +22,7 @@ public class LinkSprite : ISprite
 
     public LinkSprite()
     {
-        game1 = new Sprint_0.Game1();
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-        Texture2D spriteSheet = Texture2DStorage.GetLinkSpriteSheet();
-
-        _graphics = game1._graphics;
-        //_spriteBatch = game1._spriteBatch;
+        this.linkTexture = Texture2DStorage.GetLinkSpriteSheet();
 
         linkXPos = 100;
         linkYPos = 100;
@@ -41,10 +34,10 @@ public class LinkSprite : ISprite
 
     }
 
-    public void Draw()
+    public void Draw(SpriteBatch _spriteBatch)
     {
         _spriteBatch.Begin();
-        _spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+        _spriteBatch.Draw(this.linkTexture, destinationRectangle, sourceRectangle, Color.White);
         Update();
         _spriteBatch.End();
         

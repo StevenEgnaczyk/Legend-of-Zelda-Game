@@ -33,10 +33,12 @@ namespace Sprint_0
         {
 
             //Initialize text, keyboard, and mouse
-            base.Initialize();
-            _keyboardController = new KeyboardController(Content);
-            _mouseController = new MouseController(Content);
             link = new Link();
+            
+            _keyboardController = new KeyboardController(Content, link);
+            _mouseController = new MouseController(Content);
+
+            base.Initialize();
 
         }
 
@@ -66,7 +68,9 @@ namespace Sprint_0
             //Process Mouse Input
             _mouseController.ProcessInput();
 
-            link.Draw();
+            _spriteBatch.Begin();
+            link.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
