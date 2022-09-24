@@ -15,7 +15,7 @@ public class TextSprite : ISprite
 
     public SpriteFont Text { get => text; set => text = value; }
 
-    public void Draw()
+    public void Draw(SpriteBatch _spriteBatch)
     {
 
     }

@@ -4,15 +4,17 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
-public class SetDeadPlayerSpriteCommand : ICommand
-{ 
+public class TurnPlayerLeftCommand : ICommand
+{
+	public Link linkPlayer;
 
-	public SetDeadPlayerSpriteCommand()
+	public TurnPlayerLeftCommand(Link link)
 	{
+		linkPlayer = link;
 	}
 
 	public void Execute()
 	{
-        throw new NotImplementedException();
+		linkPlayer.TurnLeft();
     }
 }
