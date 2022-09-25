@@ -14,6 +14,9 @@ public class KeyboardController : IController
     private ChangeToNonAnimatedMovingCommand _changeToNonAnimatedMovingCommand;
     private ChangeToNonAnimatedNonMovingCommand _changeToNonAnimatedNonMovingCommand;
     private QuitCommand _quitCommand;
+	private DynamicTilesCommand _dynamicTilesCommand;
+	private int x = 1;
+
 
     public KeyboardController(ContentManager c)
 	{
@@ -23,7 +26,9 @@ public class KeyboardController : IController
 		_changeToAnimatedNonMovingCommand = new ChangeToAnimatedNonMovingCommand(c);
 		_changeToNonAnimatedMovingCommand = new ChangeToNonAnimatedMovingCommand(c);
 		_changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(c);
+		_dynamicTilesCommand = new DynamicTilesCommand(c);
 		_quitCommand = new QuitCommand();
+
 
     }
 
@@ -34,7 +39,6 @@ public class KeyboardController : IController
 
 	public int ProcessInput(Keys[] pressedKeys, SpriteBatch spriteBatch, int lastDrawn)
 	{
-
 		if (pressedKeys.Length == 0)
 		{
 			if (lastDrawn == 1)
@@ -52,8 +56,11 @@ public class KeyboardController : IController
             {
                 _changeToAnimatedMovingCommand.drawSprite(spriteBatch);
             }
+			else if (lastDrawn == 5)
+            {
+                _dynamicTilesCommand.drawSprite(spriteBatch, x);
+            }
         }
-        
         foreach (Keys k in pressedKeys)
 		{
 			if (k.Equals(Keys.NumPad0) || k.Equals(Keys.D0))
@@ -64,7 +71,6 @@ public class KeyboardController : IController
 			{
 				_changeToNonAnimatedNonMovingCommand.drawSprite(spriteBatch);
 				lastDrawn = 1;
-
 			}
 			else if (k.Equals(Keys.NumPad2) || k.Equals(Keys.D2))
 			{
@@ -81,8 +87,16 @@ public class KeyboardController : IController
 				_changeToAnimatedMovingCommand.drawSprite(spriteBatch);
 				lastDrawn = 4;
 			}
+			else if (k.Equals(Keys.T))
+			{
+				_dynamicTilesCommand.drawSprite(spriteBatch, x);
+				lastDrawn = 5;
+				++x;
+			}
         }
-
+		if(x > 10){
+			x=1;
+		}
 		return lastDrawn;
 	}
 

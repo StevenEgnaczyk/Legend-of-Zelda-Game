@@ -13,7 +13,7 @@ namespace Sprint_0
         private SpriteBatch _spriteBatch;
 
         //Sprite for the text-field
-        private ISprite text;
+        //private ISprite text;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
@@ -29,6 +29,8 @@ namespace Sprint_0
         //Initial Sprite
         private ChangeToNonAnimatedNonMovingCommand _changeToNonAnimatedNonMovingCommand;
 
+        private DynamicTilesCommand _dynamicTilesCommand;
+
         public Game1()
         {
 
@@ -43,20 +45,23 @@ namespace Sprint_0
 
             //Initialize text, keyboard, and mouse
             base.Initialize();
-            text = new TextSprite(Content);
+            //text = new TextSprite(Content);
             _keyboardController = new KeyboardController(Content);
+            _dynamicTilesCommand = new DynamicTilesCommand(Content);
             _mouseController = new MouseController(Content);
 
             //Set last drawn to 1
-            lastDrawn = 1;
+            lastDrawn = 5;
         }
 
         protected override void LoadContent()
         {
             //Load initial Mario state
-            _changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(Content);
+            
+            //_changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(Content);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _changeToNonAnimatedNonMovingCommand.drawSprite(_spriteBatch);
+            //_changeToNonAnimatedNonMovingCommand.drawSprite(_spriteBatch);
+            //_dynamicTilesCommand.drawSprite(_spriteBatch);
         }
 
         protected override void Update(GameTime gameTime)
@@ -71,7 +76,7 @@ namespace Sprint_0
         {
             //Clear the background and draw the text
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            text.Draw(_spriteBatch);
+            //text.Draw(_spriteBatch);
 
             //Process keyboard input
             _keyboardState = Keyboard.GetState();
