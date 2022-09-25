@@ -25,7 +25,7 @@ public class DynamicTileSprite
     public void Draw(SpriteBatch spriteBatch, int x)
 	{
 		spriteBatch.Begin();
-        Rectangle image = new Rectangle(0, 0, 64, 128);
+        Rectangle image = new Rectangle(0,0,15,15);
 		spriteBatch.Draw(tiles["tile" + x], new Vector2(350, 150), image, Color.White);
         Update();
         spriteBatch.End();
