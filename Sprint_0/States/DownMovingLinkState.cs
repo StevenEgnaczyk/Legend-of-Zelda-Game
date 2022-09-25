@@ -31,7 +31,8 @@ public class DownMovingLinkState : ILinkState
 
     public void TurnDown()
     {
-        throw new NotImplementedException();
+        Debug.WriteLine("Moving");
+        link.move(0, -10);
     }
 
     public void Die()
@@ -48,7 +49,7 @@ public class DownMovingLinkState : ILinkState
     }
     public void Update()
     {
-        link.move(0,0);
         // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        link.Move(0, -1);
     }
 }

@@ -25,6 +25,7 @@ public class Link
     public void TurnLeft()
     {
         state.TurnLeft();
+        state.Update();
     }
 
     public void TurnRight()
@@ -49,6 +50,9 @@ public class Link
 
     public void move(int x, int y)
     {
+        xPos += x;
+        yPos += y;
+        Draw(_spriteBatch);
 
     }
 

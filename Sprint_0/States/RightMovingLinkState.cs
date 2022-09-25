@@ -21,6 +21,7 @@ public class RightMovingLinkState : ILinkState
 
     public void TurnRight()
     {
+        //Do Nothing
     }
 
     public void TurnUp()
@@ -41,7 +42,7 @@ public class RightMovingLinkState : ILinkState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = new Rectangle(1, 11, 16, 16);
+        Rectangle sourceRect = new Rectangle(35, 11, 16, 16);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect);
 
     }
@@ -49,5 +50,6 @@ public class RightMovingLinkState : ILinkState
     public void Update()
     {
         // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        link.Move(1, 0);
     }
 }

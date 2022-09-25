@@ -27,6 +27,7 @@ public class UpMovingLinkState : ILinkState
 
     public void TurnUp()
     {
+        //Do Nothing
     }
 
     public void TurnDown()
@@ -50,5 +51,6 @@ public class UpMovingLinkState : ILinkState
     public void Update()
     {
         // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        link.Move(0, 1);
     }
 }
