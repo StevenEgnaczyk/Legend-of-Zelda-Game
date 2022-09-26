@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Sprint_0
@@ -13,6 +14,7 @@ namespace Sprint_0
         public SpriteBatch _spriteBatch;
 
         private Link link;
+        private Item item;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
@@ -34,8 +36,9 @@ namespace Sprint_0
 
             //Initialize text, keyboard, and mouse
             link = new Link();
+            item = new Item();
             
-            _keyboardController = new KeyboardController(Content, link);
+            _keyboardController = new KeyboardController(Content, link, item);
             _mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -70,6 +73,7 @@ namespace Sprint_0
 
             _spriteBatch.Begin();
             link.Draw(_spriteBatch);
+            item.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
