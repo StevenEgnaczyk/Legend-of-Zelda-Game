@@ -69,6 +69,22 @@ public class Link
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
+    public void DrawItem(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)
+    {
+        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 4, sourceRect.Height * 4);
+        _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
+    }
+
+    internal void UseWoodenSword()
+    {
+        //state.UseWoodenSword();
+    }
+
+    internal void UseSwordBeam()
+    {
+        //state.UseSwordBeam();
+    }
+
 
     // Draw and other methods omitted
 }

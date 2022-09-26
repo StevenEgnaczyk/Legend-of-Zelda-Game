@@ -20,6 +20,9 @@ public class KeyboardController : IController
 	private TurnPlayerUpCommand turnPlayerUpCommand;
 	private TurnPlayerDownCommand turnPlayerDownCommand;
 
+	private UseWoodenSwordCommand useWoodenSwordCommand;
+	private UseSwordBeamCommand useSwordBeamCommand;
+
 	private CycleItemNextCommand cycleItemNextCommand;
 	private CycleItemPrevCommand cycleItemPrevCommand;
 
@@ -41,12 +44,16 @@ public class KeyboardController : IController
 
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
+
 		RegisterCommand(Keys.Left, turnPlayerLeftCommand);
 		RegisterCommand(Keys.Right, turnPlayerRightCommand);
 		RegisterCommand(Keys.Up, turnPlayerUpCommand);
 		RegisterCommand(Keys.Down, turnPlayerDownCommand);
-    
-		RegisterCommand(Keys.W, cycleItemNextCommand);
+
+    RegisterCommand(Keys.Z, useWoodenSwordCommand);
+    RegisterCommand(Keys.N, useSwordBeamCommand);
+
+    RegisterCommand(Keys.W, cycleItemNextCommand);
 		RegisterCommand(Keys.S, cycleItemPrevCommand);
 
 

@@ -65,6 +65,11 @@ public class UpMovingLinkState : ILinkState
 
     }
 
+    public void UseWoodenSword()
+    {
+
+    }
+
     public void Update()
     {
     }
