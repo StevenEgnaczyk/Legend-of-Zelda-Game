@@ -9,6 +9,7 @@ public static class Texture2DStorage
 {
 	// Note that we are not using Game1's ContentLoader here (outside the scope of class methods) since it has not been instantiated yet
 	private static Texture2D linkSpriteSheet;
+	private static Texture2D NPCSpriteSheet;
 
 	private static Texture2D item1Sprite;
 	private static Texture2D item2Sprite;
@@ -28,6 +29,7 @@ public static class Texture2DStorage
 	// static classes have no constructor, but we need a method to initialize the Texture2D fields
 	public static void LoadAllTextures(ContentManager content)
 	{
+		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
 		linkSpriteSheet = content.Load<Texture2D>("Link1");
 
 		item1Sprite = content.Load<Texture2D>("item1");
@@ -48,6 +50,11 @@ public static class Texture2DStorage
 	{
 		return linkSpriteSheet;
 	}
+    public static Texture2D GetOldManSpriteSheet()
+    {
+        return NPCSpriteSheet;
+    }
+    // More public static Texture2D returning methods follow
 
 	public static Texture2D GetItem1Sprite()
 	{
