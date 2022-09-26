@@ -12,8 +12,10 @@ namespace Sprint_0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        //Sprite for the text-field
-        private ISprite text;
+        private Link link;
+        private OldMan oldMan1;
+        private Flame flame;
+        private Bomb bomb;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
@@ -39,9 +41,12 @@ namespace Sprint_0
         {
 
             //Initialize text, keyboard, and mouse
-            base.Initialize();
-            text = new TextSprite(Content);
-            _keyboardController = new KeyboardController(Content);
+            link = new Link();
+            oldMan1 = new OldMan();
+            flame = new Flame();
+            bomb = new Bomb();
+            
+            _keyboardController = new KeyboardController(Content, link);
             _mouseController = new MouseController(Content);
 
             //Set last drawn to 1
@@ -50,10 +55,9 @@ namespace Sprint_0
 
         protected override void LoadContent()
         {
-            //Load initial Mario state
-            _changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(Content);
+            //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _changeToNonAnimatedNonMovingCommand.drawSprite(_spriteBatch);
+            Texture2DStorage.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,13 +72,19 @@ namespace Sprint_0
         {
             //Clear the background and draw the text
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            text.Draw(_spriteBatch);
 
             //Process Keyboard Input
-            lastDrawn = _keyboardController.ProcessInput(_spriteBatch, lastDrawn);
+            _keyboardController.ProcessInput();
 
             //Process Mouse Input
-            lastDrawn = _mouseController.ProcessInput(_spriteBatch, lastDrawn);
+            _mouseController.ProcessInput();
+
+            _spriteBatch.Begin();
+            link.Draw(_spriteBatch);
+            oldMan1.Draw(_spriteBatch);
+            flame.Draw(_spriteBatch);
+            bomb.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

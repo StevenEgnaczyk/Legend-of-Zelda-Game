@@ -1,3 +1,9 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Reflection.Metadata;
+
 public class LeftMovingLinkState : ILinkState
 {
     private Link link;
@@ -29,6 +35,15 @@ public class LeftMovingLinkState : ILinkState
 
     public void Die()
     {
+
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        //SpriteEffects flip = FlipHorizontally;
+        Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
+        Rectangle sourceRect = new Rectangle(35, 11, 16, 16);
+        //link.DrawSprite(spriteBatch, downMovingLink, sourceRect, flip);
 
     }
 
