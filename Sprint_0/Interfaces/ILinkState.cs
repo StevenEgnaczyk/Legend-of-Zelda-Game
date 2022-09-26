@@ -13,5 +13,7 @@ public interface ILinkState
     public void Die();
     public void Update();
     public void Draw(SpriteBatch _spriteBatch);
+
+    public void UseWoodenSword();
     // Draw() might also be included here
 }
