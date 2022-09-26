@@ -26,7 +26,18 @@ public class Item1State : IItemState
 
     public void Next()
     {
-        item.state = new Item2State(item);
+        bufferIndex++;
+        if (bufferIndex == bufferMax)
+        {
+            currentIndex++;
+            bufferIndex = 0;
+            if (currentIndex == 1)
+            {
+                item.state = new Item2State(item);
+                currentIndex = 0;
+            }
+        }
+        
     }
 
     public void Prev()
