@@ -9,6 +9,8 @@ using System.Security.Cryptography;
 
 public class KeyboardController : IController
 {
+	private DynamicTilesCommand _dynamicTilesCommand;
+	private int x = 1;
 
 	private Dictionary<Keys, ICommand> controllerMappings;
 
@@ -24,6 +26,7 @@ public class KeyboardController : IController
     public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer)
 	{
 
+		_dynamicTilesCommand = new DynamicTilesCommand(c);
 		controllerMappings = new Dictionary<Keys, ICommand>();
 
 		//Initialize the different commands
@@ -46,6 +49,7 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.W, cycleItemNextCommand);
 		RegisterCommand(Keys.S, cycleItemPrevCommand);
 
+
     }
 
 	public void RegisterCommand(Keys key, ICommand command)
@@ -55,7 +59,26 @@ public class KeyboardController : IController
 
 	public void HandleEvents()
 	{
-		throw new NotImplementedException();
+		if (pressedKeys.Length == 0)
+		{
+			if (lastDrawn == 5)
+            {
+                _dynamicTilesCommand.drawSprite(spriteBatch, x);
+            }
+        }
+        foreach (Keys k in pressedKeys)
+		{
+			if (k.Equals(Keys.T))
+			{
+				_dynamicTilesCommand.drawSprite(spriteBatch, x);
+				lastDrawn = 5;
+				++x;
+			}
+        }
+		if(x > 10){
+			x=1;
+		}
+		return lastDrawn;
 	}
 
 	public void ProcessInput()

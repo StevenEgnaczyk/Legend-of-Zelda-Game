@@ -25,6 +25,8 @@ namespace Sprint_0
         //Mouse variables
         private MouseController _mouseController;
 
+        private DynamicTilesCommand _dynamicTilesCommand;
+
         public Game1()
         {
 
@@ -37,7 +39,9 @@ namespace Sprint_0
         protected override void Initialize()
         {
 
-            //Initialize text, keyboard, and mouse
+            _dynamicTilesCommand = new DynamicTilesCommand(Content);
+            lastDrawn = 5;
+            
             link = new Link();
             oldMan1 = new OldMan();
             flame = new Flame();
@@ -70,7 +74,7 @@ namespace Sprint_0
 
         protected override void Draw(GameTime gameTime)
         {
-            //Clear the background and draw the text
+
             GraphicsDevice.Clear(Color.DarkGray);
 
             //Process Keyboard Input
