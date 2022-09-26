@@ -39,7 +39,6 @@ public class KeyboardController : IController
 		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
-
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
 
@@ -48,10 +47,10 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Up, turnPlayerUpCommand);
 		RegisterCommand(Keys.Down, turnPlayerDownCommand);
 
-        RegisterCommand(Keys.Z, useWoodenSwordCommand);
-        RegisterCommand(Keys.N, useSwordBeamCommand);
+    RegisterCommand(Keys.Z, useWoodenSwordCommand);
+    RegisterCommand(Keys.N, useSwordBeamCommand);
 
-        RegisterCommand(Keys.W, cycleItemNextCommand);
+    RegisterCommand(Keys.W, cycleItemNextCommand);
 		RegisterCommand(Keys.S, cycleItemPrevCommand);
 
     }

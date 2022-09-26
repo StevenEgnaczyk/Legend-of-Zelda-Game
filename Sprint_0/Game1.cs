@@ -14,6 +14,9 @@ namespace Sprint_0
         public SpriteBatch _spriteBatch;
 
         private Link link;
+        private OldMan oldMan1;
+        private Flame flame;
+        private Bomb bomb;
         private Item item;
 
         //Keyboard variables
@@ -36,6 +39,11 @@ namespace Sprint_0
 
             //Initialize text, keyboard, and mouse
             link = new Link();
+            oldMan1 = new OldMan();
+            flame = new Flame();
+            bomb = new Bomb();
+            
+            _keyboardController = new KeyboardController(Content, link);
             item = new Item();
             
             _keyboardController = new KeyboardController(Content, link, item);
@@ -73,6 +81,9 @@ namespace Sprint_0
 
             _spriteBatch.Begin();
             link.Draw(_spriteBatch);
+            oldMan1.Draw(_spriteBatch);
+            flame.Draw(_spriteBatch);
+            bomb.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             _spriteBatch.End();
 
