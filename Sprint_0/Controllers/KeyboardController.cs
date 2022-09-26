@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Security.Cryptography;
 
 public class KeyboardController : IController
 {
@@ -17,7 +18,10 @@ public class KeyboardController : IController
 	private TurnPlayerUpCommand turnPlayerUpCommand;
 	private TurnPlayerDownCommand turnPlayerDownCommand;
 
-    public KeyboardController(ContentManager c, Link linkPlayer)
+	private CycleItemNextCommand cycleItemNextCommand;
+	private CycleItemPrevCommand cycleItemPrevCommand;
+
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer)
 	{
 
 		controllerMappings = new Dictionary<Keys, ICommand>();
@@ -29,6 +33,8 @@ public class KeyboardController : IController
 		turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
 		turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
 
+		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
+		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
@@ -36,7 +42,10 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Right, turnPlayerRightCommand);
 		RegisterCommand(Keys.Up, turnPlayerUpCommand);
 		RegisterCommand(Keys.Down, turnPlayerDownCommand);
-		
+    
+		RegisterCommand(Keys.W, cycleItemNextCommand);
+		RegisterCommand(Keys.S, cycleItemPrevCommand);
+
     }
 
 	public void RegisterCommand(Keys key, ICommand command)

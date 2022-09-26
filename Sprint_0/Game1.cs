@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Sprint_0
@@ -9,24 +10,20 @@ namespace Sprint_0
     public class Game1 : Game
     {
         //Set up graphics objects
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager _graphics;
+        public SpriteBatch _spriteBatch;
 
         private Link link;
         private OldMan oldMan1;
         private Flame flame;
         private Bomb bomb;
+        private Item item;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
-        private KeyboardState _keyboardState;
 
         //Mouse variables
         private MouseController _mouseController;
-        private MouseState _mouseState;
-
-        //Integer to keep track of the last drawn sprite
-        private int lastDrawn;
 
         public Game1()
         {
@@ -47,10 +44,13 @@ namespace Sprint_0
             bomb = new Bomb();
             
             _keyboardController = new KeyboardController(Content, link);
+            item = new Item();
+            
+            _keyboardController = new KeyboardController(Content, link, item);
             _mouseController = new MouseController(Content);
 
-            //Set last drawn to 1
-            lastDrawn = 1;
+            base.Initialize();
+
         }
 
         protected override void LoadContent()
@@ -71,7 +71,7 @@ namespace Sprint_0
         protected override void Draw(GameTime gameTime)
         {
             //Clear the background and draw the text
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkGray);
 
             //Process Keyboard Input
             _keyboardController.ProcessInput();
@@ -84,6 +84,7 @@ namespace Sprint_0
             oldMan1.Draw(_spriteBatch);
             flame.Draw(_spriteBatch);
             bomb.Draw(_spriteBatch);
+            item.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

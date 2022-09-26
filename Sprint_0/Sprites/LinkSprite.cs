@@ -36,7 +36,7 @@ public class LinkSprite : ISprite
     public void Draw(SpriteBatch _spriteBatch)
     {
         _spriteBatch.Begin();
-        _spriteBatch.Draw(this.linkTexture, destinationRectangle, sourceRectangle, Color.White);
+        _spriteBatch.Draw(this.linkTexture, this.destinationRectangle, this.sourceRectangle, Color.White);
         Update();
         _spriteBatch.End();
         
