@@ -47,7 +47,6 @@ namespace Sprint_0
             flame = new Flame();
             bomb = new Bomb();
             
-            _keyboardController = new KeyboardController(Content, link);
             item = new Item();
             
             _keyboardController = new KeyboardController(Content, link, item);
@@ -85,6 +84,7 @@ namespace Sprint_0
 
             _spriteBatch.Begin();
             link.Draw(_spriteBatch);
+            link.Update();
             oldMan1.Draw(_spriteBatch);
             flame.Draw(_spriteBatch);
             bomb.Draw(_spriteBatch);
