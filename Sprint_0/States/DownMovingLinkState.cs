@@ -2,16 +2,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection.Metadata;
 
 public class DownMovingLinkState : ILinkState
 {
     private Link link;
+    private static List<Rectangle> linkSprites = new List<Rectangle>()
+    {
+        new Rectangle(1, 11, 16, 16),
+        new Rectangle(19, 11, 16, 16)
+    };
+    private int currentIndex;
+    private int bufferIndex;
+    private int bufferMax = 10;
 
     public DownMovingLinkState(Link link)
     {
         this.link = link;
-        // construct goomba's sprite here too
+        currentIndex = 0;
     }
 
     public void TurnLeft()
@@ -31,8 +41,17 @@ public class DownMovingLinkState : ILinkState
 
     public void TurnDown()
     {
-        Debug.WriteLine("Moving");
-        link.move(0, -10);
+        link.yPos+= link.linkSpeed;
+
+        bufferIndex++;
+        if (bufferIndex == bufferMax) {
+            currentIndex++;
+            bufferIndex = 0;
+            if (currentIndex == 2)
+            {
+                currentIndex = 0;
+            }
+        }
     }
 
     public void Die()
@@ -43,13 +62,12 @@ public class DownMovingLinkState : ILinkState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = new Rectangle(1, 11, 16, 16);
+        Rectangle sourceRect = linkSprites[currentIndex];
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect);
 
     }
     public void Update()
     {
         // call something like goomba.MoveLeft() or goomba.Move(-x,0);
-        link.Move(0, -1);
     }
 }

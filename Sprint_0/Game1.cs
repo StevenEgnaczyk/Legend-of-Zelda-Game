@@ -60,7 +60,7 @@ namespace Sprint_0
         protected override void Draw(GameTime gameTime)
         {
             //Clear the background and draw the text
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkGray);
 
             //Process Keyboard Input
             _keyboardController.ProcessInput();
