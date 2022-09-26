@@ -13,6 +13,8 @@ public class Link
 
     public SpriteBatch _spriteBatch;
 
+    public int linkSpeed = 3;
+
     public Link()
     {
 
@@ -52,7 +54,7 @@ public class Link
     {
         xPos += x;
         yPos += y;
-        Draw(_spriteBatch);
+        state.Draw(_spriteBatch);
 
     }
 
@@ -63,7 +65,7 @@ public class Link
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)
     {
-        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width, sourceRect.Height);
+        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 4, sourceRect.Height * 4);
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
