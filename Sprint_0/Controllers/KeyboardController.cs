@@ -5,89 +5,70 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Security.Cryptography;
 
 public class KeyboardController : IController
 {
-	//5 different commands
-	private ChangeToAnimatedMovingCommand _changeToAnimatedMovingCommand;
-    private ChangeToAnimatedNonMovingCommand _changeToAnimatedNonMovingCommand;
-    private ChangeToNonAnimatedMovingCommand _changeToNonAnimatedMovingCommand;
-    private ChangeToNonAnimatedNonMovingCommand _changeToNonAnimatedNonMovingCommand;
-    private QuitCommand _quitCommand;
 	private DynamicTilesCommand _dynamicTilesCommand;
 	private int x = 1;
 
+	private Dictionary<Keys, ICommand> controllerMappings;
 
-    public KeyboardController(ContentManager c)
+	private QuitCommand _quitCommand;
+	private TurnPlayerLeftCommand turnPlayerLeftCommand;
+	private TurnPlayerRightCommand turnPlayerRightCommand;
+	private TurnPlayerUpCommand turnPlayerUpCommand;
+	private TurnPlayerDownCommand turnPlayerDownCommand;
+
+	private CycleItemNextCommand cycleItemNextCommand;
+	private CycleItemPrevCommand cycleItemPrevCommand;
+
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer)
 	{
 
-		//Initialize the 5 different commands
-		_changeToAnimatedMovingCommand = new ChangeToAnimatedMovingCommand(c);
-		_changeToAnimatedNonMovingCommand = new ChangeToAnimatedNonMovingCommand(c);
-		_changeToNonAnimatedMovingCommand = new ChangeToNonAnimatedMovingCommand(c);
-		_changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(c);
 		_dynamicTilesCommand = new DynamicTilesCommand(c);
+		controllerMappings = new Dictionary<Keys, ICommand>();
+
+		//Initialize the different commands
 		_quitCommand = new QuitCommand();
+		turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
+		turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
+		turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
+		turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
+
+		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
+		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
+
+		RegisterCommand(Keys.D0, _quitCommand);
+		RegisterCommand(Keys.NumPad0, _quitCommand);
+		RegisterCommand(Keys.Left, turnPlayerLeftCommand);
+		RegisterCommand(Keys.Right, turnPlayerRightCommand);
+		RegisterCommand(Keys.Up, turnPlayerUpCommand);
+		RegisterCommand(Keys.Down, turnPlayerDownCommand);
+    
+		RegisterCommand(Keys.W, cycleItemNextCommand);
+		RegisterCommand(Keys.S, cycleItemPrevCommand);
 
 
     }
 
-	public void HandleEvents()
+	public void RegisterCommand(Keys key, ICommand command)
 	{
-		throw new NotImplementedException();
+		controllerMappings.Add(key, command);
 	}
 
-	public int ProcessInput(Keys[] pressedKeys, SpriteBatch spriteBatch, int lastDrawn)
+	public void HandleEvents()
 	{
 		if (pressedKeys.Length == 0)
 		{
-			if (lastDrawn == 1)
-			{
-                _changeToNonAnimatedNonMovingCommand.drawSprite(spriteBatch);
-            } else if (lastDrawn == 2)
-			{
-                _changeToAnimatedNonMovingCommand.drawSprite(spriteBatch);
-            }
-            else if (lastDrawn == 3)
-            {
-                _changeToNonAnimatedMovingCommand.drawSprite(spriteBatch);
-            }
-            else if (lastDrawn == 4)
-            {
-                _changeToAnimatedMovingCommand.drawSprite(spriteBatch);
-            }
-			else if (lastDrawn == 5)
+			if (lastDrawn == 5)
             {
                 _dynamicTilesCommand.drawSprite(spriteBatch, x);
             }
         }
         foreach (Keys k in pressedKeys)
 		{
-			if (k.Equals(Keys.NumPad0) || k.Equals(Keys.D0))
-			{
-				_quitCommand.QuitProgram();
-			}
-			else if (k.Equals(Keys.NumPad1) || k.Equals(Keys.D1))
-			{
-				_changeToNonAnimatedNonMovingCommand.drawSprite(spriteBatch);
-				lastDrawn = 1;
-			}
-			else if (k.Equals(Keys.NumPad2) || k.Equals(Keys.D2))
-			{
-				_changeToAnimatedNonMovingCommand.drawSprite(spriteBatch);
-				lastDrawn = 2;
-			}
-			else if (k.Equals(Keys.NumPad3) || k.Equals(Keys.D3))
-			{
-				_changeToNonAnimatedMovingCommand.drawSprite(spriteBatch);
-				lastDrawn = 3;
-			}
-			else if (k.Equals(Keys.NumPad4) || k.Equals(Keys.D4))
-			{
-				_changeToAnimatedMovingCommand.drawSprite(spriteBatch);
-				lastDrawn = 4;
-			}
-			else if (k.Equals(Keys.T))
+			if (k.Equals(Keys.T))
 			{
 				_dynamicTilesCommand.drawSprite(spriteBatch, x);
 				lastDrawn = 5;
@@ -102,7 +83,12 @@ public class KeyboardController : IController
 
 	public void ProcessInput()
 	{
-		throw new NotImplementedException();
+		Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+
+		foreach(Keys key in pressedKeys)
+		{
+			controllerMappings[key].Execute();
+		}
 	}
 
 	public void Update()

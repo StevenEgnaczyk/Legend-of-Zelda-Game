@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Sprint_0
@@ -9,25 +10,20 @@ namespace Sprint_0
     public class Game1 : Game
     {
         //Set up graphics objects
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager _graphics;
+        public SpriteBatch _spriteBatch;
 
-        //Sprite for the text-field
-        //private ISprite text;
+        private Link link;
+        private OldMan oldMan1;
+        private Flame flame;
+        private Bomb bomb;
+        private Item item;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
-        private KeyboardState _keyboardState;
 
         //Mouse variables
         private MouseController _mouseController;
-        private MouseState _mouseState;
-
-        //Integer to keep track of the last drawn sprite
-        private int lastDrawn;
-
-        //Initial Sprite
-        private ChangeToNonAnimatedNonMovingCommand _changeToNonAnimatedNonMovingCommand;
 
         private DynamicTilesCommand _dynamicTilesCommand;
 
@@ -43,25 +39,29 @@ namespace Sprint_0
         protected override void Initialize()
         {
 
-            //Initialize text, keyboard, and mouse
-            base.Initialize();
-            //text = new TextSprite(Content);
-            _keyboardController = new KeyboardController(Content);
             _dynamicTilesCommand = new DynamicTilesCommand(Content);
+            lastDrawn = 5;
+            
+            link = new Link();
+            oldMan1 = new OldMan();
+            flame = new Flame();
+            bomb = new Bomb();
+            
+            _keyboardController = new KeyboardController(Content, link);
+            item = new Item();
+            
+            _keyboardController = new KeyboardController(Content, link, item);
             _mouseController = new MouseController(Content);
 
-            //Set last drawn to 1
-            lastDrawn = 5;
+            base.Initialize();
+
         }
 
         protected override void LoadContent()
         {
-            //Load initial Mario state
-            
-            //_changeToNonAnimatedNonMovingCommand = new ChangeToNonAnimatedNonMovingCommand(Content);
+            //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //_changeToNonAnimatedNonMovingCommand.drawSprite(_spriteBatch);
-            //_dynamicTilesCommand.drawSprite(_spriteBatch);
+            Texture2DStorage.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -74,17 +74,22 @@ namespace Sprint_0
 
         protected override void Draw(GameTime gameTime)
         {
-            //Clear the background and draw the text
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            //text.Draw(_spriteBatch);
 
-            //Process keyboard input
-            _keyboardState = Keyboard.GetState();
-            lastDrawn = _keyboardController.ProcessInput(_keyboardState.GetPressedKeys(), _spriteBatch, lastDrawn);
+            GraphicsDevice.Clear(Color.DarkGray);
+
+            //Process Keyboard Input
+            _keyboardController.ProcessInput();
 
             //Process Mouse Input
-            _mouseState = Mouse.GetState();
-            lastDrawn = _mouseController.ProcessInput(_mouseState, _spriteBatch, lastDrawn);
+            _mouseController.ProcessInput();
+
+            _spriteBatch.Begin();
+            link.Draw(_spriteBatch);
+            oldMan1.Draw(_spriteBatch);
+            flame.Draw(_spriteBatch);
+            bomb.Draw(_spriteBatch);
+            item.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

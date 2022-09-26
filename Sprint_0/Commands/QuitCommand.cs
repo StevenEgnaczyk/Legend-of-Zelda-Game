@@ -3,16 +3,12 @@ using System;
 
 public class QuitCommand : ICommand
 {
+
 	public QuitCommand()
 	{
 	}
 
-	public void drawSprite(SpriteBatch spriteBatch)
-	{
-		throw new NotImplementedException();
-	}
-
-	public void QuitProgram()
+	public void Execute()
 	{
 		Environment.Exit(0);
 	}
