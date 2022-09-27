@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 public class DynamicTileSprite
 {
+	//Work in progress
 	private Dictionary<string, Texture2D> tiles;
 	public DynamicTileSprite(ContentManager c)
 	{

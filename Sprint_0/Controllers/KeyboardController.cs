@@ -9,8 +9,6 @@ using System.Security.Cryptography;
 
 public class KeyboardController : IController
 {
-	private DynamicTilesCommand _dynamicTilesCommand;
-	private int x = 1;
 
 	private Dictionary<Keys, ICommand> controllerMappings;
 
@@ -25,11 +23,13 @@ public class KeyboardController : IController
 
 	private CycleItemNextCommand cycleItemNextCommand;
 	private CycleItemPrevCommand cycleItemPrevCommand;
+	private DynamicTilesCommand _dynamicTilesCommand;
+	private DynamicTilesCommandPrev _dynamicTilesCommandPrev;
 
-    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer)
+
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
 	{
 
-		_dynamicTilesCommand = new DynamicTilesCommand(c);
 		controllerMappings = new Dictionary<Keys, ICommand>();
 
 		//Initialize the different commands
@@ -45,6 +45,9 @@ public class KeyboardController : IController
 		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
+		_dynamicTilesCommand = new DynamicTilesCommand(tilePlayer);
+		_dynamicTilesCommandPrev = new DynamicTilesCommandPrev(tilePlayer);
+
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
 
@@ -56,8 +59,10 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
 
-		RegisterCommand(Keys.W, cycleItemNextCommand);
-		RegisterCommand(Keys.S, cycleItemPrevCommand);
+		RegisterCommand(Keys.U, cycleItemNextCommand);
+		RegisterCommand(Keys.I, cycleItemPrevCommand);
+		RegisterCommand(Keys.T, _dynamicTilesCommand);
+		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
 
 
     }
@@ -69,26 +74,7 @@ public class KeyboardController : IController
 
 	public void HandleEvents()
 	{
-		if (pressedKeys.Length == 0)
-		{
-			if (lastDrawn == 5)
-            {
-                _dynamicTilesCommand.drawSprite(spriteBatch, x);
-            }
-        }
-        foreach (Keys k in pressedKeys)
-		{
-			if (k.Equals(Keys.T))
-			{
-				_dynamicTilesCommand.drawSprite(spriteBatch, x);
-				lastDrawn = 5;
-				++x;
-			}
-        }
-		if(x > 10){
-			x=1;
-		}
-		return lastDrawn;
+		throw new NotImplementedException();
 	}
 
 	public void ProcessInput()
@@ -97,7 +83,7 @@ public class KeyboardController : IController
 
 		foreach(Keys key in pressedKeys)
 		{
-			controllerMappings[key].Execute();
+				controllerMappings[key].Execute();
 		}
 	}
 
@@ -105,4 +91,5 @@ public class KeyboardController : IController
 	{
 		throw new NotImplementedException();
 	}
+
 }
