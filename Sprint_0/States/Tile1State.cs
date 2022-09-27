@@ -26,6 +26,10 @@ public class Tile1State : ITileState
     {
         tile.state = new Tile2State(tile);
     }
+    public void Prev()
+    {
+        tile.state = new Tile10State(tile);
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {

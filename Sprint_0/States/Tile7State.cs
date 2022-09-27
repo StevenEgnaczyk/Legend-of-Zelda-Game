@@ -27,6 +27,11 @@ public class Tile7State : ITileState
         tile.state = new Tile8State(tile);
     }
 
+    public void Prev()
+    {
+        tile.state = new Tile6State(tile);
+    }
+
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile1 = Texture2DStorage.GetTile7Sprite();

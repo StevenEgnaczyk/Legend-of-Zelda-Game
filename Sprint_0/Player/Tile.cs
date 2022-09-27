@@ -19,10 +19,16 @@ public class Tile
         xPos = 350;
         yPos = 150;
     }
-     public void Next()
+    public void Next()
     {
         state.Next();
-        state.Update();
+        //state.Update();
+    }
+
+    public void Prev()
+    {
+        state.Prev();
+        //state.Update();
     }
 
     public void Draw(SpriteBatch _spriteBatch)
