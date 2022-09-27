@@ -47,15 +47,7 @@ public class Link
 
     public void Update()
     {
-        throw new NotImplementedException();
-    }
-
-    public void move(int x, int y)
-    {
-        xPos += x;
-        yPos += y;
-        state.Draw(_spriteBatch);
-
+        state.Update();
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -67,6 +59,16 @@ public class Link
     {
         Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 4, sourceRect.Height * 4);
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
+    }
+
+    internal void UseWoodenSword()
+    {
+        state.UseWoodenSword();
+    }
+
+    internal void UseSwordBeam()
+    {
+        //state.UseSwordBeam();
     }
 
 

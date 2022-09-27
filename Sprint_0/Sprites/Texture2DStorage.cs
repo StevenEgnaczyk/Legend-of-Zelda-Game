@@ -56,7 +56,7 @@ public static class Texture2DStorage
     public static void LoadAllTextures(ContentManager content)
 	{
 		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
-		linkSpriteSheet = content.Load<Texture2D>("Link1");
+		linkSpriteSheet = content.Load<Texture2D>("Link");
 
 		item1Sprite = content.Load<Texture2D>("item1");
 		item2Sprite = content.Load<Texture2D>("item2");

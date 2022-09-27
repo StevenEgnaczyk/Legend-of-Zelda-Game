@@ -5,19 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class RightMovingLinkState : ILinkState
+public class LeftMovingLinkState : ILinkState
 {
     private Link link;
     private static List<Rectangle> linkSprites = new List<Rectangle>()
     {
-        new Rectangle(35, 11, 16, 16),
-        new Rectangle(52, 11, 15, 16)
+        new Rectangle(160, 11, 15, 16),
+        new Rectangle(176, 11, 15, 16)
     };
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
-    public RightMovingLinkState(Link link)
+    public LeftMovingLinkState(Link link)
     {
         this.link = link;
         currentIndex = 0;
@@ -25,12 +25,7 @@ public class RightMovingLinkState : ILinkState
 
     public void TurnLeft()
     {
-        link.state = new LeftMovingLinkState(link);
-    }
-
-    public void TurnRight()
-    {
-        link.xPos += link.linkSpeed;
+        link.xPos -= link.linkSpeed;
         bufferIndex++;
         if (bufferIndex == bufferMax)
         {
@@ -41,6 +36,11 @@ public class RightMovingLinkState : ILinkState
                 currentIndex = 0;
             }
         }
+    }
+
+    public void TurnRight()
+    {
+        link.state = new RightMovingLinkState(link);
     }
 
     public void TurnUp()
@@ -56,6 +56,11 @@ public class RightMovingLinkState : ILinkState
     public void Die()
     {
 
+    }
+
+    public void UseWoodenSword()
+    {
+        link.state = new DownAttackingLinkState(link);
     }
 
     public void Draw(SpriteBatch spriteBatch)

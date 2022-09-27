@@ -2,25 +2,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class UpMovingLinkState : ILinkState
+public class DownAttackingLinkState : ILinkState
 {
     private Link link;
     private static List<Rectangle> linkSprites = new List<Rectangle>()
     {
-        new Rectangle(71, 11, 16, 16),
-        new Rectangle(88, 11, 16, 16)
+        new Rectangle(1, 47, 16, 15),
+        new Rectangle(18, 47, 16, 27),
+        new Rectangle(35, 47, 15, 23),
+        new Rectangle(53, 47, 13, 19)
     };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
-    public UpMovingLinkState(Link link)
+    public DownAttackingLinkState(Link link)
     {
         this.link = link;
-        currentIndex = 0;
     }
 
     public void TurnLeft()
@@ -35,22 +38,17 @@ public class UpMovingLinkState : ILinkState
 
     public void TurnUp()
     {
-        link.yPos -= link.linkSpeed;
-        bufferIndex++;
-        if (bufferIndex == bufferMax)
-        {
-            currentIndex++;
-            bufferIndex = 0;
-            if (currentIndex == 2)
-            {
-                currentIndex = 0;
-            }
-        }
+        link.state = new UpMovingLinkState(link);
     }
 
     public void TurnDown()
     {
         link.state = new DownMovingLinkState(link);
+    }
+
+    public void UseWoodenSword()
+    {
+        link.state = new DownAttackingLinkState(link);
     }
 
     public void Die()
@@ -68,5 +66,11 @@ public class UpMovingLinkState : ILinkState
 
     public void Update()
     {
+        currentIndex++;
+        if (currentIndex == 4)
+        {
+            link.state = new DownMovingLinkState(link);
+            currentIndex = 0;
+        }
     }
 }
