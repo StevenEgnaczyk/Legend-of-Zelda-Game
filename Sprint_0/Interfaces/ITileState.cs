@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 public interface ITileState
 {
     public void Next();
+    public void Prev();
     public void Update();
     public void Draw(SpriteBatch _spriteBatch);
 }

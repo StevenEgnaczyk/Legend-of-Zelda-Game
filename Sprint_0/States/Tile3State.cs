@@ -21,6 +21,10 @@ public class Tile3State : ITileState
         this.tile = tile;
         currentIndex = 0;
     }
+    public void Prev()
+    {
+        tile.state = new Tile2State(tile);
+    }
 
     public void Next()
     {
