@@ -5,15 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class DynamicTilesCommand : ICommand
+public class DynamicTilesCommandPrev : ICommand
 {
     public Tile tilePlayer;
-    public DynamicTilesCommand(Tile _tile)
+    public DynamicTilesCommandPrev(Tile _tile)
 	{
         tilePlayer = _tile;
 	}
     public  void Execute()
     {
-        tilePlayer.Next();
+        tilePlayer.Prev();
     }
 }

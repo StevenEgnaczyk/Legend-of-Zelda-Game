@@ -4,17 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 
-public interface ILinkState
+public interface ITileState
 {
-    public void TurnUp();
-    public void TurnDown();
-    public void TurnLeft();
-    public void TurnRight();
-    public void Die();
+    public void Next();
+    public void Prev();
     public void Update();
     public void Draw(SpriteBatch _spriteBatch);
-
-    public void UseWoodenSword();
-
-    public void UseSwordBeam();
 }
