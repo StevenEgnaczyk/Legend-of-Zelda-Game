@@ -41,6 +41,16 @@ public class DownMovingLinkState : ILinkState
         link.state = new UpMovingLinkState(link);
     }
 
+    public void UseWoodenSword()
+    {
+        link.state = new DownAttackingLinkState(link, "Wooden");
+    }
+
+    public void UseSwordBeam()
+    {
+        link.state = new DownAttackingLinkState(link, "Beam");
+    }
+
     public void TurnDown()
     {
         link.yPos+= link.linkSpeed;
@@ -56,10 +66,7 @@ public class DownMovingLinkState : ILinkState
         }
     }
 
-    public void UseWoodenSword()
-    {
-        link.state = new DownAttackingLinkState(link);
-    }
+
 
     public void Die()
     {
@@ -70,7 +77,7 @@ public class DownMovingLinkState : ILinkState
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = linkSprites[currentIndex];
-        link.DrawSprite(spriteBatch, downMovingLink, sourceRect);
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
 
     }
 
