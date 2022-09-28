@@ -23,8 +23,11 @@ public class KeyboardController : IController
 
 	private CycleItemNextCommand cycleItemNextCommand;
 	private CycleItemPrevCommand cycleItemPrevCommand;
+	private DynamicTilesCommand _dynamicTilesCommand;
+	private DynamicTilesCommandPrev _dynamicTilesCommandPrev;
 
-    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer)
+
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
 	{
 
 		controllerMappings = new Dictionary<Keys, ICommand>();
@@ -42,6 +45,9 @@ public class KeyboardController : IController
 		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
+		_dynamicTilesCommand = new DynamicTilesCommand(tilePlayer);
+		_dynamicTilesCommandPrev = new DynamicTilesCommandPrev(tilePlayer);
+
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
 
@@ -53,8 +59,11 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
 
-		RegisterCommand(Keys.W, cycleItemNextCommand);
-		RegisterCommand(Keys.S, cycleItemPrevCommand);
+		RegisterCommand(Keys.U, cycleItemNextCommand);
+		RegisterCommand(Keys.I, cycleItemPrevCommand);
+		RegisterCommand(Keys.T, _dynamicTilesCommand);
+		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
+
 
     }
 
@@ -84,4 +93,5 @@ public class KeyboardController : IController
 	{
 		throw new NotImplementedException();
 	}
+
 }

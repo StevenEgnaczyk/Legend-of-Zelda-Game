@@ -18,12 +18,14 @@ namespace Sprint_0
         private Flame flame;
         private Bomb bomb;
         private Item item;
+        private Tile tile;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
 
         //Mouse variables
         private MouseController _mouseController;
+        //private int track;
 
         public Game1()
         {
@@ -37,15 +39,16 @@ namespace Sprint_0
         protected override void Initialize()
         {
 
-            //Initialize text, keyboard, and mouse
+            //lastDrawn = 5;
+            
             link = new Link();
             oldMan1 = new OldMan();
             flame = new Flame();
             bomb = new Bomb();
-            
             item = new Item();
+            tile = new Tile();
             
-            _keyboardController = new KeyboardController(Content, link, item);
+            _keyboardController = new KeyboardController(Content, link, item, tile);
             _mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -57,6 +60,7 @@ namespace Sprint_0
             //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2DStorage.LoadAllTextures(Content);
+            base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -73,7 +77,7 @@ namespace Sprint_0
 
         protected override void Draw(GameTime gameTime)
         {
-            //Clear the background and draw the text
+
             GraphicsDevice.Clear(Color.DarkGray);
 
             _spriteBatch.Begin();
@@ -83,6 +87,7 @@ namespace Sprint_0
             flame.Draw(_spriteBatch);
             bomb.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
+            tile.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
