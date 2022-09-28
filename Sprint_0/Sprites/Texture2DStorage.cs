@@ -24,6 +24,9 @@ public static class Texture2DStorage
 	private static Texture2D item12Sprite;
 	private static Texture2D item13Sprite;
 
+	private static Texture2D enemySpritesheet;
+	private static Texture2D bossSpritesheet;
+
 	// More private static Texture2D fields follow
 
 	// static classes have no constructor, but we need a method to initialize the Texture2D fields
@@ -44,6 +47,9 @@ public static class Texture2DStorage
 		item11Sprite = content.Load<Texture2D>("item11");
 		item12Sprite = content.Load<Texture2D>("item12");
 		item13Sprite = content.Load<Texture2D>("item13");
+
+		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
+		bossSpritesheet = content.Load<Texture2D>("bossSpriteSheet");
 	}
 
 	public static Texture2D GetLinkSpriteSheet()
@@ -116,5 +122,15 @@ public static class Texture2DStorage
 		return item13Sprite;
 	}
 	// More public static Texture2D returning methods follow
+
+	public static Texture2D getEnemySpritesheet()
+	{
+		return enemySpritesheet;
+	}
+
+	public static Texture2D getBossSpriteSheet()
+	{
+		return bossSpritesheet;
+	}
 
 }
