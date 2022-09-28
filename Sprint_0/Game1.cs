@@ -65,9 +65,13 @@ namespace Sprint_0
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             base.Update(gameTime);
+
+            //Process Keyboard Input
+            _keyboardController.ProcessInput();
+
+            //Process Mouse Input
+            _mouseController.ProcessInput();
 
         }
 
@@ -75,12 +79,6 @@ namespace Sprint_0
         {
 
             GraphicsDevice.Clear(Color.DarkGray);
-
-            //Process Keyboard Input
-            _keyboardController.ProcessInput();
-
-            //Process Mouse Input
-            _mouseController.ProcessInput();
 
             _spriteBatch.Begin();
             link.Draw(_spriteBatch);
