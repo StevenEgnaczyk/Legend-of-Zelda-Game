@@ -59,14 +59,19 @@ public class RightMovingLinkState : ILinkState
     }
     public void UseWoodenSword()
     {
-        link.state = new DownAttackingLinkState(link);
+        link.state = new RightAttackingLinkState (link, "Wooden");
+    }
+
+    public void UseSwordBeam()
+    {
+        link.state = new RightAttackingLinkState(link, "Beam");
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = linkSprites[currentIndex];
-        link.DrawSprite(spriteBatch, downMovingLink, sourceRect);
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
 
     }
 

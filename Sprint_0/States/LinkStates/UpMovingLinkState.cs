@@ -14,14 +14,6 @@ public class UpMovingLinkState : ILinkState
         new Rectangle(88, 11, 16, 16)
     };
 
-    private static List<Rectangle> linkWoodenSprite = new List<Rectangle>()
-    {
-        new Rectangle(52, 106, 16, 19),
-        new Rectangle(35, 98, 16, 27),
-        new Rectangle(18, 97, 16, 28),
-        new Rectangle(1, 109, 16, 16)
-    };
-
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
@@ -66,7 +58,12 @@ public class UpMovingLinkState : ILinkState
 
     public void UseWoodenSword()
     {
-        link.state = new DownAttackingLinkState(link);
+        link.state = new UpAttackingLinkState(link, "Wooden");
+    }
+
+    public void UseSwordBeam()
+    {
+        link.state = new UpAttackingLinkState(link, "Beam");
     }
 
     public void Die()
@@ -78,7 +75,7 @@ public class UpMovingLinkState : ILinkState
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = linkSprites[currentIndex];
-        link.DrawSprite(spriteBatch, downMovingLink, sourceRect);
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
 
     }
 
