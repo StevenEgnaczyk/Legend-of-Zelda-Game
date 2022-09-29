@@ -83,6 +83,8 @@ public class KeyboardController : IController
 
 		foreach(Keys key in pressedKeys)
 		{
+			controllerMappings[key].Execute();
+			//Add functionality for when it do not work
 				controllerMappings[key].Execute();
 		}
 	}

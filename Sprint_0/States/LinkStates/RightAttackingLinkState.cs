@@ -6,30 +6,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class DownAttackingLinkState : ILinkState
+public class RightAttackingLinkState : ILinkState
 {
     private Link link;
     private static List<Rectangle> woodenSwordSprites = new List<Rectangle>()
     {
-        new Rectangle(1, 47, 16, 15),
-        new Rectangle(18, 47, 16, 27),
-        new Rectangle(35, 47, 15, 23),
-        new Rectangle(53, 47, 13, 19)
+        new Rectangle(1, 78, 15, 15),
+        new Rectangle(18, 78, 27, 15),
+        new Rectangle(46, 78, 23, 15),
+        new Rectangle(70, 77, 19, 16)
     };
 
     private static List<Rectangle> whiteSwordSprites = new List<Rectangle>()
     {
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(111, 47, 16, 27),
-        new Rectangle(128, 47, 15, 23),
-        new Rectangle(146, 47, 13, 19)
+        new Rectangle(95, 78, 15, 15),
+        new Rectangle(163, 77, 19, 16),
+        new Rectangle(139, 78, 21, 15),
+        new Rectangle(111, 78, 26, 15)
     };
 
-    String weapon;
+
 
     private int currentIndex;
+    private int bufferIndex;
+    private int bufferMax = 10;
 
-    public DownAttackingLinkState(Link link, String weapon)
+    private String weapon;
+
+    public RightAttackingLinkState(Link link, String weapon)
     {
         this.link = link;
         this.weapon = weapon;
@@ -57,12 +61,12 @@ public class DownAttackingLinkState : ILinkState
 
     public void UseWoodenSword()
     {
-        link.state = new DownAttackingLinkState(link, "Wooden");
+        link.state = new RightAttackingLinkState(link, "Wooden");
     }
 
     public void UseSwordBeam()
     {
-        link.state = new DownAttackingLinkState(link, "Beam");
+        link.state = new RightAttackingLinkState(link, "Beam");
     }
 
     public void Die()
@@ -76,14 +80,14 @@ public class DownAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width, sourceRect.Height);
-        } else if (this.weapon == "Beam")
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
+        }
+        else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width, sourceRect.Height);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
         }
-
     }
 
     public void Update()
@@ -91,7 +95,7 @@ public class DownAttackingLinkState : ILinkState
         currentIndex++;
         if (currentIndex == 4)
         {
-            link.state = new DownMovingLinkState(link);
+            link.state = new RightMovingLinkState(link);
             currentIndex = 0;
         }
     }
