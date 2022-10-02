@@ -8,7 +8,6 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
-    public LinkSprite sprite;
 
     public float xPos, yPos;
 
