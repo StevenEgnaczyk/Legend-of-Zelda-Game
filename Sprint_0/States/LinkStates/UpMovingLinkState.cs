@@ -75,7 +75,7 @@ public class UpMovingLinkState : ILinkState
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = linkSprites[currentIndex];
-        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
 
     }
 

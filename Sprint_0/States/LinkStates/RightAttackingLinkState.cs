@@ -80,13 +80,13 @@ public class RightAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
         }
         else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
         }
     }
 
