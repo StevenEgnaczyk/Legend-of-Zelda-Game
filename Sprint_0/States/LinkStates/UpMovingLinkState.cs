@@ -82,4 +82,14 @@ public class UpMovingLinkState : ILinkState
     public void Update()
     {
     }
+
+    public void UseBoomerang()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
+    }
 }

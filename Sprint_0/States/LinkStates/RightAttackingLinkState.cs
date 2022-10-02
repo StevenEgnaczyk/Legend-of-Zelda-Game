@@ -99,4 +99,14 @@ public class RightAttackingLinkState : ILinkState
             currentIndex = 0;
         }
     }
+
+    public void UseBoomerang()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
+    }
 }

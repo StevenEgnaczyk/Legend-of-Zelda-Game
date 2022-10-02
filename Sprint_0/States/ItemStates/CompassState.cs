@@ -6,19 +6,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Item13State : IItemState
+public class CompassState : IItemState
 {
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(1, 11, 16, 16),
-        new Rectangle(19, 11, 16, 16)
+        new Rectangle(258, 1, 11, 12)
     };
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
-    public Item13State(Item item)
+    public CompassState(Item item)
     {
         this.item = item;
         currentIndex = 0;
@@ -26,19 +25,30 @@ public class Item13State : IItemState
 
     public void Next()
     {
-        item.state = new Item1State(item);
+        bufferIndex++;
+        if (bufferIndex == bufferMax)
+        {
+            currentIndex++;
+            bufferIndex = 0;
+            if (currentIndex == 1)
+            {
+                item.state = new MapState(item);
+                currentIndex = 0;
+            }
+        }
+        
     }
 
     public void Prev()
     {
-        item.state = new Item12State(item);
+        item.state = new ClockState(item);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D item13 = Texture2DStorage.GetItem13Sprite();
+        Texture2D item1 = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = itemSprites[currentIndex];
-        item.DrawSprite(spriteBatch, item13, sourceRect);
+        item.DrawSprite(spriteBatch, item1, sourceRect);
 
     }
     public void Update()
