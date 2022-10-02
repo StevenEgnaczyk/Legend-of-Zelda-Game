@@ -12,19 +12,20 @@ public class KeyboardController : IController
 
 	private Dictionary<Keys, ICommand> controllerMappings;
 
-	private QuitCommand _quitCommand;
-	private TurnPlayerLeftCommand turnPlayerLeftCommand;
-	private TurnPlayerRightCommand turnPlayerRightCommand;
-	private TurnPlayerUpCommand turnPlayerUpCommand;
-	private TurnPlayerDownCommand turnPlayerDownCommand;
+	private ICommand _quitCommand;
+	private ICommand turnPlayerLeftCommand;
+	private ICommand turnPlayerRightCommand;
+	private ICommand turnPlayerUpCommand;
+	private ICommand turnPlayerDownCommand;
 
-	private UseWoodenSwordCommand useWoodenSwordCommand;
-	private UseSwordBeamCommand useSwordBeamCommand;
+	private ICommand useWoodenSwordCommand;
+	private ICommand useSwordBeamCommand;
+    private ICommand useBoomerangCommand;
 
-	private CycleItemNextCommand cycleItemNextCommand;
-	private CycleItemPrevCommand cycleItemPrevCommand;
-	private DynamicTilesCommand _dynamicTilesCommand;
-	private DynamicTilesCommandPrev _dynamicTilesCommandPrev;
+    private ICommand cycleItemNextCommand;
+	private ICommand cycleItemPrevCommand;
+	private ICommand _dynamicTilesCommand;
+	private ICommand _dynamicTilesCommandPrev;
 
 
     public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
@@ -41,6 +42,7 @@ public class KeyboardController : IController
 
 		useWoodenSwordCommand = new UseWoodenSwordCommand(linkPlayer);
 		useSwordBeamCommand = new UseSwordBeamCommand(linkPlayer);
+		useBoomerangCommand = new UseBoomerangCommand(linkPlayer);
 
 		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
@@ -58,8 +60,9 @@ public class KeyboardController : IController
 
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
+        RegisterCommand(Keys.D1, useBoomerangCommand);
 
-		RegisterCommand(Keys.U, cycleItemNextCommand);
+        RegisterCommand(Keys.U, cycleItemNextCommand);
 		RegisterCommand(Keys.I, cycleItemPrevCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);
 		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
@@ -83,9 +86,10 @@ public class KeyboardController : IController
 
 		foreach(Keys key in pressedKeys)
 		{
-			controllerMappings[key].Execute();
-			//Add functionality for when it do not work
+			if (controllerMappings.ContainsKey(key))
+			{
 				controllerMappings[key].Execute();
+			}
 		}
 	}
 
