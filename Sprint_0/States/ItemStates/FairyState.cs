@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Item2State : IItemState
+public class FairyState : IItemState
 {
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
@@ -18,7 +18,7 @@ public class Item2State : IItemState
     private int bufferIndex;
     private int bufferMax = 10;
 
-    public Item2State(Item item)
+    public FairyState(Item item)
     {
         this.item = item;
         currentIndex = 0;
@@ -26,19 +26,19 @@ public class Item2State : IItemState
 
     public void Next()
     {
-        item.state = new Item4State(item);
+        item.state = new ClockState(item);
     }
 
     public void Prev()
     {
-        item.state = new Item1State(item);
+        item.state = new BombState(item);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D item2 = Texture2DStorage.GetItem2Sprite();
+        Texture2D items = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = itemSprites[currentIndex];
-        item.DrawSprite(spriteBatch, item2, sourceRect);
+        item.DrawSprite(spriteBatch, items, sourceRect);
 
     }
     public void Update()

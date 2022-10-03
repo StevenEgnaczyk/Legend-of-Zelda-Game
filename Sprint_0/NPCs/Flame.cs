@@ -5,14 +5,12 @@ using System;
 using System.Reflection.Metadata;
 public class Flame
 {
-    public IFlameState state;
     public FlameSprite sprite;
     public float x, y;
     public SpriteBatch _spriteBatch;
     
     public Flame()
     {
-        state = new FlameState(this);
         x = 300;
         y = 200;
     }
@@ -22,7 +20,7 @@ public class Flame
     }
     public void Draw(SpriteBatch _spriteBatch)
     {
-        state.Draw(_spriteBatch);
+        //state.Draw(_spriteBatch);
     }
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D flameSprite, Rectangle sourceRect)
     {
