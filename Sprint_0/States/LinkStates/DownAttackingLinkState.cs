@@ -25,6 +25,17 @@ public class DownAttackingLinkState : ILinkState
         new Rectangle(146, 47, 13, 19)
     };
 
+    private static List<Rectangle> linkSprites = new List<Rectangle>()
+    {
+        new Rectangle(1, 11, 16, 16),
+        new Rectangle(19, 11, 16, 16)
+    };
+
+    private static List<Rectangle> boomerangSprites = new List<Rectangle>()
+    {
+        new Rectangle(129, 3, 5, 8)
+    };
+
     String weapon;
 
     private int currentIndex;
@@ -88,6 +99,13 @@ public class DownAttackingLinkState : ILinkState
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
         }
+        else if (this.weapon == "Boomerang")
+        {
+            Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
+            Rectangle sourceRect = linkSprites[1];
+            link.boomerang.Draw(spriteBatch);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, currentIndex * 4);
+        }
 
     }
 
@@ -99,6 +117,16 @@ public class DownAttackingLinkState : ILinkState
             link.state = new DownMovingLinkState(link);
             currentIndex = 0;
         }
+    }
+
+    public void UseBoomerang()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
     }
 
     public void UseBow()

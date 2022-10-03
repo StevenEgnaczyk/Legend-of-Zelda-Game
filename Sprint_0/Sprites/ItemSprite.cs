@@ -21,7 +21,7 @@ public class ItemSprite : ISprite
 
     public ItemSprite()
     {
-        this.itemTexture = Texture2DStorage.GetItem1Sprite();
+        this.itemTexture = Texture2DStorage.GetItemSpritesheet();
 
         itemXPos = 500;
         itemYPos = 300;

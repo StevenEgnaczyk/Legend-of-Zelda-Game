@@ -5,7 +5,7 @@ using System;
 using System.Reflection.Metadata;
 using System.Threading;
 
-public class FlameState : IFlameState
+public class FlameState
 {
     private Flame flame;
     public FlameState(Flame flame)

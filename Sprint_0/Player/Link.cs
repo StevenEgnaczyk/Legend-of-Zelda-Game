@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.Player;
 using System;
 using System.Diagnostics;
 using System.Reflection.Metadata;
@@ -10,10 +11,9 @@ public class Link
     public ILinkState state;
 
     public float xPos, yPos;
-
     public SpriteBatch _spriteBatch;
-
     public int linkSpeed = 3;
+    public Boomerang boomerang;
 
     public Link()
     {
@@ -76,6 +76,16 @@ public class Link
     internal void UseSwordBeam()
     {
         state.UseSwordBeam();
+    }
+
+    internal void UseBoomerang()
+    {
+        state.UseBoomerang();
+    }
+
+    internal void UseBow()
+    {
+        state.UseBow();
     }
 
 
