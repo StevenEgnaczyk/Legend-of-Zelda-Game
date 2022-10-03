@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-using System.Security.Cryptography;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 public class KeyboardController : IController
 {
@@ -26,6 +26,9 @@ public class KeyboardController : IController
 	private ICommand cycleItemPrevCommand;
 	private ICommand _dynamicTilesCommand;
 	private ICommand _dynamicTilesCommandPrev;
+
+	private Keys[] state;
+
 
 
     public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
@@ -88,9 +91,20 @@ public class KeyboardController : IController
 		{
 			if (controllerMappings.ContainsKey(key))
 			{
-				controllerMappings[key].Execute();
+				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I))
+				{
+					if(!state.Contains(key))
+					{
+						controllerMappings[key].Execute();
+					}
+				} 
+				else
+				{
+					controllerMappings[key].Execute();
+				}
 			}
 		}
+		state = pressedKeys;
 	}
 
 	public void Update()
