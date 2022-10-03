@@ -25,7 +25,7 @@ public class RupeeState : IItemState
 
     public void Next()
     {
-        item.state = new ArrowState(item);
+        item.state = new FlameState(item);
     }
 
     public void Prev()

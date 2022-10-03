@@ -15,7 +15,6 @@ namespace Sprint_0
 
         private Link link;
         private OldMan oldMan1;
-        private Flame flame;
         private Item item;
         private Tile tile;
 
@@ -40,7 +39,6 @@ namespace Sprint_0
             
             link = new Link();
             oldMan1 = new OldMan();
-            flame = new Flame();
             item = new Item();
             tile = new Tile();
             
@@ -76,7 +74,6 @@ namespace Sprint_0
             link.Draw(_spriteBatch);
             link.Update();
             oldMan1.Draw(_spriteBatch);
-            flame.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
             _spriteBatch.End();
