@@ -65,6 +65,11 @@ public class DownAttackingLinkState : ILinkState
         link.state = new DownAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new DownAttackingLinkState(link, "Boomerang");
+    }
+
     public void Die()
     {
 
@@ -94,5 +99,15 @@ public class DownAttackingLinkState : ILinkState
             link.state = new DownMovingLinkState(link);
             currentIndex = 0;
         }
+    }
+
+    public void UseBoomerang()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
     }
 }
