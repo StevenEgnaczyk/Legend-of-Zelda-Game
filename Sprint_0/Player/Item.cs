@@ -18,7 +18,7 @@ public class Item
     public Item()
     {
 
-        state = new Item1State(this);
+        state = new CompassState(this);
 
         xPos = 300;
         yPos = 300;
@@ -49,7 +49,7 @@ public class Item
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D itemSprite, Rectangle sourceRect)
     {
         Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 4, sourceRect.Height * 4);
-        _spriteBatch.Draw(itemSprite, destinationRect, Color.White);
+        _spriteBatch.Draw(itemSprite, new Rectangle(400, 400, 16, 16), sourceRect, Color.White);
     }
 
 

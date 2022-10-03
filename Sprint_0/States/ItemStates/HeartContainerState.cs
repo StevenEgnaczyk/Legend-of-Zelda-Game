@@ -6,19 +6,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Item6State : IItemState
+public class HeartContainerState : IItemState
 {
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(1, 11, 16, 16),
-        new Rectangle(19, 11, 16, 16)
+        new Rectangle(25, 1, 13, 13)
     };
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
-    public Item6State(Item item)
+    public HeartContainerState(Item item)
     {
         this.item = item;
         currentIndex = 0;
@@ -26,19 +25,19 @@ public class Item6State : IItemState
 
     public void Next()
     {
-        item.state = new Item7State(item);
+        item.state = new WoodenBoomerangState(item);
     }
 
     public void Prev()
     {
-        item.state = new Item5State(item);
+        item.state = new KeyState(item);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D item6 = Texture2DStorage.GetItem6Sprite();
+        Texture2D items = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = itemSprites[currentIndex];
-        item.DrawSprite(spriteBatch, item6, sourceRect);
+        item.DrawSprite(spriteBatch, items, sourceRect);
 
     }
     public void Update()

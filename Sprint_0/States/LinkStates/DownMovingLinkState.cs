@@ -51,6 +51,16 @@ public class DownMovingLinkState : ILinkState
         link.state = new DownAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new DownAttackingLinkState(link, "Boomerang");
+    }
+
+    public void UseBow()
+    {
+        link.state = new DownAttackingLinkState(link, "Bow");
+    }
+
     public void TurnDown()
     {
         link.yPos+= link.linkSpeed;

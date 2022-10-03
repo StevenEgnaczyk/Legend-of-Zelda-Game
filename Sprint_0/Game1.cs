@@ -16,15 +16,12 @@ namespace Sprint_0
         private Link link;
         private OldMan oldMan1;
         private Flame flame;
-        private Bomb bomb;
         private Item item;
         private Tile tile;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
 
-        //Mouse variables
-        private MouseController _mouseController;
         //private int track;
 
         public Game1()
@@ -44,12 +41,10 @@ namespace Sprint_0
             link = new Link();
             oldMan1 = new OldMan();
             flame = new Flame();
-            bomb = new Bomb();
             item = new Item();
             tile = new Tile();
             
             _keyboardController = new KeyboardController(Content, link, item, tile);
-            _mouseController = new MouseController(Content);
 
             base.Initialize();
 
@@ -70,9 +65,6 @@ namespace Sprint_0
             //Process Keyboard Input
             _keyboardController.ProcessInput();
 
-            //Process Mouse Input
-            _mouseController.ProcessInput();
-
         }
 
         protected override void Draw(GameTime gameTime)
@@ -85,7 +77,6 @@ namespace Sprint_0
             link.Update();
             oldMan1.Draw(_spriteBatch);
             flame.Draw(_spriteBatch);
-            bomb.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
             _spriteBatch.End();
