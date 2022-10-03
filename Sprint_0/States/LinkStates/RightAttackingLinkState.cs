@@ -69,6 +69,11 @@ public class RightAttackingLinkState : ILinkState
         link.state = new RightAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new RightAttackingLinkState(link, "Boomerang");
+    }
+
     public void Die()
     {
 
