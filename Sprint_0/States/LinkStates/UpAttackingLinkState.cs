@@ -32,10 +32,14 @@ public class UpAttackingLinkState : ILinkState
 
     private String weapon;
 
+    private int bufferIndex;
+    private int bufferMax = 5;
+
     public UpAttackingLinkState(Link link, string weapon)
     {
         this.link = link;
         this.weapon = weapon;
+        bufferIndex = 0;
     }
 
     public void TurnLeft()
@@ -79,33 +83,29 @@ public class UpAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 16 - sourceRect.Height);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, -sourceRect.Height);
         }
         else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 16 - sourceRect.Height);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, -sourceRect.Height);
         }
     }
 
     public void Update()
     {
-        currentIndex++;
-        if (currentIndex == 4)
+        bufferIndex++;
+
+        if (bufferIndex == bufferMax)
         {
-            link.state = new UpMovingLinkState(link);
-            currentIndex = 0;
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 4)
+            {
+                link.state = new UpMovingLinkState(link);
+                currentIndex = 0;
+            }
         }
-    }
-
-    public void UseBoomerang()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void UseBow()
-    {
-        throw new NotImplementedException();
     }
 }

@@ -21,6 +21,8 @@ public class KeyboardController : IController
 	private ICommand useWoodenSwordCommand;
 	private ICommand useSwordBeamCommand;
     private ICommand useBoomerangCommand;
+	private ICommand useBowCommand;
+    private ICommand useFireCommand;
 
     private ICommand cycleItemNextCommand;
 	private ICommand cycleItemPrevCommand;
@@ -43,6 +45,8 @@ public class KeyboardController : IController
 		useWoodenSwordCommand = new UseWoodenSwordCommand(linkPlayer);
 		useSwordBeamCommand = new UseSwordBeamCommand(linkPlayer);
 		useBoomerangCommand = new UseBoomerangCommand(linkPlayer);
+		useBowCommand = new UseBowCommand(linkPlayer);
+		useFireCommand = new UseFireCommand(linkPlayer);
 
 		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
@@ -61,6 +65,8 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
         RegisterCommand(Keys.D1, useBoomerangCommand);
+        RegisterCommand(Keys.D2, useBowCommand);
+        RegisterCommand(Keys.D3, useFireCommand);
 
         RegisterCommand(Keys.U, cycleItemNextCommand);
 		RegisterCommand(Keys.I, cycleItemPrevCommand);
