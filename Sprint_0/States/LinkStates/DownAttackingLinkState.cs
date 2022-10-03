@@ -101,11 +101,6 @@ public class DownAttackingLinkState : ILinkState
         }
     }
 
-    public void UseBoomerang()
-    {
-        throw new NotImplementedException();
-    }
-
     public void UseBow()
     {
         throw new NotImplementedException();
