@@ -17,6 +17,4 @@ public interface ILinkState
     public void UseWoodenSword();
 
     public void UseSwordBeam();
-    void UseBoomerang();
-    void UseBow();
 }

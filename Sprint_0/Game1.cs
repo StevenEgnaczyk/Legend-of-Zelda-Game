@@ -59,6 +59,7 @@ namespace Sprint_0
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            link.Update();
 
             //Process Keyboard Input
             _keyboardController.ProcessInput();

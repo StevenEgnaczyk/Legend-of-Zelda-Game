@@ -46,7 +46,7 @@ public static class Texture2DStorage
 	{
 		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
 		linkSpriteSheet = content.Load<Texture2D>("Link");
-		itemSpriteSheet = content.Load<Texture2D>("ItemSpriteSheet");
+		itemSpriteSheet = content.Load<Texture2D>("ItemSpritesheet");
         
 		tile1Sprite = content.Load<Texture2D>("tiles/tile1");
 		tile2Sprite = content.Load<Texture2D>("tiles/tile2");
