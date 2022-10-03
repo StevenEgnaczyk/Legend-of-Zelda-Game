@@ -123,4 +123,9 @@ public class DownAttackingLinkState : ILinkState
     {
         throw new NotImplementedException();
     }
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
+    }
 }
