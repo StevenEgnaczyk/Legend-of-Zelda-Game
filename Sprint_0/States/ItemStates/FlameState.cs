@@ -23,16 +23,17 @@ public class FlameState : IItemState
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D flameTexture = Texture2DStorage.GetOldManSpriteSheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
-        item.DrawSprite(spriteBatch, flameTexture, sourceRect);
-        //sourceRect[0] = new Rectangle(52, 11, 16, 16);
-        //sourceRect[1] = new Rectangle(69, 11, 16, 16);
-       
-       
-        
-        
-        
+        while (true)
+        {
+            Texture2D flameTexture = Texture2DStorage.GetOldManSpriteSheet();
+            Rectangle sourceRect = itemSprites[currentIndex];
+            item.DrawSprite(spriteBatch, flameTexture, sourceRect);
+            
+
+
+
+
+        }
     }
     public void Update()
     {
