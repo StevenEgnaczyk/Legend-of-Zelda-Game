@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Tile4State : ITileState
+public class WhiteBrickState : ITileState
 {
     private Tile tile;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
@@ -15,7 +15,7 @@ public class Tile4State : ITileState
         new Rectangle(19, 11, 16, 16)
     };
     private int currentIndex;
-    public Tile4State(Tile tile)
+    public WhiteBrickState(Tile tile)
     {
         this.tile = tile;
         currentIndex = 0;
@@ -23,16 +23,16 @@ public class Tile4State : ITileState
 
     public void Next()
     {
-        tile.state = new Tile5State(tile);
+        tile.state = new BlackTileState(tile);
     }
     public void Prev()
     {
-        tile.state = new Tile3State(tile);
+        tile.state = new PushBlockState(tile);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile1 = Texture2DStorage.GetTile4Sprite();
+        Texture2D tile1 = Texture2DStorage.GetTile2Sprite();
         Rectangle sourceRect = itemSprites[currentIndex];
         tile.DrawSprite(spriteBatch, tile1, sourceRect);
 
