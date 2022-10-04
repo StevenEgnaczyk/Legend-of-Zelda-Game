@@ -50,6 +50,7 @@ public class Item
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);
+        state.Update();
     }
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D itemSprite, Rectangle sourceRect)
