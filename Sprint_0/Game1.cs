@@ -60,7 +60,7 @@ namespace Sprint_0
 
             
             _keyboardController = new KeyboardController(Content, link, item, tile, keese);
-            _mouseController = new MouseController(Content);
+            //_mouseController = new MouseController(Content);
 
             base.Initialize();
 
