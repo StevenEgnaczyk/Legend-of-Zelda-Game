@@ -67,11 +67,16 @@ public class KeyboardController : IController
 
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
+		RegisterCommand(Keys.Q, _quitCommand);
 
 		RegisterCommand(Keys.Left, turnPlayerLeftCommand);
 		RegisterCommand(Keys.Right, turnPlayerRightCommand);
 		RegisterCommand(Keys.Up, turnPlayerUpCommand);
 		RegisterCommand(Keys.Down, turnPlayerDownCommand);
+		RegisterCommand(Keys.W, turnPlayerUpCommand);
+		RegisterCommand(Keys.A, turnPlayerLeftCommand);
+		RegisterCommand(Keys.S, turnPlayerDownCommand);
+		RegisterCommand(Keys.D, turnPlayerRightCommand);
 
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
