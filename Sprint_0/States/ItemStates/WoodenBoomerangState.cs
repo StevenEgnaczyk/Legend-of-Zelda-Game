@@ -11,16 +11,20 @@ public class WoodenBoomerangState : IItemState
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(129, 3, 5, 8)
+        new Rectangle(129, 3, 5, 8),
+        new Rectangle(120, 30, 8, 5),
+        new Rectangle(129, 28, 5, 8),
+        new Rectangle(135, 30, 8, 5)
     };
     private int currentIndex;
     private int bufferIndex;
-    private int bufferMax = 10;
+    private int bufferMax = 20;
 
     public WoodenBoomerangState(Item item)
     {
         this.item = item;
         currentIndex = 0;
+        bufferIndex = 0;
     }
 
     public void Next()
@@ -42,6 +46,23 @@ public class WoodenBoomerangState : IItemState
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        if (currentIndex == 0)
+        {
+            bufferIndex++;
+        }
+        else
+        {
+            bufferIndex += 2;
+        }
+
+        if (bufferIndex == bufferMax)
+        {
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 4)
+            {
+                currentIndex = 0;
+            }
+        }
     }
 }

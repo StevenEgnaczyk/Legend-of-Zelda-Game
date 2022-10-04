@@ -15,11 +15,12 @@ public class FlameState : IItemState
     };
     private int currentIndex;
     private int bufferIndex;
-    private int bufferMax = 10;
+    private int bufferMax = 20;
     public FlameState(Item item)
     {
         this.item = item;
         currentIndex = 0;
+        bufferIndex = 0;
     }
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -31,10 +32,27 @@ public class FlameState : IItemState
     }
     public void Update()
     {
-        //switch flame sprite
-       
+        if (currentIndex == 0)
+        {
+            bufferIndex++;
+        }
+        else
+        {
+            bufferIndex += 2;
+        }
 
-       
+        if (bufferIndex == bufferMax)
+        {
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 2)
+            {
+                currentIndex = 0;
+            }
+        }
+
+
+
     }
     public void Next()
     {
