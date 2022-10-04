@@ -90,8 +90,8 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.D5, useBombCommand);
 
         RegisterCommand(Keys.E, dieCommand);
-        RegisterCommand(Keys.U, cycleItemNextCommand);
-		RegisterCommand(Keys.I, cycleItemPrevCommand);
+        RegisterCommand(Keys.I, cycleItemNextCommand);
+		RegisterCommand(Keys.U, cycleItemPrevCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);
 		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
 

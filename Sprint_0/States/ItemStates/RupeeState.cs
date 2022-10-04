@@ -11,16 +11,17 @@ public class RupeeState : IItemState
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(72, 0, 8, 16),
+        new Rectangle(72, 0, 8, 16), new Rectangle(72, 16, 8, 16)
     };
     private int currentIndex;
     private int bufferIndex;
-    private int bufferMax = 10;
+    private int bufferMax = 20;
 
     public RupeeState(Item item)
     {
         this.item = item;
         currentIndex = 0;
+        bufferIndex = 0;
     }
 
     public void Next()
@@ -42,6 +43,23 @@ public class RupeeState : IItemState
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        if (currentIndex == 0)
+        {
+            bufferIndex++;
+        }
+        else
+        {
+            bufferIndex += 2;
+        }
+
+        if (bufferIndex == bufferMax)
+        {
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 2)
+            {
+                currentIndex = 0;
+            }
+        }
     }
 }
