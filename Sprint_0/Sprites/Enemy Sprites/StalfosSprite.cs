@@ -4,38 +4,40 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class StalfosSprite : ISprite
+public class StalfosSprite : IEnemySprite
 {
     private Texture2D stalfosTexture;
 
     private Rectangle destinationRectangle;
-    private Rectangle sourceRectangle;
+    private Rectangle frame0Rectangle;
 
-    private int XPos;
-    private int YPos;
 
-    private int XRectStart;
-    private int YRectStart;
-
-    public StalfosSprite(Texture2D spritsheet)
+    public StalfosSprite(Texture2D spritesheet)
     {
-        this.stalfosTexture = spritsheet;
+        this.stalfosTexture = spritesheet;
 
-        XPos = 150;
-        YPos = 150;
-
-        destinationRectangle = new Rectangle(XPos, YPos, 16, 16);
-
-        //Set Stalfos rectangles
-    }
-
-    public void draw()
-    {
+        this.destinationRectangle = new Rectangle(0, 0, 32, 32);
+        this.frame0Rectangle = new Rectangle(1, 59, 16, 16);
 
     }
 
-    public void update()
+    public void draw(int frame, SpriteBatch sb)
     {
+        float zero = 0.0F;
+        if ((frame % 2) == 0)
+        {
+            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
+        }
+        else
+        {
+            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White, zero, new Vector2(0,0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+    }
+
+    public void update(int xPos, int yPos)
+    {
+        this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
     }
 }

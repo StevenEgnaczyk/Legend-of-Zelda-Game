@@ -4,36 +4,31 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class BladeTrapSprite : ISprite
+public class BladeTrapSprite : IEnemySprite
 {
     private Texture2D BladeTrapTexture;
 
     private Rectangle destinationRectangle;
-    private Rectangle sourceRectangle;
+    private Rectangle frame0Rectangle;
 
-    private int XPos;
-    private int YPos;
 
-    private int XRectStart;
-    private int YRectStart;
-
-    public BladeTrapSprite(Texture2D spritsheet)
+    public BladeTrapSprite(Texture2D spritesheet)
     {
         this.BladeTrapTexture = spritesheet;
 
-        XPos = 150;
-        YPos = 150;
+        this.destinationRectangle = new Rectangle(0, 0, 32, 32);
 
-        destinationRectangle = new Rectangle(XPos, YPos, 16, 16);
-    }
-
-    public void draw()
-    {
+        this.frame0Rectangle = new Rectangle(164, 59, 16, 16);
 
     }
 
-    public void update()
-    {
+    public void draw(int frame, SpriteBatch sb)
+    { 
+            sb.Draw(this.BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+    }
 
+    public void update(int xPos, int yPos)
+    {
+        this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
     }
 }

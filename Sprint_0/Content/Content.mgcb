@@ -13,6 +13,30 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../../Dropbox/My PC (LAPTOP-5LPS1GF0)/Documents/School/AU22/CSE 3902 Project Interactive Systems/NPCSpritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../../../../Dropbox/My PC (LAPTOP-5LPS1GF0)/Documents/School/AU22/CSE 3902 Project Interactive Systems/NPCSpritesheet.png;NPCSpritesheet.png
+
+#begin bossSpritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bossSpritesheet.png
+
 #begin enemiesSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -23,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:enemiesSpriteSheet.png;Enemies.png
+/build:enemiesSpriteSheet.png
 
 #begin item1.gif
 /importer:TextureImporter
@@ -180,18 +204,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Link.png
-
-#begin NPCSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPCSpriteSheet.png
 
 #begin tiles/tile1.png
 /importer:TextureImporter

@@ -4,15 +4,15 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class EnemySpriteFactory
+public class EnemySpriteAndStateFactory
 	{
 
 	private Texture2D enemySpritesheet;
 	private Texture2D bossSpritesheet;
 	
-	private static EnemySpriteFactory instance = new EnemySpriteFactory();
+	public static EnemySpriteAndStateFactory instance = new EnemySpriteAndStateFactory();
 				
-	public static EnemySpriteFactory Instance
+	public static EnemySpriteAndStateFactory Instance
 		{
 		get
 		{
@@ -20,46 +20,49 @@ public class EnemySpriteFactory
 		}
 	}
 		
-	private EnemySpriteFactory()
-		{	
-			enemySpriteSheet = Texture2DStorage.getEnemySpritesheet();
-			bossSpritesheet = Texture2DStorage.getSpritesheet();
+	public EnemySpriteAndStateFactory()
+	{
+		this.enemySpritesheet = Texture2DStorage.getEnemySpritesheet();
+        this.bossSpritesheet = Texture2DStorage.getBossSpritesheet();
+    }
 
-		}
+	public IEnemySprite CreateKeeseSprite()
+	{
+		return new KeeseSprite(enemySpritesheet);
+	}
 		
-		public ISprite CreateKeeseSprite()
-		{
-			return new KeeseSprite(enemySpritesheet);
-		}
+	public IEnemySprite CreateStalfosSprite()
+	{
+		return new StalfosSprite(enemySpritesheet);
+	}
 		
-		public ISprite CreateStalfosSprite()
-		{
-			return new StalfosSprite(enemySpritesheet);
-		}
+	public IEnemySprite CreateGelSprite()
+	{
+		return new GelSprite(enemySpritesheet);
+	}
 		
-		public ISprite CreateGelEnemySprite()
-		{
-			return new GelSprite(enemySpritesheet);
-		}
-		
-		public ISprite CreateGoryiaSprite()
-		{
-			return new GelSprite(enemySpritesheet);
-		}
+	public IEnemySprite CreateGoriyaSprite()
+	{
+		return new GelSprite(enemySpritesheet);
+	}
 
-		public ISprite createBladeTrapSprite()
-		{
-			return new BladeTrapSprite(enemySpritesheet);
-		}
+	public IEnemySprite CreateBladeTrapSprite()
+	{
+		return new BladeTrapSprite(enemySpritesheet);
+	}
 
-		public ISprite CreateWallmasterSprite()
-		{
-			return new WallmasterSprite(enemySpritesheet);
-		}
+	public IEnemySprite CreateWallmasterSprite()
+	{
+		return new WallmasterSprite(enemySpritesheet);
+	}
 
-		public ISprite CreateAquamentusSprite()
-		{
-			return new AquamentusSprite(bossSpritesheet);
-		}
+	public IEnemySprite CreateAquamentusSprite()
+	{
+		return new AquamentusSprite(bossSpritesheet);
+	}
+
+	public EnemyState CreateEnemyState()
+	{
+		return new EnemyState();
 	}
 }

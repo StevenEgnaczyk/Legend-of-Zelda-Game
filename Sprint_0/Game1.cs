@@ -20,6 +20,14 @@ namespace Sprint_0
         private Item item;
         private Tile tile;
 
+        private IEnemy keese;
+        private IEnemy stalfos;
+        private IEnemy gel;
+        private IEnemy goriya;
+        private IEnemy bladeTrap;
+        private IEnemy wallmaster;
+        private IEnemy aquamentus;
+
         //Keyboard variables
         private KeyboardController _keyboardController;
 
@@ -47,8 +55,17 @@ namespace Sprint_0
             bomb = new Bomb();
             item = new Item();
             tile = new Tile();
+
+            keese = new Keese(_spriteBatch);
+            stalfos = new Stalfos(_spriteBatch);
+            gel = new Gel(_spriteBatch);
+            goriya = new Goriya(_spriteBatch);
+            bladeTrap = new BladeTrap(_spriteBatch);
+            wallmaster = new Wallmaster(_spriteBatch);
+            aquamentus = new Aquamentus(_spriteBatch);
+
             
-            _keyboardController = new KeyboardController(Content, link, item, tile);
+            _keyboardController = new KeyboardController(Content, link, item, tile, keese);
             _mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -88,6 +105,15 @@ namespace Sprint_0
             bomb.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
+
+            keese.draw();
+            stalfos.draw();
+            gel.draw();
+            goriya.draw();
+            bladeTrap.draw();
+            wallmaster.draw();
+            aquamentus.draw();
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);

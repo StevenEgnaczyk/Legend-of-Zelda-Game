@@ -12,6 +12,9 @@ public static class Texture2DStorage
 	private static Texture2D linkSpriteSheet;
 	private static Texture2D NPCSpriteSheet;
 
+	private static Texture2D enemySpritesheet;
+	private static Texture2D bossSpritesheet;
+
 	private static Texture2D item1Sprite;
 	private static Texture2D item2Sprite;
 	private static Texture2D item4Sprite;
@@ -58,6 +61,9 @@ public static class Texture2DStorage
 		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
 		linkSpriteSheet = content.Load<Texture2D>("Link");
 
+		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
+		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
+
 		item1Sprite = content.Load<Texture2D>("item1");
 		item2Sprite = content.Load<Texture2D>("item2");
 		item4Sprite = content.Load<Texture2D>("item4");
@@ -80,6 +86,16 @@ public static class Texture2DStorage
     {
         return NPCSpriteSheet;
     }
+
+	public static Texture2D getEnemySpritesheet()
+	{
+		return enemySpritesheet;
+	}
+
+	public static Texture2D getBossSpritesheet()
+	{
+		return bossSpritesheet;
+	}
     // More public static Texture2D returning methods follow
 
 	public static Texture2D GetItem1Sprite()
@@ -183,15 +199,5 @@ public static class Texture2DStorage
 		return tile10Sprite;
 	}
 	// More public static Texture2D returning methods follow
-
-	public static Texture2D getEnemySpritesheet()
-	{
-		return enemySpritesheet;
-	}
-
-	public static Texture2D getBossSpriteSheet()
-	{
-		return bossSpritesheet;
-	}
 
 }

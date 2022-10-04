@@ -26,8 +26,10 @@ public class KeyboardController : IController
 	private DynamicTilesCommand _dynamicTilesCommand;
 	private DynamicTilesCommandPrev _dynamicTilesCommandPrev;
 
+	private CycleEnemyNextCommand cycleEnemyNextCommand;
 
-    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
+
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer, IEnemy enemy)
 	{
 
 		controllerMappings = new Dictionary<Keys, ICommand>();
@@ -48,6 +50,10 @@ public class KeyboardController : IController
 		_dynamicTilesCommand = new DynamicTilesCommand(tilePlayer);
 		_dynamicTilesCommandPrev = new DynamicTilesCommandPrev(tilePlayer);
 
+		cycleEnemyNextCommand = new CycleEnemyNextCommand(enemy);
+
+		
+
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
 
@@ -63,6 +69,8 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.I, cycleItemPrevCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);
 		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
+
+		RegisterCommand(Keys.O, cycleEnemyNextCommand);
 
 
     }
