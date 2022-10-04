@@ -32,6 +32,7 @@ public class KeyboardController : IController
 	private ICommand cycleItemPrevCommand;
 	private ICommand _dynamicTilesCommand;
 	private ICommand _dynamicTilesCommandPrev;
+	private ICommand resetCommand;
 
 	private Keys[] state;
 
@@ -44,6 +45,7 @@ public class KeyboardController : IController
 
 		//Initialize the different commands
 		_quitCommand = new QuitCommand();
+		resetCommand = new ResetCommand(linkPlayer, itemPlayer, tilePlayer);
 		turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
 		turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
 		turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
@@ -68,6 +70,7 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
 		RegisterCommand(Keys.Q, _quitCommand);
+		RegisterCommand(Keys.R, resetCommand);
 
 		RegisterCommand(Keys.Left, turnPlayerLeftCommand);
 		RegisterCommand(Keys.Right, turnPlayerRightCommand);

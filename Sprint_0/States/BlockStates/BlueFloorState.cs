@@ -40,6 +40,5 @@ public class BlueFloorState : ITileState
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
     }
 }
