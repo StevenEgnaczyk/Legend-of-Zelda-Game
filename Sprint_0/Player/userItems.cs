@@ -36,11 +36,11 @@ namespace Sprint_0.Player
 
         }
 
-        public void UseBow()
+        public void UseBow(String arrowType)
         {
             if (!hasWeapon)
             {
-                bow = new Bow(link);
+                bow = new Bow(link, arrowType);
                 currentWeapon = bow;
                 hasWeapon = true;
             }

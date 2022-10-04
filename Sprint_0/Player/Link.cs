@@ -51,6 +51,11 @@ public class Link
         inventory.Update();
     }
 
+    public void Die()
+    {
+        state.Die();
+    }
+
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);
@@ -84,13 +89,18 @@ public class Link
         inventory.UseBoomerang();
     }
 
-    internal void UseBow()
+    internal void UseBow(String arrowType)
     {
-        inventory.UseBow();
+        inventory.UseBow(arrowType);
     }
 
     internal void UseFire()
     {
         inventory.UseFire();
+    }
+
+    internal void UseBomb()
+    {
+        inventory.UseBomb();
     }
 }
