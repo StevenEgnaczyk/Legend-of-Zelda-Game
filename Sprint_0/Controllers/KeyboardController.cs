@@ -106,22 +106,25 @@ public class KeyboardController : IController
 
 		foreach(Keys key in pressedKeys)
 		{
+			//checks for registered commands
 			if (controllerMappings.ContainsKey(key))
 			{
+				//checks for item and block commands as to stop the user from holding the command
+				//and rapidly switching blocks or items
 				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I))
 				{
-					if(!state.Contains(key))
+					if(!state.Contains(key)) //checks for the commands in state
 					{
 						controllerMappings[key].Execute();
 					}
 				} 
 				else
 				{
-					controllerMappings[key].Execute();
+					controllerMappings[key].Execute(); 
 				}
 			}
 		}
-		state = pressedKeys;
+		state = pressedKeys; //sets state to compare to new pressed keys
 	}
 
 	public void Update()
