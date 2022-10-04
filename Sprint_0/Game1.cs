@@ -15,17 +15,13 @@ namespace Sprint_0
 
         private Link link;
         private OldMan oldMan1;
-        private Flame flame;
-        private Bomb bomb;
         private Item item;
+        private Tile tile;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
 
-        //Mouse variables
-        private MouseController _mouseController;
-
-        private DynamicTilesCommand _dynamicTilesCommand;
+        //private int track;
 
         public Game1()
         {
@@ -39,18 +35,14 @@ namespace Sprint_0
         protected override void Initialize()
         {
 
-            _dynamicTilesCommand = new DynamicTilesCommand(Content);
-            lastDrawn = 5;
+            //lastDrawn = 5;
             
             link = new Link();
             oldMan1 = new OldMan();
-            flame = new Flame();
-            bomb = new Bomb();
-            
             item = new Item();
+            tile = new Tile();
             
-            _keyboardController = new KeyboardController(Content, link, item);
-            _mouseController = new MouseController(Content);
+            _keyboardController = new KeyboardController(Content, link, item, tile);
 
             base.Initialize();
 
@@ -61,13 +53,16 @@ namespace Sprint_0
             //Create the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2DStorage.LoadAllTextures(Content);
+            base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             base.Update(gameTime);
+            link.Update();
+
+            //Process Keyboard Input
+            _keyboardController.ProcessInput();
 
         }
 
@@ -76,19 +71,12 @@ namespace Sprint_0
 
             GraphicsDevice.Clear(Color.DarkGray);
 
-            //Process Keyboard Input
-            _keyboardController.ProcessInput();
-
-            //Process Mouse Input
-            _mouseController.ProcessInput();
-
             _spriteBatch.Begin();
             link.Draw(_spriteBatch);
             link.Update();
             oldMan1.Draw(_spriteBatch);
-            flame.Draw(_spriteBatch);
-            bomb.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
+            tile.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

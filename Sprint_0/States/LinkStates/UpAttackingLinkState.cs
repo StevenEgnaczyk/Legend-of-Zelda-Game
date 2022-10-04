@@ -6,37 +6,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class DownAttackingLinkState : ILinkState
+public class UpAttackingLinkState : ILinkState
 {
     private Link link;
     private static List<Rectangle> woodenSwordSprites = new List<Rectangle>()
     {
-        new Rectangle(1, 47, 16, 15),
-        new Rectangle(18, 47, 16, 27),
-        new Rectangle(35, 47, 15, 23),
-        new Rectangle(53, 47, 13, 19)
+        new Rectangle(1, 109, 16, 16),
+        new Rectangle(54, 106, 12, 19),
+        new Rectangle(37, 100, 12, 25),
+        new Rectangle(18, 97, 16, 28),
+        
+        
     };
 
     private static List<Rectangle> whiteSwordSprites = new List<Rectangle>()
     {
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(111, 47, 16, 27),
-        new Rectangle(128, 47, 15, 23),
-        new Rectangle(146, 47, 13, 19)
+        new Rectangle(94, 109, 16, 16),
+        new Rectangle(147, 106, 12, 19),
+        new Rectangle(130, 101, 12, 24),
+        new Rectangle(111, 96, 16, 29),
+        
     };
-
-    private static List<Rectangle> attackingLink = new List<Rectangle>()
-    {
-        new Rectangle(106, 11, 17, 15)
-    };
-
-    String weapon;
 
     private int currentIndex;
+
+    private String weapon;
+
     private int bufferIndex;
     private int bufferMax = 5;
 
-    public DownAttackingLinkState(Link link, String weapon)
+    public UpAttackingLinkState(Link link, string weapon)
     {
         this.link = link;
         this.weapon = weapon;
@@ -65,17 +64,12 @@ public class DownAttackingLinkState : ILinkState
 
     public void UseWoodenSword()
     {
-        link.state = new DownAttackingLinkState(link, "Wooden");
+        link.state = new UpAttackingLinkState(link, "Wooden");
     }
 
     public void UseSwordBeam()
     {
-        link.state = new DownAttackingLinkState(link, "Beam");
-    }
-
-    public void UseBoomerang()
-    {
-        link.state = new DownAttackingLinkState(link, "Boomerang");
+        link.state = new UpAttackingLinkState(link, "Beam");
     }
 
     public void Die()
@@ -89,14 +83,14 @@ public class DownAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
-        } else if (this.weapon == "Beam")
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, -sourceRect.Height);
+        }
+        else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, -sourceRect.Height);
         }
-
     }
 
     public void Update()
@@ -109,17 +103,9 @@ public class DownAttackingLinkState : ILinkState
             currentIndex++;
             if (currentIndex == 4)
             {
-                link.state = new DownMovingLinkState(link);
+                link.state = new UpMovingLinkState(link);
                 currentIndex = 0;
             }
         }
     }
-
-
-
-    public void UseBow()
-    {
-        throw new NotImplementedException();
-    }
-
 }

@@ -4,12 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 
-
-    public interface IItemState
-    {
-    void Draw(SpriteBatch spriteBatch);
+public interface ITileState
+{
     public void Next();
-        public void Prev();
-    void Update();
-    // Draw() might also be included here
+    public void Prev();
+    public void Update();
+    public void Draw(SpriteBatch _spriteBatch);
 }

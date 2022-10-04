@@ -13,15 +13,16 @@ public class Item
 
     public SpriteBatch _spriteBatch;
 
-    public int itemSpeed = 3;
+    //  public int itemSpeed = 3;
+    public double scale = 1.5;
 
     public Item()
     {
 
-        state = new Item1State(this);
+        state = new CompassState(this);
 
-        xPos = 300;
-        yPos = 300;
+        xPos = 400;
+        yPos = 400;
     }
 
     public void Next()
@@ -48,8 +49,8 @@ public class Item
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D itemSprite, Rectangle sourceRect)
     {
-        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 4, sourceRect.Height * 4);
-        _spriteBatch.Draw(itemSprite, destinationRect, Color.White);
+        Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, (int)((double)sourceRect.Width * scale), (int)((double)sourceRect.Height * scale));
+        _spriteBatch.Draw(itemSprite, destinationRect, sourceRect, Color.White);
     }
 
 
