@@ -20,8 +20,8 @@ namespace Sprint_0.Player
 
         private Rectangle sourceRect;
 
-        private int distanceToTravel = 100;
-        private int incrementalDistance = 5;
+        private int distanceToTravel = 300;
+        private int incrementalDistance = 30;
 
         private int bufferFrame;
         private int maxFrames = 5;
@@ -36,32 +36,65 @@ namespace Sprint_0.Player
 
         private startingState linkState;
 
-
-        public Bow(Link link)
+        public Bow(Link link, String arrowType)
         {
-            if (link.state.ToString().Equals("DownMovingLinkState"))
+            if (arrowType.Equals("Red"))
             {
-                linkState = startingState.Down;
-                sourceRect = new Rectangle(154, 44, 5, 16);
+                if (link.state.ToString().Equals("DownMovingLinkState"))
+                {
+                    linkState = startingState.Down;
+                    sourceRect = new Rectangle(154, 44, 5, 16);
 
+                }
+                else if (link.state.ToString().Equals("UpMovingLinkState"))
+                {
+                    linkState = startingState.Up;
+                    sourceRect = new Rectangle(154, 0, 5, 16);
+
+                }
+                else if (link.state.ToString().Equals("LeftMovingLinkState"))
+                {
+                    linkState = startingState.Left;
+                    sourceRect = new Rectangle(148, 38, 16, 5);
+
+                }
+                else if (link.state.ToString().Equals("RightMovingLinkState"))
+                {
+                    linkState = startingState.Right;
+                    sourceRect = new Rectangle(148, 32, 16, 5);
+
+                }
             }
-            else if (link.state.ToString().Equals("UpMovingLinkState"))
+            else
             {
-                linkState = startingState.Up;
-                sourceRect = new Rectangle(154, 0, 5, 16);
+                if (arrowType.Equals("Blue"))
+                {
+                    if (link.state.ToString().Equals("DownMovingLinkState"))
+                    {
+                        linkState = startingState.Down;
+                        sourceRect = new Rectangle(171, 35, 5, 16);
 
-            }
-            else if (link.state.ToString().Equals("LeftMovingLinkState"))
-            {
-                linkState = startingState.Left;
-                sourceRect = new Rectangle(148, 38, 16, 5);
+                    }
+                    else if (link.state.ToString().Equals("UpMovingLinkState"))
+                    {
+                        linkState = startingState.Up;
+                        sourceRect = new Rectangle(154, 16, 5, 16);
 
-            }
-            else if (link.state.ToString().Equals("RightMovingLinkState"))
-            {
-                linkState = startingState.Right;
-                sourceRect = new Rectangle(148, 32, 16, 5);
+                    }
+                    else if (link.state.ToString().Equals("LeftMovingLinkState"))
+                    {
+                        linkState = startingState.Left;
+                        sourceRect = new Rectangle(178, 34, 16, 5);
 
+                    }
+                    else if (link.state.ToString().Equals("RightMovingLinkState"))
+                    {
+                        linkState = startingState.Right;
+                        sourceRect = new Rectangle(178, 40, 16, 5);
+
+                    }
+
+                }
             }
 
             this.link = link;
