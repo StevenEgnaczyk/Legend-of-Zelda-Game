@@ -25,7 +25,7 @@ public class OldManSprite : ISprite
 	public void Draw(SpriteBatch _spriteBatch)
 	{
 		_spriteBatch.Begin();
-		_spriteBatch.Draw(this.oldManTexture, destinationRectangle, sourceRectangle, Color.White);
+		_spriteBatch.Draw(this.oldManTexture, destinationRectangle, sourceRectangle, Color.DarkGray);
 		Update();
 		_spriteBatch.End();
 	}

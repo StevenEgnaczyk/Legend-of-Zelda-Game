@@ -11,4 +11,5 @@ public interface IEnemy
     void moveLeft();
     void moveRight();
     void Next();
+    void Prev();
 }

@@ -25,14 +25,22 @@ public class DownAttackingLinkState : ILinkState
         new Rectangle(146, 47, 13, 19)
     };
 
+    private static List<Rectangle> attackingLink = new List<Rectangle>()
+    {
+        new Rectangle(106, 11, 17, 15)
+    };
+
     String weapon;
 
     private int currentIndex;
+    private int bufferIndex;
+    private int bufferMax = 5;
 
     public DownAttackingLinkState(Link link, String weapon)
     {
         this.link = link;
         this.weapon = weapon;
+        bufferIndex = 0;
     }
 
     public void TurnLeft()
@@ -65,6 +73,11 @@ public class DownAttackingLinkState : ILinkState
         link.state = new DownAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new DownAttackingLinkState(link, "Boomerang");
+    }
+
     public void Die()
     {
 
@@ -76,23 +89,37 @@ public class DownAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width, sourceRect.Height);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
         } else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width, sourceRect.Height);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
         }
 
     }
 
     public void Update()
     {
-        currentIndex++;
-        if (currentIndex == 4)
+        bufferIndex++;
+
+        if (bufferIndex == bufferMax)
         {
-            link.state = new DownMovingLinkState(link);
-            currentIndex = 0;
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 4)
+            {
+                link.state = new DownMovingLinkState(link);
+                currentIndex = 0;
+            }
         }
     }
+
+
+
+    public void UseBow()
+    {
+        throw new NotImplementedException();
+    }
+
 }

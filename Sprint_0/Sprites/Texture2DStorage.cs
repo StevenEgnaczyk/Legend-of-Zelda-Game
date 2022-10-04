@@ -11,22 +11,8 @@ public static class Texture2DStorage
 	// Note that we are not using Game1's ContentLoader here (outside the scope of class methods) since it has not been instantiated yet
 	private static Texture2D linkSpriteSheet;
 	private static Texture2D NPCSpriteSheet;
+	private static Texture2D itemSpriteSheet;
 
-	private static Texture2D enemySpritesheet;
-	private static Texture2D bossSpritesheet;
-
-	private static Texture2D item1Sprite;
-	private static Texture2D item2Sprite;
-	private static Texture2D item4Sprite;
-	private static Texture2D item5Sprite;
-	private static Texture2D item6Sprite;
-	private static Texture2D item7Sprite;
-	private static Texture2D item8Sprite;
-	private static Texture2D item9Sprite;
-	private static Texture2D item10Sprite;
-	private static Texture2D item11Sprite;
-	private static Texture2D item12Sprite;
-	private static Texture2D item13Sprite;
 	private static Texture2D tile1Sprite;
 	private static Texture2D tile2Sprite;
 	private static Texture2D tile3Sprite;
@@ -98,66 +84,10 @@ public static class Texture2DStorage
 	}
     // More public static Texture2D returning methods follow
 
-	public static Texture2D GetItem1Sprite()
+	public static Texture2D GetItemSpritesheet()
 	{
-		return item1Sprite;
+		return itemSpriteSheet;
 	}
-
-	public static Texture2D GetItem2Sprite()
-	{
-		return item2Sprite;
-	}
-
-	public static Texture2D GetItem4Sprite()
-	{
-		return item4Sprite;
-	}
-
-	public static Texture2D GetItem5Sprite()
-	{
-		return item5Sprite;
-	}
-
-	public static Texture2D GetItem6Sprite()
-	{
-		return item6Sprite;
-	}
-
-	public static Texture2D GetItem7Sprite()
-	{
-		return item7Sprite;
-	}
-
-	public static Texture2D GetItem8Sprite()
-	{
-		return item8Sprite;
-	}
-
-	public static Texture2D GetItem9Sprite()
-	{
-		return item9Sprite;
-	}
-
-	public static Texture2D GetItem10Sprite()
-	{
-		return item10Sprite;
-	}
-
-	public static Texture2D GetItem11Sprite()
-	{
-		return item11Sprite;
-	}
-
-	public static Texture2D GetItem12Sprite()
-	{
-		return item12Sprite;
-	}
-
-	public static Texture2D GetItem13Sprite()
-	{
-		return item13Sprite;
-	}
-
 	public static Texture2D GetTile1Sprite()
 	{
 		return tile1Sprite;
@@ -198,6 +128,5 @@ public static class Texture2DStorage
 	{
 		return tile10Sprite;
 	}
-	// More public static Texture2D returning methods follow
 
 }
