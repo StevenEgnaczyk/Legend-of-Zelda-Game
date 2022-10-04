@@ -27,6 +27,11 @@ public class Tile
         state.Prev();
     }
 
+    public void reset()
+    {
+        state = new PushBlockState(this);
+    }
+
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);

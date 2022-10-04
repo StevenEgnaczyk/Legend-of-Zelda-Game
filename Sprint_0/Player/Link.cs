@@ -56,6 +56,15 @@ public class Link
         state.Die();
     }
 
+    public void reset()
+    {
+        state = new DownMovingLinkState(this);
+        inventory = new userItems(this);
+
+        xPos = 100;
+        yPos = 100;
+    }
+
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);
