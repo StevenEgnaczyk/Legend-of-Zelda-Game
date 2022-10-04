@@ -31,6 +31,12 @@ public class BladeTrap : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
     }
 
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+    }
+
     public void moveLeft()
     {
         state.moveLeft();

@@ -33,6 +33,12 @@ public class Goriya : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
     }
 
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
+    }
+
     public void moveLeft()
     {
         state.moveLeft();

@@ -33,6 +33,12 @@ public class Gel : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
     }
 
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
+    }
+
     public void moveLeft()
     {
         state.moveLeft();
