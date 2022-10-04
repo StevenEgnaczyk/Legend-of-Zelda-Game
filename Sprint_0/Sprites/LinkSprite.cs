@@ -25,10 +25,12 @@ public class LinkSprite : ISprite
 
         linkXPos = 100;
         linkYPos = 100;
+
         destinationRectangle = new Rectangle(linkXPos, linkYPos, 16, 16);
 
         linkXRectStart = 1;
         linkYRectStart = 11;
+
         sourceRectangle = new Rectangle(linkXRectStart, linkYRectStart, 16, 16);
 
     }
