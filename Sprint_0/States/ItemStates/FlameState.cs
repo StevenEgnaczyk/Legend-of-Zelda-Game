@@ -11,7 +11,7 @@ public class FlameState : IItemState
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(52,11,16,16),
+        new Rectangle(52,11,16,16), new Rectangle(68, 11, 16, 16)
     };
     private int currentIndex;
     private int bufferIndex;
@@ -23,10 +23,10 @@ public class FlameState : IItemState
     }
     public void Draw(SpriteBatch spriteBatch)
     {
+
             Texture2D flameTexture = Texture2DStorage.GetOldManSpriteSheet();
             Rectangle sourceRect = itemSprites[currentIndex];
             item.DrawSprite(spriteBatch, flameTexture, sourceRect);
-            
 
     }
     public void Update()

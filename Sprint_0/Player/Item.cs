@@ -42,6 +42,11 @@ public class Item
         throw new NotImplementedException();
     }
 
+    public void reset()
+    {
+        state = new CompassState(this);
+    }
+
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);
