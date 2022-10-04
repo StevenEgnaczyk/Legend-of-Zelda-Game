@@ -20,11 +20,24 @@ namespace Sprint_0.Player
 
         private Rectangle sourceRect;
 
-        private int distanceToTravel = 50;
-        private int incrementalDistance = 5;
+        private int distanceToTravel = 150;
+        private int incrementalDistance = 25;
+
+        private int bufferIndex;
+        private int bufferMax = 15;
 
         private int bufferFrame;
         private int maxFrames = 5;
+
+        private int boomerangSpriteIndex;
+
+        private static List<Rectangle> boomerangSprite = new List<Rectangle>()
+        {
+            new Rectangle(129, 3, 5, 8),
+            new Rectangle(120, 30, 8, 5),
+            new Rectangle(129, 28, 5, 8),
+            new Rectangle(135, 30, 8, 5)
+        };
 
         enum startingState
         {
@@ -45,24 +58,28 @@ namespace Sprint_0.Player
             {
                 linkState = startingState.Down;
                 sourceRect = new Rectangle(120, 30, 8, 5);
+                boomerangSpriteIndex = 1;
 
             }
             else if (link.state.ToString().Equals("UpMovingLinkState"))
             {
                 linkState = startingState.Up;
                 sourceRect = new Rectangle(135, 30, 8, 5);
+                boomerangSpriteIndex = 3;
 
             }
             else if (link.state.ToString().Equals("LeftMovingLinkState"))
             {
                 linkState = startingState.Left;
                 sourceRect = new Rectangle(129, 3, 5, 8);
+                boomerangSpriteIndex = 0;
 
             }
             else if (link.state.ToString().Equals("RightMovingLinkState"))
             {
                 linkState = startingState.Right;
                 sourceRect = new Rectangle(129, 28, 5, 8);
+                boomerangSpriteIndex = 2;
 
             }
 
@@ -76,14 +93,12 @@ namespace Sprint_0.Player
 
             boomerang = Texture2DStorage.GetItemSpritesheet();
 
-
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 4, sourceRect.Height * 4);
+            sourceRect = boomerangSprite[boomerangSpriteIndex];
+            Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 5, sourceRect.Height * 5);
             spriteBatch.Draw(boomerang, destinationRect, sourceRect, Color.White);
 
         }
@@ -154,7 +169,19 @@ namespace Sprint_0.Player
 
                 }
             }
-            
+
+            bufferIndex++;
+
+            if (bufferIndex == bufferMax)
+            {
+                bufferIndex = 0;
+                boomerangSpriteIndex++;
+                if (boomerangSpriteIndex == 4)
+                {
+                    boomerangSpriteIndex = 0;
+                }
+            }
+
 
         }
 
@@ -197,21 +224,20 @@ namespace Sprint_0.Player
 
             if (linkState.Equals(startingState.Down))
             {
-                Debug.WriteLine(distanceToTravel);
-                startingRect.X = link.xPos + 32;
+                startingRect.X = link.xPos + 16;
                 startingRect.Y = link.yPos + 64;
 
             }
             else if (linkState.Equals(startingState.Up))
             {
-                startingRect.X = link.xPos + 32;
+                startingRect.X = link.xPos + 8;
                 startingRect.Y = link.yPos - 16;
 
             }
             else if (linkState.Equals(startingState.Left))
             {
-                startingRect.X = link.xPos;
-                startingRect.Y = link.yPos;
+                startingRect.X = link.xPos - 16;
+                startingRect.Y = link.yPos + 16;
 
             }
             else if (linkState.Equals(startingState.Right))

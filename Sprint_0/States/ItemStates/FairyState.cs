@@ -11,17 +11,18 @@ public class FairyState : IItemState
     private Item item;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
     {
-        new Rectangle(1, 11, 16, 16),
-        new Rectangle(19, 11, 16, 16)
+        new Rectangle(40, 0, 7, 16),
+        new Rectangle(47, 0, 7, 16)
     };
     private int currentIndex;
     private int bufferIndex;
-    private int bufferMax = 10;
+    private int bufferMax = 20;
 
     public FairyState(Item item)
     {
         this.item = item;
         currentIndex = 0;
+        bufferIndex = 0;
     }
 
     public void Next()
@@ -43,6 +44,23 @@ public class FairyState : IItemState
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        if (currentIndex == 0)
+        {
+            bufferIndex++;
+        }
+        else
+        {
+            bufferIndex += 2;
+        }
+
+        if (bufferIndex == bufferMax)
+        {
+            bufferIndex = 0;
+            currentIndex++;
+            if (currentIndex == 2)
+            {
+                currentIndex = 0;
+            }
+        }
     }
 }

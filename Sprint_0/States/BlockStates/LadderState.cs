@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Tile5State : ITileState
+public class LadderState : ITileState
 {
     private Tile tile;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
@@ -16,7 +16,7 @@ public class Tile5State : ITileState
     };
     private int currentIndex;
 
-    public Tile5State(Tile tile)
+    public LadderState(Tile tile)
     {
         this.tile = tile;
         currentIndex = 0;
@@ -24,11 +24,11 @@ public class Tile5State : ITileState
 
     public void Next()
     {
-        tile.state = new Tile6State(tile);
+        tile.state = new BlueFloorState(tile);
     }
     public void Prev()
     {
-        tile.state = new Tile4State(tile);
+        tile.state = new BlueSandState(tile);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -40,6 +40,5 @@ public class Tile5State : ITileState
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
     }
 }

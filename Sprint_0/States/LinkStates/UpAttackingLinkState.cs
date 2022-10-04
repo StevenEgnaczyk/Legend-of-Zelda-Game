@@ -74,7 +74,7 @@ public class UpAttackingLinkState : ILinkState
 
     public void Die()
     {
-
+        link.state = new DamagedLinkState(link);
     }
 
     public void Draw(SpriteBatch spriteBatch)

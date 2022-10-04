@@ -8,13 +8,11 @@ using System.Reflection.Metadata;
 public class Tile
 {
     public ITileState state;
-    public SpriteBatch _spriteBatch;
     public float xPos, yPos;
-    public int current = 5;
 
     public Tile()
     {
-        state = new Tile1State(this);
+        state = new PushBlockState(this);
 
         xPos = 350;
         yPos = 150;
@@ -22,13 +20,16 @@ public class Tile
     public void Next()
     {
         state.Next();
-        //state.Update();
     }
 
     public void Prev()
     {
         state.Prev();
-        //state.Update();
+    }
+
+    public void reset()
+    {
+        state = new PushBlockState(this);
     }
 
     public void Draw(SpriteBatch _spriteBatch)
