@@ -118,26 +118,26 @@ namespace Sprint_0.Player
 
             if (linkState.Equals(startingState.Down))
             {
-                startingRect.X = link.xPos + 32;
-                startingRect.Y = link.yPos + 64;
+                startingRect.X = link.xPos + 8;
+                startingRect.Y = link.yPos + 48;
 
             }
             else if (linkState.Equals(startingState.Up))
             {
-                startingRect.X = link.xPos + 16;
+                startingRect.X = link.xPos;
                 startingRect.Y = link.yPos - 48;
 
             }
             else if (linkState.Equals(startingState.Left))
             {
-                startingRect.X = link.xPos - 64;
-                startingRect.Y = link.yPos + 32;
+                startingRect.X = link.xPos - 48;
+                startingRect.Y = link.yPos + 16;
 
             }
             else if (linkState.Equals(startingState.Right))
             {
-                startingRect.X = link.xPos + 64;
-                startingRect.Y = link.yPos + 32;
+                startingRect.X = link.xPos + 48;
+                startingRect.Y = link.yPos + 8;
 
             }
 
