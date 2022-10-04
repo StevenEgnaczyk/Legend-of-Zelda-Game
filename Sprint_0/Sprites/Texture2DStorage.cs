@@ -24,6 +24,9 @@ public static class Texture2DStorage
 	private static Texture2D tile9Sprite;
 	private static Texture2D tile10Sprite;
 
+	private static Texture2D enemySpritesheet;
+	private static Texture2D bossSpriteSheet
+
 	// tiles = new Dictionary<string, Texture2D>()
     //     {
     //         { "tile1", c.Load<Texture2D>("tiles/tile1")},
@@ -50,18 +53,22 @@ public static class Texture2DStorage
 		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 
-		item1Sprite = content.Load<Texture2D>("item1");
-		item2Sprite = content.Load<Texture2D>("item2");
-		item4Sprite = content.Load<Texture2D>("item4");
-		item5Sprite = content.Load<Texture2D>("item5");
-		item6Sprite = content.Load<Texture2D>("item6");
-		item7Sprite = content.Load<Texture2D>("item7");
-		item8Sprite = content.Load<Texture2D>("item8");
-		item9Sprite = content.Load<Texture2D>("item9");
-		item10Sprite = content.Load<Texture2D>("item10");
-		item11Sprite = content.Load<Texture2D>("item11");
-		item12Sprite = content.Load<Texture2D>("item12");
-		item13Sprite = content.Load<Texture2D>("item13");
+		/*
+		 * item1Sprite = content.Load<Texture2D>("item1");
+			item2Sprite = content.Load<Texture2D>("item2");
+			item4Sprite = content.Load<Texture2D>("item4");
+			item5Sprite = content.Load<Texture2D>("item5");
+			item6Sprite = content.Load<Texture2D>("item6");
+			item7Sprite = content.Load<Texture2D>("item7");
+			item8Sprite = content.Load<Texture2D>("item8");
+			item9Sprite = content.Load<Texture2D>("item9");
+			item10Sprite = content.Load<Texture2D>("item10");
+			item11Sprite = content.Load<Texture2D>("item11");
+			item12Sprite = content.Load<Texture2D>("item12");
+			item13Sprite = content.Load<Texture2D>("item13");
+		 * 
+		 */
+
 	}
 
 	public static Texture2D GetLinkSpriteSheet()
