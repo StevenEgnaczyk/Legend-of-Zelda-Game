@@ -4,19 +4,17 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
-public class UseBowCommand : ICommand
+public class UseFireCommand : ICommand
 {
 	public Link linkPlayer;
-	private String arrowType;
 
-	public UseBowCommand(Link link, String arrowType)
+	public UseFireCommand(Link link)
 	{
 		linkPlayer = link;
-		this.arrowType = arrowType;
 	}
 
 	public void Execute()
 	{
-		linkPlayer.UseBow(arrowType);
+		linkPlayer.UseFire();
     }
 }

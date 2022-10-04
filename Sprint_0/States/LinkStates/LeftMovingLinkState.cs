@@ -52,10 +52,9 @@ public class LeftMovingLinkState : ILinkState
     {
         link.state = new DownMovingLinkState(link);
     }
-
     public void Die()
     {
-
+        link.state = new DamagedLinkState(link);
     }
 
     public void UseWoodenSword()

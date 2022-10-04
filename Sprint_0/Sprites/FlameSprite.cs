@@ -29,7 +29,7 @@ public class FlameSprite : ISprite
 	public void Draw(SpriteBatch _spriteBatch)
 	{
 		_spriteBatch.Begin();
-		_spriteBatch.Draw(this.FlameTexture, destinationRectangle, sourceRectangle, Color.White);
+		_spriteBatch.Draw(this.FlameTexture, destinationRectangle, sourceRectangle, Color.DarkGray);
 		Update();
 		_spriteBatch.End();
 	}

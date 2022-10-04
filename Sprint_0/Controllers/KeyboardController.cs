@@ -21,6 +21,12 @@ public class KeyboardController : IController
 	private ICommand useWoodenSwordCommand;
 	private ICommand useSwordBeamCommand;
     private ICommand useBoomerangCommand;
+	private ICommand useRedBowCommand;
+    private ICommand useBlueBowCommand;
+    private ICommand useFireCommand;
+	private ICommand useBombCommand;
+
+    private ICommand dieCommand;
 
     private ICommand cycleItemNextCommand;
 	private ICommand cycleItemPrevCommand;
@@ -46,8 +52,14 @@ public class KeyboardController : IController
 		useWoodenSwordCommand = new UseWoodenSwordCommand(linkPlayer);
 		useSwordBeamCommand = new UseSwordBeamCommand(linkPlayer);
 		useBoomerangCommand = new UseBoomerangCommand(linkPlayer);
+		useRedBowCommand = new UseBowCommand(linkPlayer, "Red");
+        useBlueBowCommand = new UseBowCommand(linkPlayer, "Blue");
+        useFireCommand = new UseFireCommand(linkPlayer);
+        useBombCommand = new UseBombCommand(linkPlayer);
 
-		cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
+		dieCommand = new DieCommand(linkPlayer);
+
+        cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
 		_dynamicTilesCommand = new DynamicTilesCommand(tilePlayer);
@@ -64,7 +76,12 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
         RegisterCommand(Keys.D1, useBoomerangCommand);
+        RegisterCommand(Keys.D2, useRedBowCommand);
+        RegisterCommand(Keys.D3, useBlueBowCommand);
+        RegisterCommand(Keys.D4, useFireCommand);
+		RegisterCommand(Keys.D5, useBombCommand);
 
+        RegisterCommand(Keys.E, dieCommand);
         RegisterCommand(Keys.U, cycleItemNextCommand);
 		RegisterCommand(Keys.I, cycleItemPrevCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);

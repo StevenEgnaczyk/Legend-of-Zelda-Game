@@ -13,12 +13,13 @@ public class Link
     public float xPos, yPos;
     public SpriteBatch _spriteBatch;
     public int linkSpeed = 3;
-    public Boomerang boomerang;
+    public userItems inventory;
 
     public Link()
     {
 
         state = new DownMovingLinkState(this);
+        inventory = new userItems(this);
 
         xPos = 100;
         yPos = 100;
@@ -47,11 +48,18 @@ public class Link
     public void Update()
     {
         state.Update();
+        inventory.Update();
+    }
+
+    public void Die()
+    {
+        state.Die();
     }
 
     public void Draw(SpriteBatch _spriteBatch)
     {
         state.Draw(_spriteBatch);
+        inventory.Draw(_spriteBatch);
     }
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)
@@ -62,9 +70,7 @@ public class Link
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect, int xOffset, int yOffset)
     {
-        Debug.WriteLine(xOffset);
-        Debug.WriteLine(yOffset);
-        Rectangle destinationRect = new Rectangle((int)xPos + xOffset, (int)yPos + yOffset, sourceRect.Width * 4, sourceRect.Height * 4);
+        Rectangle destinationRect = new Rectangle((int)(xPos + xOffset), (int)(yPos + yOffset), sourceRect.Width * 4, sourceRect.Height * 4);
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
@@ -80,14 +86,21 @@ public class Link
 
     internal void UseBoomerang()
     {
-        state.UseBoomerang();
+        inventory.UseBoomerang();
     }
 
-    internal void UseBow()
+    internal void UseBow(String arrowType)
     {
-        state.UseBow();
+        inventory.UseBow(arrowType);
     }
 
+    internal void UseFire()
+    {
+        inventory.UseFire();
+    }
 
-    // Draw and other methods omitted
+    internal void UseBomb()
+    {
+        inventory.UseBomb();
+    }
 }
