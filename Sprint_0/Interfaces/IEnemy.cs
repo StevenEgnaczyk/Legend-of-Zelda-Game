@@ -6,7 +6,10 @@ using System.Reflection.Metadata;
 
 public interface IEnemy
 {
-
-    void Update();
-
+    void draw();
+    void update();
+    void moveLeft();
+    void moveRight();
+    void Next();
+    void Prev();
 }
