@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class Tile10State : ITileState
+public class BlueGapState : ITileState
 {
     private Tile tile;
     private static List<Rectangle> itemSprites = new List<Rectangle>()
@@ -16,7 +16,7 @@ public class Tile10State : ITileState
     };
     private int currentIndex;
 
-    public Tile10State(Tile tile)
+    public BlueGapState(Tile tile)
     {
         this.tile = tile;
         currentIndex = 0;
@@ -24,23 +24,22 @@ public class Tile10State : ITileState
 
     public void Next()
     {
-        tile.state = new Tile1State(tile);
+        tile.state = new StairsState(tile);
     }
 
     public void Prev()
     {
-        tile.state = new Tile9State(tile);
+        tile.state = new BlueFloorState(tile);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile1 = Texture2DStorage.GetTile10Sprite();
+        Texture2D tile1 = Texture2DStorage.GetTile7Sprite();
         Rectangle sourceRect = itemSprites[currentIndex];
         tile.DrawSprite(spriteBatch, tile1, sourceRect);
 
     }
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
     }
 }
