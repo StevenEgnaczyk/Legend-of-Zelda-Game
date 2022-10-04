@@ -34,6 +34,12 @@ public class Wallmaster : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
     }
 
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
+    }
+
     public void moveLeft()
     {
         state.moveLeft();

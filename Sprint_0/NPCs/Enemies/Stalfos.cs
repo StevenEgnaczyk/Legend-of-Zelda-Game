@@ -33,6 +33,12 @@ public class Stalfos : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
     }
 
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+    }
+
     public void moveLeft()
     {
         state.moveLeft();

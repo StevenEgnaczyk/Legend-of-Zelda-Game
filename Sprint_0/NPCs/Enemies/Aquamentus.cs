@@ -31,6 +31,11 @@ public class Aquamentus : IEnemy
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
     }
+    public void Prev()
+    {
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+    }
 
     public void moveLeft()
     {
