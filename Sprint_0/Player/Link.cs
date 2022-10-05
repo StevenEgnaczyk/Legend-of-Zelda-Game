@@ -58,8 +58,15 @@ public class Link
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        state.Draw(_spriteBatch);
-        inventory.Draw(_spriteBatch);
+        if (inventory.currentWeapon != null)
+        {
+            inventory.Draw(_spriteBatch);
+        }
+        else
+        {
+            state.Draw(_spriteBatch);
+        }
+        
     }
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)

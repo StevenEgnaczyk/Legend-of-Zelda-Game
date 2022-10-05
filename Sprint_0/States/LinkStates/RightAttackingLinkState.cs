@@ -116,4 +116,9 @@ public class RightAttackingLinkState : ILinkState
     {
         link.state = new DownAttackingLinkState(link, "Boomerang");
     }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        throw new NotImplementedException();
+    }
 }
