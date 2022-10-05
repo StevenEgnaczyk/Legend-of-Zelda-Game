@@ -28,6 +28,9 @@ public class KeyboardController : IController
 
     private ICommand dieCommand;
 
+	private ICommand cycleEnemyNextCommand;
+    private ICommand cycleEnemyPreviousCommand;
+
     private ICommand cycleItemNextCommand;
 	private ICommand cycleItemPrevCommand;
 	private ICommand _dynamicTilesCommand;
@@ -38,7 +41,7 @@ public class KeyboardController : IController
 
 
 
-    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
+    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer, IEnemy enemy)
 	{
 
 		controllerMappings = new Dictionary<Keys, ICommand>();
@@ -61,6 +64,9 @@ public class KeyboardController : IController
 
 		dieCommand = new DieCommand(linkPlayer);
 
+		cycleEnemyNextCommand = new CycleEnemyNextCommand(enemy);
+        cycleEnemyPreviousCommand = new CycleEnemyPrevCommand(enemy);
+
         cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
@@ -81,7 +87,10 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.S, turnPlayerDownCommand);
 		RegisterCommand(Keys.D, turnPlayerRightCommand);
 
-		RegisterCommand(Keys.Z, useWoodenSwordCommand);
+        RegisterCommand(Keys.P, cycleEnemyPreviousCommand);
+        RegisterCommand(Keys.O, cycleEnemyNextCommand);
+
+        RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
         RegisterCommand(Keys.D1, useBoomerangCommand);
         RegisterCommand(Keys.D2, useRedBowCommand);
@@ -119,7 +128,7 @@ public class KeyboardController : IController
 			{
 				//checks for item and block commands as to stop the user from holding the command
 				//and rapidly switching blocks or items
-				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I))
+				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I) || key.Equals(Keys.P) || key.Equals(Keys.O))
 				{
 					if(!state.Contains(key)) //checks for the commands in state
 					{

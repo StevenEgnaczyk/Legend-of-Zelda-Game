@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
-
+//For text to be implmented later
 public class TextSprite : ISprite
 
 {

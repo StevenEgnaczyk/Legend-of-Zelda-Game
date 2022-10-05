@@ -15,7 +15,6 @@ public class StalfosSprite : IEnemySprite
     public StalfosSprite(Texture2D spritesheet)
     {
         this.stalfosTexture = spritesheet;
-
         this.destinationRectangle = new Rectangle(0, 0, 32, 32);
         this.frame0Rectangle = new Rectangle(1, 59, 16, 16);
 
@@ -23,10 +22,10 @@ public class StalfosSprite : IEnemySprite
 
     public void draw(int frame, SpriteBatch sb)
     {
+        stalfosTexture = Texture2DStorage.getEnemySpritesheet();
         float zero = 0.0F;
         if ((frame % 2) == 0)
         {
-            stalfosTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         }

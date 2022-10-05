@@ -9,34 +9,37 @@ public class Goriya : IEnemy
 {
     private EnemyState state;
     private IEnemySprite sprite;
+    private Enemy currentEnemy;
 
     private int xPos;
     private int yPos;
+    private int bufferIndex;
+    private int bufferMax = 20;
 
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Goriya(SpriteBatch sb)
+    public Goriya(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+        currentEnemy = enemy;
         this._spriteBatch = sb;
 
-        xPos = 0;
-        yPos = 0;
+        xPos = 300;
+        yPos = 400;
         frame = 0;
+        bufferIndex = 0;
     }
 
     public void Next()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy);
     }
 
     public void Prev()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
+        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
     }
 
     public void moveLeft()
@@ -72,6 +75,24 @@ public class Goriya : IEnemy
     public void update()
     {
         sprite.update(xPos, yPos);
+        if (this.frame == 0)
+        {
+            this.bufferIndex++;
+        }
+        else
+        {
+            this.bufferIndex += 2;
+        }
+
+        if (this.bufferIndex == this.bufferMax)
+        {
+            this.bufferIndex = 0;
+            this.frame++;
+            if (this.frame == 4)
+            {
+                this.frame = 0;
+            }
+        }
     }
 
     public void draw(SpriteBatch sb)
