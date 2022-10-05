@@ -23,15 +23,14 @@ public class WallmasterSprite : IEnemySprite
 
     public void draw(int frame, SpriteBatch sb)
     {
+        wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
         if ((frame % 2) == 0)
         {
-            wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.wallmasterTexture, destinationRectangle, this.frame0Rectangle, Color.White);
 
         }
         else
         {
-            wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(wallmasterTexture, destinationRectangle, this.frame1Rectangle, Color.White);
 
         }
