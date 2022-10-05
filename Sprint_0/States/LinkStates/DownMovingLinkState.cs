@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 public class DownMovingLinkState : ILinkState
@@ -14,6 +15,14 @@ public class DownMovingLinkState : ILinkState
     {
         new Rectangle(1, 11, 16, 16),
         new Rectangle(19, 11, 16, 16)
+    };
+
+    private static List<Rectangle> attackingLinkSprites = new List<Rectangle>()
+    {
+        new Rectangle(94, 47, 16, 15),
+        new Rectangle(94, 47, 16, 15),
+        new Rectangle(94, 47, 16, 15),
+        new Rectangle(94, 47, 16, 15)
     };
 
     private int currentIndex;
@@ -91,6 +100,12 @@ public class DownMovingLinkState : ILinkState
 
     public void Update()
     {
-        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+    }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
+        Rectangle sourceRect = attackingLinkSprites[currentIndex];
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
     }
 }

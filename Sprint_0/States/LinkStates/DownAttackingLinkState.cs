@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 public class DownAttackingLinkState : ILinkState
@@ -23,11 +24,6 @@ public class DownAttackingLinkState : ILinkState
         new Rectangle(111, 47, 16, 27),
         new Rectangle(128, 47, 15, 23),
         new Rectangle(146, 47, 13, 19)
-    };
-
-    private static List<Rectangle> attackingLink = new List<Rectangle>()
-    {
-        new Rectangle(106, 11, 17, 15)
     };
 
     String weapon;
@@ -95,7 +91,15 @@ public class DownAttackingLinkState : ILinkState
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = whiteSwordSprites[currentIndex];
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
+        }  else
+        {
+
         }
+
+    }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
 
     }
 

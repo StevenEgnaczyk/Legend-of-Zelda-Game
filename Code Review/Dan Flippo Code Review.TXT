@@ -1,0 +1,30 @@
+Readibility:
+Author: Daniel Flippo
+Date: 10/4/2022
+Sprint: 2
+File Name: WhiteBrickState.cs
+File Author: John Hom
+Time Taken: 3 mins
+Comments: Everything in John's WhiteBrickState.cs class is relatively readable.
+		  It is clear what each method's purpose is, there is no unecessary code, 
+		  and formatting is all acceptable.
+		  The only thing I can say is that comments labeling the sections may be useful,
+		  while they may be unecessary in most cases, it will help space out the code.
+
+
+Code Quality:
+Author: Daniel Flippo
+Date: 10/4/2022
+Sprint: 2
+File Name WhiteBrickState.cs
+File Author: John Hom
+Time Taken:
+Comments: On the aspect of code quality, John's code is seemingly well organized, with
+		  the use of many methods to split up the different functionalities for the tile's
+		  state. I can't see much code that looks different from my implementation of the 
+		  state design pattern.
+Change: For future sprints it will not be necessary for blocks to switch states during gameplay
+		unless of course we decide to implement destructible blocks. So the next and prev methods
+		may become unused in most cases. I suggest that there be defined blocks for the level 
+		construction, not really needing the state design, because they will not change, and maybe
+		repurposing the existing states to draw for a destructible environment aspect.
