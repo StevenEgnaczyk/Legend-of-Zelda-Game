@@ -1,0 +1,16 @@
+Code Readability Review
+
+Author of the code review: RJ Zanotti
+
+Date of the code review: 10/4/22
+
+Sprint number: 2
+
+Name of the .cs file being reviewed: FairyState.cs
+
+Author of the .cs file being reviewed: Dan Flippo
+
+Number of minutes taken to complete the review: 15 minutes
+
+Specific comments on what is readable and what is not:
+Code in this class is very readable with every method in the class having one task that it does. It is also very clear what eat method in the class does, for example, the next method changes the item state to the clock, the previous method change the item state to the bomb, and the draw method gets the sprite from the sprite sheet and calls drawSprite to draw the sprite. Overall, I would say that this class is very readable and clean.
