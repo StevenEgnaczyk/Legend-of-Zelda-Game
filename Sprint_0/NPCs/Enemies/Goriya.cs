@@ -74,8 +74,8 @@ public class Goriya : IEnemy
         sprite.update(xPos, yPos);
     }
 
-    public void draw()
+    public void draw(SpriteBatch sb)
     {
-        sprite.draw(frame, _spriteBatch);
+        sprite.draw(frame, sb);
     }
 }

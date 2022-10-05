@@ -25,12 +25,14 @@ public class WallmasterSprite : IEnemySprite
     {
         if ((frame % 2) == 0)
         {
+            wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.wallmasterTexture, destinationRectangle, this.frame0Rectangle, Color.White);
 
         }
         else
         {
-            sb.Draw(this.wallmasterTexture, destinationRectangle, this.frame1Rectangle, Color.White);
+            wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
+            sb.Draw(wallmasterTexture, destinationRectangle, this.frame1Rectangle, Color.White);
 
         }
     }

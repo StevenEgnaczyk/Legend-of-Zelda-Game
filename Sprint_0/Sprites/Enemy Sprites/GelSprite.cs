@@ -27,6 +27,7 @@ public class GelSprite : IEnemySprite
     {
         if ((frame % 2) == 0)
         {
+            gelTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.gelTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         }

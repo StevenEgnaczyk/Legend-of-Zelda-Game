@@ -75,8 +75,8 @@ public class Aquamentus : IEnemy
         sprite.update(x, y);
     }
 
-    public void draw()
+    public void draw(SpriteBatch sb)
     {
-        sprite.draw(this.frame, this._spriteBatch);
+        sprite.draw(this.frame, sb);
     }
 }

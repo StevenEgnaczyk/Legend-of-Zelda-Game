@@ -73,8 +73,13 @@ public class Keese : IEnemy
         sprite.update(this.xPos, this.yPos);
     }
 
+    public void draw(SpriteBatch sb)
+    {
+        sprite.draw(this.frame, sb); 
+    }
+
     public void draw()
     {
-        sprite.draw(this.frame, this._spriteBatch); 
+        throw new NotImplementedException();
     }
 }

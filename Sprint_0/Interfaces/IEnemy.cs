@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 
 public interface IEnemy
 {
-    void draw();
+    void draw(SpriteBatch _spriteBatch);
     void update();
     void moveLeft();
     void moveRight();

@@ -74,8 +74,8 @@ public class Gel : IEnemy
         sprite.update(this.xPos, this.yPos);
     }
 
-    public void draw()
+    public void draw(SpriteBatch sb)
     {
-        sprite.draw(this.frame, this._spriteBatch);
+        sprite.draw(this.frame, sb);
     }
 }

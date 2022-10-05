@@ -30,22 +30,23 @@ public class AquamentusSprite : IEnemySprite
 
     public void draw(int frame, SpriteBatch sb)
     {
+        AquamentusTexture = Texture2DStorage.getEnemySpritesheet();
 
         if (frame % 4 == 0)
         {
-            sb.Draw(this.AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         }else if (frame % 4 == 1)
         {
-            sb.Draw(this.AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
 
         }else if (frame % 4 == 2)
         {
-            sb.Draw(this.AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
 
         }else if(frame % 4 == 3)
         {
-            sb.Draw(this.AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
 
         }
     }

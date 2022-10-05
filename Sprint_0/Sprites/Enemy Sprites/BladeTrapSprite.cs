@@ -23,8 +23,9 @@ public class BladeTrapSprite : IEnemySprite
     }
 
     public void draw(int frame, SpriteBatch sb)
-    { 
-            sb.Draw(this.BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+    {
+        BladeTrapTexture = Texture2DStorage.getEnemySpritesheet();
+        sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
     public void update(int xPos, int yPos)
