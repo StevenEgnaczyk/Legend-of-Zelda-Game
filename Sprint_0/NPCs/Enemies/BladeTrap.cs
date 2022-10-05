@@ -23,8 +23,8 @@ public class BladeTrap : IEnemy
         this._spriteBatch = sb;
         currentEnemy = enemy;
 
-        this.xPos = 0;
-        this.yPos = 0;
+        this.xPos = 300;
+        this.yPos = 400;
     }
 
     public void Next()
