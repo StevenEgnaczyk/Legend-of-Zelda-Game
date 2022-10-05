@@ -1,0 +1,12 @@
+Author: Jonathan Hom
+Date: 10/4/22
+Sprint No. 2
+File Name: OldMan.cs
+File Author: RJ Zanotti
+
+Quality Review: Code initially seems fine. 
+     The code works as intended.
+    Some variables are not needed and are unused, but i guess he could use them later.
+    Two different draw methods, but most files currently have two different draw methods.
+
+Time: 2 minutes
