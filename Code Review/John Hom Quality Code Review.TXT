@@ -1,0 +1,11 @@
+Author: Jonathan Hom
+Date: 10/4/22
+Sprint No. 2
+File Name: OldMan.cs
+File Author: RJ Zanotti
+
+Quality Review: Code initially seems fine. 
+    Some variables are not needed and are unused, but i guess he could use them later.
+    .
+
+Time: 2 minutes
