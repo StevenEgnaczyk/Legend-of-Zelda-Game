@@ -15,22 +15,26 @@ public class GoriyaSprite : IEnemySprite
     private Rectangle upRectangle;
     private Rectangle downRectangle;
 
-    public int left { get; set; }
-    public int up { get; set; }
+    public int left = 1;
+    public int up = 1;
 
     private bool flip;
+    private int frame;
+    private int bufferIndex;
+    private int bufferMax = 40;
 
     public GoriyaSprite(Texture2D spritesheet)
     {
         this.goriyaTexture = spritesheet;
+        this.destinationRectantgle = new Rectangle(0, 0, 32, 32);
+        this.walk0Rectangle = new Rectangle(273, 11, 16, 16);
+        this.walk1Rectangle = new Rectangle(256, 11, 16, 16);
+        this.upRectangle = new Rectangle(239, 11, 16, 16);
+        this.downRectangle = new Rectangle(222, 11, 16, 16);
 
-        walk0Rectangle = new Rectangle(273, 11, 16, 16);
-        walk1Rectangle = new Rectangle(256, 11, 16, 16);
-        upRectangle = new Rectangle(239, 11, 16, 16);
-        downRectangle = new Rectangle(222, 11, 16, 16);
-
-        flip = false;
-
+        this.flip = false;
+        this.bufferIndex = 0;
+        this.frame = 0;
     }
 
     public void getState(int left, int up)
@@ -40,22 +44,25 @@ public class GoriyaSprite : IEnemySprite
 
     public void draw(int frame, SpriteBatch sb)
     {
-        
+        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
+        //sb.Draw(this.goriyaTexture, this.destinationRectantgle, this.walk0Rectangle, Color.White);
         if (this.flip)
         {
             drawFlipped(this.left, this.up, this.destinationRectantgle, sb);
 
-        } else
+        }
+        else
         {
             drawNormal(this.left, this.up, this.destinationRectantgle, sb);
 
         }
-        this.flip = !this.flip;
+
+
     }
 
-    public  void drawNormal(int left, int up, Rectangle destination, SpriteBatch sb)
+    public void drawNormal(int left, int up, Rectangle destination, SpriteBatch sb)
     {
-        
+
         if (left == 1)
         {
             sb.Draw(this.goriyaTexture, destination, this.walk0Rectangle, Color.White);
@@ -83,10 +90,10 @@ public class GoriyaSprite : IEnemySprite
         float zero = 0.0F;
         if (left == 1)
         {
-            sb.Draw(this.goriyaTexture, destination, this.walk0Rectangle, Color.White, zero, new Vector2(0,0), SpriteEffects.FlipHorizontally, zero);
+            sb.Draw(this.goriyaTexture, destination, this.walk0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if(left == 2)
+        else if (left == 2)
         {
             sb.Draw(this.goriyaTexture, destination, this.walk1Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
@@ -96,7 +103,7 @@ public class GoriyaSprite : IEnemySprite
             sb.Draw(this.goriyaTexture, destination, this.upRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else  if (up == 2)
+        else if (up == 2)
         {
             sb.Draw(this.goriyaTexture, destination, this.downRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
@@ -105,8 +112,27 @@ public class GoriyaSprite : IEnemySprite
 
     public void update(int xPos, int yPos)
     {
+        if (this.frame == 0)
+        {
+            this.bufferIndex++;
+        }
+        else
+        {
+            this.bufferIndex += 2;
+        }
 
-        flip = !this.flip;
+        if (this.bufferIndex == this.bufferMax)
+        {
+            this.bufferIndex = 0;
+            flip = !this.flip;
+            this.frame++;
+            if (this.frame == 4)
+            {
+                this.frame = 0;
+            }
+        }
+
+
         destinationRectantgle = new Rectangle(xPos, yPos, 32, 32);
     }
 }
