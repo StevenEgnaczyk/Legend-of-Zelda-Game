@@ -9,6 +9,7 @@ public class Stalfos : IEnemy
 {
     private EnemyState state;
     private IEnemySprite sprite;
+    private Enemy currentEnemy;
 
     private int xPos;
     private int yPos;
@@ -16,11 +17,12 @@ public class Stalfos : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Stalfos(SpriteBatch sb)
+    public Stalfos(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
         this._spriteBatch = sb; 
+        this.currentEnemy = enemy;
 
         this.xPos = 0;
         this.yPos = 0;
@@ -31,6 +33,7 @@ public class Stalfos : IEnemy
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy);
     }
 
     public void Prev()

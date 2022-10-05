@@ -1,0 +1,18 @@
+Code Review File
+
+Author of the code review: RJ Zanotti
+
+Date of the code review: 10/4/21
+
+Sprint number: 2
+
+Name of the .cs file being reviewed: RuppeState.cs
+
+Author of the .cs file being reviewed: Dan Flippo
+
+Specific comments on code quality:
+Code is overall formatted well for the RuppeState class and is reusable for the remainder of the project. The RuppeState class uses the IItemState interface. The RuppeState class has variables for a list of rectangles that hold the sprite locations for the different rupee states and indexs of what frame the Rupee should be on. The class also has methods for the next item, previous item, draw item, and update item. This is all maintainable for the rest of the project as things can be added to update if the rupee needs to have another function and the funcitons it has now will be used again. Overall, the RuppeState class is constructed well and will be maintainable.
+
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change:
+A change that could be made to the game related to the file that the current implementation could easily support is a inclusion of wether or not the rupee is picked up
+by Link. This would easily be included by having the update method check the if the ruppe and Link are in the same location on the game screen.

@@ -30,7 +30,7 @@ public class AquamentusSprite : IEnemySprite
 
     public void draw(int frame, SpriteBatch sb)
     {
-        AquamentusTexture = Texture2DStorage.getEnemySpritesheet();
+        AquamentusTexture = Texture2DStorage.getBossSpritesheet();
 
         if (frame % 4 == 0)
         {
@@ -54,5 +54,6 @@ public class AquamentusSprite : IEnemySprite
     public void update(int xPos, int yPos)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 48, 64);
+        
     }
 }
