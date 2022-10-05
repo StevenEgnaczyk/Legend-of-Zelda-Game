@@ -59,7 +59,7 @@ namespace Sprint_0
             aquamentus = new Aquamentus(_spriteBatch);
 
             
-            _keyboardController = new KeyboardController(Content, link, item, tile);
+            _keyboardController = new KeyboardController(Content, link, item, tile, keese);
             //_mouseController = new MouseController(Content);
 
             base.Initialize();

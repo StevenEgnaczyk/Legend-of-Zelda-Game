@@ -70,11 +70,11 @@ public class Keese : IEnemy
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
+        sprite.update(xPos, yPos);
     }
 
     public void draw()
     {
-        sprite.draw(this.frame, this._spriteBatch); 
+        sprite.draw(frame, _spriteBatch); 
     }
 }
