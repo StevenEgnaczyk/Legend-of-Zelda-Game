@@ -18,7 +18,7 @@ Date: 10/4/2022
 Sprint: 2
 File Name WhiteBrickState.cs
 File Author: John Hom
-Time Taken:
+Time Taken: 5 mins
 Comments: On the aspect of code quality, John's code is seemingly well organized, with
 		  the use of many methods to split up the different functionalities for the tile's
 		  state. I can't see much code that looks different from my implementation of the 

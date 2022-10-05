@@ -1,0 +1,26 @@
+Readibility:
+Author: Steven Egnaczyk
+Date: 10/4/2022
+Sprint: 2
+File Name: Keese.cs
+File Author: Ethan Halverson
+Time Taken: 4 minutes
+Comments: The code in Ethan's Keese class is very readable. The methods are short and 
+		  have clear names for the functions they implement for the enemy. Comments could
+		  serve to give more description to what physically happens in game when the 
+		  functions are called.
+
+
+Code Quality:
+Author: Steven Egnaczyk
+Date: 10/4/2022
+Sprint: 2
+File Name: Keese.cs
+File Author: Ethan Halverson
+Time Taken: 7 minutes
+Comments: The qaulity of code in the Keese class is good. The methods are all short and all
+		  statements and declarations have purpose and there is no unused code.
+Change: Pertaining to this specific class, I'm unsure what changes will need to be made,
+		other than removing unnecessary methods for future sprints. For the enemies as a 
+		whole, It isn't currently drawing with transparancy, likely an issue with the spritesheet.
+		
