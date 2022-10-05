@@ -55,6 +55,7 @@ public class Item
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D itemSprite, Rectangle sourceRect)
     {
+        itemSprite = Texture2DStorage.GetItemSpritesheet();
         Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, (int)((double)sourceRect.Width * scale), (int)((double)sourceRect.Height * scale));
         _spriteBatch.Draw(itemSprite, destinationRect, sourceRect, Color.White);
     }
