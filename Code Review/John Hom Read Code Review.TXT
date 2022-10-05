@@ -1,0 +1,14 @@
+Author: Jonathan Hom
+Date: 10/4/22
+Sprint No. 2
+File Name: OldMan.cs
+File Author: RJ Zanotti
+
+Read Review: Code is concise with descriptive names. 
+
+    Methods are pretty straight forward, however draw and drawsprite are too similar 
+        and should be changed to more descriptive names.
+    
+    Variables have straight forward names.
+
+Time: 2 minutes
