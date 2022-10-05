@@ -25,7 +25,7 @@ public static class Texture2DStorage
 	private static Texture2D tile10Sprite;
 
 	private static Texture2D enemySpritesheet;
-	private static Texture2D bossSpriteSheet
+	private static Texture2D bossSpritesheet;
 
 	// tiles = new Dictionary<string, Texture2D>()
     //     {
