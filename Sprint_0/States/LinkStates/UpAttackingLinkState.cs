@@ -108,4 +108,9 @@ public class UpAttackingLinkState : ILinkState
             }
         }
     }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        throw new NotImplementedException();
+    }
 }

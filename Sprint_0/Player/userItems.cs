@@ -81,6 +81,7 @@ namespace Sprint_0.Player
         {
             if (hasWeapon)
             {
+                link.state.DrawAttacker(spriteBatch);
                 currentWeapon.Draw(spriteBatch);
             }
         }

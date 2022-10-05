@@ -14,6 +14,14 @@ public class UpMovingLinkState : ILinkState
         new Rectangle(88, 11, 16, 16)
     };
 
+    private static List<Rectangle> attackingLinkSprites = new List<Rectangle>()
+    {
+        new Rectangle(141, 11, 16, 16),
+        new Rectangle(141, 11, 16, 16),
+        new Rectangle(141, 11, 16, 16),
+        new Rectangle(141, 11, 16, 16)
+    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
@@ -91,5 +99,12 @@ public class UpMovingLinkState : ILinkState
     public void UseBow()
     {
         throw new NotImplementedException();
+    }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
+        Rectangle sourceRect = attackingLinkSprites[currentIndex];
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
     }
 }
