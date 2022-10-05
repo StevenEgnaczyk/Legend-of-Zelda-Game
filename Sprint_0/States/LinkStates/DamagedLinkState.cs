@@ -83,4 +83,9 @@ public class DamagedLinkState : ILinkState
     public void Die()
     {
     }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        throw new NotImplementedException();
+    }
 }

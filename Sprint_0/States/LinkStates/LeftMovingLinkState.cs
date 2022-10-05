@@ -13,6 +13,15 @@ public class LeftMovingLinkState : ILinkState
         new Rectangle(160, 11, 15, 16),
         new Rectangle(176, 11, 15, 16)
     };
+
+    private static List<Rectangle> attackingLinkSprites = new List<Rectangle>()
+    {
+        new Rectangle(354, 206, 16, 15),
+        new Rectangle(354, 206, 16, 15),
+        new Rectangle(354, 206, 16, 15),
+        new Rectangle(354, 206, 16, 15)
+    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
@@ -87,5 +96,12 @@ public class LeftMovingLinkState : ILinkState
     public void UseBow()
     {
         throw new NotImplementedException();
+    }
+
+    public void DrawAttacker(SpriteBatch spriteBatch)
+    {
+        Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
+        Rectangle sourceRect = attackingLinkSprites[currentIndex];
+        link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
     }
 }
