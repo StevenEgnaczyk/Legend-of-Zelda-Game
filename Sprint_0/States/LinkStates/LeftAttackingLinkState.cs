@@ -134,10 +134,6 @@ public class LeftAttackingLinkState : ILinkState
     {
         throw new NotImplementedException();
     }
-    public void UseBoomerang()
-    {
-        link.state = new LeftAttackingLinkState(link, "Boomerang");
-    }
 
     public void DrawAttacker(SpriteBatch spriteBatch)
     {

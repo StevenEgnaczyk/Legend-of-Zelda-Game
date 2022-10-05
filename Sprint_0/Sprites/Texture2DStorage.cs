@@ -49,7 +49,7 @@ public static class Texture2DStorage
 	{
 		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
 		linkSpriteSheet = content.Load<Texture2D>("Link");
-
+		itemSpriteSheet = content.Load<Texture2D>("ItemSpritesheet");
 		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 
