@@ -24,6 +24,9 @@ public static class Texture2DStorage
 	private static Texture2D tile9Sprite;
 	private static Texture2D tile10Sprite;
 
+	private static Texture2D enemySpritesheet;
+	private static Texture2D bossSpritesheet;
+
 	// tiles = new Dictionary<string, Texture2D>()
     //     {
     //         { "tile1", c.Load<Texture2D>("tiles/tile1")},
@@ -46,18 +49,26 @@ public static class Texture2DStorage
 	{
 		NPCSpriteSheet = content.Load<Texture2D>("NPCSpriteSheet");
 		linkSpriteSheet = content.Load<Texture2D>("Link");
-		itemSpriteSheet = content.Load<Texture2D>("ItemSpritesheet");
-        
-		tile1Sprite = content.Load<Texture2D>("tiles/tile1");
-		tile2Sprite = content.Load<Texture2D>("tiles/tile2");
-		tile3Sprite = content.Load<Texture2D>("tiles/tile3");
-		tile4Sprite = content.Load<Texture2D>("tiles/tile4");
-		tile5Sprite = content.Load<Texture2D>("tiles/tile5");
-		tile6Sprite = content.Load<Texture2D>("tiles/tile6");
-		tile7Sprite = content.Load<Texture2D>("tiles/tile7");
-		tile8Sprite = content.Load<Texture2D>("tiles/tile8");
-		tile9Sprite = content.Load<Texture2D>("tiles/tile9");
-		tile10Sprite = content.Load<Texture2D>("tiles/tile10");
+
+		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
+		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
+
+		/*
+		 * item1Sprite = content.Load<Texture2D>("item1");
+			item2Sprite = content.Load<Texture2D>("item2");
+			item4Sprite = content.Load<Texture2D>("item4");
+			item5Sprite = content.Load<Texture2D>("item5");
+			item6Sprite = content.Load<Texture2D>("item6");
+			item7Sprite = content.Load<Texture2D>("item7");
+			item8Sprite = content.Load<Texture2D>("item8");
+			item9Sprite = content.Load<Texture2D>("item9");
+			item10Sprite = content.Load<Texture2D>("item10");
+			item11Sprite = content.Load<Texture2D>("item11");
+			item12Sprite = content.Load<Texture2D>("item12");
+			item13Sprite = content.Load<Texture2D>("item13");
+		 * 
+		 */
+
 	}
 
 	public static Texture2D GetLinkSpriteSheet()
@@ -68,6 +79,16 @@ public static class Texture2DStorage
     {
         return NPCSpriteSheet;
     }
+
+	public static Texture2D getEnemySpritesheet()
+	{
+		return enemySpritesheet;
+	}
+
+	public static Texture2D getBossSpritesheet()
+	{
+		return bossSpritesheet;
+	}
     // More public static Texture2D returning methods follow
 
 	public static Texture2D GetItemSpritesheet()
@@ -114,6 +135,5 @@ public static class Texture2DStorage
 	{
 		return tile10Sprite;
 	}
-	// More public static Texture2D returning methods follow
 
 }

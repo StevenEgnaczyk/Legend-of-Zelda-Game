@@ -25,18 +25,7 @@ public class CompassState : IItemState
 
     public void Next()
     {
-        bufferIndex++;
-        if (bufferIndex == bufferMax)
-        {
-            currentIndex++;
-            bufferIndex = 0;
-            if (currentIndex == 1)
-            {
-                item.state = new MapState(item);
-                currentIndex = 0;
-            }
-        }
-        
+       item.state = new MapState(item);       
     }
 
     public void Prev()

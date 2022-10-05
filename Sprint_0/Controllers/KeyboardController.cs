@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-using System.Security.Cryptography;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 public class KeyboardController : IController
 {
@@ -32,6 +32,10 @@ public class KeyboardController : IController
 	private ICommand cycleItemPrevCommand;
 	private ICommand _dynamicTilesCommand;
 	private ICommand _dynamicTilesCommandPrev;
+	private ICommand resetCommand;
+
+	private Keys[] state;
+
 
 
     public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer)
@@ -41,6 +45,7 @@ public class KeyboardController : IController
 
 		//Initialize the different commands
 		_quitCommand = new QuitCommand();
+		resetCommand = new ResetCommand(linkPlayer, itemPlayer, tilePlayer);
 		turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
 		turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
 		turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
@@ -64,11 +69,17 @@ public class KeyboardController : IController
 
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);
+		RegisterCommand(Keys.Q, _quitCommand);
+		RegisterCommand(Keys.R, resetCommand);
 
 		RegisterCommand(Keys.Left, turnPlayerLeftCommand);
 		RegisterCommand(Keys.Right, turnPlayerRightCommand);
 		RegisterCommand(Keys.Up, turnPlayerUpCommand);
 		RegisterCommand(Keys.Down, turnPlayerDownCommand);
+		RegisterCommand(Keys.W, turnPlayerUpCommand);
+		RegisterCommand(Keys.A, turnPlayerLeftCommand);
+		RegisterCommand(Keys.S, turnPlayerDownCommand);
+		RegisterCommand(Keys.D, turnPlayerRightCommand);
 
 		RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
@@ -79,8 +90,8 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.D5, useBombCommand);
 
         RegisterCommand(Keys.E, dieCommand);
-        RegisterCommand(Keys.U, cycleItemNextCommand);
-		RegisterCommand(Keys.I, cycleItemPrevCommand);
+        RegisterCommand(Keys.I, cycleItemNextCommand);
+		RegisterCommand(Keys.U, cycleItemPrevCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);
 		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
 
@@ -103,11 +114,25 @@ public class KeyboardController : IController
 
 		foreach(Keys key in pressedKeys)
 		{
+			//checks for registered commands
 			if (controllerMappings.ContainsKey(key))
 			{
-				controllerMappings[key].Execute();
+				//checks for item and block commands as to stop the user from holding the command
+				//and rapidly switching blocks or items
+				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I))
+				{
+					if(!state.Contains(key)) //checks for the commands in state
+					{
+						controllerMappings[key].Execute();
+					}
+				} 
+				else
+				{
+					controllerMappings[key].Execute(); 
+				}
 			}
 		}
+		state = pressedKeys; //sets state to compare to new pressed keys
 	}
 
 	public void Update()

@@ -70,6 +70,11 @@ public class RightAttackingLinkState : ILinkState
         link.state = new RightAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new RightAttackingLinkState(link, "Boomerang");
+    }
+
     public void Die()
     {
         link.state = new DamagedLinkState(link);
@@ -111,7 +116,7 @@ public class RightAttackingLinkState : ILinkState
     {
         throw new NotImplementedException();
     }
-
+    
     public void UseBoomerang()
     {
         link.state = new DownAttackingLinkState(link, "Boomerang");

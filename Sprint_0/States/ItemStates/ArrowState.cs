@@ -30,7 +30,7 @@ public class ArrowState : IItemState
 
     public void Prev()
     {
-        item.state = new RupeeState(item);
+        item.state = new FlameState(item);
     }
 
     public void Draw(SpriteBatch spriteBatch)

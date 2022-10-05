@@ -16,7 +16,7 @@ public class LeftAttackingLinkState : ILinkState
         new Rectangle(325, 206, 27, 15),
         new Rectangle(301, 206, 23, 15),
         new Rectangle(281, 205, 19, 16)
-      
+
     };
 
     private static List<Rectangle> whiteSwordSprites = new List<Rectangle>()
@@ -24,7 +24,7 @@ public class LeftAttackingLinkState : ILinkState
         new Rectangle(353, 223, 15, 15),
         new Rectangle(280, 223, 19, 16),
         new Rectangle(302, 223, 21, 15),
-        new Rectangle(325, 223, 26, 15) 
+        new Rectangle(325, 223, 26, 15)
 
     };
 
@@ -82,6 +82,11 @@ public class LeftAttackingLinkState : ILinkState
         link.state = new LeftAttackingLinkState(link, "Beam");
     }
 
+    public void UseBoomerang()
+    {
+        link.state = new DownAttackingLinkState(link, "Boomerang");
+    }
+
     public void Die()
     {
         link.state = new DamagedLinkState(link);
@@ -93,7 +98,7 @@ public class LeftAttackingLinkState : ILinkState
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = woodenSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15-sourceRect.Width, 0);
+            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15 - sourceRect.Width, 0);
         }
         else if (this.weapon == "Beam")
         {
@@ -105,7 +110,6 @@ public class LeftAttackingLinkState : ILinkState
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
             Rectangle sourceRect = linkSprites[currentIndex];
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15-sourceRect.Width, 0);
-
         }
 
     }
@@ -130,7 +134,6 @@ public class LeftAttackingLinkState : ILinkState
     {
         throw new NotImplementedException();
     }
-
     public void UseBoomerang()
     {
         link.state = new LeftAttackingLinkState(link, "Boomerang");
