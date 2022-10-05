@@ -27,19 +27,7 @@ public static class Texture2DStorage
 	private static Texture2D enemySpritesheet;
 	private static Texture2D bossSpritesheet;
 
-	// tiles = new Dictionary<string, Texture2D>()
-    //     {
-    //         { "tile1", c.Load<Texture2D>("tiles/tile1")},
-    //         { "tile2", c.Load<Texture2D>("tiles/tile2")},
-	// 		{ "tile3", c.Load<Texture2D>("tiles/tile3")},
-	// 		{ "tile4", c.Load<Texture2D>("tiles/tile4")},
-	// 		{ "tile5", c.Load<Texture2D>("tiles/tile5")},
-	// 		{ "tile6", c.Load<Texture2D>("tiles/tile6")},
-	// 		{ "tile7", c.Load<Texture2D>("tiles/tile7")},
-	// 		{ "tile8", c.Load<Texture2D>("tiles/tile8")},
-	// 		{ "tile9", c.Load<Texture2D>("tiles/tile9")},
-	// 		{ "tile10", c.Load<Texture2D>("tiles/tile10")}
-	// 	};
+	private static Dictionary<string, Texture2D> tiles;
 
 
     // More private static Texture2D fields follow
@@ -53,7 +41,17 @@ public static class Texture2DStorage
 		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 
-		/*
+		tile1Sprite = content.Load<Texture2D>("tiles/tile1");
+        tile2Sprite = content.Load<Texture2D>("tiles/tile2");
+        tile3Sprite = content.Load<Texture2D>("tiles/tile3");
+        tile4Sprite = content.Load<Texture2D>("tiles/tile4");
+        tile5Sprite = content.Load<Texture2D>("tiles/tile5");
+        tile6Sprite = content.Load<Texture2D>("tiles/tile6");
+        tile7Sprite = content.Load<Texture2D>("tiles/tile7");
+        tile8Sprite = content.Load<Texture2D>("tiles/tile8");
+        tile9Sprite = content.Load<Texture2D>("tiles/tile9");
+        tile10Sprite = content.Load<Texture2D>("tiles/tile10");
+        /*
 		 * item1Sprite = content.Load<Texture2D>("item1");
 			item2Sprite = content.Load<Texture2D>("item2");
 			item4Sprite = content.Load<Texture2D>("item4");
@@ -69,9 +67,9 @@ public static class Texture2DStorage
 		 * 
 		 */
 
-	}
+    }
 
-	public static Texture2D GetLinkSpriteSheet()
+    public static Texture2D GetLinkSpriteSheet()
 	{
 		return linkSpriteSheet;
 	}

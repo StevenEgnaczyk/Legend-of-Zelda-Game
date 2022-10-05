@@ -27,7 +27,8 @@ public class KeeseSprite : IEnemySprite
     {
         if ((frame % 2) == 0)
         {
-            sb.Draw(this.keeseTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            keeseTexture = Texture2DStorage.getEnemySpritesheet();
+            sb.Draw(keeseTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         } else
         {

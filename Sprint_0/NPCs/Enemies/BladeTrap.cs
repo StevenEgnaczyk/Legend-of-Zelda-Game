@@ -68,8 +68,8 @@ public class BladeTrap : IEnemy
         sprite.update(this.xPos, this.yPos);
     }
 
-    public void draw()
+    public void draw(SpriteBatch sb)
     {
-        sprite.draw(0, this._spriteBatch);
+        sprite.draw(0, sb);
     }
 }

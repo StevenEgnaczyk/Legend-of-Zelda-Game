@@ -26,6 +26,7 @@ public class StalfosSprite : IEnemySprite
         float zero = 0.0F;
         if ((frame % 2) == 0)
         {
+            stalfosTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         }
