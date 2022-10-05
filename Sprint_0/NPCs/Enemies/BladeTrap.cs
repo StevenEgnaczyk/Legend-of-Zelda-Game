@@ -29,15 +29,12 @@ public class BladeTrap : IEnemy
 
     public void Next()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
         currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
     }
 
     public void Prev()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy);
     }
 
     public void moveLeft()

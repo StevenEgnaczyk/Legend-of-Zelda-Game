@@ -43,7 +43,7 @@ public class EnemySpriteAndStateFactory
 		
 	public IEnemySprite CreateGoriyaSprite()
 	{
-		return new GelSprite(enemySpritesheet);
+		return new GoriyaSprite(enemySpritesheet);
 	}
 
 	public IEnemySprite CreateBladeTrapSprite()

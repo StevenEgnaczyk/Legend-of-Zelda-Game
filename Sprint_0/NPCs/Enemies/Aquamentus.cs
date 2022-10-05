@@ -14,7 +14,8 @@ public class Aquamentus : IEnemy
 
     private int xPos;
     private int yPos;
-
+    private int bufferIndex;
+    private int bufferMax = 20;
     private int frame;
     private SpriteBatch _spriteBatch;
 
@@ -24,21 +25,18 @@ public class Aquamentus : IEnemy
         this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
         currentEnemy = enemy;
         this._spriteBatch = sb;
-
+        this.bufferIndex = 0;
         this.frame = 0;
-        this.xPos = 0;
-        this.yPos = 0;
+        this.xPos = 300;
+        this.yPos = 400;
     }
     public void Next()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
         currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
     }
     public void Prev()
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy);
     }
 
     public void moveLeft()
@@ -74,9 +72,25 @@ public class Aquamentus : IEnemy
 
     public void update()
     {
-        int x = xPos;
-        int y = yPos;
-        sprite.update(x, y);
+        sprite.update(this.xPos, this.yPos);
+        if (this.frame == 0)
+        {
+            this.bufferIndex++;
+        }
+        else
+        {
+            this.bufferIndex += 2;
+        }
+
+        if (this.bufferIndex == this.bufferMax)
+        {
+            this.bufferIndex = 0;
+            this.frame++;
+            if (this.frame == 4)
+            {
+                this.frame = 0;
+            }
+        }
     }
 
     public void draw(SpriteBatch sb)
