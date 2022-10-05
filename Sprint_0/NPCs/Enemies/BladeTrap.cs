@@ -14,12 +14,14 @@ public class BladeTrap : IEnemy
     private int yPos;
 
     private SpriteBatch _spriteBatch;
+    private Enemy currentEnemy;
 
-    public BladeTrap(SpriteBatch sb)
+    public BladeTrap(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
         this._spriteBatch = sb;
+        currentEnemy = enemy;
 
         this.xPos = 0;
         this.yPos = 0;
@@ -28,7 +30,8 @@ public class BladeTrap : IEnemy
     public void Next()
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
     }
 
     public void Prev()

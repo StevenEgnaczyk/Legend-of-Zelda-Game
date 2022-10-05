@@ -7,8 +7,10 @@ using System.Reflection.Metadata;
 
 public class Aquamentus : IEnemy
 {
+    private Enemy currentEnemy;
     private EnemyState state;
     private IEnemySprite sprite;
+
 
     private int xPos;
     private int yPos;
@@ -16,10 +18,11 @@ public class Aquamentus : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Aquamentus(SpriteBatch sb)
+    public Aquamentus(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        currentEnemy = enemy;
         this._spriteBatch = sb;
 
         this.frame = 0;
@@ -29,7 +32,8 @@ public class Aquamentus : IEnemy
     public void Next()
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
+        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
     }
     public void Prev()
     {

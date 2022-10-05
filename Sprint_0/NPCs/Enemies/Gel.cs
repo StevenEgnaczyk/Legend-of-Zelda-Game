@@ -15,12 +15,14 @@ public class Gel : IEnemy
 
     private int frame;
     private SpriteBatch _spriteBatch;
+    private Enemy currentEnemy;
 
-    public Gel(SpriteBatch sb)
+    public Gel(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
         this._spriteBatch = sb;
+        currentEnemy = enemy;
 
         this.xPos = 0;
         this.yPos = 0;
@@ -31,6 +33,7 @@ public class Gel : IEnemy
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
+        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy);
     }
 
     public void Prev()

@@ -9,6 +9,7 @@ public class Goriya : IEnemy
 {
     private EnemyState state;
     private IEnemySprite sprite;
+    private Enemy currentEnemy;
 
     private int xPos;
     private int yPos;
@@ -16,10 +17,11 @@ public class Goriya : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Goriya(SpriteBatch sb)
+    public Goriya(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+        currentEnemy = enemy;
         this._spriteBatch = sb;
 
         xPos = 0;
@@ -30,7 +32,8 @@ public class Goriya : IEnemy
     public void Next()
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy);
     }
 
     public void Prev()

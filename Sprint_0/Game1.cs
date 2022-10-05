@@ -17,14 +17,7 @@ namespace Sprint_0
         private OldMan oldMan1;
         private Item item;
         private Tile tile;
-
-        private IEnemy keese;
-        private IEnemy stalfos;
-        private IEnemy gel;
-        private IEnemy goriya;
-        private IEnemy bladeTrap;
-        private IEnemy wallmaster;
-        private IEnemy aquamentus;
+        private IEnemy enemy;
 
         //Keyboard variables
         private KeyboardController _keyboardController;
@@ -49,17 +42,10 @@ namespace Sprint_0
             oldMan1 = new OldMan();
             item = new Item();
             tile = new Tile();
-
-            keese = new Keese(_spriteBatch);
-            stalfos = new Stalfos(_spriteBatch);
-            gel = new Gel(_spriteBatch);
-            goriya = new Goriya(_spriteBatch);
-            bladeTrap = new BladeTrap(_spriteBatch);
-            wallmaster = new Wallmaster(_spriteBatch);
-            aquamentus = new Aquamentus(_spriteBatch);
+            enemy = new Enemy(_spriteBatch);
 
             
-            _keyboardController = new KeyboardController(Content, link, item, tile, keese);
+            _keyboardController = new KeyboardController(Content, link, item, tile, enemy);
             //_mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -95,14 +81,7 @@ namespace Sprint_0
             oldMan1.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
-
-            keese.draw(_spriteBatch);
-            stalfos.draw(_spriteBatch);
-            gel.draw(_spriteBatch);
-            goriya.draw(_spriteBatch);
-            bladeTrap.draw(_spriteBatch);
-            wallmaster.draw(_spriteBatch);
-            aquamentus.draw(_spriteBatch);
+            enemy.draw(_spriteBatch);
             
             _spriteBatch.End();
 

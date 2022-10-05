@@ -29,7 +29,8 @@ public class KeyboardController : IController
     private ICommand dieCommand;
 
 	private ICommand cycleEnemyNextCommand;
-	private ICommand cycleEnemyPreviousCommand;
+    private ICommand cycleEnemyPreviousCommand;
+
     private ICommand cycleItemNextCommand;
 	private ICommand cycleItemPrevCommand;
 	private ICommand _dynamicTilesCommand;
@@ -63,8 +64,9 @@ public class KeyboardController : IController
 
 		dieCommand = new DieCommand(linkPlayer);
 
-		cycleEnemyNextCommand = new CycleItemNextCommand(enemy);
-		cycleEnemyPreviousCommand = new CycleItemPrevCommand(enemy);
+		cycleEnemyNextCommand = new CycleEnemyNextCommand(enemy);
+        cycleEnemyPreviousCommand = new CycleEnemyPrevCommand(enemy);
+
         cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
 		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
 
@@ -85,7 +87,10 @@ public class KeyboardController : IController
 		RegisterCommand(Keys.S, turnPlayerDownCommand);
 		RegisterCommand(Keys.D, turnPlayerRightCommand);
 
-		RegisterCommand(Keys.Z, useWoodenSwordCommand);
+        RegisterCommand(Keys.P, cycleEnemyPreviousCommand);
+        RegisterCommand(Keys.O, cycleEnemyNextCommand);
+
+        RegisterCommand(Keys.Z, useWoodenSwordCommand);
 		RegisterCommand(Keys.N, useSwordBeamCommand);
         RegisterCommand(Keys.D1, useBoomerangCommand);
         RegisterCommand(Keys.D2, useRedBowCommand);

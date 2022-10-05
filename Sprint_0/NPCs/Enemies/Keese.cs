@@ -8,6 +8,7 @@ public class Keese : IEnemy
 {
     private EnemyState state;
     private IEnemySprite sprite;
+    private Enemy currentEnemy;
 
     private int xPos;
     private int yPos;
@@ -15,11 +16,12 @@ public class Keese : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Keese(SpriteBatch sb)
+    public Keese(SpriteBatch sb, Enemy enemy)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
         this._spriteBatch = sb;
+        currentEnemy = enemy;
 
         this.xPos = 0;
         this.yPos = 0;
@@ -30,6 +32,8 @@ public class Keese : IEnemy
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
+        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy);
+
     }
 
     public void Prev()

@@ -10,6 +10,6 @@ public interface IEnemy
     void update();
     void moveLeft();
     void moveRight();
-    void Next();
     void Prev();
+    void Next();
 }
