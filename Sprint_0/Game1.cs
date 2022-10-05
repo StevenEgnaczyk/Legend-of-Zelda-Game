@@ -96,13 +96,13 @@ namespace Sprint_0
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
 
-            keese.draw();
-            stalfos.draw();
-            gel.draw();
-            goriya.draw();
-            bladeTrap.draw();
-            wallmaster.draw();
-            aquamentus.draw();
+            keese.draw(_spriteBatch);
+            stalfos.draw(_spriteBatch);
+            gel.draw(_spriteBatch);
+            goriya.draw(_spriteBatch);
+            bladeTrap.draw(_spriteBatch);
+            wallmaster.draw(_spriteBatch);
+            aquamentus.draw(_spriteBatch);
             
             _spriteBatch.End();
 
