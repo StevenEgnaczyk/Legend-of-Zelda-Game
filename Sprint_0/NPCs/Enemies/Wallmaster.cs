@@ -9,6 +9,7 @@ public class Wallmaster : IEnemy
 {
     private EnemyState state;
     private IEnemySprite sprite;
+    private Enemy currentEnemy;
 
     private int xPos;
     private int yPos;
@@ -16,12 +17,13 @@ public class Wallmaster : IEnemy
     private SpriteBatch _spriteBatch;
     private int frame;
 
-    public Wallmaster(SpriteBatch sb)
+    public Wallmaster(SpriteBatch sb, Enemy enemy)
     {
         //that state initailization smells funny
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
         this._spriteBatch = sb;
+        currentEnemy = enemy;
 
         this.xPos = 0;
         this.yPos = 0;
@@ -31,7 +33,8 @@ public class Wallmaster : IEnemy
     public void Next()
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy);
     }
 
     public void Prev()
