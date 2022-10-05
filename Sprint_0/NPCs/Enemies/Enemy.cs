@@ -16,6 +16,7 @@ using System.Threading.Tasks;
     }
     public void draw(SpriteBatch _spriteBatch)
     {
+        currentEnemy.update();
         currentEnemy.draw(_spriteBatch);
     }
 
