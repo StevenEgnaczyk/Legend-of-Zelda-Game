@@ -72,7 +72,8 @@ public class Aquamentus : IEnemy
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
+
+
         if (this.frame == 0)
         {
             this.bufferIndex++;
@@ -88,6 +89,17 @@ public class Aquamentus : IEnemy
             this.frame++;
             if (this.frame == 4)
             {
+                Random r = new Random();
+                int nextValue = r.Next(0, 2);
+
+                if (nextValue == 1)
+                {
+                    sprite.update(this.xPos += 3, this.yPos);
+                }
+                else
+                {
+                    sprite.update(this.xPos -= 3, this.yPos);
+                }
                 this.frame = 0;
             }
         }

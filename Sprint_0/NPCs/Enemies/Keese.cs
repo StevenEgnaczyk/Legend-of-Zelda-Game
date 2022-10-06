@@ -74,6 +74,29 @@ public class Keese : IEnemy
 
     public void update()
     {
+        Random r = new Random();
+        int nextValue = r.Next(0, 2);
+
+        if (nextValue == 1)
+        {
+            sprite.update(this.xPos += 1, this.yPos);
+        }
+        else
+        {
+            sprite.update(this.xPos -= 1, this.yPos);
+        }
+
+        nextValue = r.Next(0, 2);
+
+        if (nextValue == 1)
+        {
+            sprite.update(this.xPos, this.yPos += 1);
+        }
+        else
+        {
+            sprite.update(this.xPos, this.yPos -= 1);
+        }
+
         sprite.update(this.xPos, this.yPos);
         if (this.frame == 0)
         {

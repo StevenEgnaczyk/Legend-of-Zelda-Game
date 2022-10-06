@@ -74,7 +74,26 @@ public class Stalfos : IEnemy
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
+        Random r = new Random();
+        int nextValue = r.Next(0, 4);
+
+        switch (nextValue)
+        {
+            case 0:
+                sprite.update(this.xPos += 2, this.yPos);
+                break;
+            case 1:
+                sprite.update(this.xPos -= 2, this.yPos);
+                break;
+            case 2:
+                sprite.update(this.xPos, this.yPos += 2);
+                break;
+            case 3:
+                sprite.update(this.xPos, this.yPos -= 2);
+                break;
+
+        }
+
         if (this.frame == 0)
         {
             this.bufferIndex++;
