@@ -12,8 +12,8 @@ public class Aquamentus : IEnemy
     private IEnemySprite sprite;
 
 
-    private int xPos;
-    private int yPos;
+    public int xPos { get; set; }
+    public int yPos { get; set; }
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
@@ -41,12 +41,12 @@ public class Aquamentus : IEnemy
 
     public void moveLeft()
     {
-        state.moveLeft();
+        state.moveLeft(this);
     }
 
     public void moveRight()
     {
-        state.moveRight();
+        state.moveRight(this);
     }
 
     /* 
@@ -85,6 +85,7 @@ public class Aquamentus : IEnemy
 
         if (this.bufferIndex == this.bufferMax)
         {
+            state.moveLeft(this);
             this.bufferIndex = 0;
             this.frame++;
             if (this.frame == 4)

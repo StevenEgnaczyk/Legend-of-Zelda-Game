@@ -1,0 +1,10 @@
+Author: Ethan Halverson
+Class reviewd: Link.cs
+Author of class: Steven Egnaczyk
+Sprint number: 2
+Date: 10/03/2022
+Time to complete: 10 minutes
+
+Comments: Very clean code, almost all fields and methods are intuitive. The only 
+slightly confusing / hard to read part is the three draw methods. But as with your
+state class, Link.cs is up to the readability quality of that seen in class.

@@ -8,7 +8,10 @@ using System.Threading.Tasks;
     public class Enemy : IEnemy
     {
 
-    public IEnemy currentEnemy;
+public IEnemy currentEnemy;
+
+    public int xPos { get; set; }
+    public int yPos { get; set; }   
 
     public Enemy(SpriteBatch sb)
     {
@@ -22,7 +25,7 @@ using System.Threading.Tasks;
 
     public void moveLeft()
     {
-        throw new NotImplementedException();
+        currentEnemy.moveLeft();
     }
 
     public void moveRight()
@@ -47,6 +50,7 @@ using System.Threading.Tasks;
 
     public void update()
     {
+        currentEnemy.moveLeft();
         currentEnemy.update();
     }
 }
