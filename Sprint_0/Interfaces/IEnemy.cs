@@ -6,6 +6,9 @@ using System.Reflection.Metadata;
 
 public interface IEnemy
 {
+    public int xPos { get; set; }
+    public int yPos { get; set; }
+
     void draw(SpriteBatch _spriteBatch);
     void update();
     void moveLeft();

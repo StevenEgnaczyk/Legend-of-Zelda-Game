@@ -16,6 +16,11 @@ public class CycleEnemyNextCommand : ICommand
     public void Execute()
     {
         enemy.Next();
-        enemy.update();
+        for(int i = 0; i < 10; i++)
+        {
+            enemy.moveLeft();
+            enemy.update();
+
+        }
     }
 }

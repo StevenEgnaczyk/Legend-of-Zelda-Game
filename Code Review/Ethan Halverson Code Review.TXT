@@ -1,0 +1,11 @@
+Author: Ethan Halverson
+Class reviewd: DownAttackingLinkState.cs
+Author of class: Steven Egnaczyk
+Sprint number: 2
+Date: 10/03/2022
+Time to complete: 10 minutes
+
+Comments: This is a good example and execution of a state design pattern. In general,
+everything is pretty uncoupled; the only smelly part of the class I see is the draw 
+method. Maybe you don't have to load in the texture in both cases, just do it before the
+first if statement. Other than that, a good looking state class.
