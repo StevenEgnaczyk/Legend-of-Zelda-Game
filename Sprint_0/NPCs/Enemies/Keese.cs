@@ -10,8 +10,8 @@ public class Keese : IEnemy
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
-    private int xPos;
-    private int yPos;
+    public int xPos { get; set; }
+    public int yPos { get; set; }
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
@@ -44,22 +44,23 @@ public class Keese : IEnemy
 
     public void moveLeft()
     {
-        state.moveLeft();
+        state.moveLeft(this);
     }
 
     public void moveRight()
     {
-        state.moveRight();
+        state.moveRight(this);
     }
 
     public void moveUp()
     {
-        state.moveUp();
+        state.moveUp(this);
     }
 
     public void moveDown()
     {
-        state.moveDown();
+        state.moveDown(this);
+
     }
 
     public void hurt()
@@ -86,6 +87,7 @@ public class Keese : IEnemy
 
         if (this.bufferIndex == this.bufferMax)
         {
+            state.moveLeft(this);
             this.bufferIndex = 0;
             this.frame++;
             if (this.frame == 2)

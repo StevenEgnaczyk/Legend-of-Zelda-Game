@@ -101,6 +101,8 @@ public class KeyboardController : IController
         RegisterCommand(Keys.E, dieCommand);
         RegisterCommand(Keys.I, cycleItemNextCommand);
 		RegisterCommand(Keys.U, cycleItemPrevCommand);
+		RegisterCommand(Keys.O, cycleEnemyNextCommand);
+		RegisterCommand(Keys.P, cycleEnemyPreviousCommand);
 		RegisterCommand(Keys.T, _dynamicTilesCommand);
 		RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
 

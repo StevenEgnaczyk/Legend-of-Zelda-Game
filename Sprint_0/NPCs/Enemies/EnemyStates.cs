@@ -28,31 +28,31 @@ public class EnemyState
         //initalize health
     }
 
-    public void moveLeft()
+    public void moveLeft(IEnemy enemy)
     {
         this.left = 1;
         this.up = 0;
-        //change the enemies xpos
+        enemy.xPos -= 5;
     }
 
-    public void moveRight()
+    public void moveRight(IEnemy enemy)
     {
         this.left = 2;
         this.up = 0;
-        //change the enemies xpos
+        enemy.xPos += 5;
     }
 
-    public void moveUp()
+    public void moveUp(IEnemy enemy)
     {
         this.up = 1;
         this.left = 0;
-        //change the enemies ypos
+        enemy.yPos -= 5;
     }
-    public void moveDown()
+    public void moveDown(IEnemy enemy)
     {
         this.up = 2;
         this.left = 0;
-        //change the enemies ypos
+        enemy.yPos += 5;
     }
 
     public void hurt()

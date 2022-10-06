@@ -10,8 +10,8 @@ public class BladeTrap : IEnemy
     private EnemyState state;
     private IEnemySprite sprite;
 
-    private int xPos;
-    private int yPos;
+    public int xPos { get; set; }
+    public int yPos { get; set; }
 
     private SpriteBatch _spriteBatch;
     private Enemy currentEnemy;
@@ -39,22 +39,22 @@ public class BladeTrap : IEnemy
 
     public void moveLeft()
     {
-        state.moveLeft();
+        state.moveLeft(this);
     }
 
     public void moveRight()
     {
-        state.moveRight();
+        state.moveRight(this);
     }
 
     public void moveUp()
     {
-        state.moveUp();
+        state.moveUp(this);
     }
 
     public void moveDown()
     {
-        state.moveDown();
+        state.moveDown(this);
     }
 
     /*
