@@ -8,19 +8,6 @@ using System.Reflection.Metadata;
 public class UpMovingLinkState : ILinkState
 {
     private Link link;
-    private static List<Rectangle> linkSprites = new List<Rectangle>()
-    {
-        new Rectangle(71, 11, 16, 16),
-        new Rectangle(88, 11, 16, 16)
-    };
-
-    private static List<Rectangle> attackingLinkSprites = new List<Rectangle>()
-    {
-        new Rectangle(141, 11, 16, 16),
-        new Rectangle(141, 11, 16, 16),
-        new Rectangle(141, 11, 16, 16),
-        new Rectangle(141, 11, 16, 16)
-    };
 
     private int currentIndex;
     private int bufferIndex;
@@ -82,7 +69,7 @@ public class UpMovingLinkState : ILinkState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = linkSprites[currentIndex];
+        Rectangle sourceRect = LinkRectStorage.getUpMovingLink(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
 
     }
@@ -104,7 +91,7 @@ public class UpMovingLinkState : ILinkState
     public void DrawAttacker(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = attackingLinkSprites[currentIndex];
+        Rectangle sourceRect = LinkRectStorage.getUpAttackingLink(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
     }
 }

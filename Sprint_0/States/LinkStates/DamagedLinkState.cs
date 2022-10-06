@@ -8,11 +8,6 @@ using System.Reflection.Metadata;
 public class DamagedLinkState : ILinkState
 {
     private Link link;
-    private static List<Rectangle> linkSprites = new List<Rectangle>()
-    {
-        new Rectangle(214, 11, 13, 16),
-        new Rectangle(231, 11, 14, 16)
-    };
 
     private int currentIndex;
     private int bufferIndex;
@@ -51,7 +46,7 @@ public class DamagedLinkState : ILinkState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = linkSprites[currentIndex];
+        Rectangle sourceRect = LinkRectStorage.getDamagedLinkSprites(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
 
     }

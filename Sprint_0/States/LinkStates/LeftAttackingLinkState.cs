@@ -9,34 +9,6 @@ using System.Reflection.Metadata;
 public class LeftAttackingLinkState : ILinkState
 {
     private Link link;
-
-    private static List<Rectangle> woodenSwordSprites = new List<Rectangle>()
-    {
-        new Rectangle(354, 206, 15, 15),
-        new Rectangle(325, 206, 27, 15),
-        new Rectangle(301, 206, 23, 15),
-        new Rectangle(281, 205, 19, 16)
-
-    };
-
-    private static List<Rectangle> whiteSwordSprites = new List<Rectangle>()
-    {
-        new Rectangle(353, 223, 15, 15),
-        new Rectangle(280, 223, 19, 16),
-        new Rectangle(302, 223, 21, 15),
-        new Rectangle(325, 223, 26, 15)
-
-    };
-
-    private static List<Rectangle> linkSprites = new List<Rectangle>()
-    {
-        new Rectangle(354, 206, 15, 15),
-        new Rectangle(354, 206, 15, 15),
-        new Rectangle(354, 206, 15, 15),
-        new Rectangle(354, 206, 15, 15)
-
-    };
-
     private int currentIndex;
 
     private String weapon;
@@ -97,18 +69,13 @@ public class LeftAttackingLinkState : ILinkState
         if (this.weapon == "Wooden")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-            Rectangle sourceRect = woodenSwordSprites[currentIndex];
+            Rectangle sourceRect = LinkRectStorage.getLeftWoodenLinkSprites(currentIndex);
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15 - sourceRect.Width, 0);
         }
         else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-            Rectangle sourceRect = whiteSwordSprites[currentIndex];
-            link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15-sourceRect.Width, 0);
-        } else
-        {
-            Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-            Rectangle sourceRect = linkSprites[currentIndex];
+            Rectangle sourceRect = LinkRectStorage.getLeftWhiteLinkSprites(currentIndex);
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 15-sourceRect.Width, 0);
         }
 

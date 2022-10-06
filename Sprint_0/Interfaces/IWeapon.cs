@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint_0.Player
+namespace Sprint_0.Interfaces
 {
     public interface IWeapon
     {

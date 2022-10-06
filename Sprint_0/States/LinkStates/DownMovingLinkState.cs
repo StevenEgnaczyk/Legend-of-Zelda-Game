@@ -11,20 +11,6 @@ public class DownMovingLinkState : ILinkState
 {
     private Link link;
 
-    private static List<Rectangle> linkSprites = new List<Rectangle>()
-    {
-        new Rectangle(1, 11, 16, 16),
-        new Rectangle(19, 11, 16, 16)
-    };
-
-    private static List<Rectangle> attackingLinkSprites = new List<Rectangle>()
-    {
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(94, 47, 16, 15)
-    };
-
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
@@ -93,7 +79,7 @@ public class DownMovingLinkState : ILinkState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = linkSprites[currentIndex];
+        Rectangle sourceRect = LinkRectStorage.getDownMovingLink(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, sourceRect.Width - 16, sourceRect.Height - 16);
 
     }
@@ -105,7 +91,7 @@ public class DownMovingLinkState : ILinkState
     public void DrawAttacker(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-        Rectangle sourceRect = attackingLinkSprites[currentIndex];
+        Rectangle sourceRect = LinkRectStorage.getDownAttackingLink(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
     }
 }

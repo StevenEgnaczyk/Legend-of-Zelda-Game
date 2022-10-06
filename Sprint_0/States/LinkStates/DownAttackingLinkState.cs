@@ -10,22 +10,6 @@ using System.Reflection.Metadata;
 public class DownAttackingLinkState : ILinkState
 {
     private Link link;
-    private static List<Rectangle> woodenSwordSprites = new List<Rectangle>()
-    {
-        new Rectangle(1, 47, 16, 15),
-        new Rectangle(18, 47, 16, 27),
-        new Rectangle(35, 47, 15, 23),
-        new Rectangle(53, 47, 13, 19)
-    };
-
-    private static List<Rectangle> whiteSwordSprites = new List<Rectangle>()
-    {
-        new Rectangle(94, 47, 16, 15),
-        new Rectangle(111, 47, 16, 27),
-        new Rectangle(128, 47, 15, 23),
-        new Rectangle(146, 47, 13, 19)
-    };
-
     String weapon;
 
     private int currentIndex;
@@ -84,12 +68,12 @@ public class DownAttackingLinkState : ILinkState
         if (this.weapon == "Wooden")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-            Rectangle sourceRect = woodenSwordSprites[currentIndex];
+            Rectangle sourceRect = LinkRectStorage.getDownWoodenLinkSprites(currentIndex);
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
         } else if (this.weapon == "Beam")
         {
             Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
-            Rectangle sourceRect = whiteSwordSprites[currentIndex];
+            Rectangle sourceRect = LinkRectStorage.getDownWhiteLinkSprites(currentIndex);
             link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, sourceRect.Height - 16);
         }  else
         {
