@@ -19,6 +19,8 @@ namespace Sprint_0
         private Tile tile;
         private IEnemy enemy;
 
+        private RoomManager roomManager;
+
         //Keyboard variables
         private KeyboardController _keyboardController;
 
@@ -29,6 +31,8 @@ namespace Sprint_0
 
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 784;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -43,6 +47,7 @@ namespace Sprint_0
             item = new Item();
             tile = new Tile();
             enemy = new Enemy(_spriteBatch);
+            roomManager = new RoomManager();
 
             
             _keyboardController = new KeyboardController(Content, link, item, tile, enemy);
@@ -82,6 +87,7 @@ namespace Sprint_0
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
             enemy.draw(_spriteBatch);
+            roomManager.drawRoom(_spriteBatch);
             
             _spriteBatch.End();
 

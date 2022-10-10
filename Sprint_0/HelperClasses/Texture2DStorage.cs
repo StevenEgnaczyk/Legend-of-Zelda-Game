@@ -29,6 +29,8 @@ public static class Texture2DStorage
 
 	private static Dictionary<string, Texture2D> tiles;
 
+	private static Texture2D dungeonSpritesheet;
+
 
     // More private static Texture2D fields follow
 
@@ -40,6 +42,7 @@ public static class Texture2DStorage
 		itemSpriteSheet = content.Load<Texture2D>("ItemSpritesheet");
 		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
+		dungeonSpritesheet = content.Load<Texture2D>("dungeonTileset");
 
 		tile1Sprite = content.Load<Texture2D>("tiles/tile1");
         tile2Sprite = content.Load<Texture2D>("tiles/tile2");
@@ -93,7 +96,12 @@ public static class Texture2DStorage
 	{
 		return itemSpriteSheet;
 	}
-	public static Texture2D GetTile1Sprite()
+
+    public static Texture2D GetDungeonTileset()
+    {
+        return dungeonSpritesheet;
+    }
+    public static Texture2D GetTile1Sprite()
 	{
 		return tile1Sprite;
 	}
