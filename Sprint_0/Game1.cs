@@ -80,14 +80,16 @@ namespace Sprint_0
 
             GraphicsDevice.Clear(Color.DarkGray);
 
+
             _spriteBatch.Begin();
+            roomManager.drawRoom(_spriteBatch);
             link.Draw(_spriteBatch);
             link.Update();
             oldMan1.Draw(_spriteBatch);
             item.Draw(_spriteBatch);
             tile.Draw(_spriteBatch);
             enemy.draw(_spriteBatch);
-            roomManager.drawRoom(_spriteBatch);
+            
             
             _spriteBatch.End();
 
