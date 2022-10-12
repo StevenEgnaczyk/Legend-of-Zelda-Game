@@ -22,7 +22,8 @@ namespace Sprint_0
         private RoomManager roomManager;
 
         //Keyboard variables
-        private KeyboardController _keyboardController;
+        private IController keyboardController;
+        private IController mouseController;
 
         //private int track;
 
@@ -50,7 +51,8 @@ namespace Sprint_0
             roomManager = new RoomManager();
 
             
-            _keyboardController = new KeyboardController(Content, link, item, tile, enemy);
+            keyboardController = new KeyboardController(Content, link, item, tile, enemy);
+            mouseController = new MouseController(Content, roomManager);
             //_mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -71,7 +73,7 @@ namespace Sprint_0
             link.Update();
 
             //Process Keyboard Input
-            _keyboardController.ProcessInput();
+            keyboardController.ProcessInput();
 
         }
 

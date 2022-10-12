@@ -16,7 +16,6 @@ internal class Room
     internal void draw(SpriteBatch spriteBatch)
     {
         List<int> roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
-        Debug.WriteLine(roomInformation.ToString());
         drawBackground(spriteBatch, roomInformation);
     }
 

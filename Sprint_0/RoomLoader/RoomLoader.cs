@@ -13,13 +13,13 @@ public static class RoomLoader
 	{
         List<int> roomInfo;
 
-        using (var reader = new StreamReader("C:\\Users\\steve\\Source\\Repos\\HnH\\Sprint_0\\RoomLoader\\Rooms\\PartialLevelOne.csv"))
+        using (var reader = new StreamReader("C:\\Users\\steve\\Source\\Repos\\HnH\\Sprint_0\\RoomLoader\\Rooms\\Room" + currentRoomIndex + ".csv"))
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");
             roomInfo = new List<int>(Array.ConvertAll(doorInformation, s => int.Parse(s)));
             return roomInfo;
-            
+
             /*
             Debug.WriteLine(doorInformation);
             while (!reader.EndOfStream)
