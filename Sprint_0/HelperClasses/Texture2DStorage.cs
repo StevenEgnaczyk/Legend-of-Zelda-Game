@@ -44,16 +44,6 @@ public static class Texture2DStorage
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 		dungeonSpritesheet = content.Load<Texture2D>("dungeonTileset");
 
-		tile1Sprite = content.Load<Texture2D>("tiles/tile1");
-        tile2Sprite = content.Load<Texture2D>("tiles/tile2");
-        tile3Sprite = content.Load<Texture2D>("tiles/tile3");
-        tile4Sprite = content.Load<Texture2D>("tiles/tile4");
-        tile5Sprite = content.Load<Texture2D>("tiles/tile5");
-        tile6Sprite = content.Load<Texture2D>("tiles/tile6");
-        tile7Sprite = content.Load<Texture2D>("tiles/tile7");
-        tile8Sprite = content.Load<Texture2D>("tiles/tile8");
-        tile9Sprite = content.Load<Texture2D>("tiles/tile9");
-        tile10Sprite = content.Load<Texture2D>("tiles/tile10");
         /*
 		 * item1Sprite = content.Load<Texture2D>("item1");
 			item2Sprite = content.Load<Texture2D>("item2");
