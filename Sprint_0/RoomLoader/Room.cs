@@ -15,8 +15,35 @@ internal class Room
 
     internal void draw(SpriteBatch spriteBatch)
     {
-        List<int> roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
-        drawBackground(spriteBatch, roomInformation);
+        List<List<int>> roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
+        drawBlocks(spriteBatch, roomInformation);
+        drawBackground(spriteBatch, roomInformation[0]);
+        
+    }
+
+    private void drawBlocks(SpriteBatch spriteBatch, List<List<int>> roomInformation)
+    {
+        for (int i = 1; i < roomInformation.Count; i++)
+        {
+            drawBlockLine(spriteBatch, roomInformation[i], i - 1);
+        }
+    }
+
+    private void drawBlockLine(SpriteBatch spriteBatch, List<int> list, int rowNum)
+    {
+        Texture2D blockSprites = Texture2DStorage.GetDungeonTileset();
+        Rectangle blockRect;
+        Rectangle destRect;
+
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            blockRect = Texture2DStorage.getBlockRect(list[i]);
+            destRect = new Rectangle(128 + (i * 64), 145 + (64 * rowNum), 64, 64);
+            spriteBatch.Draw(blockSprites, destRect, blockRect, Color.White);
+
+
+        }
     }
 
     private void drawBackground(SpriteBatch spriteBatch, List<int> roomInformation)

@@ -24,26 +24,34 @@ public class MouseController : IController
         throw new NotImplementedException();
     }
 
-    public void ProcessInput()
-    {
-        throw new NotImplementedException();
-    }
-
     public void Update()
     {
         throw new NotImplementedException();
     }
 
-    internal void processInput(MouseState mouseState, SpriteBatch spriteBatch)
+    public void ProcessInput()
     {
+        MouseState mouseState = Mouse.GetState();
+
         if (mouseState.LeftButton == ButtonState.Pressed)
         {
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 
-            if (mousePos.X > 0 && mousePos.X < 400 && mousePos.Y > 0 && mousePos.Y < 200)
+            if (mousePos.X > 850 && mousePos.X < 874 && mousePos.Y > 225 && mousePos.Y < 273)
             {
+                nextMapCommand.Execute();
             }
         }
-               
+
+        if (mouseState.RightButton == ButtonState.Pressed)
+        {
+            Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
+
+            if (mousePos.X > 850 && mousePos.X < 874 && mousePos.Y > 225 && mousePos.Y < 273)
+            {
+                prevMapCommand.Execute();
+            }
+        }
+
     }
 }

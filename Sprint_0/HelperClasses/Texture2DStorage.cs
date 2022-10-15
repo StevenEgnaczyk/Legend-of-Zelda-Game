@@ -132,4 +132,40 @@ public static class Texture2DStorage
 		return tile10Sprite;
 	}
 
+    internal static Rectangle getBlockRect(int blockID)
+    {
+        switch(blockID)
+		{
+			case 1:
+				return new Rectangle(1, 192, 16, 16);
+				break;
+            case 2:
+                return new Rectangle(81, 355, 16, 16);
+                break;
+            case 3:
+                return new Rectangle(244, 272, 16, 16);
+                break;
+            case 4:
+                return new Rectangle(244, 438, 16, 16);
+                break;
+            case 5:
+                return new Rectangle(260, 272, 16, 16);
+                break;
+            case 6:
+                return new Rectangle(308, 240, 16, 16);
+                break;
+            case 7:
+                return new Rectangle(81, 898, 16, 16);
+                break;
+            case 8:
+                return new Rectangle(97, 470, 16, 16);
+                break;
+            case 9:
+                return new Rectangle(81, 355, 16, 16);
+                break;
+            default:
+				return new Rectangle(0,0, 16, 16);
+				break;
+		}
+    }
 }

@@ -39,8 +39,9 @@ public class Tile
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D sprite, Rectangle sourceRect)
     {
+        Texture2D blockSprite = Texture2DStorage.GetDungeonTileset();
         Rectangle destinationRect = new Rectangle((int)xPos, (int)yPos, sourceRect.Width * 2, sourceRect.Height * 2);
-        _spriteBatch.Draw(sprite, destinationRect, Color.White);
+        _spriteBatch.Draw(blockSprite, destinationRect, Color.White);
     }
 
 }

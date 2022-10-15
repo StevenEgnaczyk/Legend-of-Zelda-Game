@@ -14,15 +14,15 @@ public class Item
     public SpriteBatch _spriteBatch;
 
     //  public int itemSpeed = 3;
-    public double scale = 1.5;
+    public double scale = 3;
 
     public Item()
     {
 
-        state = new CompassState(this);
+        state = new MapState(this);
 
-        xPos = 400;
-        yPos = 400;
+        xPos = 850;
+        yPos = 225;
     }
 
     public void Next()
