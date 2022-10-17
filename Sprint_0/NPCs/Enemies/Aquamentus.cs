@@ -49,11 +49,15 @@ public class Aquamentus : IEnemy
         state.moveRight(this);
     }
 
-    /* 
-     * Aquamentus cannot move vertically,
-     * hence  moveUp() and moveDown() are
-     * not existant.
-     */
+    public void moveUp()
+    {
+        //do nothing, it cannot  move up 
+    }
+
+    public void moveDown()
+    {
+        //do nothing, it cannot move down
+    }
 
     public void shootProjectile()
     {

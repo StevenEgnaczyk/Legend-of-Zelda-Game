@@ -33,6 +33,16 @@ public IEnemy currentEnemy;
         throw new NotImplementedException();
     }
 
+    public void moveUp()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void moveDown()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Next(SpriteBatch sb)
     {
         currentEnemy.Next();

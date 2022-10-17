@@ -26,7 +26,7 @@ public class CollisionDetection
     }
 
 
-    public string collides(Rectangle r1, Rectangle r2)
+    public static string collides(Rectangle r1, Rectangle r2)
     {
         string collisionFace = "No Collision";
 
