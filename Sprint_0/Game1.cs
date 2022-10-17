@@ -74,6 +74,7 @@ namespace Sprint_0
 
             //Process Keyboard Input
             keyboardController.ProcessInput();
+            mouseController.ProcessInput();
 
         }
 
