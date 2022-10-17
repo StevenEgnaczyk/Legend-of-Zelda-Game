@@ -11,6 +11,8 @@ public interface IEnemy
 
     void draw(SpriteBatch _spriteBatch);
     void update();
+    void moveUp();
+    void moveDown();
     void moveLeft();
     void moveRight();
     void Prev();
