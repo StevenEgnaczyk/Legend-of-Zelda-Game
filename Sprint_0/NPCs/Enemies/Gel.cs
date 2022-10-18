@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Gel : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
     public int xPos { get; set; }
@@ -99,5 +99,15 @@ public class Gel : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

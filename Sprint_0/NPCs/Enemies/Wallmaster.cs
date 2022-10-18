@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Wallmaster : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -100,5 +100,15 @@ public class Wallmaster : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

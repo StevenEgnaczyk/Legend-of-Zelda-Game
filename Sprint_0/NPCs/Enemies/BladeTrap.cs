@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class BladeTrap : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
     public int xPos { get; set; }
@@ -57,11 +57,10 @@ public class BladeTrap : IEnemy
         state.moveDown(this);
     }
 
-    /*
-     * Blade traps cannot die, hence
-     * the lack of a die() and hurt() 
-     * method
-     */
+    public void hurt()
+    {
+        //do nothing, cannot die
+    }
 
     public void update()
     {
@@ -71,5 +70,15 @@ public class BladeTrap : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(0, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }
