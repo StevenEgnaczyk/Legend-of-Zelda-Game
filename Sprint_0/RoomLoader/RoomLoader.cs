@@ -9,28 +9,29 @@ using System.Text.Json;
 
 public static class RoomLoader
 {
-	internal static List<int> getRoomInformation(int currentRoomIndex)
+	internal static List<List<int>> getRoomInformation(int currentRoomIndex)
 	{
-        List<int> roomInfo;
+        List<List<int>> roomInformation = new List<List<int>>();
+        List<int> doorInfo;
+        List<int> blockInfo;
 
-        using (var reader = new StreamReader("C:\\Users\\steve\\Source\\Repos\\HnH\\Sprint_0\\RoomLoader\\Rooms\\PartialLevelOne.csv"))
+        using (var reader = new StreamReader("..\\..\\..\\RoomLoader\\Rooms\\Map" + (currentRoomIndex + 1) + ".csv"))
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");
-            roomInfo = new List<int>(Array.ConvertAll(doorInformation, s => int.Parse(s)));
-            return roomInfo;
-            
-            /*
-            Debug.WriteLine(doorInformation);
+            doorInfo = new List<int>(Array.ConvertAll(doorInformation, s => int.Parse(s)));
+            roomInformation.Add(doorInfo);
+
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
-                var values = line.Split(';');
+                string[] values = line.Split(',');
+                blockInfo = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
+                roomInformation.Add(blockInfo);
 
-                Debug.WriteLine(line);
-                Debug.WriteLine(values);
             }
-            */
         }
+
+        return roomInformation;
     }
 }

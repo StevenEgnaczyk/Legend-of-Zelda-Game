@@ -22,7 +22,8 @@ namespace Sprint_0
         private RoomManager roomManager;
 
         //Keyboard variables
-        private KeyboardController _keyboardController;
+        private IController keyboardController;
+        private IController mouseController;
 
         //private int track;
 
@@ -32,7 +33,7 @@ namespace Sprint_0
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 784;
+            _graphics.PreferredBackBufferHeight = 1024;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -50,7 +51,8 @@ namespace Sprint_0
             roomManager = new RoomManager();
 
             
-            _keyboardController = new KeyboardController(Content, link, item, tile, enemy);
+            keyboardController = new KeyboardController(Content, link, item, tile, enemy);
+            mouseController = new MouseController(Content, roomManager);
             //_mouseController = new MouseController(Content);
 
             base.Initialize();
@@ -71,14 +73,15 @@ namespace Sprint_0
             link.Update();
 
             //Process Keyboard Input
-            _keyboardController.ProcessInput();
+            keyboardController.ProcessInput();
+            mouseController.ProcessInput();
 
         }
 
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.DarkGray);
+            GraphicsDevice.Clear(Color.Black);
 
 
             _spriteBatch.Begin();

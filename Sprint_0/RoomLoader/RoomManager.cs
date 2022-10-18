@@ -21,6 +21,31 @@ public class RoomManager
     {
         currentRoom.draw(spriteBatch);
 
+    }
+
+    public void updateRoom(int newRoom)
+    {
+        currentRoom = new Room(newRoom);
+    }
+
+    internal void nextRoom()
+    {
+        roomNumber++;
+        if (roomNumber == 17)
+        {
+            roomNumber = 0;
+        }
+        currentRoom = new Room(roomNumber);
+    }
+
+    internal void prevRoom()
+    {
+        roomNumber--;
+        if (roomNumber == -1)
+        {
+            roomNumber = 16;
+        }
+        currentRoom = new Room(roomNumber);
         
     }
 }

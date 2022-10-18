@@ -32,9 +32,10 @@ public class BlueSandState : ITileState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile1 = Texture2DStorage.GetTile4Sprite();
+        Texture2D tile = Texture2DStorage.GetDungeonTileset();
         Rectangle sourceRect = itemSprites[currentIndex];
-        tile.DrawSprite(spriteBatch, tile1, sourceRect);
+        Rectangle destRect = Texture2DStorage.getBlockRect(3);
+        spriteBatch.Draw(tile, sourceRect, destRect, Color.White);
 
     }
     public void Update()

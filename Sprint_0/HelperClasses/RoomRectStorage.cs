@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public static class RoomRectStorage
 {
-    private static int HUDHeight = 80;
+    private static int HUDHeight = 320;
 
     private static List<Rectangle> basicRoomRect = new List<Rectangle>()
     {
