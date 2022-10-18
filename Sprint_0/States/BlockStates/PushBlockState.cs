@@ -33,9 +33,10 @@ public class PushBlockState : ITileState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile1 = Texture2DStorage.GetTile1Sprite();
+        Texture2D tile = Texture2DStorage.GetDungeonTileset();
         Rectangle sourceRect = itemSprites[currentIndex];
-        tile.DrawSprite(spriteBatch, tile1, sourceRect);
+        Rectangle destRect = Texture2DStorage.getBlockRect(9);
+        spriteBatch.Draw(tile, sourceRect, destRect, Color.White);
 
     }
     public void Update()

@@ -15,7 +15,7 @@ public static class RoomLoader
         List<int> doorInfo;
         List<int> blockInfo;
 
-        using (var reader = new StreamReader("C:\\Users\\steve\\Source\\Repos\\HnH\\Sprint_0\\RoomLoader\\Rooms\\Map" + (currentRoomIndex + 1) + ".csv"))
+        using (var reader = new StreamReader("..\\..\\..\\RoomLoader\\Rooms\\Map" + (currentRoomIndex + 1) + ".csv"))
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");

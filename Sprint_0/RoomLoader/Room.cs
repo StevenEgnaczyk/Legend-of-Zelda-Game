@@ -39,7 +39,7 @@ internal class Room
         for (int i = 0; i < list.Count; i++)
         {
             blockRect = Texture2DStorage.getBlockRect(list[i]);
-            destRect = new Rectangle(128 + (i * 64), 145 + (64 * rowNum), 64, 64);
+            destRect = new Rectangle(128 + (i * 64), 320 + 128  + (64 * rowNum), 64, 64);
             spriteBatch.Draw(blockSprites, destRect, blockRect, Color.White);
 
 
@@ -51,7 +51,7 @@ internal class Room
         drawDoors(spriteBatch, roomInformation);
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle bgRect = RoomRectStorage.getBasicRoom(0);
-        Rectangle destRect = new Rectangle(0, 80, bgRect.Width * 4, bgRect.Height * 4);
+        Rectangle destRect = new Rectangle(0, 320, bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
    
     }

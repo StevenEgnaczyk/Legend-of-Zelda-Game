@@ -33,7 +33,7 @@ public class MouseController : IController
     {
         MouseState mouseState = Mouse.GetState();
 
-        if (mouseState.LeftButton == ButtonState.Pressed)
+        if (mouseState.LeftButton == ButtonState.Released)
         {
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 
@@ -43,7 +43,7 @@ public class MouseController : IController
             }
         }
 
-        if (mouseState.RightButton == ButtonState.Pressed)
+        if (mouseState.RightButton == ButtonState.Released)
         {
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 

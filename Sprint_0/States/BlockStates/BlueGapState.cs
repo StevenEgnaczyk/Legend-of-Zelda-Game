@@ -34,9 +34,10 @@ public class BlueGapState : ITileState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile1 = Texture2DStorage.GetTile7Sprite();
+        Texture2D tile = Texture2DStorage.GetDungeonTileset();
         Rectangle sourceRect = itemSprites[currentIndex];
-        tile.DrawSprite(spriteBatch, tile1, sourceRect);
+        Rectangle destRect = Texture2DStorage.getBlockRect(4);
+        spriteBatch.Draw(tile, sourceRect, destRect, Color.White);
 
     }
     public void Update()
