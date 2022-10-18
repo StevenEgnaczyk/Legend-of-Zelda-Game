@@ -8,7 +8,9 @@ using System.Threading.Tasks;
     public class Enemy : IEnemy
     {
 
-public IEnemy currentEnemy;
+    public IEnemy currentEnemy;
+    public EnemyState state {  get;  set; }
+
 
     public int xPos { get; set; }
     public int yPos { get; set; }   
@@ -42,6 +44,10 @@ public IEnemy currentEnemy;
     {
         throw new NotImplementedException();
     }
+    public void hurt()
+    {
+        throw new NotImplementedException();
+    }
 
     public void Next(SpriteBatch sb)
     {
@@ -62,6 +68,16 @@ public IEnemy currentEnemy;
     {
         currentEnemy.moveLeft();
         currentEnemy.update();
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }
 

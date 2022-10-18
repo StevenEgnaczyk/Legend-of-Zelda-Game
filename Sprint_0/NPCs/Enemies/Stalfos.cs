@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Stalfos : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -118,5 +118,15 @@ public class Stalfos : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

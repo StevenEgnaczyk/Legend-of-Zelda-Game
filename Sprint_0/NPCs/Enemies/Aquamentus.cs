@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 public class Aquamentus : IEnemy
 {
     private Enemy currentEnemy;
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
 
@@ -113,5 +113,15 @@ public class Aquamentus : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

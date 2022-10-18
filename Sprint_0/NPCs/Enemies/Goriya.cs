@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Goriya : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -99,5 +99,14 @@ public class Goriya : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(frame, sb);
+    }
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

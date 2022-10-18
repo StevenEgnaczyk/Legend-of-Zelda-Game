@@ -29,7 +29,7 @@ public class LinkEnemyCollisionResponse
 
                 //push both objects away so they don't occupy the same space
                 link.yPos -= link.linkSpeed;
-                enemy.ypos += 3;
+                enemy.yPos += 3;
                 
                 //Make link look hurt
                 link.Die();
@@ -43,7 +43,7 @@ public class LinkEnemyCollisionResponse
 
             case "Left":
 
-                link.XPos += link.linkSpeed;
+                link.xPos += link.linkSpeed;
                 enemy.xPos -= 3;
 
                 link.Die();
