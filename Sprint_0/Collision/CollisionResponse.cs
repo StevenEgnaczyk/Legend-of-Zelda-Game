@@ -41,14 +41,12 @@ public class CollisionResponse
 
     public void collisionResponse(IEnemy enemy, Tile tile)
     {
-        EnemyTileCollisionResponse.collisionResponse(enemy, tile);
-
+        EnemyTileCollisionResponse.collisionResponse(enemy, tile)
     }
 
     public void collisionResponse(IEnemy enemy, userItems weapon)
     {
         EnemyWeaponCollisionResponse.collisionResponse(enemy, weapon);
-
     }
 
 }

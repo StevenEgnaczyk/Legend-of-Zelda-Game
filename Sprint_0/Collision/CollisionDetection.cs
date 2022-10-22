@@ -26,11 +26,11 @@ public class CollisionDetection
     }
 
 
-    public string collides(Rectangle r1, Rectangle r2)
+    public static string collides(Rectangle r1, Rectangle r2)
     {
         string collisionFace = "No Collision";
         
-        if (r1.IntersectsWith(r2)) 
+        if (r1.Intersects(r2)) 
         {
             Rectangle intersection = Rectangle.Intersect(r1,r2);
             
@@ -69,6 +69,5 @@ public class CollisionDetection
         return collisionFace;
 
     }
-    */
 
 }
