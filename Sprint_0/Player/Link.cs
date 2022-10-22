@@ -21,8 +21,8 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new userItems(this);
 
-        xPos = 100;
-        yPos = 100;
+        xPos = 500;
+        yPos = 500;
     }
 
     public void TurnLeft()
@@ -61,8 +61,8 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new userItems(this);
 
-        xPos = 100;
-        yPos = 100;
+        xPos = 500;
+        yPos = 500;
     }
 
     public void Draw(SpriteBatch _spriteBatch)

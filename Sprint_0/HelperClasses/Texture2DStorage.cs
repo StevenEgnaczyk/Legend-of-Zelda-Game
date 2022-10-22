@@ -13,17 +13,6 @@ public static class Texture2DStorage
 	private static Texture2D NPCSpriteSheet;
 	private static Texture2D itemSpriteSheet;
 
-	private static Texture2D tile1Sprite;
-	private static Texture2D tile2Sprite;
-	private static Texture2D tile3Sprite;
-	private static Texture2D tile4Sprite;
-	private static Texture2D tile5Sprite;
-	private static Texture2D tile6Sprite;
-	private static Texture2D tile7Sprite;
-	private static Texture2D tile8Sprite;
-	private static Texture2D tile9Sprite;
-	private static Texture2D tile10Sprite;
-
 	private static Texture2D enemySpritesheet;
 	private static Texture2D bossSpritesheet;
 
@@ -91,46 +80,6 @@ public static class Texture2DStorage
     {
         return dungeonSpritesheet;
     }
-    public static Texture2D GetTile1Sprite()
-	{
-		return tile1Sprite;
-	}
-	public static Texture2D GetTile2Sprite()
-	{
-		return tile2Sprite;
-	}
-	public static Texture2D GetTile3Sprite()
-	{
-		return tile3Sprite;
-	}
-	public static Texture2D GetTile4Sprite()
-	{
-		return tile4Sprite;
-	}
-	public static Texture2D GetTile5Sprite()
-	{
-		return tile5Sprite;
-	}
-	public static Texture2D GetTile6Sprite()
-	{
-		return tile6Sprite;
-	}
-	public static Texture2D GetTile7Sprite()
-	{
-		return tile7Sprite;
-	}
-	public static Texture2D GetTile8Sprite()
-	{
-		return tile8Sprite;
-	}
-	public static Texture2D GetTile9Sprite()
-	{
-		return tile9Sprite;
-	}
-	public static Texture2D GetTile10Sprite()
-	{
-		return tile10Sprite;
-	}
 
     internal static Rectangle getBlockRect(int blockID)
     {
