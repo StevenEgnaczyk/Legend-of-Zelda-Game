@@ -192,7 +192,6 @@ namespace Sprint_0.Player
     
             if (linkState.Equals(startingState.Down))
             {
-                Debug.WriteLine(distanceToTravel);
                 targetRect.X = startRect.X;
                 targetRect.Y = (startRect.Y + distanceToTravel);
 

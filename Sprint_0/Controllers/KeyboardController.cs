@@ -126,18 +126,9 @@ public class KeyboardController : IController
 			//checks for registered commands
 			if (controllerMappings.ContainsKey(key))
 			{
-				//checks for item and block commands as to stop the user from holding the command
-				//and rapidly switching blocks or items
-				if(key.Equals(Keys.T) || key.Equals(Keys.Y) || key.Equals(Keys.U) || key.Equals(Keys.I) || key.Equals(Keys.P) || key.Equals(Keys.O))
+				if(state.Contains(key)) //checks for the commands in state
 				{
-					if(!state.Contains(key)) //checks for the commands in state
-					{
-						controllerMappings[key].Execute();
-					}
-				} 
-				else
-				{
-					controllerMappings[key].Execute(); 
+					controllerMappings[key].Execute();
 				}
 			}
 		}

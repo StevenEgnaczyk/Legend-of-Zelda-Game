@@ -2,14 +2,18 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint_0;
 using System;
 using System.Diagnostics;
+using System.Threading;
 
 public class MouseController : IController
 {
 
     private ICommand nextMapCommand;
     private ICommand prevMapCommand;
+    private MouseState lastMouseState;
+
 
     public MouseController(ContentManager c, RoomManager room)
     {
@@ -33,25 +37,19 @@ public class MouseController : IController
     {
         MouseState mouseState = Mouse.GetState();
 
-        if (mouseState.LeftButton == ButtonState.Released)
+        Debug.WriteLine(mouseState.ToString());
+        Debug.WriteLine(lastMouseState.ToString());
+        
+        if (mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed)
         {
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 
-            if (mousePos.X > 850 && mousePos.X < 874 && mousePos.Y > 225 && mousePos.Y < 273)
+            if (!(mousePos.X < 850) && !(mousePos.X > 874) && mousePos.Y > 225 && mousePos.Y < 273)
             {
                 nextMapCommand.Execute();
             }
         }
-
-        if (mouseState.RightButton == ButtonState.Released)
-        {
-            Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
-
-            if (mousePos.X > 850 && mousePos.X < 874 && mousePos.Y > 225 && mousePos.Y < 273)
-            {
-                prevMapCommand.Execute();
-            }
-        }
+        lastMouseState = mouseState;
 
     }
 }
