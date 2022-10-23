@@ -11,15 +11,9 @@ public class KeyboardController : IController
 {
 	public BuildCommands buildCommands;
 
-	public Dictionary<Keys, ICommand> controllerMappings;
-
-    public Keys[] state;
-
     public KeyboardController(ContentManager c, Link linkPlayer)
 	{
 		buildCommands = new BuildCommands(linkPlayer);
-		controllerMappings = buildCommands.controllerMappings;
-		state = buildCommands.state;
     }
 
 	public void HandleEvents()
@@ -34,15 +28,15 @@ public class KeyboardController : IController
 		foreach(Keys key in pressedKeys)
 		{
 			//checks for registered commands
-			if (controllerMappings.ContainsKey(key))
+			if (buildCommands.controllerMappings.ContainsKey(key))
 			{
-				if(state.Contains(key)) //checks for the commands in state
+				if(buildCommands.state.Contains(key)) //checks for the commands in state
 				{
-					controllerMappings[key].Execute();
+					buildCommands.controllerMappings[key].Execute();
 				}
 			}
 		}
-		state = pressedKeys; //sets state to compare to new pressed keys
+		buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
 	}
 
 	public void Update()
