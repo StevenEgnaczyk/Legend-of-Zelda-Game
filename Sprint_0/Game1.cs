@@ -22,6 +22,10 @@ namespace Sprint_0
         public static bool mousePressed;
 
         private RoomManager roomManager;
+        private EnemyManager enemyManager;
+        private TileManager tileManager;
+        private ItemManager itemManager;
+        private CollisionManager collisionManager;
 
         //Keyboard variables
         private IController keyboardController;
@@ -46,12 +50,23 @@ namespace Sprint_0
 
             //lastDrawn = 5;
             
+            /* 
+             * Make spriteBatch not a property for items, instead pass it through
+             * ItemManager (less instances of spritebatch) - EH
+             */
+            roomManager = new RoomManager();
+            enemyManager = new EnemyManager(_spriteBatch);
+            tileManager = new TileManager(_spriteBatch);
+            itemManager = new ItemManager();
+            collisionManager = new CollisionManager(); 
+
             link = new Link();
             oldMan1 = new OldMan();
-            item = new Item();
-            tile = new Tile();
-            enemy = new Enemy(_spriteBatch);
-            roomManager = new RoomManager();
+            item = new Item(itemManager);
+            tile = new Tile(tileManager);
+            //enemy = new Enemy(_spriteBatch,enemyManager);
+           
+            
 
             
             keyboardController = new KeyboardController(Content, link, item, tile, enemy);
@@ -74,6 +89,12 @@ namespace Sprint_0
         {
             base.Update(gameTime);
             link.Update();
+            enemyManager.Update();
+            itemManager.Update();
+
+
+            //Collision Detection and response for each game object
+            collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList);
 
             //Process Keyboard Input
             keyboardController.ProcessInput();
@@ -89,6 +110,9 @@ namespace Sprint_0
 
             _spriteBatch.Begin();
             roomManager.drawRoom(_spriteBatch);
+            enemyManager.Draw();
+            itemManager.Draw();
+            tileManager.Draw();
             link.Draw(_spriteBatch);
             link.Update();
             oldMan1.Draw(_spriteBatch);

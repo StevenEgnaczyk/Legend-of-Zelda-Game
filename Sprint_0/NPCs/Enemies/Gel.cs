@@ -19,27 +19,33 @@ public class Gel : IEnemy
     private SpriteBatch _spriteBatch;
     private Enemy currentEnemy;
 
-    public Gel(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public Gel(SpriteBatch sb, Enemy enemy, EnemyManager manager)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
-        this._spriteBatch = sb;
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        _spriteBatch = sb;
         currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
-        this.frame = 0;
-        this.bufferIndex = 0;
+        xPos = 300;
+        yPos = 400;
+        frame = 0;
+        bufferIndex = 0;
+
+        man = manager;
+        man.addEnemy(this);
+
     }
 
     public void Next()
     {
-        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy, man);
     }
 
     public void Prev()
     {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()
@@ -69,7 +75,9 @@ public class Gel : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
+
     }
 
     public void update()

@@ -15,9 +15,15 @@ using System.Threading.Tasks;
     public int xPos { get; set; }
     public int yPos { get; set; }   
 
-    public Enemy(SpriteBatch sb)
+    private EnemyManager man;
+
+    public Enemy(SpriteBatch sb, EnemyManager manager)
     {
-        currentEnemy = new Keese(sb, this);
+        currentEnemy = new Keese(sb, this, man);
+        man = manager;
+        man.addEnemy(currentEnemy);
+
+
     }
     public void draw(SpriteBatch _spriteBatch)
     {

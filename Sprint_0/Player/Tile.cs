@@ -10,12 +10,14 @@ public class Tile
     public ITileState state;
     public float xPos, yPos;
 
-    public Tile()
+    public Tile(TileManager man)
     {
         state = new PushBlockState(this);
 
         xPos = 350;
         yPos = 150;
+
+        man.addTile(this);
     }
     public void Next()
     {
@@ -44,4 +46,8 @@ public class Tile
         _spriteBatch.Draw(blockSprite, destinationRect, Color.White);
     }
 
+    public void remove(TileManager man)
+    {
+        man.removeTile(this);
+    }
 }
