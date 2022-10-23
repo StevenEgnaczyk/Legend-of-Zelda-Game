@@ -41,14 +41,14 @@ public class KeyboardController : IController
 
 
 
-    public KeyboardController(ContentManager c, Link linkPlayer, Item itemPlayer, Tile tilePlayer, IEnemy enemy)
+    public KeyboardController(ContentManager c, Link linkPlayer)
 	{
 
 		controllerMappings = new Dictionary<Keys, ICommand>();
 
 		//Initialize the different commands
 		_quitCommand = new QuitCommand();
-		resetCommand = new ResetCommand(linkPlayer, itemPlayer, tilePlayer);
+		resetCommand = new ResetCommand(linkPlayer);
 		turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
 		turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
 		turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
@@ -63,15 +63,6 @@ public class KeyboardController : IController
         useBombCommand = new UseBombCommand(linkPlayer);
 
 		dieCommand = new DieCommand(linkPlayer);
-
-		cycleEnemyNextCommand = new CycleEnemyNextCommand(enemy);
-        cycleEnemyPreviousCommand = new CycleEnemyPrevCommand(enemy);
-
-        cycleItemNextCommand = new CycleItemNextCommand(itemPlayer);
-		cycleItemPrevCommand = new CycleItemPrevCommand(itemPlayer);
-
-		_dynamicTilesCommand = new DynamicTilesCommand(tilePlayer);
-		_dynamicTilesCommandPrev = new DynamicTilesCommandPrev(tilePlayer);
 
 		RegisterCommand(Keys.D0, _quitCommand);
 		RegisterCommand(Keys.NumPad0, _quitCommand);

@@ -41,9 +41,11 @@ public class TileManager
 
     public void Draw()
     {
+        /*
         foreach (Tile tile in tileList)
         {
             tile.Draw(sb);
         }
+        */
     }
 }

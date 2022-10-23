@@ -14,6 +14,7 @@ public static class RoomLoader
         List<List<int>> roomInformation = new List<List<int>>();
         List<int> doorInfo;
         List<int> blockInfo;
+        List<int> enemyInfo;
 
         using (var reader = new StreamReader("..\\..\\..\\RoomLoader\\Rooms\\Map" + (currentRoomIndex + 1) + ".csv"))
         {
@@ -26,8 +27,17 @@ public static class RoomLoader
             {
                 var line = reader.ReadLine();
                 string[] values = line.Split(',');
-                blockInfo = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
-                roomInformation.Add(blockInfo);
+
+                if (Int32.Parse(values[0])  < 10)
+                {
+                    blockInfo = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
+                    roomInformation.Add(blockInfo);
+                } else
+                {
+                    enemyInfo = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
+                    roomInformation.Add(enemyInfo);
+
+                }
 
             }
         }

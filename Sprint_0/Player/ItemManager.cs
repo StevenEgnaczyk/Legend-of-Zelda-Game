@@ -46,10 +46,6 @@ public class ItemManager
 
     public void Draw()
     {
-        foreach (Item item in itemList)
-        {
-            item.Draw(item._spriteBatch);
-        }
     }
 
 }

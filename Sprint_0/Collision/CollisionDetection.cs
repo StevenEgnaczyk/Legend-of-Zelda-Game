@@ -8,24 +8,6 @@ public static class CollisionDetection
 {
 
 
-    /* I assume we only want one instance of a collision detector throughout
-     * the entire game, hence the */
-    public static CollisionDetection instance = new CollisionDetection();
-
-    public static CollisionDetection Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-
-    /* I don't think you need to initialize anything for the class */
-    public CollisionDetection()
-    {
-    }
-
-
     public static string collides(Rectangle r1, Rectangle r2)
     {
         string collisionFace = "No Collision";
