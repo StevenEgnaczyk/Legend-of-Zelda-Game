@@ -9,19 +9,20 @@ using System.Reflection.Metadata;
 public class HeartState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(0, 0, 7, 8), new Rectangle(0, 8 ,7,8)
-    };
+
+    private int[] bufferInts;
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
+    
+
 
     public HeartState(Item item)
     {
         this.item = item;
         currentIndex = 0;
         bufferIndex = 0;
+        bufferInts = new int[3] {currentIndex, bufferIndex, bufferMax};
     }
 
     public void Next()
@@ -37,12 +38,15 @@ public class HeartState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getHeartSprites(bufferInts[0]);
         item.DrawSprite(spriteBatch, items, sourceRect);
 
     }
     public void Update()
     {
+       /*
+        bufferInts = Buffer.itemBuffer(bufferInts);
+       */
         if (currentIndex == 0)
         {
             bufferIndex++;

@@ -9,13 +9,7 @@ using System.Reflection.Metadata;
 public class WoodenBoomerangState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(129, 3, 5, 8),
-        new Rectangle(120, 30, 8, 5),
-        new Rectangle(129, 28, 5, 8),
-        new Rectangle(135, 30, 8, 5)
-    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
@@ -40,7 +34,7 @@ public class WoodenBoomerangState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getWoodenBoomerangSprites(currentIndex);
         item.DrawSprite(spriteBatch, items, sourceRect);
 
     }
