@@ -9,18 +9,10 @@ using System.Reflection.Metadata;
 public class CompassState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(258, 1, 11, 12)
-    };
-    private int currentIndex;
-    private int bufferIndex;
-    private int bufferMax = 10;
 
     public CompassState(Item item)
     {
         this.item = item;
-        currentIndex = 0;
     }
 
     public void Next()
@@ -36,7 +28,7 @@ public class CompassState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D item1 = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getCompassSprite();
         item.DrawSprite(spriteBatch, item1, sourceRect);
 
     }

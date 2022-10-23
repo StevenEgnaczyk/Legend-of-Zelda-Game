@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 public class BombState : IItemState
 {
     private Item item;
+
     public BombState(Item item)
     {
         this.item = item;
@@ -14,7 +15,7 @@ public class BombState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D bombTexture = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = new Rectangle(136, 0, 8, 14);
+        Rectangle sourceRect = ItemRectStorage.getBombSprite();
         item.DrawSprite(spriteBatch, bombTexture, sourceRect);
     }
 

@@ -9,18 +9,10 @@ using System.Reflection.Metadata;
 public class ArrowState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(154, 0, 5, 16)
-    };
-    private int currentIndex;
-    private int bufferIndex;
-    private int bufferMax = 10;
 
     public ArrowState(Item item)
     {
         this.item = item;
-        currentIndex = 0;
     }
 
     public void Next()
@@ -36,7 +28,7 @@ public class ArrowState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D item10 = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getArrowSprite();
         item.DrawSprite(spriteBatch, item10, sourceRect);
 
     }
