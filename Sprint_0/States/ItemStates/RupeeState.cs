@@ -9,10 +9,7 @@ using System.Reflection.Metadata;
 public class RupeeState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(72, 0, 8, 16), new Rectangle(72, 16, 8, 16)
-    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
@@ -37,7 +34,7 @@ public class RupeeState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getRupeeSprites(currentIndex);
         item.DrawSprite(spriteBatch, items, sourceRect);
 
     }
