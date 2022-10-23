@@ -4,7 +4,7 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class CollisionDetection
+public static class CollisionDetection
 {
 
 

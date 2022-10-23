@@ -19,6 +19,8 @@ namespace Sprint_0
         private Tile tile;
         private IEnemy enemy;
 
+        public static bool mousePressed;
+
         private RoomManager roomManager;
         private EnemyManager enemyManager;
         private TileManager tileManager;
@@ -40,6 +42,7 @@ namespace Sprint_0
             _graphics.PreferredBackBufferHeight = 1024;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            mousePressed = false;
         }
 
         protected override void Initialize()

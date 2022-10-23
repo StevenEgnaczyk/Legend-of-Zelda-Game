@@ -92,12 +92,12 @@ public class Link
 
     internal void UseWoodenSword()
     {
-        state.UseWoodenSword();
+        inventory.UseWoodenSword();
     }
 
     internal void UseSwordBeam()
     {
-        state.UseSwordBeam();
+        inventory.UseSwordBeam();
     }
 
     internal void UseBoomerang()

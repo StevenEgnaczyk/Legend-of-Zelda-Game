@@ -16,6 +16,8 @@ namespace Sprint_0.Player
         public static Bow bow;
         public static Bomb bomb;
         public static Fire fire;
+        public static WoodenSword woodenSword;
+        public static MagicSword magicSword;
 
         private Boolean hasWeapon = false;
 
@@ -68,6 +70,26 @@ namespace Sprint_0.Player
                 hasWeapon = true;
             }
 
+        }
+
+        public void UseWoodenSword()
+        {
+            if (!hasWeapon)
+            {
+                woodenSword = new WoodenSword(link);
+                currentWeapon = woodenSword;
+                hasWeapon = true;
+            }
+        }
+
+        public void UseSwordBeam()
+        {
+            if (!hasWeapon)
+            {
+                magicSword = new MagicSword(link);
+                currentWeapon = magicSword;
+                hasWeapon = true;
+            }
         }
 
         public void Update()
