@@ -19,7 +19,9 @@ public class Wallmaster : IEnemy
     private SpriteBatch _spriteBatch;
     private int frame;
 
-    public Wallmaster(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public Wallmaster(SpriteBatch sb, Enemy enemy, EnemyManager manager)
     {
         //that state initailization smells funny
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
@@ -31,16 +33,19 @@ public class Wallmaster : IEnemy
         this.yPos = 400;
         this.frame = 0;
         this.bufferIndex = 0;
+
+        man = manager;
+        man.addEnemy(this);
     }
 
     public void Next()
     {
-        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy, man);
     }
 
     public void Prev()
     {
-        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()
@@ -70,7 +75,8 @@ public class Wallmaster : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation??
+        man.removeEnemy(this);
     }
 
     public void update()

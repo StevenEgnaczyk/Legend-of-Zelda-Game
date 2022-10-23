@@ -16,13 +16,15 @@ public class Item
     //  public int itemSpeed = 3;
     public double scale = 3;
 
-    public Item()
+    public Item(ItemManager man)
     {
 
         state = new MapState(this);
 
         xPos = 850;
         yPos = 225;
+
+        man.addItem(this);
     }
 
     public void Next()
@@ -39,7 +41,7 @@ public class Item
 
     public void Update()
     {
-        throw new NotImplementedException();
+        //implement
     }
 
     public void reset()
@@ -59,6 +61,10 @@ public class Item
         _spriteBatch.Draw(itemSprite, destinationRect, sourceRect, Color.White);
     }
 
+    public void remove(ItemManager man)
+    {
+        man.removeItem(this);
+    }
 
     // Draw and other methods omitted
 }

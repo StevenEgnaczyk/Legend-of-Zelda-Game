@@ -16,10 +16,12 @@ public class Goriya : IEnemy
     private int bufferIndex;
     private int bufferMax = 20;
 
+    private EnemyManager man;
+
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Goriya(SpriteBatch sb, Enemy enemy)
+    public Goriya(SpriteBatch sb, Enemy enemy, EnemyManager manager)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
@@ -30,16 +32,20 @@ public class Goriya : IEnemy
         yPos = 400;
         frame = 0;
         bufferIndex = 0;
+        
+        man = manager;
+        man.addEnemy(this);
+
     }
 
     public void Next()
     {
-        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy, man);
     }
 
     public void Prev()
     {
-        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
+        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()
@@ -69,7 +75,8 @@ public class Goriya : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
     }
 
     public void update()

@@ -4,6 +4,8 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using Sprint_0.Player;
+using System.Collections.Generic;
+
 
 public class CollisionManager
 {
@@ -11,7 +13,7 @@ public class CollisionManager
 
     /* I assume we only want one instance of a collision manager throughout
      * the entire game, hence the */
-    public static CollisionManager instance = new CollisionManger();
+    public static CollisionManager instance = new CollisionManager();
 
     public static CollisionManager Instance
     {
@@ -26,20 +28,33 @@ public class CollisionManager
     {
     }
 
-    public void manageCollisions(Link link, List<IEnemy> enemies, List<Tile> tiles)
-    {
 
+    /* Not very efficient, may want to refactor in the future*/
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<Tile> tiles, List<Item> items)
+    {
+        //Collisions for link vs enemies, enemies vs block
         foreach (IEnemy enemy in enemies) {
 
             CollisionResponse.collisionResponse(link, enemy);
+
+            foreach (Tile tile in tiles)
+            {
+                CollisionResponse.collisionResponse(enemy, tile);
+            }
+
         }
 
-        foreach(Tile tile in tiles)
+        //Collisions for link vs blocks
+        foreach (Tile tile in tiles)
         {
             CollisionResponse.collisionResponse(link, tile);
 
         }
 
+        foreach (Item item in items)
+        {
+            CollisionResponse.collisionResponse(link, item);
+        }
     }
 
 }
