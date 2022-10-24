@@ -4,6 +4,8 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using Sprint_0.LinkPlayer.LinkInventory;
+using Sprint_0.Player;
+using Sprint_0.Interfaces;
 
 public class CollisionResponse
 {
@@ -34,9 +36,9 @@ public class CollisionResponse
         LinkEnemyCollisionResponse.collisionResponse(link, enemy);
     }
 
-    public static void collisionResponse(Link link, IItem item)
+    public static void collisionResponse(Link link, Item item)
     {
-        //implement
+        //TO DO: Implement
     }
 
     public static void collisionResponse(IEnemy enemy, ITile tile)
@@ -49,4 +51,8 @@ public class CollisionResponse
         EnemyWeaponCollisionResponse.collisionResponse(enemy, weapon);
     }
 
+    public static void collisionResponse(userItems weapon, ITile tile)
+    {
+        WeaponTileCollisionResponse.collisionResponse(weapon, tile);
+    }
 }

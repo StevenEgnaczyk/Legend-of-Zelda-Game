@@ -20,6 +20,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private bool goingOut;
 
         private Rectangle sourceRect;
+        private int height;
+        private int width;
 
         private int distanceToTravel = 150;
         private int incrementalDistance = 25;
@@ -93,6 +95,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             bufferFrame = 0;
 
             boomerang = Texture2DStorage.GetItemSpritesheet();
+            updateHeightAndWidth(sourceRect);
 
         }
 
@@ -101,6 +104,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             sourceRect = boomerangSprite[boomerangSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 5, sourceRect.Height * 5);
             spriteBatch.Draw(boomerang, destinationRect, sourceRect, Color.White);
+
+            updateHeightAndWidth(sourceRect);
 
         }
 
@@ -254,6 +259,35 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
             return startingRect;
 
+        }
+
+        private void updateHeightAndWidth(Rectangle rec)
+        {
+            height = rec.Height;
+            width = rec.Width;
+        }
+
+        /*
+         * Getter methods 
+        */
+        public int getXPos()
+        {
+            return (int) current.X;
+        }
+
+        public int getYPos()
+        {
+            return (int) current.Y;
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 }

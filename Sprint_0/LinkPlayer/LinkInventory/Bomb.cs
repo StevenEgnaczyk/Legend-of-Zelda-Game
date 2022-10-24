@@ -14,9 +14,13 @@ namespace Sprint_0.LinkPlayer.LinkInventory
     {
         private Link link;
         private Texture2D bomb;
-
+        
+        private Rectangle sourceRect;
         private Vector2 startingRect;
-
+     
+        private int height;
+        private int width;
+        
         private int bombSpriteIndex = 0;
         private int maxFrames = 4;
         private int bufferIndex = 0;
@@ -64,6 +68,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             bufferIndex = 0;
             bomb = Texture2DStorage.GetItemSpritesheet();
             startingRect = getStartingRect();
+            updateHeightAndWidth(sourceRect);
         }
         private Vector2 getStartingRect()
         {
@@ -104,6 +109,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             Rectangle destinationRect = new Rectangle((int)startingRect.X, (int)startingRect.Y, sourceRect.Width * 4, sourceRect.Height * 4);
             spriteBatch.Draw(bomb, destinationRect, sourceRect, Color.White);
 
+            updateHeightAndWidth(destinationRect);
+
         }
 
         public void Update()
@@ -128,6 +135,35 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 }
             }
 
+        }
+        
+        private void updateHeightAndWidth(Rectangle rec)
+        {
+            height = rec.Height;
+            width = rec.Width;
+        }
+        
+        /*
+         * Getter methods 
+         */
+        public int getXPos()
+        {
+            return (int) startingRect.X;
+        }
+
+        public int getYPos()
+        {
+            return (int) startingRect.Y;
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 
