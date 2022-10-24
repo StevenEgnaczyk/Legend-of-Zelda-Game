@@ -4,7 +4,7 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using Sprint_0.LinkPlayer.LinkInventory;
-using Sprint_0.Player;
+using Sprint_0.LinkPlayer;
 using Sprint_0.Interfaces;
 
 public class EnemyWeaponCollisionResponse
