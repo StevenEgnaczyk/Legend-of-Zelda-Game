@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
-using Sprint_0.Player;
 using System.Collections.Generic;
 
 

@@ -4,7 +4,7 @@ using System;
 public class ResetCommand : ICommand
 {
     public ITile tilePlayer;
-    public Item itemPlayer;
+    public IItem itemPlayer;
     public Link linkPlayer;
     //add npc
 
