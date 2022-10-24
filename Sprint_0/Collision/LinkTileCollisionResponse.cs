@@ -11,8 +11,8 @@ public class LinkTileCollisionResponse
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
-        Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 16, 16);
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 16, 16);
+        Rectangle linkRec = new Rectangle((int)link.xPos + 8, (int)link.yPos + 8, 48, 48);
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 64, 64);
 
 
         /*
@@ -21,32 +21,35 @@ public class LinkTileCollisionResponse
          * 
          * Need: A special method for the block that gets pushed
          */
-        string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-        switch (collisionFace)
+        if (!tile.Walkable())
         {
-            case "Top":
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+                case "Top":
 
-                link.yPos -= link.linkSpeed;
+                    link.yPos += link.linkSpeed;
 
-                break;
+                    break;
 
-            case "Left":
+                case "Left":
 
-                link.xPos += link.linkSpeed;
+                    link.xPos += link.linkSpeed;
 
-                break;
+                    break;
 
-            case "Right":
+                case "Right":
 
-                link.xPos -= link.linkSpeed;
+                    link.xPos -= link.linkSpeed;
 
-                break;
+                    break;
 
-            case "Bottom":
+                case "Bottom":
 
-                link.yPos -= link.linkSpeed;
+                    link.yPos -= link.linkSpeed;
 
-                break;
+                    break;
+            }
         }
     }
 }

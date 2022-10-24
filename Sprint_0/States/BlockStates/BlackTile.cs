@@ -5,16 +5,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 
 public class BlackTile : ITile
 {
     private int xPosition;
     private int yPosition;
 
+    private bool isPushable;
+    private bool isWalkable;
+
     public BlackTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+
+        this.isPushable = false;
+        this.isWalkable = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -33,5 +40,15 @@ public class BlackTile : ITile
     public int getYPos()
     {
         return yPosition;
+    }
+
+    public bool Pushable()
+    {
+        return isPushable;
+    }
+
+    public bool Walkable()
+    {
+        return isWalkable;
     }
 }

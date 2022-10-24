@@ -8,5 +8,9 @@ public interface ITile
 {
     public int getXPos();
     public int getYPos();
+
+    public bool Pushable();
+
+    public bool Walkable();
     public void Draw(SpriteBatch _spriteBatch);
 }

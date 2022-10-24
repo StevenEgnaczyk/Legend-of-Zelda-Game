@@ -11,10 +11,15 @@ public class StatueLeftTile : ITile
     private int xPosition;
     private int yPosition;
 
+    private bool isPushable;
+    private bool isWalkable;
+
     public StatueLeftTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+        this.isPushable = false;
+        this.isWalkable = false;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -33,5 +38,15 @@ public class StatueLeftTile : ITile
     public int getYPos()
     {
         return yPosition;
+    }
+
+    public bool Pushable()
+    {
+        return isPushable;
+    }
+
+    public bool Walkable()
+    {
+        return isWalkable;
     }
 }

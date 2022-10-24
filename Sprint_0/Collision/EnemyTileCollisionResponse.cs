@@ -15,50 +15,54 @@ public class EnemyTileCollisionResponse
          * Also, add heights and widths properties for weapons that get updated for
          * making rectangles
          */
-        Rectangle enemyRec = new Rectangle( (int) enemy.xPos, (int) enemy.yPos, 16, 16);
-        Rectangle tileRec = new Rectangle( (int) tile.getXPos(), (int) tile.getYPos(), 16, 16);
+        Rectangle enemyRec = new Rectangle( (int) enemy.xPos, (int) enemy.yPos, 64, 64);
+        Rectangle tileRec = new Rectangle( (int) tile.getXPos(), (int) tile.getYPos(), 64, 64);
 
 
         /* 
          * Stops enemies and tiles occupying the same space, then makes sure the enemy 
          * turns away and doesn't collide again (not the same for collisions with link)
          */
-        string collisionFace = CollisionDetection.collides(enemyRec, tileRec);
-        switch (collisionFace)
+
+        if (!tile.Walkable())
         {
-            case "Top":
-               
-                //Stopping the enemy from colliding with the tile
-                enemy.yPos += 3;
-               
-                //Makes the enemy not run into the tile again
-                enemy.moveDown();
+            string collisionFace = CollisionDetection.collides(enemyRec, tileRec);
+            switch (collisionFace)
+            {
+                case "Top":
 
-                break;
+                    //Stopping the enemy from colliding with the tile
+                    enemy.yPos += 3;
 
-            case "Left":
+                    //Makes the enemy not run into the tile again
+                    enemy.moveDown();
 
-                enemy.xPos += 3;
-                
-                enemy.moveRight();
+                    break;
 
-                break;
+                case "Left":
 
-            case "Right":
+                    enemy.xPos += 3;
 
-                enemy.xPos -= 3;
-                
-                enemy.moveRight();
+                    enemy.moveRight();
 
-                break;
+                    break;
 
-            case "Bottom":
+                case "Right":
 
-                enemy.yPos -= 3;
-               
-                enemy.moveUp();
+                    enemy.xPos -= 3;
 
-                break;
+                    enemy.moveRight();
+
+                    break;
+
+                case "Bottom":
+
+                    enemy.yPos -= 3;
+
+                    enemy.moveUp();
+
+                    break;
+            }
         }
     }
 }

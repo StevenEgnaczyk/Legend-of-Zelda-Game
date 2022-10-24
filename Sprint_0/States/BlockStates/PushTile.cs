@@ -11,10 +11,15 @@ public class PushTile : ITile
     private int xPosition;
     private int yPosition;
 
+    private bool isPushable;
+    private bool isWalkable;
+
     public PushTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+        this.isPushable = true;
+        this.isWalkable = false;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -33,5 +38,15 @@ public class PushTile : ITile
     public int getYPos()
     {
         return yPosition;
+    }
+
+    public bool Pushable()
+    {
+        return isPushable;
+    }
+
+    public bool Walkable()
+    {
+        return isWalkable;
     }
 }
