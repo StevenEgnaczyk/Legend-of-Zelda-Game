@@ -7,36 +7,44 @@ using System.Reflection.Metadata;
 
 public class Wallmaster : IEnemy
 {
+    /* Properties that change, the heart of the enemy*/
     public EnemyState state {  get;  set; }
-    private IEnemySprite sprite;
-    private Enemy currentEnemy;
-
     public int xPos { get; set; }
     public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
-
-    private SpriteBatch _spriteBatch;
     private int frame;
-
-    private EnemyManager man;
 
     public Wallmaster(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        //that state initailization smells funny
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
-        this._spriteBatch = sb;
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        xPos = startX;
+        yPos = startY;
 
-        this.xPos = startX;
-        this.yPos = startY;
-        this.frame = 0;
-        this.bufferIndex = 0;
-
+        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        _spriteBatch = sb;
         man = manager;
+
+        //Enemy adds itself to the list of enemies
         man.addEnemy(this);
+        
+        frame = 0;
+        bufferIndex = 0;
     }
 
+    /*
+     * Core methods to change Wallmaster's state and draws/updates
+     */
     public void moveLeft()
     {
         state.moveLeft(this);
@@ -59,12 +67,12 @@ public class Wallmaster : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        //TO DO: hurt animation (2 health)
     }
 
     public void die()
     {
-        //TO DO: Death animation??
+        //TO DO: Death animation
         man.removeEnemy(this);
     }
 
@@ -97,6 +105,9 @@ public class Wallmaster : IEnemy
         sprite.draw(this.frame, sb);
     }
 
+    /*
+     * Getter methods
+     */
     public int getEnemyUp()
     {
         return state.up;
@@ -105,5 +116,20 @@ public class Wallmaster : IEnemy
     public int getEnemyLeft()
     {
         return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }
