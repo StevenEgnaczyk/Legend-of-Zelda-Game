@@ -13,15 +13,18 @@ public class Compass : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Compass()
+    public Compass(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D item1 = Texture2DStorage.GetItemSpritesheet();
+        Texture2D compass = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getCompassSprite();
-        //item.DrawSprite(spriteBatch, item1, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(compass, sourceRect, destRect, Color.White);
 
     }
 

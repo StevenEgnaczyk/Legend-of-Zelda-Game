@@ -16,7 +16,7 @@ public class RoomManager
     public RoomManager(SpriteBatch sb, Link link)
     {
         this.spriteBatch = sb;
-        roomNumber = 2;
+        roomNumber = 0;
         this.link = link;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
         

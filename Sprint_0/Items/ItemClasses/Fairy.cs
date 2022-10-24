@@ -18,15 +18,19 @@ public class Fairy : IItem
     private int bufferIndex;
     private int bufferMax = 20;
 
-    public Fairy()
+    public Fairy(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
+        this.currentIndex = 0;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D fairy = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getFairySprites(currentIndex);
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(fairy, sourceRect, destRect, Color.White);
 
     }
 

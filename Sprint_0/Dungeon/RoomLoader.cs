@@ -34,7 +34,7 @@ public static class RoomLoader
                 var line = reader.ReadLine();
                 string[] values = line.Split(',');
 
-                if (Int32.Parse(values[0])  < 10)
+                if (Int32.Parse(values[0]) <= 12)
                 {
                     blockInfoLine = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
                     blockInfo.Add(blockInfoLine);

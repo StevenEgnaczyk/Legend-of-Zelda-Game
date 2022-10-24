@@ -17,11 +17,23 @@ public class Flame : IItem
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
-    public Flame()
+    public Flame(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
     }
+    public void Draw(SpriteBatch spriteBatch)
+    {
+
+        Texture2D flame = Texture2DStorage.GetItemSpritesheet();
+        Rectangle sourceRect = ItemRectStorage.getFlameSprites(currentIndex);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(flame, sourceRect, destRect, Color.White);
+
+    }
+
 
     public int getHeight()
     {
@@ -42,14 +54,7 @@ public class Flame : IItem
     {
         return this.yPos;
     }
-    public void Draw(SpriteBatch spriteBatch)
-    {
 
-            Texture2D flameTexture = Texture2DStorage.GetOldManSpriteSheet();
-            Rectangle sourceRect = ItemRectStorage.getFlameSprites(currentIndex);
-            //item.DrawSprite(spriteBatch, flameTexture, sourceRect);
-
-    }
     public void Update()
     {
         if (currentIndex == 0)
