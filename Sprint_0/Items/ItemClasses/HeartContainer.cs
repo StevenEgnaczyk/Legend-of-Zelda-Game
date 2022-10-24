@@ -14,15 +14,18 @@ public class HeartContainer : IItem
     private int Width = 16;
     private int Height = 16;
 
-    public HeartContainer()
+    public HeartContainer(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D heartContainer = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getHeartContainerSprite();
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(heartContainer, sourceRect, destRect, Color.White);
 
     }
     public int getHeight()

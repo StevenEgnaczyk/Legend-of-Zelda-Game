@@ -11,18 +11,21 @@ public class Map : IItem
 
     private int xPos;
     private int yPos;
-    private int Width = 16;
-    private int Height = 16;
+    private int Width = 32;
+    private int Height = 64;
 
-    public Map()
+    public Map(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D map = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getMapSprite();
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(map, destRect, sourceRect, Color.White);
 
     }
 

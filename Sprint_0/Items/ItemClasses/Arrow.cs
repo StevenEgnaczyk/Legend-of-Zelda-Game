@@ -22,9 +22,10 @@ public class Arrow : IItem
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D item10 = Texture2DStorage.GetItemSpritesheet();
+        Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getArrowSprite();
-        //item.DrawSprite(spriteBatch, item10, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(arrow, sourceRect, destRect, Color.White);
 
     }
 

@@ -13,15 +13,18 @@ public class Clock : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Clock()
+    public Clock(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D clock = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getClockSprite();
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(clock, sourceRect, destRect, Color.White);
 
     }
 

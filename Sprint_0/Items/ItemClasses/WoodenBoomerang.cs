@@ -13,17 +13,20 @@ public class WoodenBoomerang : IItem
     private int bufferIndex;
     private int bufferMax = 20;
 
-    public WoodenBoomerang()
+    public WoodenBoomerang(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D woodenBoomerang = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getWoodenBoomerangSprites(currentIndex);
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(woodenBoomerang, sourceRect, destRect, Color.White);
 
     }
 

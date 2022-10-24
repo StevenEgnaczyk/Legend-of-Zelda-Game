@@ -18,17 +18,20 @@ public class Rupee : IItem
     private int bufferIndex;
     private int bufferMax = 20;
 
-    public Rupee()
+    public Rupee(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
+        Texture2D rupee = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getRupeeSprites(currentIndex);
-        //item.DrawSprite(spriteBatch, items, sourceRect);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(rupee, sourceRect, destRect, Color.White);
 
     }
 

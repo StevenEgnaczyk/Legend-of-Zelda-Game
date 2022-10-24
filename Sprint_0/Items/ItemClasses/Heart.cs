@@ -21,8 +21,10 @@ public class Heart : IItem
     
 
 
-    public Heart()
+    public Heart(int xPosition, int yPosition)
     {
+        this.xPos = xPosition;
+        this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
         bufferInts = new int[3] {currentIndex, bufferIndex, bufferMax};
@@ -30,10 +32,10 @@ public class Heart : IItem
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = ItemRectStorage.getHeartSprites(bufferInts[0]);
-        //item.DrawSprite(spriteBatch, items, sourceRect);
-
+        Texture2D heart = Texture2DStorage.GetItemSpritesheet();
+        Rectangle sourceRect = ItemRectStorage.getHeartSprites(currentIndex);
+        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        spriteBatch.Draw(heart, sourceRect, destRect, Color.White);
     }
 
     public int getHeight()
