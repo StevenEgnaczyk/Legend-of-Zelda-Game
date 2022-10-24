@@ -9,10 +9,7 @@ using System.Threading;
 public class FlameState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(52,11,16,16), new Rectangle(68, 11, 16, 16)
-    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
@@ -26,7 +23,7 @@ public class FlameState : IItemState
     {
 
             Texture2D flameTexture = Texture2DStorage.GetOldManSpriteSheet();
-            Rectangle sourceRect = itemSprites[currentIndex];
+            Rectangle sourceRect = ItemRectStorage.getFlameSprites(currentIndex);
             item.DrawSprite(spriteBatch, flameTexture, sourceRect);
 
     }

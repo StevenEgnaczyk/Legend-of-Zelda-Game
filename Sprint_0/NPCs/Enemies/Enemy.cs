@@ -8,14 +8,21 @@ using System.Threading.Tasks;
     public class Enemy : IEnemy
     {
 
-public IEnemy currentEnemy;
+    public IEnemy currentEnemy;
+    public EnemyState state {  get;  set; }
+
 
     public int xPos { get; set; }
     public int yPos { get; set; }   
 
-    public Enemy(SpriteBatch sb)
-    {
-        currentEnemy = new Keese(sb, this);
+    private EnemyManager man;
+
+    public Enemy(SpriteBatch sb, EnemyManager manager)
+    { 
+        man = manager;
+        man.addEnemy(currentEnemy);
+
+
     }
     public void draw(SpriteBatch _spriteBatch)
     {
@@ -42,26 +49,25 @@ public IEnemy currentEnemy;
     {
         throw new NotImplementedException();
     }
-
-    public void Next(SpriteBatch sb)
+    public void hurt()
     {
-        currentEnemy.Next();
-    }
-
-    public void Next()
-    {
-        currentEnemy.Next();
-    }
-
-    public void Prev()
-    {
-        currentEnemy.Prev();
+        throw new NotImplementedException();
     }
 
     public void update()
     {
         currentEnemy.moveLeft();
         currentEnemy.update();
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }
 

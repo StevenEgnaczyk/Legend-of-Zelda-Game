@@ -9,18 +9,10 @@ using System.Reflection.Metadata;
 public class KeyState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(240, 0, 8, 16),
-    };
-    private int currentIndex;
-    private int bufferIndex;
-    private int bufferMax = 10;
 
     public KeyState(Item item)
     {
         this.item = item;
-        currentIndex = 0;
     }
 
     public void Next()
@@ -36,7 +28,7 @@ public class KeyState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getKeySprite();
         item.DrawSprite(spriteBatch, items, sourceRect);
 
     }

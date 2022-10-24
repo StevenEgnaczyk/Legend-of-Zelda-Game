@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Wallmaster : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -19,28 +19,22 @@ public class Wallmaster : IEnemy
     private SpriteBatch _spriteBatch;
     private int frame;
 
-    public Wallmaster(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public Wallmaster(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         //that state initailization smells funny
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = startX;
+        this.yPos = startY;
         this.frame = 0;
         this.bufferIndex = 0;
-    }
 
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy);
+        man = manager;
+        man.addEnemy(this);
     }
 
     public void moveLeft()
@@ -70,7 +64,8 @@ public class Wallmaster : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation??
+        man.removeEnemy(this);
     }
 
     public void update()
@@ -100,5 +95,15 @@ public class Wallmaster : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

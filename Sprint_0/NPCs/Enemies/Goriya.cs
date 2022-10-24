@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Goriya : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -16,30 +16,25 @@ public class Goriya : IEnemy
     private int bufferIndex;
     private int bufferMax = 20;
 
+    private EnemyManager man;
+
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Goriya(SpriteBatch sb, Enemy enemy)
+    public Goriya(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
-        currentEnemy = enemy;
         this._spriteBatch = sb;
 
-        xPos = 300;
-        yPos = 400;
+        xPos = startX;
+        yPos = startY;
         frame = 0;
         bufferIndex = 0;
-    }
+        
+        man = manager;
+        man.addEnemy(this);
 
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
     }
 
     public void moveLeft()
@@ -69,7 +64,8 @@ public class Goriya : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
     }
 
     public void update()
@@ -99,5 +95,14 @@ public class Goriya : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(frame, sb);
+    }
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

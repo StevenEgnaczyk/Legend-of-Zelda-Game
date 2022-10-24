@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class Gel : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
     public int xPos { get; set; }
@@ -19,27 +19,22 @@ public class Gel : IEnemy
     private SpriteBatch _spriteBatch;
     private Enemy currentEnemy;
 
-    public Gel(SpriteBatch sb, Enemy enemy)
-    {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
-        this._spriteBatch = sb;
-        currentEnemy = enemy;
+    private EnemyManager man;
 
-        this.xPos = 300;
-        this.yPos = 400;
-        this.frame = 0;
-        this.bufferIndex = 0;
-    }
-
-    public void Next()
+    public Gel(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy);
-    }
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
+        _spriteBatch = sb;
 
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
+        xPos = startX;
+        yPos = startY;
+        frame = 0;
+        bufferIndex = 0;
+
+        man = manager;
+        man.addEnemy(this);
+
     }
 
     public void moveLeft()
@@ -69,7 +64,9 @@ public class Gel : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
+
     }
 
     public void update()
@@ -99,5 +96,15 @@ public class Gel : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

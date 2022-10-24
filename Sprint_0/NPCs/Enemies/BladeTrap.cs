@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 
 public class BladeTrap : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
     public int xPos { get; set; }
@@ -16,25 +16,20 @@ public class BladeTrap : IEnemy
     private SpriteBatch _spriteBatch;
     private Enemy currentEnemy;
 
-    public BladeTrap(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public BladeTrap(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
-    }
+        this.xPos = startX;
+        this.yPos = startY;
 
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy);
-    }
+        man = manager;
+        man.addEnemy(currentEnemy);
 
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy);
     }
 
     public void moveLeft()
@@ -57,11 +52,10 @@ public class BladeTrap : IEnemy
         state.moveDown(this);
     }
 
-    /*
-     * Blade traps cannot die, hence
-     * the lack of a die() and hurt() 
-     * method
-     */
+    public void hurt()
+    {
+        //do nothing, cannot die
+    }
 
     public void update()
     {
@@ -71,5 +65,15 @@ public class BladeTrap : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(0, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

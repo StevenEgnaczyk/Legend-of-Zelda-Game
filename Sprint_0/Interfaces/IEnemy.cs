@@ -15,6 +15,8 @@ public interface IEnemy
     void moveDown();
     void moveLeft();
     void moveRight();
-    void Prev();
-    void Next();
+    void hurt();
+    int getEnemyUp();
+    int getEnemyLeft();
+
 }

@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 
 public class Keese : IEnemy
 {
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
     private Enemy currentEnemy;
 
@@ -17,29 +17,21 @@ public class Keese : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Keese(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public Keese(SpriteBatch sb, EnemyManager manager, int xPos, int yPos)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.frame = 0;
         this.bufferIndex = 0;
-    }
 
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy);
-
-    }
-
-    public void Prev()
-    {
-
-        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy);
+        man = manager;
+        man.addEnemy(this);
     }
 
     public void moveLeft()
@@ -70,7 +62,8 @@ public class Keese : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
     }
 
     public void update()
@@ -128,5 +121,15 @@ public class Keese : IEnemy
     public void draw()
     {
         throw new NotImplementedException();
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

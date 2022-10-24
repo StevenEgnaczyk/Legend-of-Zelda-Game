@@ -4,33 +4,15 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class CollisionDetection
+public static class CollisionDetection
 {
 
 
-    /* I assume we only want one instance of a collision detector throughout
-     * the entire game, hence the */
-    public static CollisionDetection instance = new CollisionDetection();
-
-    public static CollisionDetection Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-
-    /* I don't think you need to initialize anything for the class */
-    public CollisionDetection()
-    {
-    }
-
-
-    public string collides(Rectangle r1, Rectangle r2)
+    public static string collides(Rectangle r1, Rectangle r2)
     {
         string collisionFace = "No Collision";
         
-        if (r1.IntersectsWith(r2)) 
+        if (r1.Intersects(r2)) 
         {
             Rectangle intersection = Rectangle.Intersect(r1,r2);
             
@@ -69,6 +51,5 @@ public class CollisionDetection
         return collisionFace;
 
     }
-    */
 
 }

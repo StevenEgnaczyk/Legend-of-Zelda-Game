@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 public class Aquamentus : IEnemy
 {
     private Enemy currentEnemy;
-    private EnemyState state;
+    public EnemyState state {  get;  set; }
     private IEnemySprite sprite;
 
 
@@ -19,24 +19,21 @@ public class Aquamentus : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Aquamentus(SpriteBatch sb, Enemy enemy)
+    private EnemyManager man;
+
+    public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
-        currentEnemy = enemy;
+
         this._spriteBatch = sb;
         this.bufferIndex = 0;
         this.frame = 0;
-        this.xPos = 300;
-        this.yPos = 400;
-    }
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
-    }
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy);
+        this.xPos = startX;
+        this.yPos = startY;
+
+        man = manager;
+        man.addEnemy(currentEnemy);
     }
 
     public void moveLeft()
@@ -71,7 +68,8 @@ public class Aquamentus : IEnemy
 
     public void die()
     {
-        //nothing to do here yet
+        //die animation
+        man.removeEnemy(this);
     }
 
     public void update()
@@ -113,5 +111,15 @@ public class Aquamentus : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
     }
 }

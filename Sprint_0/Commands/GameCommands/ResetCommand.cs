@@ -8,17 +8,13 @@ public class ResetCommand : ICommand
     public Link linkPlayer;
     //add npc
 
-	public ResetCommand(Link link, Item item, Tile tile)
+	public ResetCommand(Link link)
 	{
         linkPlayer = link;
-        tilePlayer = tile;
-        itemPlayer = item;
 	}
 
 	public void Execute()
 	{
         linkPlayer.reset();
-        tilePlayer.reset();
-        itemPlayer.reset();	
 	}
 }

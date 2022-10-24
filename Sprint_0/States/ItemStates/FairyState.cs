@@ -9,11 +9,7 @@ using System.Reflection.Metadata;
 public class FairyState : IItemState
 {
     private Item item;
-    private static List<Rectangle> itemSprites = new List<Rectangle>()
-    {
-        new Rectangle(40, 0, 7, 16),
-        new Rectangle(47, 0, 7, 16)
-    };
+
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
@@ -38,7 +34,7 @@ public class FairyState : IItemState
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D items = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = itemSprites[currentIndex];
+        Rectangle sourceRect = ItemRectStorage.getFairySprites(currentIndex);
         item.DrawSprite(spriteBatch, items, sourceRect);
 
     }

@@ -14,12 +14,8 @@ namespace Sprint_0
         public SpriteBatch _spriteBatch;
 
         private Link link;
-        private OldMan oldMan1;
-        private Item item;
-        private Tile tile;
-        private IEnemy enemy;
-
         private RoomManager roomManager;
+        private CollisionManager collisionManager;
 
         //Keyboard variables
         private IController keyboardController;
@@ -42,18 +38,19 @@ namespace Sprint_0
         {
 
             //lastDrawn = 5;
-            
-            link = new Link();
-            oldMan1 = new OldMan();
-            item = new Item();
-            tile = new Tile();
-            enemy = new Enemy(_spriteBatch);
-            roomManager = new RoomManager();
 
-            
-            keyboardController = new KeyboardController(Content, link, item, tile, enemy);
+            /* 
+             * Make spriteBatch not a property for items, instead pass it through
+             * ItemManager (less instances of spritebatch) - EH
+             */
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            collisionManager = new CollisionManager(); 
+            link = new Link();
+            roomManager = new RoomManager(_spriteBatch);
+
+            keyboardController = new KeyboardController(Content, link);
             mouseController = new MouseController(Content, roomManager);
-            //_mouseController = new MouseController(Content);
+
 
             base.Initialize();
 
@@ -62,7 +59,7 @@ namespace Sprint_0
         protected override void LoadContent()
         {
             //Create the spriteBatch
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }
@@ -75,6 +72,7 @@ namespace Sprint_0
             //Process Keyboard Input
             keyboardController.ProcessInput();
             mouseController.ProcessInput();
+            
 
         }
 
@@ -86,14 +84,11 @@ namespace Sprint_0
 
             _spriteBatch.Begin();
             roomManager.drawRoom(_spriteBatch);
+
             link.Draw(_spriteBatch);
             link.Update();
-            oldMan1.Draw(_spriteBatch);
-            item.Draw(_spriteBatch);
-            tile.Draw(_spriteBatch);
-            enemy.draw(_spriteBatch);
-            
-            
+            roomManager.Update(_spriteBatch);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

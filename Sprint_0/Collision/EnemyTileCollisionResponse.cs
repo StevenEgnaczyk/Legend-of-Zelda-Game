@@ -28,10 +28,10 @@ public class EnemyTileCollisionResponse
         {
             case "Top":
                
-                //Stopping the enemy from colliding with the wall
+                //Stopping the enemy from colliding with the tile
                 enemy.yPos += 3;
                
-                //Makes the enemy not run into wall again
+                //Makes the enemy not run into the tile again
                 enemy.moveDown();
 
                 break;

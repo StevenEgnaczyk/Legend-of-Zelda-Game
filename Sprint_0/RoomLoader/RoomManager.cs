@@ -9,23 +9,20 @@ public class RoomManager
 {
 
     private int roomNumber;
-    private Room currentRoom;
+    Room currentRoom;
+    SpriteBatch spriteBatch;
 
-    public RoomManager()
+    public RoomManager(SpriteBatch sb)
     {
-        roomNumber = 0;
-        currentRoom = new Room(0);
+        this.spriteBatch = sb;
+        roomNumber = 2;
+        currentRoom = new Room(roomNumber, spriteBatch);
     }
 
     public void drawRoom(SpriteBatch spriteBatch)
     {
         currentRoom.draw(spriteBatch);
 
-    }
-
-    public void updateRoom(int newRoom)
-    {
-        currentRoom = new Room(newRoom);
     }
 
     internal void nextRoom()
@@ -35,7 +32,7 @@ public class RoomManager
         {
             roomNumber = 0;
         }
-        currentRoom = new Room(roomNumber);
+        currentRoom = new Room(roomNumber, spriteBatch);
     }
 
     internal void prevRoom()
@@ -45,8 +42,13 @@ public class RoomManager
         {
             roomNumber = 16;
         }
-        currentRoom = new Room(roomNumber);
-        
+        currentRoom = new Room(roomNumber, spriteBatch);
+
+    }
+
+    public void Update(SpriteBatch spriteBatch)
+    {
+        currentRoom.Update(spriteBatch);
     }
 }
 
