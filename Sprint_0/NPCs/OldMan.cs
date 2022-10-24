@@ -5,14 +5,13 @@ using System;
 using System.Reflection.Metadata;
 public class OldMan
 {
-    public IOldManState state;
-    public OldManSprite sprite;
+
+    //public OldManSprite sprite;
     public float x, y;
     public SpriteBatch _spriteBatch;
     
     public OldMan()
     {
-        state = new OldManState(this);
         x = 200;
         y = 200;
     }
@@ -22,7 +21,7 @@ public class OldMan
     }
     public void Draw(SpriteBatch _spriteBatch)
     {
-        state.Draw(_spriteBatch);
+
     }
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D oldManSprite, Rectangle sourceRect)
     {

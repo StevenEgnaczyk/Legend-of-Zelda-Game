@@ -41,7 +41,7 @@ public class MouseController : IController
         {
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 
-            if (!(mousePos.X < 850) && !(mousePos.X > 874) && mousePos.Y > 225 && mousePos.Y < 273)
+            if ((mousePos.X < 982 && mousePos.X > 950) && (mousePos.Y > 350 && mousePos.Y < 414))
             {
                 nextMapCommand.Execute();
             }

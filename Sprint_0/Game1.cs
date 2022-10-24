@@ -14,6 +14,7 @@ namespace Sprint_0
         public SpriteBatch _spriteBatch;
 
         private Link link;
+        private IItem map;
         private RoomManager roomManager;
         private CollisionManager collisionManager;
 
@@ -44,6 +45,7 @@ namespace Sprint_0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(); 
             link = new Link();
+            map = new Map(950, 350);
             roomManager = new RoomManager(_spriteBatch, link);
 
             keyboardController = new KeyboardController(Content, link);
@@ -70,7 +72,10 @@ namespace Sprint_0
             //Process Keyboard Input
             keyboardController.ProcessInput();
             mouseController.ProcessInput();
-            
+
+            link.Update();
+            map.Update();
+
 
         }
 
@@ -83,7 +88,7 @@ namespace Sprint_0
             roomManager.drawRoom(_spriteBatch);
 
             link.Draw(_spriteBatch);
-            link.Update();
+            map.Draw(_spriteBatch);
             roomManager.Update(_spriteBatch);
 
             _spriteBatch.End();

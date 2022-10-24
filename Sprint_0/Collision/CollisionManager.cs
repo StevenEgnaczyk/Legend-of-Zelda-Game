@@ -1,9 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Reflection.Metadata;
-using Microsoft.Xna.Framework.Content;
-using Sprint_0.Player;
 using System.Collections.Generic;
 
 
@@ -30,7 +24,7 @@ public class CollisionManager
 
 
     /* Not very efficient, may want to refactor in the future*/
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<Item> items)
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items)
     {
         //Collisions for link vs enemies, enemies vs block
         foreach (IEnemy enemy in enemies) {
@@ -51,7 +45,7 @@ public class CollisionManager
 
         }
 
-        foreach (Item item in items)
+        foreach (IItem item in items)
         {
             CollisionResponse.collisionResponse(link, item);
         }
