@@ -5,6 +5,6 @@ Sprint number: 3
 Date: 10/24/2022
 Time to complete: 10 minutes
 
-Comments: Very clean code, almost all fields and methods are intuitive. The only 
-slightly confusing / hard to read part is the three draw methods. But as with your
-state class, Link.cs is up to the readability quality of that seen in class.
+Comments: Very clean code, almost all fields and methods are intuitive. The 
+          swtich statements are a bit hard to read. Maybe set some variables
+          to hold those values instead of repetitively adding and multiplying.
