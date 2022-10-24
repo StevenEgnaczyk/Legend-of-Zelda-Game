@@ -1,21 +1,20 @@
 Readibility:
 Author: Steven Egnaczyk
-Date: 10/4/2022
-Sprint: 2
-File Name: Keese.cs
+Date: 10/24/2022
+Sprint: 3
+File Name: LinkEnemyCollisionResponse.cs
 File Author: Ethan Halverson
 Time Taken: 4 minutes
-Comments: The code in Ethan's Keese class is very readable. The methods are short and 
-		  have clear names for the functions they implement for the enemy. Comments could
-		  serve to give more description to what physically happens in game when the 
-		  functions are called.
+Comments: The code in Ethan's LinkEnemyCollisionResponse class is very readable. The switch cases are 
+		  clear on the functionality that they implement for Link. The comments clearly state what happens
+		  in the actual game.
 
 
 Code Quality:
 Author: Steven Egnaczyk
-Date: 10/4/2022
-Sprint: 2
-File Name: Keese.cs
+Date: 10/24/2022
+Sprint: 3
+File Name: LinkEnemyCollisionResponse.cs
 File Author: Ethan Halverson
 Time Taken: 7 minutes
 Comments: The qaulity of code in the Keese class is good. The methods are all short and all

@@ -1,8 +1,8 @@
 Readibility:
 Author: Daniel Flippo
 Date: 10/4/2022
-Sprint: 2
-File Name: WhiteBrickState.cs
+Sprint: 3
+File Name: .cs
 File Author: John Hom
 Time Taken: 3 mins
 Comments: Everything in John's WhiteBrickState.cs class is relatively readable.
