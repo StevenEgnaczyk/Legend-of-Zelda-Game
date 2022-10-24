@@ -70,37 +70,40 @@ public class Room
         {
             for (int col = 0; col < itemInformation[row].Count; col++)
             {
-
                 switch (itemInformation[row][col])
                 {
+                    case 0:
+                        tiles.Add(new InvisibleTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        break;
                     case 1:
-                        tiles.Add(new walkTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new walkTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 2:
-                        tiles.Add(new BrickTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new BrickTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 3:
-                        tiles.Add(new BlueSandTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new BlueSandTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 4:
-                        tiles.Add(new WaterTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new WaterTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 5:
-                        tiles.Add(new StatueRightTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new StatueRightTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 6:
-                        tiles.Add(new StatueLeftTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new StatueLeftTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 7:
-                        tiles.Add(new BlackTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new BlackTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 8:
-                        tiles.Add(new StairTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new StairTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 9:
-                        tiles.Add(new PushTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        tiles.Add(new PushTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     default:
+                        tiles.Add(new InvisibleTile(64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
 
                 }
@@ -120,25 +123,25 @@ public class Room
 
                 switch (enemyInformation[row][col])
                 {
-                    case 11:
+                    case 21:
                         enemies.Add(new Keese(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 12:
+                    case 22:
                         enemies.Add(new Stalfos(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 13:
+                    case 23:
                         enemies.Add(new Goriya(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 14:
+                    case 24:
                         enemies.Add(new Wallmaster(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 15:
+                    case 25:
                         enemies.Add(new Aquamentus(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 16:
+                    case 26:
                         enemies.Add(new BladeTrap(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
-                    case 17:
+                    case 27:
                         enemies.Add(new Gel(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     default:
@@ -189,23 +192,6 @@ public class Room
     {
         foreach (ITile t in tiles) {
             t.Draw(spriteBatch);
-        }
-    }
-
-    public void drawBlockLine(SpriteBatch spriteBatch, List<int> list, int rowNum)
-    {
-        Texture2D blockSprites = Texture2DStorage.GetDungeonTileset();
-        Rectangle blockRect;
-        Rectangle destRect;
-
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            blockRect = Texture2DStorage.getBlockRect(list[i]);
-            destRect = new Rectangle(128 + (i * 64), 320 + 128  + (64 * rowNum), 64, 64);
-            spriteBatch.Draw(blockSprites, destRect, blockRect, Color.White);
-
-
         }
     }
 
