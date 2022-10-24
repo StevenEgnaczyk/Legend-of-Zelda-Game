@@ -12,6 +12,7 @@ public class RoomManager
     Room currentRoom;
     SpriteBatch spriteBatch;
 
+    //This class calls a new room and manages the switching between different rooms
     public RoomManager(SpriteBatch sb)
     {
         this.spriteBatch = sb;
@@ -27,6 +28,7 @@ public class RoomManager
 
     internal void nextRoom()
     {
+        //increments room number index, if over max room number set to initial room 
         roomNumber++;
         if (roomNumber == 17)
         {
@@ -37,6 +39,7 @@ public class RoomManager
 
     internal void prevRoom()
     {
+        //decrements room number index, if over min room number set to last room
         roomNumber--;
         if (roomNumber == -1)
         {

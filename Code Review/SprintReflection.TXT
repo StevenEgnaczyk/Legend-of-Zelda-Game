@@ -1,4 +1,4 @@
-For our sprint we split roles based on different functions of the project. Our team was ready to complete 
+For our sprint 3 we split roles based on different functions of the project. Our team was ready to complete 
 the task, however, we lacked much communication and accountability. We ended up not getting all the 
 functionality finished by the deadline. We knew when the deadline was and just asssumed we would be able 
 to get it done, but we didn't hold each accountable to ensure it would be done in time. While some 
