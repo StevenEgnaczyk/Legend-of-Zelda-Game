@@ -18,29 +18,18 @@ public class BladeTrap : IEnemy
 
     private EnemyManager man;
 
-    public BladeTrap(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public BladeTrap(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = startX;
+        this.yPos = startY;
 
         man = manager;
         man.addEnemy(currentEnemy);
 
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy, man);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()

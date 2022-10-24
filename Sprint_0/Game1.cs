@@ -38,17 +38,19 @@ namespace Sprint_0
         {
 
             //lastDrawn = 5;
-            
+
             /* 
              * Make spriteBatch not a property for items, instead pass it through
              * ItemManager (less instances of spritebatch) - EH
              */
-            roomManager = new RoomManager();
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(); 
             link = new Link();
+            roomManager = new RoomManager(_spriteBatch);
 
             keyboardController = new KeyboardController(Content, link);
             mouseController = new MouseController(Content, roomManager);
+
 
             base.Initialize();
 
@@ -57,7 +59,7 @@ namespace Sprint_0
         protected override void LoadContent()
         {
             //Create the spriteBatch
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }
@@ -70,6 +72,7 @@ namespace Sprint_0
             //Process Keyboard Input
             keyboardController.ProcessInput();
             mouseController.ProcessInput();
+            
 
         }
 
@@ -84,7 +87,8 @@ namespace Sprint_0
 
             link.Draw(_spriteBatch);
             link.Update();
-            
+            roomManager.Update(_spriteBatch);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

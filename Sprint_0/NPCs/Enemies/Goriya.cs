@@ -21,31 +21,20 @@ public class Goriya : IEnemy
     private int frame;
     private SpriteBatch _spriteBatch;
 
-    public Goriya(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Goriya(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
-        currentEnemy = enemy;
         this._spriteBatch = sb;
 
-        xPos = 300;
-        yPos = 400;
+        xPos = startX;
+        yPos = startY;
         frame = 0;
         bufferIndex = 0;
         
         man = manager;
         man.addEnemy(this);
 
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy, man);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Gel(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()

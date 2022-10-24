@@ -21,31 +21,20 @@ public class Gel : IEnemy
 
     private EnemyManager man;
 
-    public Gel(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Gel(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
         _spriteBatch = sb;
-        currentEnemy = enemy;
 
-        xPos = 300;
-        yPos = 400;
+        xPos = startX;
+        yPos = startY;
         frame = 0;
         bufferIndex = 0;
 
         man = manager;
         man.addEnemy(this);
 
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy, man);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()

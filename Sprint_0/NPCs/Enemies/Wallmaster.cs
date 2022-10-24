@@ -21,31 +21,20 @@ public class Wallmaster : IEnemy
 
     private EnemyManager man;
 
-    public Wallmaster(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Wallmaster(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         //that state initailization smells funny
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = startX;
+        this.yPos = startY;
         this.frame = 0;
         this.bufferIndex = 0;
 
         man = manager;
         man.addEnemy(this);
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Aquamentus(_spriteBatch, currentEnemy, man);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()

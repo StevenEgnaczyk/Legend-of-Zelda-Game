@@ -21,30 +21,19 @@ public class Stalfos : IEnemy
 
     private EnemyManager man;
 
-    public Stalfos(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Stalfos(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
         this._spriteBatch = sb; 
-        this.currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = startX;
+        this.yPos = startY;
         this.frame = 0;
         this.bufferIndex = 0;
 
         man = manager;
         man.addEnemy(this);
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy, man);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy,man);
     }
 
     public void moveLeft()

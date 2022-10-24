@@ -36,9 +36,6 @@ public class MouseController : IController
     public void ProcessInput()
     {
         MouseState mouseState = Mouse.GetState();
-
-        Debug.WriteLine(mouseState.ToString());
-        Debug.WriteLine(lastMouseState.ToString());
         
         if (mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed)
         {

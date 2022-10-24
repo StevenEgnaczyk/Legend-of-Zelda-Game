@@ -18,8 +18,7 @@ using System.Threading.Tasks;
     private EnemyManager man;
 
     public Enemy(SpriteBatch sb, EnemyManager manager)
-    {
-        currentEnemy = new Keese(sb, this, man);
+    { 
         man = manager;
         man.addEnemy(currentEnemy);
 
@@ -53,21 +52,6 @@ using System.Threading.Tasks;
     public void hurt()
     {
         throw new NotImplementedException();
-    }
-
-    public void Next(SpriteBatch sb)
-    {
-        currentEnemy.Next();
-    }
-
-    public void Next()
-    {
-        currentEnemy.Next();
-    }
-
-    public void Prev()
-    {
-        currentEnemy.Prev();
     }
 
     public void update()

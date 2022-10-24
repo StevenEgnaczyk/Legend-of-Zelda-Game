@@ -19,32 +19,19 @@ public class Keese : IEnemy
 
     private EnemyManager man;
 
-    public Keese(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Keese(SpriteBatch sb, EnemyManager manager, int xPos, int yPos)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
         this._spriteBatch = sb;
-        currentEnemy = enemy;
 
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.frame = 0;
         this.bufferIndex = 0;
 
         man = manager;
         man.addEnemy(this);
-    }
-
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Stalfos(_spriteBatch, currentEnemy, man);
-
-    }
-
-    public void Prev()
-    {
-
-        currentEnemy.currentEnemy = new Goriya(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()

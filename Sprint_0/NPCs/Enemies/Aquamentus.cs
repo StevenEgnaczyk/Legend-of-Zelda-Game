@@ -21,27 +21,19 @@ public class Aquamentus : IEnemy
 
     private EnemyManager man;
 
-    public Aquamentus(SpriteBatch sb, Enemy enemy, EnemyManager manager)
+    public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
-        currentEnemy = enemy;
+
         this._spriteBatch = sb;
         this.bufferIndex = 0;
         this.frame = 0;
-        this.xPos = 300;
-        this.yPos = 400;
+        this.xPos = startX;
+        this.yPos = startY;
 
         man = manager;
         man.addEnemy(currentEnemy);
-    }
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy, man);
-    }
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy, man);
     }
 
     public void moveLeft()
