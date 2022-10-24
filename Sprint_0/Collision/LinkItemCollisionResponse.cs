@@ -3,11 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
-using Sprint_0.Interfaces;
 
 public class LinkItemCollisionResponse
 {
-    public static void collisionResponse(Link link, IItemState item)
+    public static void collisionResponse(Link link, IItem item)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.

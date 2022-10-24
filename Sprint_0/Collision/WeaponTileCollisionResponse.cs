@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
-using Sprint_0.Player;
-using Sprint_0.Interfaces;
+using Sprint_0.LinkPlayer.LinkInventory;
+using Sprint_0;
+
 
 
 public class WeaponTileCollisionResponse
@@ -14,8 +15,8 @@ public class WeaponTileCollisionResponse
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
-        IWeapon weaponObj = weapon.currentWeapon;
-        Rectangle weaponRec = new Rectangle(weaponObj.getXPos(), weaponObj.getYPos(), weaponObj.getWidth(), weaponObj.getHeight());
+        //IWeapon weaponObj = weapon.currentWeapon;
+        Rectangle weaponRec = new Rectangle(weapon.currentWeapon.getXPos(), weapon.currentWeapon.getYPos(), weapon.currentWeapon.getWidth(), weapon.currentWeapon.getHeight());
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 16, 16);
 
 
