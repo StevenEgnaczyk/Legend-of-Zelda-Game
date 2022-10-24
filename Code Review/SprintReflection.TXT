@@ -1,9 +1,8 @@
-For our sprint 3 we split roles based on different functions of the project. Our team was ready to complete 
-the task, however, we lacked much communication and accountability. We ended up not getting all the 
-functionality finished by the deadline. We knew when the deadline was and just asssumed we would be able 
-to get it done, but we didn't hold each accountable to ensure it would be done in time. While some 
-functionality was not finished in time, we were able to finish up some functions and sprites, which is 
-something good for us to build off of and we're definitely happy with those results. For the next sprint 
-it would be important for us to establish small collaborative sessions to discuss problems and ideas, to 
-check progress and see if someone is behind, and to just keep up strong communication with each other 
-for what we want for the sprint.
+For our sprint 3 divided up work based on what we thought we could accomplish.
+We had a plan on what to do and how we wanted to implement certain aspects of the game.
+By the functionality check we didn't have a lot of that functionality, but we were very
+close to having a good chunk of it done. We communicated much better this sprint on what
+we doing and how long something would take to be finished. We were mainly just confused
+on what game aspects we need to have done by the end of the sprint since the sprint page 
+wasn't the most descriptive. However we knew what the sprint generally wanted and are 
+pretty confident in the quality of the work.
