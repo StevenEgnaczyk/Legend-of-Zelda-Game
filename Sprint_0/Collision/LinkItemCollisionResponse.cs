@@ -3,16 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
+using Sprint_0.Interfaces;
 
 public class LinkItemCollisionResponse
 {
-    public static void collisionResponse(Link link, Item item)
+    public static void collisionResponse(Link link, IItemState item)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
+         * TO DO: Figure out items vs weapons and get rectangle for items
          */
-        Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 16, 16);
-        Rectangle itemRec = new Rectangle((int)item.xPos, (int)item.yPos, 16, 16);
+        Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 64, 64);
+        Rectangle itemRec = new Rectangle(100, 100, 16, 16);
 
 
         /* 

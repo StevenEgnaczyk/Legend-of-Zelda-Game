@@ -4,11 +4,12 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using Sprint_0.Player;
 
 
 public class ItemManager
 {
-    public  List<Item> itemList { get; set; }
+    public  List<IItemState> itemList { get; set; }
 
     /* We only want one instance*/
     public static ItemManager instance = new ItemManager();
@@ -23,22 +24,22 @@ public class ItemManager
 
     public ItemManager()
     {
-        itemList = new List<Item>();
+        itemList = new List<IItemState>();
     }
 
-    public void addItem(Item item)
+    public void addItem(IItemState item)
     {
         itemList.Add(item);
     }
 
-    public void removeItem(Item item)
+    public void removeItem(IItemState item)
     {
         itemList.Remove(item);
     }
 
     public void Update()
     {
-        foreach (Item item in itemList)
+        foreach (IItemState item in itemList)
         {
             item.Update();
         }
@@ -46,6 +47,10 @@ public class ItemManager
 
     public void Draw()
     {
+        foreach (IItemState item in itemList)
+        {
+            //item.draw(); TO DO: change item draw to not need spritebatch
+        }
     }
 
 }

@@ -9,7 +9,7 @@ public class Item
     public IItemState state;
     public ItemSprite sprite;
 
-    public float xPos, yPos;
+    public int xPos, yPos;
 
     public SpriteBatch _spriteBatch;
 
@@ -24,7 +24,7 @@ public class Item
         xPos = 850;
         yPos = 225;
 
-        man.addItem(this);
+        man.addItem(state);
     }
 
     public void Next()
@@ -63,7 +63,7 @@ public class Item
 
     public void remove(ItemManager man)
     {
-        man.removeItem(this);
+        man.removeItem(state);
     }
 
     // Draw and other methods omitted

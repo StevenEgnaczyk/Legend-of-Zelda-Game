@@ -18,6 +18,11 @@ namespace Sprint_0.Player
         private Rectangle sourceRect;
         private Vector2 startingRect;
 
+        private int xPos;
+        private int yPos;
+        private int height;
+        private int width;
+
         private int woodenSwordIndex;
         private int maxFrames = 3;
         private int bufferIndex = 0;
@@ -119,6 +124,7 @@ namespace Sprint_0.Player
 
 
             spriteBatch.Draw(woodenSword, destinationRect, sourceRect, Color.White);
+            updatePositionAndDimensions(destinationRect);
 
         }
 
@@ -136,7 +142,37 @@ namespace Sprint_0.Player
                     woodenSwordIndex = 0;
                 }
             }
+        }
 
+        private void updatePositionAndDimensions(Rectangle rec)
+        {
+            xPos = rec.X;
+            yPos = rec.Y;
+            height = rec.Height;
+            width = rec.Width;
+        }
+
+        /* 
+         * Getter methods
+         */
+        public int getXPos()
+        {
+            return xPos;
+        }
+
+        public int getYPos()
+        {
+            return yPos;
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 

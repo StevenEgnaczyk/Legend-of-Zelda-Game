@@ -20,6 +20,8 @@ namespace Sprint_0.Player
         private Boolean goingOut;
 
         private Rectangle sourceRect;
+        private const int height = 16;
+        private const int width = 16;
 
         private int distanceToTravel = 100;
         private int incrementalDistance = 5;
@@ -205,6 +207,29 @@ namespace Sprint_0.Player
                 }
             }
 
+        }
+
+        /*
+         * Getter methods 
+        */
+        public int getXPos()
+        {
+            return (int) current.X;
+        }
+
+        public int getYPos()
+        {
+            return (int) current.Y;
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 

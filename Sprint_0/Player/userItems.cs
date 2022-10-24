@@ -10,7 +10,7 @@ namespace Sprint_0.Player
 {
     public class userItems
     {
-        public IWeapon currentWeapon;
+        public IWeapon currentWeapon { get; set;}
 
         public static Boomerang boomerang;
         public static Bow bow;

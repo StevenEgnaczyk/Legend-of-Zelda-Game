@@ -21,6 +21,9 @@ namespace Sprint_0.Player
 
         private Rectangle sourceRect;
 
+        private int height;
+        private int width;
+
         private int distanceToTravel = 300;
         private int incrementalDistance = 30;
 
@@ -108,6 +111,7 @@ namespace Sprint_0.Player
             bufferFrame = 0;
 
             arrow = Texture2DStorage.GetItemSpritesheet();
+            updateHeightAndWidth(sourceRect);
 
             Debug.WriteLine(linkState.ToString());
         }
@@ -184,6 +188,8 @@ namespace Sprint_0.Player
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 3, sourceRect.Height * 3);
             spriteBatch.Draw(arrow, destinationRect, sourceRect, Color.White);
 
+            updateHeightAndWidth(destinationRect);
+
         }
 
         public void Update()
@@ -226,6 +232,35 @@ namespace Sprint_0.Player
             }
 
 
+        }
+
+        private void updateHeightAndWidth(Rectangle rec)
+        {
+            height = rec.Height;
+            width = rec.Width;
+        }
+
+        /*
+         * Getter methods 
+        */
+        public int getXPos()
+        {
+            return (int) current.X;
+        }
+
+        public int getYPos()
+        {
+            return (int) current.Y;
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 

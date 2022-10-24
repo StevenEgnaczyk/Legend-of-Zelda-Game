@@ -12,7 +12,7 @@ public class EnemyTileCollisionResponse
          * Use sprite destination rectangles as hitboxes. 
          */
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
-        Rectangle tileRec = new Rectangle( (int) tile.getXPos(), (int) tile.getYPos(), 16, 16);
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 16, 16);
 
 
         /* 
