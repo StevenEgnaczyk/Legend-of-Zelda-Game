@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
-using Sprint_0.Player;
+using Sprint_0.LinkPlayer.LinkInventory;
 
 public class EnemyWeaponCollisionResponse
 {
@@ -13,7 +13,7 @@ public class EnemyWeaponCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         int fillerNumThatNeedsToBeReplaced = 0;
-        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, 16, 16);
         Rectangle weaponRec = new Rectangle(fillerNumThatNeedsToBeReplaced, fillerNumThatNeedsToBeReplaced, 16, 16); //need weapon position, width and height methods
 
 
@@ -22,12 +22,14 @@ public class EnemyWeaponCollisionResponse
          * is facing
          */
         string collisionFace = CollisionDetection.collides(enemyRec, weaponRec);
+        int up = enemy.getEnemyUp();
+        int left = enemy.getEnemyLeft();
         switch (collisionFace)
         {
             case "Top":
 
                 enemy.hurt();
-                if (enemy.getEnemyUp() == 1)
+                if (up == 1)
                 {
                     //big pushback for enemy needed
                 }
@@ -39,7 +41,7 @@ public class EnemyWeaponCollisionResponse
             case "Left":
 
                 enemy.hurt();
-                if (enemy.getEnemyLeft() == 1)
+                if (left == 1)
                 {
                 }
 
@@ -49,7 +51,7 @@ public class EnemyWeaponCollisionResponse
             case "Right":
 
                 enemy.hurt();
-                if (enemy.getEnemyLeft() == 2)
+                if (left == 2)
                 {
                 }
 
@@ -58,7 +60,7 @@ public class EnemyWeaponCollisionResponse
             case "Bottom":
 
                 enemy.hurt();
-                if (enemy.getEnemyUp() == 2)
+                if (up == 2)
                 {
                 }
 
