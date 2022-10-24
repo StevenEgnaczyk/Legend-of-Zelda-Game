@@ -4,6 +4,7 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using Sprint_0.LinkPlayer;
 
 
 public class ItemManager
@@ -46,6 +47,10 @@ public class ItemManager
 
     public void Draw()
     {
+        foreach (IItem item in itemList)
+        {
+            //item.draw(); TO DO: change item draw to not need spritebatch
+        }
     }
 
 }

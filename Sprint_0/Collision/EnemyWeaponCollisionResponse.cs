@@ -4,67 +4,28 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using Sprint_0.LinkPlayer.LinkInventory;
+using Sprint_0.LinkPlayer;
+using Sprint_0.Interfaces;
 
 public class EnemyWeaponCollisionResponse
 {
     public static void collisionResponse(IEnemy enemy, userItems weapon)
     {
         /*
-         * See EnemyTileCollisionResponse for explaination and suggestions.
+         * Use sprite destination rectangles as hitboxes. 
          */
-        int fillerNumThatNeedsToBeReplaced = 0;
-        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, 16, 16);
-        Rectangle weaponRec = new Rectangle(fillerNumThatNeedsToBeReplaced, fillerNumThatNeedsToBeReplaced, 16, 16); //need weapon position, width and height methods
+        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+        IWeapon weaponObj = weapon.currentWeapon;
+        Rectangle weaponRec = new Rectangle(weaponObj.getXPos(), weaponObj.getYPos(), weaponObj.getWidth(), weaponObj.getHeight());
 
 
         /* 
-         * Hurts enemy, then kicks back if weapon collides with direction enemy 
-         * is facing
+         * Weapons continue after colliding with an enemy (not the case for a collidable tile
          */
         string collisionFace = CollisionDetection.collides(enemyRec, weaponRec);
-        int up = enemy.getEnemyUp();
-        int left = enemy.getEnemyLeft();
-        switch (collisionFace)
+        if (collisionFace != "No Collision")
         {
-            case "Top":
-
-                enemy.hurt();
-                if (up == 1)
-                {
-                    //big pushback for enemy needed
-                }
-
-                //make weapon disappear?
-
-                break;
-
-            case "Left":
-
-                enemy.hurt();
-                if (left == 1)
-                {
-                }
-
-
-                break;
-
-            case "Right":
-
-                enemy.hurt();
-                if (left == 2)
-                {
-                }
-
-                break;
-
-            case "Bottom":
-
-                enemy.hurt();
-                if (up == 2)
-                {
-                }
-
-                break;
+            enemy.hurt();
         }
     }
 }

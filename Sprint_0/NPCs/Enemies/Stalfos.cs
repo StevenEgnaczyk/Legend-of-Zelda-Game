@@ -31,7 +31,7 @@ public class Stalfos : IEnemy
         xPos = startX;
         yPos = startY;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
         _spriteBatch = sb;
         man = manager;
 

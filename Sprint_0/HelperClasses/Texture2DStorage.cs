@@ -19,8 +19,6 @@ public static class Texture2DStorage
 	private static Texture2D enemySpritesheet;
 	private static Texture2D bossSpritesheet;
 
-	private static Dictionary<string, Texture2D> tiles;
-
 	private static Texture2D dungeonSpritesheet;
 
 

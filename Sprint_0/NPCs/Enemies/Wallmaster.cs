@@ -31,7 +31,7 @@ public class Wallmaster : IEnemy
         xPos = startX;
         yPos = startY;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
         _spriteBatch = sb;
         man = manager;
 

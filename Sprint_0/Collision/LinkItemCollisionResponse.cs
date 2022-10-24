@@ -10,9 +10,10 @@ public class LinkItemCollisionResponse
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
+         * TO DO: Figure out items vs weapons and get rectangle for items
          */
         Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 64, 64);
-        Rectangle itemRec = new Rectangle(item.getX(), item.getY(), item.getWidth(), item.getHeight());
+        Rectangle itemRec = new Rectangle(100, 100, 16, 16);
 
 
         /* 

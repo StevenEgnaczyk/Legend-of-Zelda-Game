@@ -34,10 +34,8 @@ public static class RoomRectStorage
                         return new Rectangle(881, 11, 32, 32);
                     case 3:
                         return new Rectangle(914, 11, 32, 32);
-                        break;
                     case 4:
                         return new Rectangle(947, 11, 32, 32);
-                        break;
                     default:
                         break;
                 };
@@ -47,19 +45,14 @@ public static class RoomRectStorage
                 {
                     case 0:
                         return new Rectangle(815, 44, 32, 32);
-                        break;
                     case 1:
                         return new Rectangle(848, 44, 32, 32);
-                        break;
                     case 2:
                         return new Rectangle(881, 44, 32, 32);
-                        break;
                     case 3:
                         return new Rectangle(914, 44, 32, 32);
-                        break;
                     case 4:
                         return new Rectangle(947, 44, 32, 32);
-                        break;
                     default:
                         break;
                 };
@@ -69,19 +62,14 @@ public static class RoomRectStorage
                 {
                     case 0:
                         return new Rectangle(815, 77, 32, 32);
-                        break;
                     case 1:
                         return new Rectangle(848, 77, 32, 32);
-                        break;
                     case 2:
                         return new Rectangle(881, 77, 32, 32);
-                        break;
                     case 3:
                         return new Rectangle(914, 77, 32, 32);
-                        break;
                     case 4:
                         return new Rectangle(947, 77, 32, 32);
-                        break;
                     default:
                         break;
                 };
@@ -91,19 +79,14 @@ public static class RoomRectStorage
                 {
                     case 0:
                         return new Rectangle(815, 110, 32, 32);
-                        break;
                     case 1:
                         return new Rectangle(848, 110, 32, 32);
-                        break;
                     case 2:
                         return new Rectangle(881, 110, 32, 32);
-                        break;
                     case 3:
                         return new Rectangle(914, 110, 32, 32);
-                        break;
                     case 4:
                         return new Rectangle(947, 110, 32, 32);
-                        break;
                     default:
                         break;
                 };
