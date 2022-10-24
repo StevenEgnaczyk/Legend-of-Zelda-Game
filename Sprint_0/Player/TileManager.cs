@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class TileManager
 {
-    public  List<Tile> tileList { get; set; }
+    public  List<ITile> tileList { get; set; }
     private static SpriteBatch sb;
 
     /* We only want one instance*/
@@ -25,16 +25,16 @@ public class TileManager
 
     public TileManager(SpriteBatch spriteBatch)
     {
-        tileList = new List<Tile>();
+        tileList = new List<ITile>();
         sb = spriteBatch;
     }
 
-    public void addTile(Tile tile)
+    public void addTile(ITile tile)
     {
         tileList.Add(tile);
     }
 
-    public void removeTile(Tile tile)
+    public void removeTile(ITile tile)
     {
         tileList.Remove(tile);
     }

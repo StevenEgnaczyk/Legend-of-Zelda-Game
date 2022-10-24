@@ -4,10 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 
-public interface ITileState
+public interface ITile
 {
-    public void Next();
-    public void Prev();
-    public void Update();
+    public int getXPos();
+    public int getYPos();
     public void Draw(SpriteBatch _spriteBatch);
 }

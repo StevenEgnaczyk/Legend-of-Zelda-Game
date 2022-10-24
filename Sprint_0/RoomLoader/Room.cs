@@ -9,16 +9,105 @@ public class Room
 {
     private int currentRoomIndex;
     List<List<List<int>>> roomInformation;
+
     private EnemyManager enemyManager;
     private List<IEnemy> enemies;
 
-    public Room(int roomIndex, SpriteBatch spriteBatch)
+    private TileManager tileManager;
+    private List<ITile> tiles;
+
+    private ItemManager itemManager;
+    private List<Item> items;
+
+    private Link link;
+
+    CollisionManager collisionManager;
+
+    public Room(int roomIndex, SpriteBatch spriteBatch, Link link)
     {
         this.currentRoomIndex = roomIndex;
+        this.link = link;
+
+        collisionManager = new CollisionManager();
+
         roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
+
         enemyManager = new EnemyManager(spriteBatch);
         enemies = populateEnemies(roomInformation[2], spriteBatch);
 
+        tileManager = new TileManager(spriteBatch);
+        tiles = populateTiles(roomInformation[1]);
+
+        itemManager = new ItemManager();
+        items = populateItems(roomInformation[2]);
+
+
+    }
+
+    private List<Item> populateItems(List<List<int>> itemInformation)
+    {
+
+        List<Item> items = new List<Item>();
+        for (int row = 0; row < itemInformation.Count; row++)
+        {
+            for (int col = 0; col < itemInformation[row].Count; col++)
+            {
+
+                switch (itemInformation[row][col])
+                {
+
+                }
+            }
+        }
+
+        return items;
+    }
+
+    private List<ITile> populateTiles(List<List<int>> itemInformation)
+    {
+        List<ITile> tiles = new List<ITile>();
+        for (int row = 0; row < itemInformation.Count; row++)
+        {
+            for (int col = 0; col < itemInformation[row].Count; col++)
+            {
+
+                switch (itemInformation[row][col])
+                {
+                    case 1:
+                        tiles.Add(new walkTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 2:
+                        tiles.Add(new BrickTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 3:
+                        tiles.Add(new BlueSandTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 4:
+                        tiles.Add(new WaterTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 5:
+                        tiles.Add(new StatueRightTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 6:
+                        tiles.Add(new StatueLeftTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 7:
+                        tiles.Add(new BlackTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 8:
+                        tiles.Add(new StairTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    case 9:
+                        tiles.Add(new PushTile(128 + (col * 64), 320 + 128 + (64 * row)));
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        }
+
+        return tiles;
     }
 
     private List<IEnemy> populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
@@ -32,25 +121,25 @@ public class Room
                 switch (enemyInformation[row][col])
                 {
                     case 11:
-                        enemies.Add(new Keese(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Keese(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 12:
-                        enemies.Add(new Stalfos(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Stalfos(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 13:
-                        enemies.Add(new Goriya(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Goriya(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 14:
-                        enemies.Add(new Wallmaster(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Wallmaster(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 15:
-                        enemies.Add(new Aquamentus(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Aquamentus(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 16:
-                        enemies.Add(new BladeTrap(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new BladeTrap(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     case 17:
-                        enemies.Add(new Gel(spriteBatch, enemyManager, 128 + (row * 64), (320 + 128 + (64 * col))));
+                        enemies.Add(new Gel(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
                         break;
                     default:
 
@@ -67,7 +156,7 @@ public class Room
     internal void draw(SpriteBatch spriteBatch)
     {
 
-        drawBlocks(spriteBatch, roomInformation[1]);
+        drawBlocks(spriteBatch, tiles);
         drawBackground(spriteBatch, roomInformation[0]);
 
     }
@@ -96,22 +185,10 @@ public class Room
 
     }
 
-    public void drawEnemies(SpriteBatch spriteBatch, List<List<int>> enemyInformation)
+    public void drawBlocks(SpriteBatch spriteBatch, List<ITile> tiles)
     {
-        for (int row = 0; row < enemyInformation.Count; row++)
-        {
-            for (int col = 0; col < enemyInformation[row].Count; col++)
-            {
-                
-            }
-        }
-    }
-
-    public void drawBlocks(SpriteBatch spriteBatch, List<List<int>> roomInformation)
-    {
-        for (int i = 0; i < roomInformation.Count; i++)
-        {
-            drawBlockLine(spriteBatch, roomInformation[i], i);
+        foreach (ITile t in tiles) {
+            t.Draw(spriteBatch);
         }
     }
 
@@ -139,5 +216,7 @@ public class Room
             enemy.draw(spriteBatch);
             enemy.update();
         }
+
+        collisionManager.manageCollisions(link, enemies, tiles, items);
     }
 }

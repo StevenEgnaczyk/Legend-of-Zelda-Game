@@ -24,7 +24,7 @@ public class CollisionResponse
     }
 
 
-    public static void collisionResponse(Link link, Tile tile)
+    public static void collisionResponse(Link link, ITile tile)
     {
         LinkTileCollisionResponse.collisionResponse(link, tile);
     }
@@ -39,7 +39,7 @@ public class CollisionResponse
         //implement
     }
 
-    public static void collisionResponse(IEnemy enemy, Tile tile)
+    public static void collisionResponse(IEnemy enemy, ITile tile)
     {
         EnemyTileCollisionResponse.collisionResponse(enemy, tile);
     }

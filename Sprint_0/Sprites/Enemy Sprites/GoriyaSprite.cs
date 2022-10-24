@@ -133,6 +133,6 @@ public class GoriyaSprite : IEnemySprite
         }
 
 
-        destinationRectantgle = new Rectangle(xPos, yPos, 32, 32);
+        destinationRectantgle = new Rectangle(xPos, yPos, 64, 64);
     }
 }

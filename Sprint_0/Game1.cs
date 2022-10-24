@@ -21,8 +21,6 @@ namespace Sprint_0
         private IController keyboardController;
         private IController mouseController;
 
-        //private int track;
-
         public Game1()
         {
 
@@ -46,7 +44,7 @@ namespace Sprint_0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(); 
             link = new Link();
-            roomManager = new RoomManager(_spriteBatch);
+            roomManager = new RoomManager(_spriteBatch, link);
 
             keyboardController = new KeyboardController(Content, link);
             mouseController = new MouseController(Content, roomManager);
@@ -80,7 +78,6 @@ namespace Sprint_0
         {
 
             GraphicsDevice.Clear(Color.Black);
-
 
             _spriteBatch.Begin();
             roomManager.drawRoom(_spriteBatch);

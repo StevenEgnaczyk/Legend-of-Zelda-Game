@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 public class RoomManager
 {
-
+    private Link link;
     private int roomNumber;
     Room currentRoom;
     SpriteBatch spriteBatch;
 
-    public RoomManager(SpriteBatch sb)
+    public RoomManager(SpriteBatch sb, Link link)
     {
         this.spriteBatch = sb;
         roomNumber = 2;
-        currentRoom = new Room(roomNumber, spriteBatch);
+        this.link = link;
+        currentRoom = new Room(roomNumber, spriteBatch, this.link);
+        
     }
 
     public void drawRoom(SpriteBatch spriteBatch)
@@ -32,7 +34,7 @@ public class RoomManager
         {
             roomNumber = 0;
         }
-        currentRoom = new Room(roomNumber, spriteBatch);
+        currentRoom = new Room(roomNumber, spriteBatch, this.link);
     }
 
     internal void prevRoom()
@@ -42,7 +44,7 @@ public class RoomManager
         {
             roomNumber = 16;
         }
-        currentRoom = new Room(roomNumber, spriteBatch);
+        currentRoom = new Room(roomNumber, spriteBatch, this.link);
 
     }
 

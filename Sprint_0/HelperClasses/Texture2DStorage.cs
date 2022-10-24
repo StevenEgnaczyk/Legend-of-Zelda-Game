@@ -8,8 +8,11 @@ using System.Collections.Generic;
 
 public static class Texture2DStorage
 {
-	// Note that we are not using Game1's ContentLoader here (outside the scope of class methods) since it has not been instantiated yet
-	private static Texture2D linkSpriteSheet;
+    public static int BLOCK_WIDTH = 64;
+    public static int BLOCK_HEIGHT = 64;
+
+    // Note that we are not using Game1's ContentLoader here (outside the scope of class methods) since it has not been instantiated yet
+    private static Texture2D linkSpriteSheet;
 	private static Texture2D NPCSpriteSheet;
 	private static Texture2D itemSpriteSheet;
 

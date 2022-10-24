@@ -38,6 +38,6 @@ public class WallmasterSprite : IEnemySprite
 
     public void update(int xPos, int yPos)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
+        this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
     }
 }

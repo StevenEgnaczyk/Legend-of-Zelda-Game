@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 public class EnemyTileCollisionResponse
 {
-    public static void collisionResponse(IEnemy enemy, Tile tile)
+    public static void collisionResponse(IEnemy enemy, ITile tile)
     {
         /*
          * Uses sprite rectangles as hitboxes. Might want to add a method to
@@ -16,7 +16,7 @@ public class EnemyTileCollisionResponse
          * making rectangles
          */
         Rectangle enemyRec = new Rectangle( (int) enemy.xPos, (int) enemy.yPos, 16, 16);
-        Rectangle tileRec = new Rectangle( (int) tile.xPos, (int) tile.yPos, 16, 16);
+        Rectangle tileRec = new Rectangle( (int) tile.getXPos(), (int) tile.getYPos(), 16, 16);
 
 
         /* 

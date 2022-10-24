@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework.Content;
 
 public class LinkTileCollisionResponse
 {
-    public static void collisionResponse(Link link, Tile tile)
+    public static void collisionResponse(Link link, ITile tile)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 16, 16);
-        Rectangle tileRec = new Rectangle((int)tile.xPos, (int)tile.yPos, 16, 16);
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 16, 16);
 
 
         /*

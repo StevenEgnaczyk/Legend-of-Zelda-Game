@@ -3,7 +3,7 @@ using System;
 
 public class ResetCommand : ICommand
 {
-    public Tile tilePlayer;
+    public ITile tilePlayer;
     public Item itemPlayer;
     public Link linkPlayer;
     //add npc

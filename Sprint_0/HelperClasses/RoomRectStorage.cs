@@ -28,13 +28,10 @@ public static class RoomRectStorage
                 {
                     case 0:
                         return new Rectangle(815, 11, 32, 32);
-                        break;
                     case 1:
                         return new Rectangle(848, 11, 32, 32);
-                        break;
                     case 2:
                         return new Rectangle(881, 11, 32, 32);
-                        break;
                     case 3:
                         return new Rectangle(914, 11, 32, 32);
                         break;

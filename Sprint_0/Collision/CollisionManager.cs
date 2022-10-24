@@ -30,14 +30,14 @@ public class CollisionManager
 
 
     /* Not very efficient, may want to refactor in the future*/
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<Tile> tiles, List<Item> items)
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<Item> items)
     {
         //Collisions for link vs enemies, enemies vs block
         foreach (IEnemy enemy in enemies) {
 
             CollisionResponse.collisionResponse(link, enemy);
 
-            foreach (Tile tile in tiles)
+            foreach (ITile tile in tiles)
             {
                 CollisionResponse.collisionResponse(enemy, tile);
             }
@@ -45,7 +45,7 @@ public class CollisionManager
         }
 
         //Collisions for link vs blocks
-        foreach (Tile tile in tiles)
+        foreach (ITile tile in tiles)
         {
             CollisionResponse.collisionResponse(link, tile);
 
