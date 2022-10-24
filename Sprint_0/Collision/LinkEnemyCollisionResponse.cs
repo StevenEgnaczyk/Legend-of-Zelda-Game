@@ -11,8 +11,8 @@ public class LinkEnemyCollisionResponse
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
-        Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 16, 16);
-        Rectangle enemyRec = new Rectangle((int) enemy.xPos, (int) enemy.yPos, 16, 16);
+        Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 64, 64);
+        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
 
 
         /*
@@ -29,7 +29,7 @@ public class LinkEnemyCollisionResponse
 
                 //push both objects away so they don't occupy the same space
                 link.yPos -= link.linkSpeed;
-                enemy.yPos += 3;
+                enemy.yPos += enemy.getSpeed();
                 
                 //Make link look hurt
                 link.Die();
@@ -37,14 +37,15 @@ public class LinkEnemyCollisionResponse
                 //I'm pretty sure link changes directions when hurt
                 link.TurnDown();
                
-                //something for pushback?
+                //TO DO: add pushback on link (in link damaged state I think)
+
 
                 break;
 
             case "Left":
 
                 link.xPos += link.linkSpeed;
-                enemy.xPos -= 3;
+                enemy.xPos -= enemy.getSpeed();
 
                 link.Die();
                 
@@ -55,7 +56,7 @@ public class LinkEnemyCollisionResponse
             case "Right":
 
                 link.xPos -= link.linkSpeed;
-                enemy.xPos += 3;
+                enemy.xPos += enemy.getSpeed();
 
                 link.Die();
                 
@@ -66,7 +67,7 @@ public class LinkEnemyCollisionResponse
             case "Bottom":
 
                 link.yPos += link.linkSpeed;
-                enemy.yPos -= 3;
+                enemy.yPos -= enemy.getSpeed();
 
                 link.Die();
                 

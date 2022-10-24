@@ -13,7 +13,7 @@ public class EnemyWeaponCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         int fillerNumThatNeedsToBeReplaced = 0;
-        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, 16, 16);
+        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
         Rectangle weaponRec = new Rectangle(fillerNumThatNeedsToBeReplaced, fillerNumThatNeedsToBeReplaced, 16, 16); //need weapon position, width and height methods
 
 
@@ -22,14 +22,12 @@ public class EnemyWeaponCollisionResponse
          * is facing
          */
         string collisionFace = CollisionDetection.collides(enemyRec, weaponRec);
-        int up = enemy.getEnemyUp();
-        int left = enemy.getEnemyLeft();
         switch (collisionFace)
         {
             case "Top":
 
                 enemy.hurt();
-                if (up == 1)
+                if (enemy.getEnemyUp() == 1)
                 {
                     //big pushback for enemy needed
                 }
@@ -41,7 +39,7 @@ public class EnemyWeaponCollisionResponse
             case "Left":
 
                 enemy.hurt();
-                if (left == 1)
+                if (enemy.getEnemyLeft() == 1)
                 {
                 }
 
@@ -51,7 +49,7 @@ public class EnemyWeaponCollisionResponse
             case "Right":
 
                 enemy.hurt();
-                if (left == 2)
+                if (enemy.getEnemyLeft() == 2)
                 {
                 }
 
@@ -60,7 +58,7 @@ public class EnemyWeaponCollisionResponse
             case "Bottom":
 
                 enemy.hurt();
-                if (up == 2)
+                if (enemy.getEnemyUp() == 2)
                 {
                 }
 

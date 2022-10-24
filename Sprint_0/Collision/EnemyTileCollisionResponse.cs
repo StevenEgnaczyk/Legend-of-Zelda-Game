@@ -9,13 +9,9 @@ public class EnemyTileCollisionResponse
     public static void collisionResponse(IEnemy enemy, ITile tile)
     {
         /*
-         * Uses sprite rectangles as hitboxes. Might want to add a method to
-         * grab rectangles from enemy, Link, tile, items, weapons classes. Also 
-         * should add get/set enemySpeed property (like linkSpeed) to enemy classes. 
-         * Also, add heights and widths properties for weapons that get updated for
-         * making rectangles
+         * Use sprite destination rectangles as hitboxes. 
          */
-        Rectangle enemyRec = new Rectangle( (int) enemy.xPos, (int) enemy.yPos, 16, 16);
+        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
         Rectangle tileRec = new Rectangle( (int) tile.getXPos(), (int) tile.getYPos(), 16, 16);
 
 
@@ -29,7 +25,7 @@ public class EnemyTileCollisionResponse
             case "Top":
                
                 //Stopping the enemy from colliding with the tile
-                enemy.yPos += 3;
+                enemy.yPos += enemy.getSpeed();
                
                 //Makes the enemy not run into the tile again
                 enemy.moveDown();
@@ -38,7 +34,7 @@ public class EnemyTileCollisionResponse
 
             case "Left":
 
-                enemy.xPos += 3;
+                enemy.xPos += enemy.getSpeed(); ;
                 
                 enemy.moveRight();
 
@@ -46,7 +42,7 @@ public class EnemyTileCollisionResponse
 
             case "Right":
 
-                enemy.xPos -= 3;
+                enemy.xPos -= enemy.getSpeed(); ;
                 
                 enemy.moveRight();
 
@@ -54,7 +50,7 @@ public class EnemyTileCollisionResponse
 
             case "Bottom":
 
-                enemy.yPos -= 3;
+                enemy.yPos -= enemy.getSpeed(); ;
                
                 enemy.moveUp();
 

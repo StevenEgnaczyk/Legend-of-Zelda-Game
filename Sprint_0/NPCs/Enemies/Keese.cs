@@ -6,34 +6,44 @@ using System.Reflection.Metadata;
 
 public class Keese : IEnemy
 {
+   /* Properties that change, the heart of the enemy*/
     public EnemyState state {  get;  set; }
-    private IEnemySprite sprite;
-    private Enemy currentEnemy;
-
     public int xPos { get; set; }
     public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
-    private SpriteBatch _spriteBatch;
 
-    private EnemyManager man;
-
-    public Keese(SpriteBatch sb, EnemyManager manager, int xPos, int yPos)
+    public Keese(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
-        this._spriteBatch = sb;
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        xPos = startX;
+        yPos = startY;
 
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.frame = 0;
-        this.bufferIndex = 0;
-
+        sprite = EnemySpriteAndStateFactory.instance.CreateKeeseSprite();
+        _spriteBatch = sb;
         man = manager;
+
+        //Enemy adds itself to the list of enemies
         man.addEnemy(this);
+        
+        frame = 0;
+        bufferIndex = 0;
     }
 
+    /*
+     * Core methods to change Keese's state and draws/updates
+     */
     public void moveLeft()
     {
         state.moveLeft(this);
@@ -57,7 +67,7 @@ public class Keese : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        this.die();
     }
 
     public void die()
@@ -123,6 +133,9 @@ public class Keese : IEnemy
         throw new NotImplementedException();
     }
 
+    /*
+     * Getter methods
+     */
     public int getEnemyUp()
     {
         return state.up;
@@ -131,5 +144,20 @@ public class Keese : IEnemy
     public int getEnemyLeft()
     {
         return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }
