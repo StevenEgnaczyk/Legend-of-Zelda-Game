@@ -13,7 +13,7 @@ public class RoomManager
     SpriteBatch spriteBatch;
 
     //This class calls a new room and manages the switching between different rooms
-    public RoomManager(SpriteBatch sb)
+    public RoomManager(SpriteBatch sb, Link link)
     {
         this.spriteBatch = sb;
         roomNumber = 2;
