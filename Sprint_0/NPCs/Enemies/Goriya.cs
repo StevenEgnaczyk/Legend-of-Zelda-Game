@@ -7,36 +7,44 @@ using System.Reflection.Metadata;
 
 public class Goriya : IEnemy
 {
+    /* Properties that change, the heart of the enemy*/
     public EnemyState state {  get;  set; }
-    private IEnemySprite sprite;
-    private Enemy currentEnemy;
-
     public int xPos { get; set; }
     public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+
+    /* Buffer properties*/
+    private int frame;
     private int bufferIndex;
     private int bufferMax = 20;
 
-    private EnemyManager man;
-
-    private int frame;
-    private SpriteBatch _spriteBatch;
-
     public Goriya(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
-        this._spriteBatch = sb;
-
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         xPos = startX;
         yPos = startY;
-        frame = 0;
-        bufferIndex = 0;
-        
-        man = manager;
-        man.addEnemy(this);
 
+        sprite = EnemySpriteAndStateFactory.instance.CreateGoriyaSprite();
+        _spriteBatch = sb;
+        man = manager;
+
+        //Enemy adds itself to the list of enemies
+        man.addEnemy(this);
+        
+        bufferIndex = 0;
+        frame = 0;
     }
 
+     /*
+     * Core methods to change Goriya's state and draws/updates
+     */
     public void moveLeft()
     {
         state.moveLeft(this);
@@ -59,7 +67,7 @@ public class Goriya : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        //TO DO: hurts animation and pushback
     }
 
     public void die()
@@ -96,6 +104,10 @@ public class Goriya : IEnemy
     {
         sprite.draw(frame, sb);
     }
+
+    /*
+     * Getter methods
+     */
     public int getEnemyUp()
     {
         return state.up;
@@ -104,5 +116,20 @@ public class Goriya : IEnemy
     public int getEnemyLeft()
     {
         return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }

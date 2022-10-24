@@ -7,36 +7,45 @@ using System.Reflection.Metadata;
 
 public class Gel : IEnemy
 {
+    /* Properties that change, the heart of the enemy*/
     public EnemyState state {  get;  set; }
-    private IEnemySprite sprite;
-
     public int xPos { get; set; }
     public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
-
     private int frame;
-    private SpriteBatch _spriteBatch;
-    private Enemy currentEnemy;
-
-    private EnemyManager man;
 
     public Gel(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         sprite = EnemySpriteAndStateFactory.instance.CreateGelSprite();
-        _spriteBatch = sb;
-
         xPos = startX;
         yPos = startY;
+
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        _spriteBatch = sb;
+        man = manager;
+
+        //Enemy adds itself to the list of enemies
+        man.addEnemy(this);
+        
         frame = 0;
         bufferIndex = 0;
-
-        man = manager;
-        man.addEnemy(this);
-
     }
 
+
+    /*
+     * Core methods to change Gel's state and draws/updates
+     */
     public void moveLeft()
     {
         state.moveLeft(this);
@@ -59,7 +68,7 @@ public class Gel : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        this.die();
     }
 
     public void die()
@@ -98,6 +107,9 @@ public class Gel : IEnemy
         sprite.draw(this.frame, sb);
     }
 
+    /*
+     * Getter methods
+     */
     public int getEnemyUp()
     {
         return state.up;
@@ -106,5 +118,20 @@ public class Gel : IEnemy
     public int getEnemyLeft()
     {
         return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }

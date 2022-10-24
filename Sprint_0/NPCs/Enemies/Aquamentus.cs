@@ -7,35 +7,44 @@ using System.Reflection.Metadata;
 
 public class Aquamentus : IEnemy
 {
-    private Enemy currentEnemy;
+    /* Properties that change, the heart of the enemy*/
     public EnemyState state {  get;  set; }
-    private IEnemySprite sprite;
-
-
     public int xPos { get; set; }
     public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+    
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
-    private SpriteBatch _spriteBatch;
-
-    private EnemyManager man;
 
     public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        xPos = startX;
+        yPos = startY;
 
-        this._spriteBatch = sb;
-        this.bufferIndex = 0;
-        this.frame = 0;
-        this.xPos = startX;
-        this.yPos = startY;
-
+        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        _spriteBatch = sb;
         man = manager;
-        man.addEnemy(currentEnemy);
+
+        //Enemy adds itself to the list of enemies
+        man.addEnemy(this);
+
+        bufferIndex = 0;
+        frame = 0;
     }
 
+    /*
+     * Core methods to change Aquamentus's state and draw/update
+     */
     public void moveLeft()
     {
         state.moveLeft(this);
@@ -63,12 +72,12 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        //TO DO: hurt animation
     }
 
     public void die()
     {
-        //die animation
+        //TO DO: death animation
         man.removeEnemy(this);
     }
 
@@ -113,6 +122,10 @@ public class Aquamentus : IEnemy
         sprite.draw(this.frame, sb);
     }
 
+
+    /* 
+     * Getter methods 
+     */
     public int getEnemyUp()
     {
         return state.up;
@@ -121,5 +134,20 @@ public class Aquamentus : IEnemy
     public int getEnemyLeft()
     {
         return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }
