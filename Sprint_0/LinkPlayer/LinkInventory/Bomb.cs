@@ -15,11 +15,10 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private Link link;
         private Texture2D bomb;
 
-        private Rectangle sourceRect;
         private Vector2 startingRect;
 
         private int bombSpriteIndex = 0;
-        private int maxFrames = 5;
+        private int maxFrames = 4;
         private int bufferIndex = 0;
         private int bufferMax = 50;
 
@@ -122,7 +121,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 bufferIndex = 0;
                 bombSpriteIndex++;
-                if (bombSpriteIndex == 4)
+                if (bombSpriteIndex == maxFrames)
                 {
                     link.inventory.stopUsingWeapon();
                     bombSpriteIndex = 0;

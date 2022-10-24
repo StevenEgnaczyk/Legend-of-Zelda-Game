@@ -124,25 +124,25 @@ public class Room
                 switch (enemyInformation[row][col])
                 {
                     case 21:
-                        enemies.Add(new Keese(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Keese(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 22:
-                        enemies.Add(new Stalfos(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 23:
-                        enemies.Add(new Goriya(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 24:
-                        enemies.Add(new Wallmaster(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 25:
-                        enemies.Add(new Aquamentus(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 26:
-                        enemies.Add(new BladeTrap(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 27:
-                        enemies.Add(new Gel(spriteBatch, enemyManager, 128 + (col * 64), 320 + 128 + (64 * row)));
+                        enemies.Add(new Gel(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     default:
 
