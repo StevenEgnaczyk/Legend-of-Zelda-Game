@@ -86,10 +86,6 @@ public class BuildCommands
         RegisterCommand(Keys.D5, useBombCommand);
 
         RegisterCommand(Keys.E, dieCommand);
-        RegisterCommand(Keys.I, cycleItemNextCommand);
-        RegisterCommand(Keys.U, cycleItemPrevCommand);
-        RegisterCommand(Keys.T, _dynamicTilesCommand);
-        RegisterCommand(Keys.Y, _dynamicTilesCommandPrev);
     }
 
     public void RegisterCommand(Keys key, ICommand command)

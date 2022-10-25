@@ -1,6 +1,6 @@
 Readibility:
 Author: Steven Egnaczyk
-Date: 10/24/2022
+Date: 10/22/2022
 Sprint: 3
 File Name: LinkEnemyCollisionResponse.cs
 File Author: Ethan Halverson
@@ -12,7 +12,7 @@ Comments: The code in Ethan's LinkEnemyCollisionResponse class is very readable.
 
 Code Quality:
 Author: Steven Egnaczyk
-Date: 10/24/2022
+Date: 10/22/2022
 Sprint: 3
 File Name: LinkEnemyCollisionResponse.cs
 File Author: Ethan Halverson
