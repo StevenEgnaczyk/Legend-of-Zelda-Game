@@ -67,7 +67,7 @@ public class Goriya : IEnemy
 
     public void hurt()
     {
-        //TO DO: hurts animation and pushback
+        this.die();
     }
 
     public void die()

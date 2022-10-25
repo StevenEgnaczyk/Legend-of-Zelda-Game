@@ -26,6 +26,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public userItems(Link link)
         {
             this.link = link;
+            currentWeapon = null;
         }
 
         public void UseBoomerang()

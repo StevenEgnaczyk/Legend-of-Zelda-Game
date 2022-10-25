@@ -4,7 +4,7 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 
 public  class EnemyManager
 {
@@ -51,6 +51,7 @@ public  class EnemyManager
     {
         foreach (IEnemy enemy in enemiesList)
         {
+            enemy.update();
             enemy.draw(sb);
         }
     }

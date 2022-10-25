@@ -81,6 +81,5 @@ public class DamagedLinkState : ILinkState
 
     public void DrawAttacker(SpriteBatch spriteBatch)
     {
-        throw new NotImplementedException();
     }
 }

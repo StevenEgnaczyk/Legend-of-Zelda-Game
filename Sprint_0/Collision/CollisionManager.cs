@@ -1,3 +1,5 @@
+using Sprint_0.Interfaces;
+using Sprint_0.LinkPlayer.LinkInventory;
 using System.Collections.Generic;
 
 
@@ -24,11 +26,11 @@ public class CollisionManager
 
 
     /* Not very efficient, may want to refactor in the future*/
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items)
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, userItems userInv)
     {
         //Collisions for link vs enemies, enemies vs block
-        foreach (IEnemy enemy in enemies) {
-
+        foreach (IEnemy enemy in enemies.ToArray()) {
+            
             CollisionResponse.collisionResponse(link, enemy);
 
             foreach (ITile tile in tiles)
@@ -36,12 +38,24 @@ public class CollisionManager
                 CollisionResponse.collisionResponse(enemy, tile);
             }
 
+            if (userInv.currentWeapon != null)
+            {
+                CollisionResponse.collisionResponse(enemy, userInv);
+            }
+
+
+
         }
 
         //Collisions for link vs blocks
         foreach (ITile tile in tiles)
         {
             CollisionResponse.collisionResponse(link, tile);
+
+            if (userInv.currentWeapon != null)
+            {
+                CollisionResponse.collisionResponse(userInv, tile);
+            }
 
         }
 
