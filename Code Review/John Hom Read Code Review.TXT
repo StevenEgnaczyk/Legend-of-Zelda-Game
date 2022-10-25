@@ -1,14 +1,11 @@
 Author: Jonathan Hom
 Date: 10/24/22
 Sprint No. 3
-File Name: .cs
+File Name: KeyBoardController.cs
 File Author: RJ Zanotti
 
-Read Review: Code is concise with descriptive names. 
-
-    Methods are pretty straight forward, however draw and drawsprite are too similar 
-        and should be changed to more descriptive names.
-    
-    Variables have straight forward names.
+Read Review: Code is concise and straightforward. Pretty easy to read
+             and understand. Comments state what the code does. Some
+             very readable code.
 
 Time: 2 minutes

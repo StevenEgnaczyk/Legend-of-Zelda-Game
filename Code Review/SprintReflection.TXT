@@ -3,6 +3,6 @@ We had a plan on what to do and how we wanted to implement certain aspects of th
 By the functionality check we didn't have a lot of that functionality, but we were very
 close to having a good chunk of it done. We communicated much better this sprint on what
 we doing and how long something would take to be finished. We were mainly just confused
-on what game aspects we need to have done by the end of the sprint since the sprint page 
-wasn't the most descriptive. However we knew what the sprint generally wanted and are 
-pretty confident in the quality of the work.
+on what game aspects we need to have done and implemented by the end of the sprint since 
+the sprint page wasn't the most descriptive. However we believe we got most of what this
+sprint wanted to accomplish.
