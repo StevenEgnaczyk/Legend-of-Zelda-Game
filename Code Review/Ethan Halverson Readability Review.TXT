@@ -2,7 +2,7 @@ Author: Ethan Halverson
 Class reviewd: Room.cs
 Author of class: Steven Egnaczyk
 Sprint number: 3
-Date: 10/24/2022
+Date: 10/22/2022
 Time to complete: 10 minutes
 
 Comments: Very clean code, almost all fields and methods are intuitive. The 
