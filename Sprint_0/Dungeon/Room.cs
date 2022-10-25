@@ -124,25 +124,25 @@ public class Room
                 switch (enemyInformation[row][col])
                 {
                     case 21:
-                        enemies.Add(new Keese(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Keese(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 22:
-                        enemies.Add(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 23:
-                        enemies.Add(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 24:
-                        enemies.Add(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 25:
-                        enemies.Add(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 26:
-                        enemies.Add(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     case 27:
-                        enemies.Add(new Gel(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Gel(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
                         break;
                     default:
 
@@ -161,6 +161,7 @@ public class Room
 
         drawBlocks(spriteBatch, tiles);
         drawBackground(spriteBatch, roomInformation[0]);
+        enemyManager.Draw();
 
     }
 
@@ -197,12 +198,6 @@ public class Room
 
     public void Update(SpriteBatch spriteBatch)
     {
-        foreach (IEnemy enemy in enemies)
-        {
-            enemy.draw(spriteBatch);
-            enemy.update();
-        }
-
-        collisionManager.manageCollisions(link, enemies, tiles, items);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory);
     }
 }

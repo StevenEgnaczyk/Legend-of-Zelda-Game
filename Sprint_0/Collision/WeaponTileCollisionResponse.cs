@@ -17,16 +17,19 @@ public class WeaponTileCollisionResponse
          */
         //IWeapon weaponObj = weapon.currentWeapon;
         Rectangle weaponRec = new Rectangle(weapon.currentWeapon.getXPos(), weapon.currentWeapon.getYPos(), weapon.currentWeapon.getWidth(), weapon.currentWeapon.getHeight());
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 16, 16);
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 32, 32);
 
 
         /* 
          * Weapons continue after colliding with an enemy (not the case for a collidable tile
          */
-        string collisionFace = CollisionDetection.collides(weaponRec, tileRec);
-        if (collisionFace != "No Collision")
+        if (!tile.Walkable())
         {
-            //TO DO: Make weapon do contact animation
+            string collisionFace = CollisionDetection.collides(weaponRec, tileRec);
+            if (collisionFace != "No Collision")
+            {
+                weapon.stopUsingWeapon();
+            }
         }
     }
 }

@@ -14,8 +14,8 @@ public class Wallmaster : IEnemy
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
-    private const int height = 64;
-    private const int width = 64;
+    private const int height = 48;
+    private const int width = 48;
     private const int enemySpeed = 3;
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
@@ -68,6 +68,7 @@ public class Wallmaster : IEnemy
     public void hurt()
     {
         //TO DO: hurt animation (2 health)
+        this.die();
     }
 
     public void die()

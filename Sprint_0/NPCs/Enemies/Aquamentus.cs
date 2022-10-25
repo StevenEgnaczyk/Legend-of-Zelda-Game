@@ -72,7 +72,7 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        //TO DO: hurt animation
+        man.removeEnemy(this);
     }
 
     public void die()
