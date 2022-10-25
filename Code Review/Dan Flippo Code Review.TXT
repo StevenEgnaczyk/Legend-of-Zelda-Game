@@ -18,5 +18,8 @@ File Author: John Hom
 Time Taken: 4 mins
 Comments: On the aspect of code quality, John's code is well organized, with
 		  the use of methods to draw and get tile data. 
-Change: 
+Change: Not a lot one could really change here, pushable has not been used yet
+		so that could probably be something to look at and check for, but not
+		super integral currently, and especially when it's a block that isn't 
+		pushable anyway.
 		

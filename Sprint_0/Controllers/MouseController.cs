@@ -35,10 +35,12 @@ public class MouseController : IController
 
     public void ProcessInput()
     {
+        //get mouse state
         MouseState mouseState = Mouse.GetState();
-        
+        //checks for press on mouse state
         if (mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed)
         {
+            //get mouse pos to make sure user clicks on map
             Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
 
             if ((mousePos.X < 982 && mousePos.X > 950) && (mousePos.Y > 350 && mousePos.Y < 414))
@@ -46,6 +48,7 @@ public class MouseController : IController
                 nextMapCommand.Execute();
             }
         }
+        //sets last state to current to stop fast map switching
         lastMouseState = mouseState;
 
     }
