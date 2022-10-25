@@ -10,7 +10,7 @@ using Sprint_0;
 
 public class WeaponTileCollisionResponse
 {
-    public static void collisionResponse(userItems weapon, ITile tile)
+    public static void collisionResponse(userWeapons weapon, ITile tile)
     {
         /*
          * Use sprite destination rectangles as hitboxes. 

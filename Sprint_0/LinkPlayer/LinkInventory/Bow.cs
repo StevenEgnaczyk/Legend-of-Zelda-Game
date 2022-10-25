@@ -199,7 +199,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
             {
-                link.inventory.stopUsingWeapon();
+                link.inventory.weapons.stopUsingWeapon();
             }
 
             bufferFrame++;

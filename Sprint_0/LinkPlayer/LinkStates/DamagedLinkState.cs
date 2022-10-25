@@ -79,7 +79,7 @@ public class DamagedLinkState : ILinkState
     {
     }
 
-    public void DrawAttacker(SpriteBatch spriteBatch)
+    public void DrawAttackingLink(SpriteBatch spriteBatch)
     {
     }
 }

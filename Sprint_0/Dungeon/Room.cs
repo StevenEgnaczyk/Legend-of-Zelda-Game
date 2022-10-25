@@ -7,6 +7,8 @@ using System.Diagnostics;
 
 public class Room
 {
+
+    private static int HUD_SIZE = 224;
     private int currentRoomIndex;
     List<List<List<int>>> roomInformation;
 
@@ -16,7 +18,7 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private ItemManager itemManager;
+    private userInventory itemManager;
     private List<IItem> items;
 
     private Link link;
@@ -38,7 +40,7 @@ public class Room
         tileManager = new TileManager(spriteBatch);
         tiles = populateTiles(roomInformation[1]);
 
-        itemManager = new ItemManager();
+        itemManager = new userInventory();
         items = populateItems(roomInformation[2]);
 
 
@@ -73,37 +75,37 @@ public class Room
                 switch (itemInformation[row][col])
                 {
                     case 0:
-                        tiles.Add(new InvisibleTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 1:
-                        tiles.Add(new walkTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new walkTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 2:
-                        tiles.Add(new BrickTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new BrickTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 3:
-                        tiles.Add(new BlueSandTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new BlueSandTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 4:
-                        tiles.Add(new WaterTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new WaterTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 5:
-                        tiles.Add(new StatueRightTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new StatueRightTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 6:
-                        tiles.Add(new StatueLeftTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new StatueLeftTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 7:
-                        tiles.Add(new BlackTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new BlackTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 8:
-                        tiles.Add(new StairTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new StairTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 9:
-                        tiles.Add(new PushTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     default:
-                        tiles.Add(new InvisibleTile(64 + (col * 64), 320 + 64 + (64 * row)));
+                        tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
 
                 }
@@ -124,25 +126,25 @@ public class Room
                 switch (enemyInformation[row][col])
                 {
                     case 21:
-                        enemyManager.addEnemy(new Keese(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Keese(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 22:
-                        enemyManager.addEnemy(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 23:
-                        enemyManager.addEnemy(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 24:
-                        enemyManager.addEnemy(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 25:
-                        enemyManager.addEnemy(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 26:
-                        enemyManager.addEnemy(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 27:
-                        enemyManager.addEnemy(new Gel(spriteBatch, enemyManager, 64 + (col * 64), 320 + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Gel(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     default:
 
@@ -170,7 +172,7 @@ public class Room
         drawDoors(spriteBatch, backgroundInformation[0]);
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle bgRect = RoomRectStorage.getBasicRoom(0);
-        Rectangle destRect = new Rectangle(0, 320, bgRect.Width * 4, bgRect.Height * 4);
+        Rectangle destRect = new Rectangle(0, HUD_SIZE, bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
 
     }
@@ -198,6 +200,6 @@ public class Room
 
     public void Update(SpriteBatch spriteBatch)
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weapons);
     }
 }

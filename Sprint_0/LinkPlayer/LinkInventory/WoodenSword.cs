@@ -138,7 +138,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 woodenSwordIndex++;
                 if (woodenSwordIndex == maxFrames)
                 {
-                    link.inventory.stopUsingWeapon();
+                    link.inventory.weapons.stopUsingWeapon();
                     woodenSwordIndex = 0;
                 }
             }

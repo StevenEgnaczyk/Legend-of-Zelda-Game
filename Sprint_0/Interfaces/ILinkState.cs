@@ -17,5 +17,5 @@ public interface ILinkState
     public void UseWoodenSword();
 
     public void UseSwordBeam();
-    void DrawAttacker(SpriteBatch spriteBatch);
+    void DrawAttackingLink(SpriteBatch spriteBatch);
 }

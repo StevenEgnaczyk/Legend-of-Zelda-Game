@@ -5,16 +5,21 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Sprint_0.LinkPlayer;
+using Sprint_0.LinkPlayer.LinkInventory;
 
-
-public class ItemManager
+public class userInventory
 {
+    public userWeapons weapons;
+    private int numBombs;
+    private int numRupees;
+    private int numKeys;
+
     public  List<IItem> itemList { get; set; }
 
     /* We only want one instance*/
-    public static ItemManager instance = new ItemManager();
+    public static userInventory instance = new userInventory();
 
-    public static ItemManager Instance
+    public static userInventory Instance
     {
         get
         {
@@ -22,7 +27,7 @@ public class ItemManager
         }
     }
 
-    public ItemManager()
+    public userInventory()
     {
         itemList = new List<IItem>();
     }

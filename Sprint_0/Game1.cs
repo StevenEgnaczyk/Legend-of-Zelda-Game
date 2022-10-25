@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint_0.HUD;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -17,6 +18,7 @@ namespace Sprint_0
         private IItem map;
         private RoomManager roomManager;
         private CollisionManager collisionManager;
+        private HUDManager HUD;
 
         //Keyboard variables
         private IController keyboardController;
@@ -28,7 +30,7 @@ namespace Sprint_0
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 1024;
+            _graphics.PreferredBackBufferHeight = 928;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -45,6 +47,7 @@ namespace Sprint_0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(); 
             link = new Link();
+            HUD = new HUDManager(link, link.inventory);
             map = new Map(950, 350);
             roomManager = new RoomManager(_spriteBatch, link);
 
@@ -89,6 +92,7 @@ namespace Sprint_0
 
             link.Draw(_spriteBatch);
             map.Draw(_spriteBatch);
+            HUD.Draw(_spriteBatch);
             roomManager.Update(_spriteBatch);
 
             _spriteBatch.End();

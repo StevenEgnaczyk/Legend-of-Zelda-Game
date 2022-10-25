@@ -15,11 +15,10 @@ public static class Texture2DStorage
     private static Texture2D linkSpriteSheet;
 	private static Texture2D NPCSpriteSheet;
 	private static Texture2D itemSpriteSheet;
-
 	private static Texture2D enemySpritesheet;
 	private static Texture2D bossSpritesheet;
-
 	private static Texture2D dungeonSpritesheet;
+    private static Texture2D hudSpriteSheet;
 
 
     // More private static Texture2D fields follow
@@ -33,6 +32,8 @@ public static class Texture2DStorage
 		enemySpritesheet = content.Load<Texture2D>("enemiesSpriteSheet");
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 		dungeonSpritesheet = content.Load<Texture2D>("dungeonTileset");
+        hudSpriteSheet = content.Load<Texture2D>("HUDSpritesheet");
+
 
         /*
 		 * item1Sprite = content.Load<Texture2D>("item1");
@@ -70,7 +71,6 @@ public static class Texture2DStorage
 	{
 		return bossSpritesheet;
 	}
-    // More public static Texture2D returning methods follow
 
 	public static Texture2D GetItemSpritesheet()
 	{
@@ -84,38 +84,23 @@ public static class Texture2DStorage
 
     internal static Rectangle getBlockRect(int blockID)
     {
-        switch(blockID)
-		{
-			case 1:
-				return new Rectangle(1, 192, 16, 16);
-				break;
-            case 2:
-                return new Rectangle(81, 355, 16, 16);
-                break;
-            case 3:
-                return new Rectangle(244, 272, 16, 16);
-                break;
-            case 4:
-                return new Rectangle(244, 438, 16, 16);
-                break;
-            case 5:
-                return new Rectangle(260, 272, 16, 16);
-                break;
-            case 6:
-                return new Rectangle(308, 240, 16, 16);
-                break;
-            case 7:
-                return new Rectangle(81, 898, 16, 16);
-                break;
-            case 8:
-                return new Rectangle(97, 470, 16, 16);
-                break;
-            case 9:
-                return new Rectangle(81, 355, 16, 16);
-                break;
-            default:
-				return new Rectangle(0,0, 16, 16);
-				break;
-		}
+        return blockID switch
+        {
+            1 => new Rectangle(1, 192, 16, 16),
+            2 => new Rectangle(81, 355, 16, 16),
+            3 => new Rectangle(244, 272, 16, 16),
+            4 => new Rectangle(244, 438, 16, 16),
+            5 => new Rectangle(260, 272, 16, 16),
+            6 => new Rectangle(308, 240, 16, 16),
+            7 => new Rectangle(81, 898, 16, 16),
+            8 => new Rectangle(97, 470, 16, 16),
+            9 => new Rectangle(81, 355, 16, 16),
+            _ => new Rectangle(0, 0, 16, 16),
+        };
+    }
+
+    internal static Texture2D GetHUDSpriteSheet()
+    {
+        return hudSpriteSheet;
     }
 }

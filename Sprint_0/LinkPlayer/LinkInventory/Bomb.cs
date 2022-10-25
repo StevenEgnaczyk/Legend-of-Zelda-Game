@@ -72,7 +72,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         }
         private Vector2 getStartingRect()
         {
-            Vector2 startingRect = new Vector2();
+            Vector2 startingRect = new();
 
             if (linkState.Equals(startingState.Down))
             {
@@ -130,7 +130,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 bombSpriteIndex++;
                 if (bombSpriteIndex == maxFrames)
                 {
-                    link.inventory.stopUsingWeapon();
+                    link.inventory.weapons.stopUsingWeapon();
                     bombSpriteIndex = 0;
                 }
             }

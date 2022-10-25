@@ -82,7 +82,7 @@ public class DownAttackingLinkState : ILinkState
 
     }
 
-    public void DrawAttacker(SpriteBatch spriteBatch)
+    public void DrawAttackingLink(SpriteBatch spriteBatch)
     {
 
     }

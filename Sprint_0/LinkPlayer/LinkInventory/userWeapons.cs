@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class userItems
+    public class userWeapons
     {
         public IWeapon currentWeapon { get; set;}
 
@@ -20,10 +20,9 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public static MagicSword magicSword;
 
         private bool hasWeapon = false;
+        private Link link;
 
-        public Link link;
-
-        public userItems(Link link)
+        public userWeapons(Link link)
         {
             this.link = link;
             currentWeapon = null;
@@ -105,7 +104,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (hasWeapon)
             {
-                link.state.DrawAttacker(spriteBatch);
+                link.state.DrawAttackingLink(spriteBatch);
                 currentWeapon.Draw(spriteBatch);
             }
         }

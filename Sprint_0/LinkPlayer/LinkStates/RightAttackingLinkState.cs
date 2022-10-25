@@ -100,7 +100,7 @@ public class RightAttackingLinkState : ILinkState
         throw new NotImplementedException();
     }
 
-    public void DrawAttacker(SpriteBatch spriteBatch)
+    public void DrawAttackingLink(SpriteBatch spriteBatch)
     {
         throw new NotImplementedException();
     }

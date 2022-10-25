@@ -88,7 +88,7 @@ public class UpMovingLinkState : ILinkState
         throw new NotImplementedException();
     }
 
-    public void DrawAttacker(SpriteBatch spriteBatch)
+    public void DrawAttackingLink(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = LinkRectStorage.getUpAttackingLink(currentIndex);

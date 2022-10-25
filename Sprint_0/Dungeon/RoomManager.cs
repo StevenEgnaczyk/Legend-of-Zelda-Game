@@ -18,6 +18,7 @@ public class RoomManager
         this.spriteBatch = sb;
         roomNumber = 0;
         this.link = link;
+        this.link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
         
     }

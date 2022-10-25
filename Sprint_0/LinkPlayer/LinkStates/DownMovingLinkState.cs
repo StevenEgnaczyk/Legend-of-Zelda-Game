@@ -88,7 +88,7 @@ public class DownMovingLinkState : ILinkState
     {
     }
 
-    public void DrawAttacker(SpriteBatch spriteBatch)
+    public void DrawAttackingLink(SpriteBatch spriteBatch)
     {
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = LinkRectStorage.getDownAttackingLink(currentIndex);

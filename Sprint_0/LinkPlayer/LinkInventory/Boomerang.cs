@@ -34,7 +34,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private int boomerangSpriteIndex;
 
-        private static List<Rectangle> boomerangSprite = new List<Rectangle>()
+        private static List<Rectangle> boomerangSprite = new()
         {
             new Rectangle(129, 3, 5, 8),
             new Rectangle(120, 30, 8, 5),
@@ -117,7 +117,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
             else if (!goingOut && Math.Abs(start.X - current.X) < 1 && Math.Abs(start.Y - current.Y) < 1)
             {
-                link.inventory.stopUsingWeapon();
+                link.inventory.weapons.stopUsingWeapon();
             }
 
             bufferFrame++;

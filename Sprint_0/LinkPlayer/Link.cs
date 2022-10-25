@@ -9,17 +9,19 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
+    public userInventory inventory;
+    public int currentRoom;
 
     public float xPos, yPos;
-    public SpriteBatch _spriteBatch;
     public int linkSpeed = 3;
-    public userItems inventory;
+    
 
     public Link()
     {
 
         state = new DownMovingLinkState(this);
-        inventory = new userItems(this);
+        inventory = new userInventory();
+        inventory.weapons = new userWeapons(this);
 
         xPos = 500;
         yPos = 500;
@@ -48,7 +50,7 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.Update();
+        inventory.weapons.Update();
     }
 
     public void Die()
@@ -59,7 +61,7 @@ public class Link
     public void reset()
     {
         state = new DownMovingLinkState(this);
-        inventory = new userItems(this);
+        inventory.weapons = new userWeapons(this);
 
         xPos = 500;
         yPos = 500;
@@ -67,9 +69,9 @@ public class Link
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        if (inventory.currentWeapon != null)
+        if (inventory.weapons.currentWeapon != null)
         {
-            inventory.Draw(_spriteBatch);
+            inventory.weapons.Draw(_spriteBatch);
         }
         else
         {
@@ -92,31 +94,31 @@ public class Link
 
     internal void UseWoodenSword()
     {
-        inventory.UseWoodenSword();
+        inventory.weapons.UseWoodenSword();
     }
 
     internal void UseSwordBeam()
     {
-        inventory.UseSwordBeam();
+        inventory.weapons.UseSwordBeam();
     }
 
     internal void UseBoomerang()
     {
-        inventory.UseBoomerang();
+        inventory.weapons.UseBoomerang();
     }
 
     internal void UseBow(String arrowType)
     {
-        inventory.UseBow(arrowType);
+        inventory.weapons.UseBow(arrowType);
     }
 
     internal void UseFire()
     {
-        inventory.UseFire();
+        inventory.weapons.UseFire();
     }
 
     internal void UseBomb()
     {
-        inventory.UseBomb();
+        inventory.weapons.UseBomb();
     }
 }
