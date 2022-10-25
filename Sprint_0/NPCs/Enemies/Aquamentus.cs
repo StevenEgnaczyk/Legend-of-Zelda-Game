@@ -7,53 +7,63 @@ using System.Reflection.Metadata;
 
 public class Aquamentus : IEnemy
 {
-    private Enemy currentEnemy;
-    private EnemyState state;
+    /* Properties that change, the heart of the enemy*/
+    public EnemyState state {  get;  set; }
+    public int xPos { get; set; }
+    public int yPos { get; set; }
+
+    /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
-
-
-    private int xPos;
-    private int yPos;
+    private const int height = 64;
+    private const int width = 64;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+    
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
-    private SpriteBatch _spriteBatch;
 
-    public Aquamentus(SpriteBatch sb, Enemy enemy)
+    public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
-        currentEnemy = enemy;
-        this._spriteBatch = sb;
-        this.bufferIndex = 0;
-        this.frame = 0;
-        this.xPos = 300;
-        this.yPos = 400;
-    }
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new BladeTrap(_spriteBatch, currentEnemy);
-    }
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy);
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        xPos = startX;
+        yPos = startY;
+
+        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
+        _spriteBatch = sb;
+        man = manager;
+
+        //Enemy adds itself to the list of enemies
+        man.addEnemy(this);
+
+        bufferIndex = 0;
+        frame = 0;
     }
 
+    /*
+     * Core methods to change Aquamentus's state and draw/update
+     */
     public void moveLeft()
     {
-        state.moveLeft();
+        state.moveLeft(this);
     }
 
     public void moveRight()
     {
-        state.moveRight();
+        state.moveRight(this);
     }
 
-    /* 
-     * Aquamentus cannot move vertically,
-     * hence  moveUp() and moveDown() are
-     * not existant.
-     */
+    public void moveUp()
+    {
+        //do nothing, it cannot  move up 
+    }
+
+    public void moveDown()
+    {
+        //do nothing, it cannot move down
+    }
 
     public void shootProjectile()
     {
@@ -62,17 +72,19 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        //nothing to do here yet
+        man.removeEnemy(this);
     }
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: death animation
+        man.removeEnemy(this);
     }
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
+
+
         if (this.frame == 0)
         {
             this.bufferIndex++;
@@ -84,10 +96,22 @@ public class Aquamentus : IEnemy
 
         if (this.bufferIndex == this.bufferMax)
         {
+            state.moveLeft(this);
             this.bufferIndex = 0;
             this.frame++;
             if (this.frame == 4)
             {
+                Random r = new Random();
+                int nextValue = r.Next(0, 2);
+
+                if (nextValue == 1)
+                {
+                    sprite.update(this.xPos += 3, this.yPos);
+                }
+                else
+                {
+                    sprite.update(this.xPos -= 3, this.yPos);
+                }
                 this.frame = 0;
             }
         }
@@ -96,5 +120,34 @@ public class Aquamentus : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+
+    /* 
+     * Getter methods 
+     */
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }

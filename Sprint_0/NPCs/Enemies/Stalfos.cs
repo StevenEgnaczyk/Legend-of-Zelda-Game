@@ -7,74 +7,97 @@ using System.Reflection.Metadata;
 
 public class Stalfos : IEnemy
 {
-    private EnemyState state;
-    private IEnemySprite sprite;
-    private Enemy currentEnemy;
+    /* Properties that change, the heart of the enemy*/
+    public EnemyState state {  get;  set; }
+    public int xPos { get; set; }
+    public int yPos { get; set; }
 
-    private int xPos;
-    private int yPos;
+    /* Properties that reference or get referenced frequently*/
+    private IEnemySprite sprite;
+    private const int height = 48;
+    private const int width = 48;
+    private const int enemySpeed = 1;
+    private SpriteBatch _spriteBatch;
+    private EnemyManager man;
+
+    /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
-
     private int frame;
-    private SpriteBatch _spriteBatch;
 
-    public Stalfos(SpriteBatch sb, Enemy enemy)
+    public Stalfos(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
-        this.state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        this.sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
-        this._spriteBatch = sb; 
-        this.currentEnemy = enemy;
+        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        xPos = startX;
+        yPos = startY;
 
-        this.xPos = 300;
-        this.yPos = 400;
-        this.frame = 0;
-        this.bufferIndex = 0;
+        sprite = EnemySpriteAndStateFactory.instance.CreateStalfosSprite();
+        _spriteBatch = sb;
+        man = manager;
+
+        //Enemy adds itself to the list of enemies
+        man.addEnemy(this);
+        
+        frame = 0;
+        bufferIndex = 0;
     }
 
-    public void Next()
-    {
-        currentEnemy.currentEnemy = new Wallmaster(_spriteBatch, currentEnemy);
-    }
-
-    public void Prev()
-    {
-        currentEnemy.currentEnemy = new Keese(_spriteBatch, currentEnemy);
-    }
-
+    /*
+     * Core methods to change Stalfos's state and draws/updates
+     */
     public void moveLeft()
     {
-        state.moveLeft();
+        state.moveLeft(this);
     }
 
     public void moveRight()
     {
-        state.moveRight();
+        state.moveRight(this);
     }
 
     public void moveUp()
     {
-        state.moveUp();
+        state.moveUp(this);
     }
 
     public void moveDown()
     {
-        state.moveDown();
+        state.moveDown(this);
     }
 
     public void hurt()
     {
-        //nothing to do here yet
+       this.die();
     }
 
     public void die()
     {
-        //nothing to do here yet
+        //TO DO: Death animation
+        man.removeEnemy(this);
     }
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
+        Random r = new Random();
+        int nextValue = r.Next(0, 4);
+
+        switch (nextValue)
+        {
+            case 0:
+                sprite.update(this.xPos += 2, this.yPos);
+                break;
+            case 1:
+                sprite.update(this.xPos -= 2, this.yPos);
+                break;
+            case 2:
+                sprite.update(this.xPos, this.yPos += 2);
+                break;
+            case 3:
+                sprite.update(this.xPos, this.yPos -= 2);
+                break;
+
+        }
+
         if (this.frame == 0)
         {
             this.bufferIndex++;
@@ -86,6 +109,7 @@ public class Stalfos : IEnemy
 
         if (this.bufferIndex == this.bufferMax)
         {
+            state.moveLeft(this);
             this.bufferIndex = 0;
             this.frame++;
             if (this.frame == 2)
@@ -98,5 +122,33 @@ public class Stalfos : IEnemy
     public void draw(SpriteBatch sb)
     {
         sprite.draw(this.frame, sb);
+    }
+
+    /*
+     * Getter methods
+     */
+    public int getEnemyUp()
+    {
+        return state.up;
+    }
+
+    public int getEnemyLeft()
+    {
+        return state.left;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getSpeed()
+    {
+        return enemySpeed;
     }
 }

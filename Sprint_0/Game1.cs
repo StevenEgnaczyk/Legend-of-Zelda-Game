@@ -14,21 +14,21 @@ namespace Sprint_0
         public SpriteBatch _spriteBatch;
 
         private Link link;
-        private OldMan oldMan1;
-        private Item item;
-        private Tile tile;
-        private IEnemy enemy;
+        private IItem map;
+        private RoomManager roomManager;
+        private CollisionManager collisionManager;
 
         //Keyboard variables
-        private KeyboardController _keyboardController;
-
-        //private int track;
+        private IController keyboardController;
+        private IController mouseController;
 
         public Game1()
         {
 
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 1024;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -37,16 +37,20 @@ namespace Sprint_0
         {
 
             //lastDrawn = 5;
-            
-            link = new Link();
-            oldMan1 = new OldMan();
-            item = new Item();
-            tile = new Tile();
-            enemy = new Enemy(_spriteBatch);
 
-            
-            _keyboardController = new KeyboardController(Content, link, item, tile, enemy);
-            //_mouseController = new MouseController(Content);
+            /* 
+             * Make spriteBatch not a property for items, instead pass it through
+             * ItemManager (less instances of spritebatch) - EH
+             */
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            collisionManager = new CollisionManager(); 
+            link = new Link();
+            map = new Map(950, 350);
+            roomManager = new RoomManager(_spriteBatch, link);
+
+            keyboardController = new KeyboardController(Content, link);
+            mouseController = new MouseController(Content, roomManager);
+
 
             base.Initialize();
 
@@ -55,7 +59,7 @@ namespace Sprint_0
         protected override void LoadContent()
         {
             //Create the spriteBatch
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }
@@ -66,23 +70,27 @@ namespace Sprint_0
             link.Update();
 
             //Process Keyboard Input
-            _keyboardController.ProcessInput();
+            keyboardController.ProcessInput();
+            mouseController.ProcessInput();
+
+            link.Update();
+            map.Update();
+
 
         }
 
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.DarkGray);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
+            roomManager.drawRoom(_spriteBatch);
+
             link.Draw(_spriteBatch);
-            link.Update();
-            oldMan1.Draw(_spriteBatch);
-            item.Draw(_spriteBatch);
-            tile.Draw(_spriteBatch);
-            enemy.draw(_spriteBatch);
-            
+            map.Draw(_spriteBatch);
+            roomManager.Update(_spriteBatch);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

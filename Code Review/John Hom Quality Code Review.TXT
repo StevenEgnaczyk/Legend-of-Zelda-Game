@@ -1,12 +1,14 @@
 Author: Jonathan Hom
-Date: 10/4/22
-Sprint No. 2
-File Name: OldMan.cs
+Date: 10/22/22
+Sprint No. 3
+File Name: KeyBoardController.cs
 File Author: RJ Zanotti
 
-Quality Review: Code initially seems fine. 
-     The code works as intended.
-    Some variables are not needed and are unused, but i guess he could use them later.
-    Two different draw methods, but most files currently have two different draw methods.
+Quality Review: Code quality is pretty good. The code works as intended. Gets pressed
+                keys, checks if it's in controller mappings and then checks if it's 
+                in state and executes. Seems pretty good to me. I'm not super sure 
+                if you absolutely need to check state if you're alreadt checking 
+                controller mappings, but it's important to be cautious I guess.
 
-Time: 2 minutes
+
+Time: 4 minutes

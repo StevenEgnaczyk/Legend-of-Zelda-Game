@@ -1,0 +1,13 @@
+Author: Ethan Halverson
+Class reviewd: Room.cs
+Author of class: Steven Egnaczyk
+Sprint number: 3
+Date: 10/22/2022
+Time to complete: 10 minutes
+
+Comments: In general the code is very exceptional and I like how the room 
+          is setup with the populating and drawing. The only compaint I have is 
+          with the drawing. The doors and background have their own methods, but
+          they could just be put into one, and the doors are a part of the 
+          background environment. However, it's not some big problem, and overall
+          the code quality is good.

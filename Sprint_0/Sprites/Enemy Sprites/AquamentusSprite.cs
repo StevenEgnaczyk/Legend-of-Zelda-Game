@@ -20,7 +20,7 @@ public class AquamentusSprite : IEnemySprite
     {
         this.AquamentusTexture = spritesheet;
 
-        this.destinationRectangle = new Rectangle(0, 0, 48, 64);
+        this.destinationRectangle = new Rectangle(300, 400, 48, 64);
 
         this.frame0Rectangle = new Rectangle(1, 11, 24, 32);
         this.frame1Rectangle = new Rectangle(26, 11, 24, 32);
