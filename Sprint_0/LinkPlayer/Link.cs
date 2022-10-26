@@ -14,6 +14,7 @@ public class Link
 
     public float xPos, yPos;
     public int linkSpeed = 3;
+    private float linkHealth = 3.0f;
     
 
     public Link()
@@ -22,7 +23,6 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new userInventory(this);
         inventory.weaponManager = new userWeapons(this);
-        inventory.weaponManager.primaryWeapon = new WoodenSword(this);
 
         xPos = 500;
         yPos = 500;
@@ -95,11 +95,11 @@ public class Link
 
     internal void UseSecondaryWeapon()
     {
-        inventory.weaponManager.UsePrimaryWeapon();
+        inventory.weaponManager.UseSecondaryWeapon();
     }
 
     internal void UsePrimaryWeapon()
     {
-        inventory.weaponManager.UseSecondaryWeapon();
+        inventory.weaponManager.UsePrimaryWeapon();
     }
 }

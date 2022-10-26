@@ -104,6 +104,12 @@ public class Room
                     case 9:
                         tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
+                    case 10:
+                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 11:
+                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
                     default:
                         tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;

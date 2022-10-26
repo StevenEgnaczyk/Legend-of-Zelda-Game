@@ -28,6 +28,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public userWeapons(Link link)
         {
             this.link = link;
+            woodenSword = new WoodenSword(link);
+            primaryWeapon = woodenSword;
         }
 
         public void UseBoomerang()

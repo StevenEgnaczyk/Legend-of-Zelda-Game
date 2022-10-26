@@ -33,7 +33,7 @@ public class RoomManager
     {
         //increments room number index, if over max room number set to initial room 
         roomNumber++;
-        if (roomNumber == 17)
+        if (roomNumber == 18)
         {
             roomNumber = 0;
         }
@@ -47,7 +47,7 @@ public class RoomManager
         roomNumber--;
         if (roomNumber == -1)
         {
-            roomNumber = 16;
+            roomNumber = 17;
         }
         link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
