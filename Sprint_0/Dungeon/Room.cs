@@ -40,7 +40,7 @@ public class Room
         tileManager = new TileManager(spriteBatch);
         tiles = populateTiles(roomInformation[1]);
 
-        itemManager = new userInventory();
+        itemManager = new userInventory(link);
         items = populateItems(roomInformation[2]);
 
 
@@ -200,6 +200,6 @@ public class Room
 
     public void Update(SpriteBatch spriteBatch)
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weapons);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weaponManager);
     }
 }

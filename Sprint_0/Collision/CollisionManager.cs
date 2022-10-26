@@ -38,7 +38,7 @@ public class CollisionManager
                 CollisionResponse.collisionResponse(enemy, tile);
             }
 
-            if (userInv.currentWeapon != null)
+            if (userInv.primaryWeapon != null)
             {
                 CollisionResponse.collisionResponse(enemy, userInv);
             }
@@ -52,7 +52,7 @@ public class CollisionManager
         {
             CollisionResponse.collisionResponse(link, tile);
 
-            if (userInv.currentWeapon != null)
+            if (userInv.primaryWeapon != null)
             {
                 CollisionResponse.collisionResponse(userInv, tile);
             }

@@ -122,7 +122,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                     break;
             }
 
-
+            woodenSword = Texture2DStorage.GetLinkSpriteSheet();
             spriteBatch.Draw(woodenSword, destinationRect, sourceRect, Color.White);
             updatePositionAndDimensions(destinationRect);
 
@@ -138,7 +138,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 woodenSwordIndex++;
                 if (woodenSwordIndex == maxFrames)
                 {
-                    link.inventory.weapons.stopUsingWeapon();
+                    link.inventory.weaponManager.stopUsingWeapon();
                     woodenSwordIndex = 0;
                 }
             }

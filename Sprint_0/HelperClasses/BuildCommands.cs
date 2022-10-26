@@ -18,13 +18,8 @@ public class BuildCommands
     public ICommand turnPlayerUpCommand;
     public ICommand turnPlayerDownCommand;
 
-    public ICommand useWoodenSwordCommand;
-    public ICommand useSwordBeamCommand;
-    public ICommand useBoomerangCommand;
-    public ICommand useRedBowCommand;
-    public ICommand useBlueBowCommand;
-    public ICommand useFireCommand;
-    public ICommand useBombCommand;
+    public ICommand usePrimaryWeaponCommand;
+    public ICommand useSecondaryWeaponCommand;
 
     public ICommand dieCommand;
 
@@ -50,13 +45,8 @@ public class BuildCommands
         turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
         turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
 
-        useWoodenSwordCommand = new UseWoodenSwordCommand(linkPlayer);
-        useSwordBeamCommand = new UseSwordBeamCommand(linkPlayer);
-        useBoomerangCommand = new UseBoomerangCommand(linkPlayer);
-        useRedBowCommand = new UseBowCommand(linkPlayer, "Red");
-        useBlueBowCommand = new UseBowCommand(linkPlayer, "Blue");
-        useFireCommand = new UseFireCommand(linkPlayer);
-        useBombCommand = new UseBombCommand(linkPlayer);
+        usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
+        useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
 
         dieCommand = new DieCommand(linkPlayer);
 
@@ -69,23 +59,9 @@ public class BuildCommands
         RegisterCommand(Keys.Right, turnPlayerRightCommand);
         RegisterCommand(Keys.Up, turnPlayerUpCommand);
         RegisterCommand(Keys.Down, turnPlayerDownCommand);
-        RegisterCommand(Keys.W, turnPlayerUpCommand);
-        RegisterCommand(Keys.A, turnPlayerLeftCommand);
-        RegisterCommand(Keys.S, turnPlayerDownCommand);
-        RegisterCommand(Keys.D, turnPlayerRightCommand);
 
-        RegisterCommand(Keys.P, cycleEnemyPreviousCommand);
-        RegisterCommand(Keys.O, cycleEnemyNextCommand);
-
-        RegisterCommand(Keys.Z, useWoodenSwordCommand);
-        RegisterCommand(Keys.N, useSwordBeamCommand);
-        RegisterCommand(Keys.D1, useBoomerangCommand);
-        RegisterCommand(Keys.D2, useRedBowCommand);
-        RegisterCommand(Keys.D3, useBlueBowCommand);
-        RegisterCommand(Keys.D4, useFireCommand);
-        RegisterCommand(Keys.D5, useBombCommand);
-
-        RegisterCommand(Keys.E, dieCommand);
+        RegisterCommand(Keys.A, usePrimaryWeaponCommand);
+        RegisterCommand(Keys.B, useSecondaryWeaponCommand);
     }
 
     public void RegisterCommand(Keys key, ICommand command)

@@ -4,17 +4,17 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
-public class UseFireCommand : ICommand
+public class UsePrimaryWeaponCommand : ICommand
 {
 	public Link linkPlayer;
 
-	public UseFireCommand(Link link)
+	public UsePrimaryWeaponCommand(Link link)
 	{
 		linkPlayer = link;
 	}
 
 	public void Execute()
 	{
-		linkPlayer.UseFire();
+		linkPlayer.UsePrimaryWeapon();
     }
 }

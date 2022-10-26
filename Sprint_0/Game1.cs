@@ -30,7 +30,7 @@ namespace Sprint_0
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 928;
+            _graphics.PreferredBackBufferHeight = 1024;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }

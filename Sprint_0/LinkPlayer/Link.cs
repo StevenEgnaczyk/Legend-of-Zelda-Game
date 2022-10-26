@@ -20,8 +20,9 @@ public class Link
     {
 
         state = new DownMovingLinkState(this);
-        inventory = new userInventory();
-        inventory.weapons = new userWeapons(this);
+        inventory = new userInventory(this);
+        inventory.weaponManager = new userWeapons(this);
+        inventory.weaponManager.primaryWeapon = new WoodenSword(this);
 
         xPos = 500;
         yPos = 500;
@@ -50,7 +51,7 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.weapons.Update();
+        inventory.weaponManager.Update();
     }
 
     public void Die()
@@ -61,7 +62,7 @@ public class Link
     public void reset()
     {
         state = new DownMovingLinkState(this);
-        inventory.weapons = new userWeapons(this);
+        inventory.weaponManager = new userWeapons(this);
 
         xPos = 500;
         yPos = 500;
@@ -69,9 +70,9 @@ public class Link
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        if (inventory.weapons.currentWeapon != null)
+        if (inventory.weaponManager.usingWeapon)
         {
-            inventory.weapons.Draw(_spriteBatch);
+            inventory.weaponManager.Draw(_spriteBatch);
         }
         else
         {
@@ -92,33 +93,13 @@ public class Link
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
-    internal void UseWoodenSword()
+    internal void UseSecondaryWeapon()
     {
-        inventory.weapons.UseWoodenSword();
+        inventory.weaponManager.UsePrimaryWeapon();
     }
 
-    internal void UseSwordBeam()
+    internal void UsePrimaryWeapon()
     {
-        inventory.weapons.UseSwordBeam();
-    }
-
-    internal void UseBoomerang()
-    {
-        inventory.weapons.UseBoomerang();
-    }
-
-    internal void UseBow(String arrowType)
-    {
-        inventory.weapons.UseBow(arrowType);
-    }
-
-    internal void UseFire()
-    {
-        inventory.weapons.UseFire();
-    }
-
-    internal void UseBomb()
-    {
-        inventory.weapons.UseBomb();
+        inventory.weaponManager.UseSecondaryWeapon();
     }
 }

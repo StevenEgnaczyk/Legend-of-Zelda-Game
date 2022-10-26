@@ -6,29 +6,30 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Sprint_0.LinkPlayer;
 using Sprint_0.LinkPlayer.LinkInventory;
+using Sprint_0.Interfaces;
 
 public class userInventory
 {
-    public userWeapons weapons;
+    private Link Link;
+    public userWeapons weaponManager;
+
+    private List<IWeapon> primaryWeapons;
+    private List<IWeapon> secondaryWeapons;
+    
     private int numBombs;
     private int numRupees;
     private int numKeys;
 
     public  List<IItem> itemList { get; set; }
 
-    /* We only want one instance*/
-    public static userInventory instance = new userInventory();
-
-    public static userInventory Instance
+    public userInventory(Link link)
     {
-        get
-        {
-            return instance;
-        }
-    }
+        this.Link = link;
 
-    public userInventory()
-    {
+        numBombs = 0;
+        numKeys = 0;
+        numRupees = 0;
+
         itemList = new List<IItem>();
     }
 
@@ -57,5 +58,31 @@ public class userInventory
             //item.draw(); TO DO: change item draw to not need spritebatch
         }
     }
+
+    public int getBombs()
+    {
+        return numBombs;
+    }
+
+    public int getRupees()
+    {
+        return numRupees;
+    }
+
+    public int getKeys()
+    {
+        return numKeys;
+    }
+
+    public IWeapon getPrimaryWeapon()
+    {
+        return weaponManager.getPrimaryWeapon();
+    }
+
+    public IWeapon getSecondaryWeapon()
+    {
+        return weaponManager.getSecondaryWeapon();
+    }
+
 
 }

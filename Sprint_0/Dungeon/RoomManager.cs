@@ -37,6 +37,7 @@ public class RoomManager
         {
             roomNumber = 0;
         }
+        link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
     }
 
@@ -48,6 +49,7 @@ public class RoomManager
         {
             roomNumber = 16;
         }
+        link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
 
     }

@@ -15,7 +15,7 @@ public class EnemyWeaponCollisionResponse
          * Use sprite destination rectangles as hitboxes. 
          */
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
-        Rectangle weaponRec = new Rectangle(userInv.currentWeapon.getXPos(), userInv.currentWeapon.getYPos(), userInv.currentWeapon.getWidth(), userInv.currentWeapon.getHeight());
+        Rectangle weaponRec = new Rectangle(userInv.primaryWeapon.getXPos(), userInv.primaryWeapon.getYPos(), userInv.primaryWeapon.getWidth(), userInv.primaryWeapon.getHeight());
 
         /* 
          * Weapons continue after colliding with an enemy (not the case for a collidable tile
