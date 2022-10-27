@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint_0;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ public class KeyboardController : IController
 {
 	public BuildCommands buildCommands;
 
-    public KeyboardController(ContentManager c, Link linkPlayer)
+    public KeyboardController(Game1 game, ContentManager c, Link linkPlayer)
 	{
-		buildCommands = new BuildCommands(linkPlayer);
+		buildCommands = new BuildCommands(linkPlayer, game);
     }
 
 	public void HandleEvents()

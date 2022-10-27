@@ -11,6 +11,9 @@ public static class HUDRectStorage
     private static Rectangle basicHUD = new Rectangle(258, 11, 256, 56);
     private static Rectangle mapIcon = new Rectangle(519, 126, 4, 4);
 
+    private static Rectangle levelTextSourceRect = new Rectangle(584, 1, 48, 7);
+    private static Rectangle levelTextDestRect = new Rectangle(16 * 4, 7 * 4, 48 * 4, 7 * 4);
+    private static Rectangle levelNumDestRect = new Rectangle(64 * 4, 7 * 4, 8 * 4, 8 * 4);
     private static Rectangle blankIcon = new Rectangle(654, 117, 8, 8);
     private static Rectangle xIcon = new Rectangle(519, 117, 8, 8);
     private static List<Rectangle> digitSourceRectangles = new List<Rectangle>
@@ -46,6 +49,22 @@ public static class HUDRectStorage
         {"MagicSword", new Rectangle(564, 137, 8, 16) },
     };
 
+    private static Rectangle fullHeartSourceRect = new Rectangle(645, 117, 8, 8);
+    private static Rectangle halfHeartSourceRect = new Rectangle(636, 117, 8, 8);
+    private static Rectangle emptyHeartSourceRect = new Rectangle(627, 117, 8, 8);
+
+    private static List<Rectangle> heartDestRects = new List<Rectangle>
+    {
+        new Rectangle(176 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(184 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(192 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(200 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(208 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(216 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(224 * 4, 40 * 4, 8 * 4, 8 * 4),
+        new Rectangle(232 * 4, 40 * 4, 8 * 4, 8 * 4),
+    };
+
     private static Rectangle emptyWeaponSourceRect = new Rectangle(482, 112, 8, 16);
 
     public static Rectangle getBasicHUD()
@@ -78,6 +97,26 @@ public static class HUDRectStorage
         return digitSourceRectangles[digit];
     }
 
+    internal static Rectangle GetEmptyHeartSourceRect()
+    {
+        return emptyHeartSourceRect;
+    }
+
+    internal static Rectangle GetFullHeartSourceRect()
+    {
+        return fullHeartSourceRect;
+    }
+
+    internal static Rectangle GetHalfHeartSourceRect()
+    {
+        return halfHeartSourceRect;
+    }
+
+    internal static Rectangle GetHeartDestRect(int heartIndex)
+    {
+        return heartDestRects[heartIndex];
+    }
+
     internal static Rectangle getKeyDigit1DestRect()
     {
         return keyDigit1Destination;
@@ -91,6 +130,21 @@ public static class HUDRectStorage
     internal static Rectangle getKeyXDestRect()
     {
         return xKeyIconDestination;
+    }
+
+    internal static Rectangle GetLevelNumDestRect()
+    {
+        return levelNumDestRect;
+    }
+
+    internal static Rectangle GetLevelTextDestRect()
+    {
+        return levelTextDestRect;
+    }
+
+    internal static Rectangle GetLevelTextSourceRect()
+    {
+        return levelTextSourceRect;
     }
 
     internal static Rectangle getMapIcon()

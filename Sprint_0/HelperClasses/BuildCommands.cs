@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint_0;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ public class BuildCommands
     public ICommand usePrimaryWeaponCommand;
     public ICommand useSecondaryWeaponCommand;
 
+    public ICommand openInventoryCommand;
+
     public ICommand dieCommand;
 
     public ICommand cycleEnemyNextCommand;
@@ -34,7 +37,7 @@ public class BuildCommands
 
     public Keys[] state;
 
-    public BuildCommands(Link linkPlayer)
+    public BuildCommands(Link linkPlayer, Game1 game)
     {
         controllerMappings = new Dictionary<Keys, ICommand>();
 
@@ -47,6 +50,8 @@ public class BuildCommands
 
         usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
         useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
+
+        openInventoryCommand = new openInventoryCommand(game);
 
         dieCommand = new DieCommand(linkPlayer);
 
@@ -62,6 +67,8 @@ public class BuildCommands
 
         RegisterCommand(Keys.A, usePrimaryWeaponCommand);
         RegisterCommand(Keys.B, useSecondaryWeaponCommand);
+
+        RegisterCommand(Keys.E, openInventoryCommand);
     }
 
     public void RegisterCommand(Keys key, ICommand command)

@@ -54,9 +54,9 @@ public class RoomManager
 
     }
 
-    public void Update(SpriteBatch spriteBatch)
+    public void Update()
     {
-        currentRoom.Update(spriteBatch);
+        currentRoom.Update();
     }
 }
 

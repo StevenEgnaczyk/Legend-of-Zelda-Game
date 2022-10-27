@@ -14,7 +14,8 @@ public class Link
 
     public float xPos, yPos;
     public int linkSpeed = 3;
-    private float linkHealth = 3.0f;
+    private float linkHealth;
+    private float linkMaxHealth = 3.0f;
     
 
     public Link()
@@ -23,6 +24,8 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new userInventory(this);
         inventory.weaponManager = new userWeapons(this);
+
+        linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;
@@ -56,6 +59,7 @@ public class Link
 
     public void Die()
     {
+        //linkHealth -= 1f;
         state.Die();
     }
 
@@ -101,5 +105,15 @@ public class Link
     internal void UsePrimaryWeapon()
     {
         inventory.weaponManager.UsePrimaryWeapon();
+    }
+
+    public float getHealth()
+    {
+        return linkHealth;
+    }
+
+    public float getMaxHealth()
+    {
+        return linkMaxHealth;
     }
 }

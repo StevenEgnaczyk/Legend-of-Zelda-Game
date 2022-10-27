@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,17 +25,59 @@ namespace Sprint_0.HUD
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawBasicHUD(spriteBatch);
+            DrawLevelText(spriteBatch);
             DrawMap(spriteBatch);
             DrawItems(spriteBatch);
             DrawWeapons(spriteBatch);
-            /*
             DrawLife(spriteBatch);
-            */
+            
+        }
+
+        private void DrawLevelText(SpriteBatch spriteBatch)
+        {
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle levelTextSourceRect = HUDRectStorage.GetLevelTextSourceRect();
+            Rectangle levelTextDestRect = HUDRectStorage.GetLevelTextDestRect();
+            spriteBatch.Draw(basicHUD, levelTextDestRect, levelTextSourceRect, Color.White);
+
+            Rectangle levelNumSourceRect = HUDRectStorage.getDigit(1);
+            Rectangle levelNumDestRect = HUDRectStorage.GetLevelNumDestRect();
+            spriteBatch.Draw(basicHUD, levelNumDestRect, levelNumSourceRect, Color.White);
+
+
         }
 
         private void DrawLife(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+
+            int heartIndex = 0;
+            float linkHealth = link.getHealth();
+            float maxHealth = link.getMaxHealth();
+
+            while (linkHealth > 0.5)
+            {
+                
+                Rectangle heartSourceRect = HUDRectStorage.GetFullHeartSourceRect();
+                Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
+                linkHealth -= 1.0f;
+                heartIndex++;
+            }
+
+            if (linkHealth > 0)
+            {
+                Rectangle heartSourceRect = HUDRectStorage.GetHalfHeartSourceRect();
+                Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
+            }
+
+            while (heartIndex < maxHealth)
+            {
+                Rectangle heartSourceRect = HUDRectStorage.GetEmptyHeartSourceRect();
+                Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
+            }
         }
 
         private void DrawWeapons(SpriteBatch spriteBatch)

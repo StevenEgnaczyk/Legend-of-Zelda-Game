@@ -110,6 +110,13 @@ public class Room
                     case 11:
                         tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
+                    case 12:
+                        tiles.Add(new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 13:
+                        tiles.Add(new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+
                     default:
                         tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
@@ -204,7 +211,7 @@ public class Room
         }
     }
 
-    public void Update(SpriteBatch spriteBatch)
+    public void Update()
     {
         collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weaponManager);
     }
