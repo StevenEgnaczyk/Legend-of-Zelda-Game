@@ -13,9 +13,9 @@ namespace Sprint_0.HUD
     {
 
         private Link link;
-        private userInventory linkInventory;
+        private InventoryManager linkInventory;
 
-        public HUDManager(Link player, userInventory inventory)
+        public HUDManager(Link player, InventoryManager inventory)
         {
             this.link = player;
             this.linkInventory = inventory;

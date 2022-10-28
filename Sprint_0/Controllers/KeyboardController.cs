@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint_0;
+using Sprint_0.GameStates;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,22 +24,42 @@ public class KeyboardController : IController
 		throw new NotImplementedException();
 	}
 
-	public void ProcessInput()
+	public void ProcessInput(IState gameplayState)
 	{
 		Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
-		foreach(Keys key in pressedKeys)
+		switch (gameplayState.ToString())
 		{
-			//checks for registered commands
-			if (buildCommands.controllerMappings.ContainsKey(key))
-			{
-				if(buildCommands.state.Contains(key)) //checks for the commands in state
+			case "Sprint_0.GameStates.GameplayState":
+
+				foreach (Keys key in pressedKeys)
 				{
-					buildCommands.controllerMappings[key].Execute();
+					//checks for registered commands
+					if (buildCommands.gameplayControllerMappings.ContainsKey(key))
+					{
+						if (buildCommands.state.Contains(key)) //checks for the commands in state
+						{
+							buildCommands.gameplayControllerMappings[key].Execute();
+						}
+					}
 				}
-			}
-		}
-		buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+				buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+				break;
+			case "Sprint_0.GameStates.InventoryState":
+                foreach (Keys key in pressedKeys)
+                {
+                    //checks for registered commands
+                    if (buildCommands.inventoryControllerMappings.ContainsKey(key))
+                    {
+                        if (buildCommands.state.Contains(key)) //checks for the commands in state
+                        {
+                            buildCommands.inventoryControllerMappings[key].Execute();
+                        }
+                    }
+                }
+                buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+                break;
+        }
 	}
 
 	public void Update()

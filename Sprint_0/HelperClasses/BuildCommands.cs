@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 public class BuildCommands
 {
-    public Dictionary<Keys, ICommand> controllerMappings;
+    public Dictionary<Keys, ICommand> gameplayControllerMappings;
+    public Dictionary<Keys, ICommand> inventoryControllerMappings;
 
     public ICommand _quitCommand;
     public ICommand turnPlayerLeftCommand;
@@ -23,6 +24,7 @@ public class BuildCommands
     public ICommand useSecondaryWeaponCommand;
 
     public ICommand openInventoryCommand;
+    public ICommand openGameCommand;
 
     public ICommand dieCommand;
 
@@ -39,7 +41,8 @@ public class BuildCommands
 
     public BuildCommands(Link linkPlayer, Game1 game)
     {
-        controllerMappings = new Dictionary<Keys, ICommand>();
+        gameplayControllerMappings = new Dictionary<Keys, ICommand>();
+        inventoryControllerMappings = new Dictionary<Keys, ICommand>();
 
         _quitCommand = new QuitCommand();
         resetCommand = new ResetCommand(linkPlayer);
@@ -51,30 +54,38 @@ public class BuildCommands
         usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
         useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
 
-        openInventoryCommand = new openInventoryCommand(game);
+        openInventoryCommand = new OpenInventoryCommand(game);
+        openGameCommand = new OpenGameCommand(game);
 
         dieCommand = new DieCommand(linkPlayer);
 
-        RegisterCommand(Keys.D0, _quitCommand);
-        RegisterCommand(Keys.NumPad0, _quitCommand);
-        RegisterCommand(Keys.Q, _quitCommand);
-        RegisterCommand(Keys.R, resetCommand);
+        RegisterGameplayCommand(Keys.D0, _quitCommand);
+        RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
+        RegisterGameplayCommand(Keys.Q, _quitCommand);
+        RegisterGameplayCommand(Keys.R, resetCommand);
 
-        RegisterCommand(Keys.Left, turnPlayerLeftCommand);
-        RegisterCommand(Keys.Right, turnPlayerRightCommand);
-        RegisterCommand(Keys.Up, turnPlayerUpCommand);
-        RegisterCommand(Keys.Down, turnPlayerDownCommand);
+        RegisterGameplayCommand(Keys.Left, turnPlayerLeftCommand);
+        RegisterGameplayCommand(Keys.Right, turnPlayerRightCommand);
+        RegisterGameplayCommand(Keys.Up, turnPlayerUpCommand);
+        RegisterGameplayCommand(Keys.Down, turnPlayerDownCommand);
 
-        RegisterCommand(Keys.A, usePrimaryWeaponCommand);
-        RegisterCommand(Keys.B, useSecondaryWeaponCommand);
+        RegisterGameplayCommand(Keys.A, usePrimaryWeaponCommand);
+        RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
 
-        RegisterCommand(Keys.E, openInventoryCommand);
+        RegisterGameplayCommand(Keys.E, openInventoryCommand);
+
+        RegisterInventoryCommand(Keys.Escape, openGameCommand);
     }
 
-    public void RegisterCommand(Keys key, ICommand command)
+    public void RegisterGameplayCommand(Keys key, ICommand command)
     {
-        controllerMappings.Add(key, command);
+        gameplayControllerMappings.Add(key, command);
     }
 
-    
+    public void RegisterInventoryCommand(Keys key, ICommand command)
+    {
+        inventoryControllerMappings.Add(key, command);
+    }
+
+
 }

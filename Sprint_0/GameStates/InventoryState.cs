@@ -20,13 +20,14 @@ namespace Sprint_0.GameStates
         public void Draw(SpriteBatch spriteBatch)
         {
             game.HUD.Draw(spriteBatch);
+            game.inventoryManager.Draw(spriteBatch);
         }
 
         public void Update()
         {
             //Process Keyboard Input
-            game.keyboardController.ProcessInput();
-            game.mouseController.ProcessInput();
+            game.keyboardController.ProcessInput(this);
+            game.mouseController.ProcessInput(this);
         }
     }
 }

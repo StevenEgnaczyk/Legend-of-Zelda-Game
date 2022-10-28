@@ -7,14 +7,12 @@ using System.Collections.Generic;
 using Sprint_0.LinkPlayer;
 using Sprint_0.LinkPlayer.LinkInventory;
 using Sprint_0.Interfaces;
+using Sprint_0.HUD;
 
-public class userInventory
+public class InventoryManager
 {
     private Link Link;
     public userWeapons weaponManager;
-
-    private List<IWeapon> primaryWeapons;
-    private List<IWeapon> secondaryWeapons;
     
     private int numBombs;
     private int numRupees;
@@ -22,7 +20,7 @@ public class userInventory
 
     public  List<IItem> itemList { get; set; }
 
-    public userInventory(Link link)
+    public InventoryManager(Link link)
     {
         this.Link = link;
 
@@ -51,12 +49,29 @@ public class userInventory
         }
     }
 
-    public void Draw()
+    public void Draw(SpriteBatch spriteBatch)
     {
-        foreach (IItem item in itemList)
-        {
-            //item.draw(); TO DO: change item draw to not need spritebatch
-        }
+        DrawInventory(spriteBatch);
+        DrawMap(spriteBatch);
+
+    }
+
+    private void DrawMap(SpriteBatch spriteBatch)
+    {
+    }
+
+    private void DrawInventory(SpriteBatch spriteBatch)
+    {
+        DrawBaseInventory(spriteBatch);
+    }
+
+    private void DrawBaseInventory(SpriteBatch spriteBatch)
+    {
+        Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
+        Rectangle baseInventorySourceRect = InventoryRectStorage.GetBaseInventorySourceRect();
+        Rectangle baseInventoryDestRect = InventoryRectStorage.GetBaseInventoryDestRect();
+        spriteBatch.Draw(baseInventory, baseInventoryDestRect, baseInventorySourceRect, Color.White);
+
     }
 
     public int getBombs()

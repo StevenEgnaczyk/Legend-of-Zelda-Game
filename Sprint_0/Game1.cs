@@ -19,7 +19,9 @@ namespace Sprint_0
         public IItem map;
         public RoomManager roomManager;
         public CollisionManager collisionManager;
+        public InventoryManager inventoryManager;
         public HUDManager HUD;
+
 
         //Keyboard variables
         public IController keyboardController;
@@ -54,6 +56,7 @@ namespace Sprint_0
             map = new Map(950, 350);
             roomManager = new RoomManager(spriteBatch, link);
             currentGameState = new GameplayState(this);
+            inventoryManager = new InventoryManager(link);
 
             keyboardController = new KeyboardController(this, Content, link);
             mouseController = new MouseController(Content, roomManager);

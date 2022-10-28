@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint_0;
+using Sprint_0.GameStates;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -33,7 +34,7 @@ public class MouseController : IController
         throw new NotImplementedException();
     }
 
-    public void ProcessInput()
+    public void ProcessInput(IState gameplayState)
     {
         //get mouse state
         MouseState mouseState = Mouse.GetState();

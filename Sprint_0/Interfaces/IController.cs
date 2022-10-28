@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sprint_0.GameStates;
+using System;
 
 public interface IController
 {
@@ -7,6 +8,6 @@ public interface IController
 
 	void HandleEvents();
 
-	void ProcessInput();
+	void ProcessInput(IState gameplayState);
 
 }

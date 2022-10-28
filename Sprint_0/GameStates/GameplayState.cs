@@ -28,8 +28,8 @@ namespace Sprint_0.GameStates
         public void Update()
         {
             //Process Keyboard Input
-            game.keyboardController.ProcessInput();
-            game.mouseController.ProcessInput();
+            game.keyboardController.ProcessInput(this);
+            game.mouseController.ProcessInput(this);
 
             game.link.Update();
             game.map.Update();

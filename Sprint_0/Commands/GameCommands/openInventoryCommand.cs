@@ -2,19 +2,19 @@
 using Sprint_0;
 using System;
 
-public class openInventoryCommand : ICommand
+public class OpenInventoryCommand : ICommand
 {
 
-    private Game1 game;
+    private Game1 theGame;
 
-    public openInventoryCommand(Game1 game)
+    public OpenInventoryCommand(Game1 game)
     {
-        this.game = game;
+        this.theGame = game;
     }
 
     public void Execute()
     {
-        game.currentGameState = new Sprint_0.GameStates.InventoryState(game);
+        theGame.currentGameState = new Sprint_0.GameStates.InventoryState(theGame);
         
     }
 }

@@ -18,7 +18,7 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private userInventory itemManager;
+    private InventoryManager itemManager;
     private List<IItem> items;
 
     private Link link;
@@ -40,7 +40,7 @@ public class Room
         tileManager = new TileManager(spriteBatch);
         tiles = populateTiles(roomInformation[1]);
 
-        itemManager = new userInventory(link);
+        itemManager = new InventoryManager(link);
         items = populateItems(roomInformation[2]);
 
 
