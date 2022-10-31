@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class WaterTile : ITile
+public class LadderTile : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -17,7 +17,7 @@ public class WaterTile : ITile
     private bool isPushable;
     private bool isWalkable;
 
-    public WaterTile(int xPos, int yPos)
+    public LadderTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;

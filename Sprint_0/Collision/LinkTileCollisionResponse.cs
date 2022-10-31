@@ -12,7 +12,7 @@ public class LinkTileCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int)link.xPos + 8, (int)link.yPos + 8, 48, 48);
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 64, 64);
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
         /*

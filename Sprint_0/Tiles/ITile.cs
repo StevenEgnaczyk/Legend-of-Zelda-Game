@@ -9,6 +9,9 @@ public interface ITile
     public int getXPos();
     public int getYPos();
 
+    public int getWidth();
+    public int getHeight();
+
     public bool Pushable();
 
     public bool Walkable();

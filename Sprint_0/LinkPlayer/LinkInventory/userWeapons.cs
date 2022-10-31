@@ -10,109 +10,132 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class userWeapons
     {
-        public IWeapon currentWeapon { get; set;}
+        public IWeapon primaryWeapon { get; set;}
+        public IWeapon secondaryWeapon{ get; set; }
 
         public static Boomerang boomerang;
         public static Bow bow;
         public static Bomb bomb;
         public static Fire fire;
-        public static WoodenSword woodenSword;
-        public static MagicSword magicSword;
 
-        private bool hasWeapon = false;
+        public WoodenSword woodenSword;
+        public MagicSword magicSword;
+
+        public bool usingWeapon = false;
+
         private Link link;
 
         public userWeapons(Link link)
         {
             this.link = link;
-            currentWeapon = null;
+            woodenSword = new WoodenSword(link);
+            primaryWeapon = woodenSword;
         }
 
         public void UseBoomerang()
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 boomerang = new Boomerang(link);
-                currentWeapon = boomerang;
-                hasWeapon = true;
+                secondaryWeapon = boomerang;
+                usingWeapon = true;
             }
 
         }
 
         public void UseBow(string arrowType)
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 bow = new Bow(link, arrowType);
-                currentWeapon = bow;
-                hasWeapon = true;
+                secondaryWeapon = bow;
+                usingWeapon = true;
             }
 
         }
 
         public void UseBomb()
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 bomb = new Bomb(link);
-                currentWeapon = bomb;
-                hasWeapon = true;
+                secondaryWeapon = bomb;
+                usingWeapon = true;
             }
 
         }
 
         public void UseFire()
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 fire = new Fire(link);
-                currentWeapon = fire;
-                hasWeapon = true;
+                secondaryWeapon = fire;
+                usingWeapon = true;
             }
 
         }
 
         public void UseWoodenSword()
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 woodenSword = new WoodenSword(link);
-                currentWeapon = woodenSword;
-                hasWeapon = true;
+                primaryWeapon = woodenSword;
+                usingWeapon = true;
             }
         }
 
         public void UseSwordBeam()
         {
-            if (!hasWeapon)
+            if (!usingWeapon)
             {
                 magicSword = new MagicSword(link);
-                currentWeapon = magicSword;
-                hasWeapon = true;
+                primaryWeapon = magicSword;
+                usingWeapon = true;
             }
         }
 
         public void Update()
         {
-            if (hasWeapon)
+            if (usingWeapon)
             {
-                currentWeapon.Update();
+                primaryWeapon.Update();
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (hasWeapon)
+            if (usingWeapon)
             {
                 link.state.DrawAttackingLink(spriteBatch);
-                currentWeapon.Draw(spriteBatch);
+                primaryWeapon.Draw(spriteBatch);
             }
         }
 
         internal void stopUsingWeapon()
         {
-            currentWeapon = null;
-            hasWeapon = false;
+            usingWeapon = false;
+        }
+
+        public IWeapon getPrimaryWeapon()
+        {
+            return primaryWeapon;
+        }
+
+        public IWeapon getSecondaryWeapon()
+        {
+            return secondaryWeapon;
+        }
+
+        internal void UsePrimaryWeapon()
+        {
+            UseWoodenSword();
+        }
+
+        internal void UseSecondaryWeapon()
+        {
+            throw new NotImplementedException();
         }
     }
 }

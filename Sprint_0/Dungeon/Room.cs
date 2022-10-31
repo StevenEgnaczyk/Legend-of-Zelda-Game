@@ -18,8 +18,12 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private userInventory itemManager;
+    private InventoryManager itemManager;
     private List<IItem> items;
+
+    private List<List<IDoor>> doors;
+    private List<IDoor> HorizontalDoors;
+    private List<IDoor> VerticalDoors;
 
     private Link link;
 
@@ -40,8 +44,10 @@ public class Room
         tileManager = new TileManager(spriteBatch);
         tiles = populateTiles(roomInformation[1]);
 
-        itemManager = new userInventory();
+        itemManager = new InventoryManager(link);
         items = populateItems(roomInformation[2]);
+
+        doors = populateDoors(roomInformation[0][0]);
 
 
     }
@@ -103,6 +109,18 @@ public class Room
                         break;
                     case 9:
                         tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 10:
+                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 11:
+                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 12:
+                        tiles.Add(new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 13:
+                        tiles.Add(new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     default:
                         tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
@@ -177,6 +195,29 @@ public class Room
 
     }
 
+    private List<List<IDoor>> populateDoors(List<int> doorInformation) {
+
+        List<List<IDoor>> doors = new List<List<IDoor>>();
+        List<IDoor> horizontalDoors = new List<IDoor>();
+        List<IDoor> verticalDoors = new List<IDoor>();
+
+        for (int i = 0; i < doorInformation.Count; i++)
+        {
+            if (i % 2 == 1)
+            {
+                horizontalDoors.Add(new HorizontalDoor(doorInformation[i]));
+            } else
+            {
+                verticalDoors.Add(new VerticalDoor(doorInformation[i]));
+            }
+
+        }
+        doors.Add(horizontalDoors);
+        doors.Add(verticalDoors);
+        return doors;
+
+    }
+
     public void drawDoors(SpriteBatch spriteBatch, List<int> doorInformation)
     {
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
@@ -198,8 +239,8 @@ public class Room
         }
     }
 
-    public void Update(SpriteBatch spriteBatch)
+    public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weapons);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weaponManager);
     }
 }

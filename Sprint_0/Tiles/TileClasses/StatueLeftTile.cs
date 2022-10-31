@@ -11,6 +11,9 @@ public class StatueLeftTile : ITile
     private int xPosition;
     private int yPosition;
 
+    private int width;
+    private int height;
+
     private bool isPushable;
     private bool isWalkable;
 
@@ -18,6 +21,10 @@ public class StatueLeftTile : ITile
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+
+        this.width = 64;
+        this.height = 64;
+
         this.isPushable = false;
         this.isWalkable = false;
     }
@@ -40,6 +47,15 @@ public class StatueLeftTile : ITile
         return yPosition;
     }
 
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
     public bool Pushable()
     {
         return isPushable;

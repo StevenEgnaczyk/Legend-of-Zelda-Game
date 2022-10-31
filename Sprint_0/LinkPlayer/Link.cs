@@ -9,19 +9,23 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
-    public userInventory inventory;
+    public InventoryManager inventory;
     public int currentRoom;
 
     public float xPos, yPos;
     public int linkSpeed = 3;
+    private float linkHealth;
+    private float linkMaxHealth = 3.0f;
     
 
     public Link()
     {
 
         state = new DownMovingLinkState(this);
-        inventory = new userInventory();
-        inventory.weapons = new userWeapons(this);
+        inventory = new InventoryManager(this);
+        inventory.weaponManager = new userWeapons(this);
+
+        linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;
@@ -50,18 +54,19 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.weapons.Update();
+        inventory.weaponManager.Update();
     }
 
     public void Die()
     {
+        //linkHealth -= 1f;
         state.Die();
     }
 
     public void reset()
     {
         state = new DownMovingLinkState(this);
-        inventory.weapons = new userWeapons(this);
+        inventory.weaponManager = new userWeapons(this);
 
         xPos = 500;
         yPos = 500;
@@ -69,9 +74,9 @@ public class Link
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        if (inventory.weapons.currentWeapon != null)
+        if (inventory.weaponManager.usingWeapon)
         {
-            inventory.weapons.Draw(_spriteBatch);
+            inventory.weaponManager.Draw(_spriteBatch);
         }
         else
         {
@@ -92,33 +97,23 @@ public class Link
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
-    internal void UseWoodenSword()
+    internal void UseSecondaryWeapon()
     {
-        inventory.weapons.UseWoodenSword();
+        inventory.weaponManager.UseSecondaryWeapon();
     }
 
-    internal void UseSwordBeam()
+    internal void UsePrimaryWeapon()
     {
-        inventory.weapons.UseSwordBeam();
+        inventory.weaponManager.UsePrimaryWeapon();
     }
 
-    internal void UseBoomerang()
+    public float getHealth()
     {
-        inventory.weapons.UseBoomerang();
+        return linkHealth;
     }
 
-    internal void UseBow(String arrowType)
+    public float getMaxHealth()
     {
-        inventory.weapons.UseBow(arrowType);
-    }
-
-    internal void UseFire()
-    {
-        inventory.weapons.UseFire();
-    }
-
-    internal void UseBomb()
-    {
-        inventory.weapons.UseBomb();
+        return linkMaxHealth;
     }
 }

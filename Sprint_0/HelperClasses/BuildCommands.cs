@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint_0;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ using System.Threading.Tasks;
 
 public class BuildCommands
 {
-    public Dictionary<Keys, ICommand> controllerMappings;
+    public Dictionary<Keys, ICommand> gameplayControllerMappings;
+    public Dictionary<Keys, ICommand> inventoryControllerMappings;
 
     public ICommand _quitCommand;
     public ICommand turnPlayerLeftCommand;
@@ -18,13 +20,11 @@ public class BuildCommands
     public ICommand turnPlayerUpCommand;
     public ICommand turnPlayerDownCommand;
 
-    public ICommand useWoodenSwordCommand;
-    public ICommand useSwordBeamCommand;
-    public ICommand useBoomerangCommand;
-    public ICommand useRedBowCommand;
-    public ICommand useBlueBowCommand;
-    public ICommand useFireCommand;
-    public ICommand useBombCommand;
+    public ICommand usePrimaryWeaponCommand;
+    public ICommand useSecondaryWeaponCommand;
+
+    public ICommand openInventoryCommand;
+    public ICommand openGameCommand;
 
     public ICommand dieCommand;
 
@@ -39,9 +39,10 @@ public class BuildCommands
 
     public Keys[] state;
 
-    public BuildCommands(Link linkPlayer)
+    public BuildCommands(Link linkPlayer, Game1 game)
     {
-        controllerMappings = new Dictionary<Keys, ICommand>();
+        gameplayControllerMappings = new Dictionary<Keys, ICommand>();
+        inventoryControllerMappings = new Dictionary<Keys, ICommand>();
 
         _quitCommand = new QuitCommand();
         resetCommand = new ResetCommand(linkPlayer);
@@ -50,48 +51,41 @@ public class BuildCommands
         turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
         turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
 
-        useWoodenSwordCommand = new UseWoodenSwordCommand(linkPlayer);
-        useSwordBeamCommand = new UseSwordBeamCommand(linkPlayer);
-        useBoomerangCommand = new UseBoomerangCommand(linkPlayer);
-        useRedBowCommand = new UseBowCommand(linkPlayer, "Red");
-        useBlueBowCommand = new UseBowCommand(linkPlayer, "Blue");
-        useFireCommand = new UseFireCommand(linkPlayer);
-        useBombCommand = new UseBombCommand(linkPlayer);
+        usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
+        useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
+
+        openInventoryCommand = new OpenInventoryCommand(game);
+        openGameCommand = new OpenGameCommand(game);
 
         dieCommand = new DieCommand(linkPlayer);
 
-        RegisterCommand(Keys.D0, _quitCommand);
-        RegisterCommand(Keys.NumPad0, _quitCommand);
-        RegisterCommand(Keys.Q, _quitCommand);
-        RegisterCommand(Keys.R, resetCommand);
+        RegisterGameplayCommand(Keys.D0, _quitCommand);
+        RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
+        RegisterGameplayCommand(Keys.Q, _quitCommand);
+        RegisterGameplayCommand(Keys.R, resetCommand);
 
-        RegisterCommand(Keys.Left, turnPlayerLeftCommand);
-        RegisterCommand(Keys.Right, turnPlayerRightCommand);
-        RegisterCommand(Keys.Up, turnPlayerUpCommand);
-        RegisterCommand(Keys.Down, turnPlayerDownCommand);
-        RegisterCommand(Keys.W, turnPlayerUpCommand);
-        RegisterCommand(Keys.A, turnPlayerLeftCommand);
-        RegisterCommand(Keys.S, turnPlayerDownCommand);
-        RegisterCommand(Keys.D, turnPlayerRightCommand);
+        RegisterGameplayCommand(Keys.Left, turnPlayerLeftCommand);
+        RegisterGameplayCommand(Keys.Right, turnPlayerRightCommand);
+        RegisterGameplayCommand(Keys.Up, turnPlayerUpCommand);
+        RegisterGameplayCommand(Keys.Down, turnPlayerDownCommand);
 
-        RegisterCommand(Keys.P, cycleEnemyPreviousCommand);
-        RegisterCommand(Keys.O, cycleEnemyNextCommand);
+        RegisterGameplayCommand(Keys.A, usePrimaryWeaponCommand);
+        RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
 
-        RegisterCommand(Keys.Z, useWoodenSwordCommand);
-        RegisterCommand(Keys.N, useSwordBeamCommand);
-        RegisterCommand(Keys.D1, useBoomerangCommand);
-        RegisterCommand(Keys.D2, useRedBowCommand);
-        RegisterCommand(Keys.D3, useBlueBowCommand);
-        RegisterCommand(Keys.D4, useFireCommand);
-        RegisterCommand(Keys.D5, useBombCommand);
+        RegisterGameplayCommand(Keys.E, openInventoryCommand);
 
-        RegisterCommand(Keys.E, dieCommand);
+        RegisterInventoryCommand(Keys.Escape, openGameCommand);
     }
 
-    public void RegisterCommand(Keys key, ICommand command)
+    public void RegisterGameplayCommand(Keys key, ICommand command)
     {
-        controllerMappings.Add(key, command);
+        gameplayControllerMappings.Add(key, command);
     }
 
-    
+    public void RegisterInventoryCommand(Keys key, ICommand command)
+    {
+        inventoryControllerMappings.Add(key, command);
+    }
+
+
 }
