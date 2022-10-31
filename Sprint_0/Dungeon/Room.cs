@@ -21,6 +21,10 @@ public class Room
     private InventoryManager itemManager;
     private List<IItem> items;
 
+    private List<List<IDoor>> doors;
+    private List<IDoor> HorizontalDoors;
+    private List<IDoor> VerticalDoors;
+
     private Link link;
 
     CollisionManager collisionManager;
@@ -42,6 +46,8 @@ public class Room
 
         itemManager = new InventoryManager(link);
         items = populateItems(roomInformation[2]);
+
+        doors = populateDoors(roomInformation[0][0]);
 
 
     }
@@ -116,7 +122,6 @@ public class Room
                     case 13:
                         tiles.Add(new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
-
                     default:
                         tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
@@ -187,6 +192,29 @@ public class Room
         Rectangle bgRect = RoomRectStorage.getBasicRoom(0);
         Rectangle destRect = new Rectangle(0, HUD_SIZE, bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
+
+    }
+
+    private List<List<IDoor>> populateDoors(List<int> doorInformation) {
+
+        List<List<IDoor>> doors = new List<List<IDoor>>();
+        List<IDoor> horizontalDoors = new List<IDoor>();
+        List<IDoor> verticalDoors = new List<IDoor>();
+
+        for (int i = 0; i < doorInformation.Count; i++)
+        {
+            if (i % 2 == 1)
+            {
+                horizontalDoors.Add(new HorizontalDoor(doorInformation[i]));
+            } else
+            {
+                verticalDoors.Add(new VerticalDoor(doorInformation[i]));
+            }
+
+        }
+        doors.Add(horizontalDoors);
+        doors.Add(verticalDoors);
+        return doors;
 
     }
 

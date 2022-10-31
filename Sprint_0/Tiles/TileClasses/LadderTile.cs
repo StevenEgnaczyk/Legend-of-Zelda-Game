@@ -11,6 +11,9 @@ public class LadderTile : ITile
     private int xPosition;
     private int yPosition;
 
+    private int width;
+    private int height;
+
     private bool isPushable;
     private bool isWalkable;
 
@@ -18,6 +21,10 @@ public class LadderTile : ITile
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+
+        this.width = 64;
+        this.height = 64;
+
         this.isPushable = false;
         this.isWalkable = false;
     }
@@ -38,6 +45,16 @@ public class LadderTile : ITile
     public int getYPos()
     {
         return yPosition;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
     }
 
     public bool Pushable()
