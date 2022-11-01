@@ -9,7 +9,7 @@ using Sprint_0.Interfaces;
 
 public class EnemyWeaponCollisionResponse
 {
-    public static void collisionResponse(IEnemy enemy, userWeapons userInv)
+    public static void collisionResponse(IEnemy enemy, primaryWeaponManager userInv)
     {
         /*
          * Use sprite destination rectangles as hitboxes. 

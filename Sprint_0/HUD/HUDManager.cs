@@ -99,18 +99,22 @@ namespace Sprint_0.HUD
         private void DrawWeapons(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             DrawPrimaryWeapon(spriteBatch, xOffset, yOffset);
-            //DrawSecondaryWeapon(spriteBatch);
+            DrawSecondaryWeapon(spriteBatch, xOffset, yOffset);
         }
 
         private void DrawSecondaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
-            throw new NotImplementedException();
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.secondaryWeapon);
+            Rectangle secondaryWeaponDestRect = HUDRectStorage.GetSecondaryWeaponDestRect();
+            secondaryWeaponDestRect.Offset(xOffset, yOffset);
+            spriteBatch.Draw(basicHUD, secondaryWeaponDestRect, secondaryWeaponSourceRect, Color.White);
         }
 
         private void DrawPrimaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
-            Rectangle primaryWeaponSourceRect = HUDRectStorage.GetPrimaryWeaponSourceRect(linkInventory.weaponManager.primaryWeapon);
+            Rectangle primaryWeaponSourceRect = HUDRectStorage.GetPrimaryWeaponSourceRect(linkInventory.primaryWeaponManager.primaryWeapon);
             Rectangle primaryWeaponDestRect = HUDRectStorage.GetPrimaryWeaponDestRect();
             primaryWeaponDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, primaryWeaponDestRect, primaryWeaponSourceRect, Color.White);

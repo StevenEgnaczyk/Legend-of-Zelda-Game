@@ -8,129 +8,95 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class userWeapons
+    public class secondaryWeaponManager
     {
-        public IWeapon primaryWeapon { get; set;}
         public IWeapon secondaryWeapon{ get; set; }
+        public List<IWeapon> secondaryWeaponList{ get; set; }
 
         public static Boomerang boomerang;
         public static Bow bow;
         public static Bomb bomb;
         public static Fire fire;
 
-        public WoodenSword woodenSword;
-        public MagicSword magicSword;
-
-        public bool usingWeapon = false;
+        public bool usingSecondaryWeapon = false;
 
         private Link link;
 
-        public userWeapons(Link link)
+        public secondaryWeaponManager(Link link)
         {
             this.link = link;
-            woodenSword = new WoodenSword(link);
-            primaryWeapon = woodenSword;
+            secondaryWeapon = null;
         }
 
         public void UseBoomerang()
         {
-            if (!usingWeapon)
+            if (!usingSecondaryWeapon)
             {
                 boomerang = new Boomerang(link);
                 secondaryWeapon = boomerang;
-                usingWeapon = true;
+                usingSecondaryWeapon = true;
             }
 
         }
 
         public void UseBow(string arrowType)
         {
-            if (!usingWeapon)
+            if (!usingSecondaryWeapon)
             {
                 bow = new Bow(link, arrowType);
                 secondaryWeapon = bow;
-                usingWeapon = true;
+                usingSecondaryWeapon = true;
             }
 
         }
 
         public void UseBomb()
         {
-            if (!usingWeapon)
+            if (!usingSecondaryWeapon)
             {
                 bomb = new Bomb(link);
                 secondaryWeapon = bomb;
-                usingWeapon = true;
+                usingSecondaryWeapon = true;
             }
 
         }
 
         public void UseFire()
         {
-            if (!usingWeapon)
+            if (!usingSecondaryWeapon)
             {
                 fire = new Fire(link);
                 secondaryWeapon = fire;
-                usingWeapon = true;
+                usingSecondaryWeapon = true;
             }
 
-        }
-
-        public void UseWoodenSword()
-        {
-            if (!usingWeapon)
-            {
-                woodenSword = new WoodenSword(link);
-                primaryWeapon = woodenSword;
-                usingWeapon = true;
-            }
-        }
-
-        public void UseSwordBeam()
-        {
-            if (!usingWeapon)
-            {
-                magicSword = new MagicSword(link);
-                primaryWeapon = magicSword;
-                usingWeapon = true;
-            }
         }
 
         public void Update()
         {
-            if (usingWeapon)
+            if (usingSecondaryWeapon)
             {
-                primaryWeapon.Update();
+                secondaryWeapon.Update();
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (usingWeapon)
+            if (usingSecondaryWeapon)
             {
                 link.state.DrawAttackingLink(spriteBatch);
-                primaryWeapon.Draw(spriteBatch);
+                secondaryWeapon.Draw(spriteBatch);
             }
         }
 
         internal void stopUsingWeapon()
         {
-            usingWeapon = false;
-        }
-
-        public IWeapon getPrimaryWeapon()
-        {
-            return primaryWeapon;
+            usingSecondaryWeapon = false;
         }
 
         public IWeapon getSecondaryWeapon()
         {
             return secondaryWeapon;
-        }
-
-        internal void UsePrimaryWeapon()
-        {
-            UseWoodenSword();
         }
 
         internal void UseSecondaryWeapon()

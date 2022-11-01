@@ -138,7 +138,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 magicSwordIndex++;
                 if (magicSwordIndex == maxFrames)
                 {
-                    link.inventory.weaponManager.stopUsingWeapon();
+                    link.inventory.primaryWeaponManager.stopUsingWeapon();
                     magicSwordIndex = 0;
                 }
             }

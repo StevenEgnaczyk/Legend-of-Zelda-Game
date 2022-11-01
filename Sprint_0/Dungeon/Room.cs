@@ -164,6 +164,6 @@ public class Room
 
     public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weaponManager);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.primaryWeaponManager);
     }
 }

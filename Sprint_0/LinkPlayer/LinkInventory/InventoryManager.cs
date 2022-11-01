@@ -8,7 +8,8 @@ using System.Collections.Generic;
 public class InventoryManager
 {
     private Link Link;
-    public userWeapons weaponManager;
+    public primaryWeaponManager primaryWeaponManager;
+    public secondaryWeaponManager secondaryWeaponManager;
 
     private int numBombs;
     private int numRupees;
@@ -26,7 +27,7 @@ public class InventoryManager
         numBombs = 0;
         numKeys = 0;
         numRupees = 0;
-        hasMap = true;
+        hasMap = false;
         hasCompass = true;
 
         itemList = new List<IItem>();
@@ -113,6 +114,15 @@ public class InventoryManager
 
     private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
+        Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
+        for (int i = 0; i < RoomManager.NUM_ROOMS; i++)
+        {
+            Rectangle mapRoomRectSource = InventoryRectStorage.GetMapRoomRectSource(0, i);
+            Rectangle mapRoomRectDest = InventoryRectStorage.GetMapRoomRectDest(0, i);
+            mapRoomRectDest.Offset(xOffset, yOffset); 
+            spriteBatch.Draw(HUDSpritesheet, mapRoomRectDest, mapRoomRectSource, Color.White);
+
+        }
 
     }
 
@@ -158,12 +168,12 @@ public class InventoryManager
 
     public IWeapon getPrimaryWeapon()
     {
-        return weaponManager.getPrimaryWeapon();
+        return primaryWeaponManager.getPrimaryWeapon();
     }
 
     public IWeapon getSecondaryWeapon()
     {
-        return weaponManager.getSecondaryWeapon();
+        return secondaryWeaponManager.getSecondaryWeapon();
     }
 
     internal void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)

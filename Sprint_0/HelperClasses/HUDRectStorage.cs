@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint_0.Interfaces;
+using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +47,14 @@ public static class HUDRectStorage
     private static Rectangle primaryWeaponDestRect = new Rectangle(152 * 4, 24 * 4, 8 * 4, 16 * 4);
     private static Dictionary<String, Rectangle> primaryWeaponSourceRectangles = new Dictionary<string, Rectangle>()
     {
-        {"Sprint_0.LinkPlayer.LinkInventory.WoodenSword", new Rectangle(555, 137, 8, 16) },
+        {"WoodenSword", new Rectangle(555, 137, 8, 16) },
+        {"MagicSword", new Rectangle(564, 137, 8, 16) },
+    };
+
+    private static Rectangle secondaryWeaponDestRect = new Rectangle(128 * 4, 24 * 4, 8 * 4, 16 * 4);
+    private static Dictionary<String, Rectangle> secondaryWeaponSourceRectangles = new Dictionary<string, Rectangle>()
+    {
+        {"WoodenSword", new Rectangle(555, 137, 8, 16) },
         {"MagicSword", new Rectangle(564, 137, 8, 16) },
     };
 
@@ -65,7 +74,7 @@ public static class HUDRectStorage
         new Rectangle(232 * 4, 40 * 4, 8 * 4, 8 * 4),
     };
 
-    private static Rectangle emptyWeaponSourceRect = new Rectangle(482, 112, 8, 16);
+    private static Rectangle emptyWeaponSourceRect = new Rectangle(484, 112, 8, 16);
 
     public static Rectangle getBasicHUD()
     {
@@ -188,7 +197,8 @@ public static class HUDRectStorage
         {
             return emptyWeaponSourceRect;
         }
-        return primaryWeaponSourceRectangles[primaryWeapon.ToString()];
+        string[] primaryWeaponInfo = primaryWeapon.GetType().ToString().Split(".");
+        return primaryWeaponSourceRectangles[primaryWeaponInfo[3].ToString()];
     }
 
     internal static Rectangle getRupeeDigit1DestRect()
@@ -204,6 +214,21 @@ public static class HUDRectStorage
     internal static Rectangle getRupeeXDestRect()
     {
         return xRupeeIconDestination;
+    }
+
+    internal static Rectangle GetSecondaryWeaponDestRect()
+    {
+        return secondaryWeaponDestRect;
+    }
+
+    internal static Rectangle GetSecondaryWeaponSourceRect(IWeapon secondaryWeapon)
+    {
+        if (secondaryWeapon == null)
+        {
+            return emptyWeaponSourceRect;
+        }
+        string[] secondaryWeaponInfo = secondaryWeapon.GetType().ToString().Split(".");
+        return secondaryWeaponSourceRectangles[secondaryWeaponInfo[3].ToString()];
     }
 
     internal static Rectangle getXIcon()
