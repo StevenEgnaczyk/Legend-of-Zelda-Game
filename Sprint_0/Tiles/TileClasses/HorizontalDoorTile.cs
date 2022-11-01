@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class InvisibleTileTop : ITile
+public class VerticalDoorTile : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -18,7 +18,7 @@ public class InvisibleTileTop : ITile
     private bool isPushable;
     private bool isWalkable;
 
-    public InvisibleTileTop(int xPos, int yPos)
+    public VerticalDoorTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
@@ -27,7 +27,7 @@ public class InvisibleTileTop : ITile
         this.height = 64;
 
         this.isPushable = false;
-        this.isWalkable = false;
+        this.isWalkable = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)

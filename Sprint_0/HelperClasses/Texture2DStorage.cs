@@ -95,7 +95,7 @@ public static class Texture2DStorage
             7 => new Rectangle(81, 898, 16, 16),
             8 => new Rectangle(97, 470, 16, 16),
             9 => new Rectangle(81, 355, 16, 16),
-            _ => new Rectangle(0, 0, 16, 16),
+            _ => new Rectangle(521, 84, 16, 16),
         };
     }
 

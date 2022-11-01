@@ -24,7 +24,9 @@ public class BuildCommands
     public ICommand useSecondaryWeaponCommand;
 
     public ICommand openInventoryCommand;
+    public ICommand transitionToInventoryCommand;
     public ICommand openGameCommand;
+    public ICommand transitionToGameCommand;
 
     public ICommand dieCommand;
 
@@ -54,8 +56,10 @@ public class BuildCommands
         usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
         useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
 
-        openInventoryCommand = new OpenInventoryCommand(game);
-        openGameCommand = new OpenGameCommand(game);
+        openInventoryCommand = new ChangeToInventoryStateCommand(game);
+        transitionToInventoryCommand = new TransitionToInventoryCommand(game);
+        openGameCommand = new ChangeToGameplayStateCommand(game);
+        transitionToGameCommand = new TransitionToGameCommmand(game);
 
         dieCommand = new DieCommand(linkPlayer);
 
@@ -72,9 +76,9 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.A, usePrimaryWeaponCommand);
         RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
 
-        RegisterGameplayCommand(Keys.E, openInventoryCommand);
+        RegisterGameplayCommand(Keys.E, transitionToInventoryCommand);
 
-        RegisterInventoryCommand(Keys.Escape, openGameCommand);
+        RegisterInventoryCommand(Keys.Escape, transitionToGameCommand);
     }
 
     public void RegisterGameplayCommand(Keys key, ICommand command)
