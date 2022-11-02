@@ -191,10 +191,10 @@ public static class InventoryRectStorage
     {
         return secondaryWeapon switch
         {
-            secondaryWeaponManager.secondaryWeapons.Fire => new Rectangle(204 * 4, 48 * 4, 8 * 4, 16 * 4),
-            secondaryWeaponManager.secondaryWeapons.Bow => new Rectangle(184 * 4, 48 * 4, 8 * 4, 16 * 4),
-            secondaryWeaponManager.secondaryWeapons.Bomb => new Rectangle(156 * 4, 48 * 4, 8 * 4, 16 * 4),
-            secondaryWeaponManager.secondaryWeapons.Boomerang => new Rectangle(132 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Fire => new Rectangle(653, 137, 8, 16),
+            secondaryWeaponManager.secondaryWeapons.Bow => new Rectangle(653, 137, 8, 16),
+            secondaryWeaponManager.secondaryWeapons.Bomb => new Rectangle(604, 137, 8, 16),
+            secondaryWeaponManager.secondaryWeapons.Boomerang => new Rectangle(584, 137, 8, 16),
             _ => new Rectangle(0, 0, 16, 16),
         };
     }
