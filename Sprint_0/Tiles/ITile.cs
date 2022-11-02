@@ -8,6 +8,8 @@ public interface ITile
 {
     public int getXPos();
     public int getYPos();
+    public void setXPos(int x);
+    public void setYPos(int y);
 
     public bool Pushable();
 
