@@ -22,7 +22,7 @@ public static class RoomLoader
         List<int> enemyInfoLine = new List<int>();
 
 
-        using (var reader = new StreamReader("/Users/jhom/Documents/GitHubFiles/HnH/Sprint_0/Dungeon/RoomCSVs/Map" + (currentRoomIndex + 1) + ".csv"))
+        using (var reader = new StreamReader("..\\..\\..\\Dungeon\\RoomCSVs\\Map" + (currentRoomIndex + 1) + ".csv"))
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");

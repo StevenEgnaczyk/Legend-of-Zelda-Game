@@ -67,4 +67,14 @@ public class VerticalDoorTile : ITile
     {
         return isWalkable;
     }
+
+    public void setXPos(int x)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setYPos(int y)
+    {
+        throw new NotImplementedException();
+    }
 }

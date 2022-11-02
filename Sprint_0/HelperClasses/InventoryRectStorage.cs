@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint_0.Interfaces;
+using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ public static class InventoryRectStorage
     private static Rectangle mapSectionDestRect = new Rectangle(0, baseInventoryDestRect.Height, 256 * 4, 89 * 4);
     private static Rectangle mapSectionSourceRect = new Rectangle(258, 112, 256, 88);
 
-    private static Rectangle emptyCompassSourceRect = new Rectangle(490, 18, 15, 16);
+    private static Rectangle emptyCompassSourceRect = new Rectangle(488, 118, 15, 16);
     private static Rectangle emptyCompassDestRect = new Rectangle(44 * 4, baseInventoryDestRect.Height + (64 * 4), 15 * 4, 16 * 4);
 
     private static Rectangle compassSourceRect = new Rectangle(612, 156, 15, 16);
@@ -23,7 +24,7 @@ public static class InventoryRectStorage
     private static Rectangle mapSourceRect = new Rectangle(601, 156, 8, 16);
     private static Rectangle mapDestRect = new Rectangle(48 * 4, baseInventoryDestRect.Height + (24 * 4), 8 * 4, 16 * 4);
 
-    private static Rectangle emptyMapSourceRect = new Rectangle(259, 113, 8, 16);
+    private static Rectangle emptyMapSourceRect = new Rectangle(488, 118, 8, 16);
     private static Rectangle emptyMapDestRect = new Rectangle(48 * 4, baseInventoryDestRect.Height + (24 * 4), 8 * 4, 16 * 4);
 
     private static List<Rectangle> dungeonMapInformationSourceRects = new List<Rectangle>
@@ -172,5 +173,29 @@ public static class InventoryRectStorage
     internal static Rectangle GetMapSourceRect()
     {
         return mapSourceRect;
+    }
+
+    internal static Rectangle GetSecondaryWeaponDestRect(secondaryWeaponManager.secondaryWeapons secondaryWeapon)
+    {
+        return secondaryWeapon switch
+        {
+            secondaryWeaponManager.secondaryWeapons.Fire => new Rectangle(204 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Bow => new Rectangle(184 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Bomb => new Rectangle(156 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Boomerang => new Rectangle(132 * 4, 48 * 4, 8 * 4, 16 * 4),
+            _ => new Rectangle(0, 0, 16, 16),
+        };
+    }
+
+    internal static Rectangle GetSecondaryWeaponSourceRect(secondaryWeaponManager.secondaryWeapons secondaryWeapon)
+    {
+        return secondaryWeapon switch
+        {
+            secondaryWeaponManager.secondaryWeapons.Fire => new Rectangle(204 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Bow => new Rectangle(184 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Bomb => new Rectangle(156 * 4, 48 * 4, 8 * 4, 16 * 4),
+            secondaryWeaponManager.secondaryWeapons.Boomerang => new Rectangle(132 * 4, 48 * 4, 8 * 4, 16 * 4),
+            _ => new Rectangle(0, 0, 16, 16),
+        };
     }
 }

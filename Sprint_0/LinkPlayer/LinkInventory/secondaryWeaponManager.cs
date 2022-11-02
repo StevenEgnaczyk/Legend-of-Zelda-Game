@@ -2,6 +2,7 @@
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,16 @@ namespace Sprint_0.LinkPlayer.LinkInventory
     public class secondaryWeaponManager
     {
         public IWeapon secondaryWeapon{ get; set; }
-        public List<IWeapon> secondaryWeaponList{ get; set; }
+
+        public enum secondaryWeapons
+        {
+            Boomerang,
+            Bow,
+            Bomb,
+            Fire
+        }
+
+        public List<secondaryWeapons> secondaryWeaponList{ get; set; }
 
         public static Boomerang boomerang;
         public static Bow bow;
@@ -25,6 +35,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public secondaryWeaponManager(Link link)
         {
             this.link = link;
+            secondaryWeaponList = new List<secondaryWeapons>();
+            secondaryWeaponList.Add(secondaryWeapons.Boomerang);
             secondaryWeapon = null;
         }
 
@@ -33,18 +45,16 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (!usingSecondaryWeapon)
             {
                 boomerang = new Boomerang(link);
-                secondaryWeapon = boomerang;
                 usingSecondaryWeapon = true;
             }
 
         }
 
-        public void UseBow(string arrowType)
+        public void UseBow()
         {
             if (!usingSecondaryWeapon)
             {
-                bow = new Bow(link, arrowType);
-                secondaryWeapon = bow;
+                bow = new Bow(link);
                 usingSecondaryWeapon = true;
             }
 
@@ -55,7 +65,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (!usingSecondaryWeapon)
             {
                 bomb = new Bomb(link);
-                secondaryWeapon = bomb;
                 usingSecondaryWeapon = true;
             }
 
@@ -66,7 +75,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (!usingSecondaryWeapon)
             {
                 fire = new Fire(link);
-                secondaryWeapon = fire;
                 usingSecondaryWeapon = true;
             }
 
@@ -99,9 +107,26 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return secondaryWeapon;
         }
 
-        internal void UseSecondaryWeapon()
+        public void UseSecondaryWeapon()
         {
-            throw new NotImplementedException();
+            switch(secondaryWeapon)
+            {
+                case Bow:
+                    UseBow();
+                    break;
+                case Fire:
+                    UseFire();
+                    break;
+                case Boomerang:
+                    UseBoomerang();
+                    break;
+                case Bomb:
+                    UseBomb();
+                    break;
+                default:
+                    break;
+
+            }
         }
     }
 }

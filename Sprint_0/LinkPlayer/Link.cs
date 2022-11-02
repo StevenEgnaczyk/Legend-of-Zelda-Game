@@ -23,8 +23,6 @@ public class Link
 
         state = new DownMovingLinkState(this);
         inventory = new InventoryManager(this);
-        inventory.primaryWeaponManager = new primaryWeaponManager(this);
-        inventory.secondaryWeaponManager = new secondaryWeaponManager(this);
 
         linkHealth = linkMaxHealth;
 
@@ -100,7 +98,7 @@ public class Link
 
     internal void UseSecondaryWeapon()
     {
-        inventory.primaryWeaponManager.UseSecondaryWeapon();
+        inventory.secondaryWeaponManager.UseSecondaryWeapon();
     }
 
     internal void UsePrimaryWeapon()

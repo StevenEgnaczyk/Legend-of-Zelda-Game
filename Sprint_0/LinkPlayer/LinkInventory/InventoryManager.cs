@@ -27,8 +27,10 @@ public class InventoryManager
         numBombs = 0;
         numKeys = 0;
         numRupees = 0;
-        hasMap = false;
+        hasMap = true;
         hasCompass = true;
+        primaryWeaponManager = new primaryWeaponManager(link);
+        secondaryWeaponManager = new secondaryWeaponManager(link);
 
         itemList = new List<IItem>();
     }
@@ -138,7 +140,21 @@ public class InventoryManager
     private void DrawInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         DrawBaseInventory(spriteBatch, xOffset, yOffset);
+        DrawInventoryItems(spriteBatch, xOffset, yOffset);
         DrawMapSection(spriteBatch, xOffset, yOffset);
+    }
+
+    private void DrawInventoryItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    {
+        Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
+
+        foreach (secondaryWeaponManager.secondaryWeapons secondaryWeapon in secondaryWeaponManager.secondaryWeaponList)
+        {
+            Rectangle secondaryWeaponSource = InventoryRectStorage.GetSecondaryWeaponSourceRect(secondaryWeapon);
+            Rectangle secondaryWeaponDest = InventoryRectStorage.GetSecondaryWeaponDestRect(secondaryWeapon);
+            secondaryWeaponDest.Offset(xOffset, yOffset);
+            spriteBatch.Draw(HUDSpritesheet, secondaryWeaponDest, secondaryWeaponSource, Color.White);
+        }
     }
 
     private void DrawBaseInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
