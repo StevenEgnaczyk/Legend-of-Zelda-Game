@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private InventoryManager itemManager;
+    private Inventory itemManager;
     private List<IItem> items;
 
     private Link link;
@@ -40,15 +41,14 @@ public class Room
         tileManager = new TileManager(spriteBatch);
         tiles = populateTiles(roomInformation[1]);
 
-        itemManager = new InventoryManager(link);
-        items = populateItems(roomInformation[2]);
+        itemManager = new Inventory(link);
+        items = populateItems(roomInformation[3]);
 
 
     }
 
     private List<IItem> populateItems(List<List<int>> itemInformation)
     {
-
         List<IItem> items = new List<IItem>();
         for (int row = 0; row < itemInformation.Count; row++)
         {
@@ -57,7 +57,21 @@ public class Room
 
                 switch (itemInformation[row][col])
                 {
+                    case 31:
+                        items.Add(new Candle(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 32:
+                        items.Add(new WoodenBoomerang(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 33:
+                        items.Add(new Bow(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 34:
+                        items.Add(new Bomb(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    default:
 
+                        break;
                 }
             }
         }
@@ -128,7 +142,17 @@ public class Room
         drawBackground(spriteBatch, roomInformation[0]);
         drawBlocks(spriteBatch, tiles);
         enemyManager.Draw();
+        drawItems(spriteBatch, items);
 
+    }
+
+    private void drawItems(SpriteBatch spriteBatch, List<IItem> items)
+    {
+        foreach (IItem i in items)
+        {
+            Debug.WriteLine(i.ToString());
+            i.Draw(spriteBatch);
+        }
     }
 
     public void drawBackground(SpriteBatch spriteBatch, List<List<int>> backgroundInformation)

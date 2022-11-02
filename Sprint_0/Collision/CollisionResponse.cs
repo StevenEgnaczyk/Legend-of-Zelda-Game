@@ -38,7 +38,7 @@ public class CollisionResponse
 
     public static void collisionResponse(Link link, IItem item)
     {
-        //TO DO: Implement
+        LinkItemCollisionResponse.collisionResponse(link, item);
     }
 
     public static void collisionResponse(IEnemy enemy, ITile tile)

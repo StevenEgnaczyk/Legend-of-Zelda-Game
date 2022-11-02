@@ -23,8 +23,8 @@ public class LinkItemCollisionResponse
         if (collisionFace != "No collision")
         {
             //add a bomb or bow or whatever to link's inventory or do the thing idk
-            
-            throw new NotImplementedException();
+
+            link.inventory.addItem(item);
         }
     }
 

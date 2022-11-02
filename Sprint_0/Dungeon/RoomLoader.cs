@@ -16,10 +16,12 @@ public static class RoomLoader
         List<List<int>> doorInfo = new List<List<int>>();
         List<List<int>> blockInfo = new List<List<int>>();
         List<List<int>> enemyInfo = new List<List<int>>();
+        List<List<int>> itemInfo = new List<List<int>>();
 
         List<int> doorInfoLine = new List<int>();
         List<int> blockInfoLine = new List<int>();
         List<int> enemyInfoLine = new List<int>();
+        List<int> itemInfoLine = new List<int>();
 
 
         using (var reader = new StreamReader("..\\..\\..\\Dungeon\\RoomCSVs\\Map" + (currentRoomIndex + 1) + ".csv"))
@@ -34,15 +36,19 @@ public static class RoomLoader
                 var line = reader.ReadLine();
                 string[] values = line.Split(',');
 
-                if (Int32.Parse(values[0]) <= 12)
+                if (Int32.Parse(values[0]) < 20)
                 {
                     blockInfoLine = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
                     blockInfo.Add(blockInfoLine);
-                } else
+                } else if (Int32.Parse(values[0]) >= 20 && Int32.Parse(values[0]) < 30)
                 {
                     enemyInfoLine = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
                     enemyInfo.Add(enemyInfoLine);
 
+                } else
+                {
+                    itemInfoLine = new List<int>(Array.ConvertAll(values, s => int.Parse(s)));
+                    itemInfo.Add(itemInfoLine);
                 }
 
             }
@@ -51,6 +57,7 @@ public static class RoomLoader
         roomInformation.Add(doorInfo);
         roomInformation.Add(blockInfo);
         roomInformation.Add(enemyInfo);
+        roomInformation.Add(itemInfo);
         
         return roomInformation;
     }

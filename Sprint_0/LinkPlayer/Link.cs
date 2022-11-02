@@ -9,7 +9,7 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
-    public InventoryManager inventory;
+    public Inventory inventory;
     public int currentRoom;
 
     public float xPos, yPos;
@@ -22,7 +22,7 @@ public class Link
     {
 
         state = new DownMovingLinkState(this);
-        inventory = new InventoryManager(this);
+        inventory = new Inventory(this);
 
         linkHealth = linkMaxHealth;
 

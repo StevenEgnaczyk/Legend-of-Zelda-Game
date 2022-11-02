@@ -1,61 +1,17 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint_0.Interfaces;
 using Sprint_0.LinkPlayer.LinkInventory;
 using System;
-using System.Collections.Generic;
 
 public class InventoryManager
 {
-    private Link Link;
-    public primaryWeaponManager primaryWeaponManager;
-    public secondaryWeaponManager secondaryWeaponManager;
+    private Link link;
+    private Inventory inventory;
 
-    private int numBombs;
-    private int numRupees;
-    private int numKeys;
-
-    private bool hasMap;
-    private bool hasCompass;
-
-    public List<IItem> itemList { get; set; }
-
-    public InventoryManager(Link link)
+    public InventoryManager(Link link, Inventory inventory)
     {
-        this.Link = link;
-
-        numBombs = 0;
-        numKeys = 0;
-        numRupees = 0;
-        hasMap = true;
-        hasCompass = true;
-        primaryWeaponManager = new primaryWeaponManager(link);
-        secondaryWeaponManager = new secondaryWeaponManager(link);
-
-        itemList = new List<IItem>();
-    }
-
-    public void addItem(IItem item)
-    {
-        itemList.Add(item);
-    }
-
-    public void removeItem(IItem item)
-    {
-        itemList.Remove(item);
-    }
-
-    public void Update()
-    {
-        foreach (IItem item in itemList)
-        {
-            item.Update();
-        }
-    }
-
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        DrawInventory(spriteBatch, 0, 0);
+        this.link = link;
+        this.inventory = inventory;
     }
 
     private void DrawMapSection(SpriteBatch spriteBatch, int xOffset, int yOffset)
@@ -66,7 +22,7 @@ public class InventoryManager
         baseMapDestRect.Offset(xOffset, yOffset);
         spriteBatch.Draw(baseMapSection, baseMapDestRect, baseMapSourceRect, Color.White);
 
-        if (hasMap)
+        if (inventory.HasMap())
         {
             DrawMapIcon(spriteBatch, xOffset, yOffset);
             DrawMap(spriteBatch, xOffset, yOffset);
@@ -76,7 +32,7 @@ public class InventoryManager
             DrawEmptyMapIcon(spriteBatch, xOffset, yOffset);
         }
 
-        if (hasCompass)
+        if (inventory.HasCompass())
         {
             DrawCompassIcon(spriteBatch, xOffset, yOffset);
         }
@@ -121,7 +77,7 @@ public class InventoryManager
         {
             Rectangle mapRoomRectSource = InventoryRectStorage.GetMapRoomRectSource(0, i);
             Rectangle mapRoomRectDest = InventoryRectStorage.GetMapRoomRectDest(0, i);
-            mapRoomRectDest.Offset(xOffset, yOffset); 
+            mapRoomRectDest.Offset(xOffset, yOffset);
             spriteBatch.Draw(HUDSpritesheet, mapRoomRectDest, mapRoomRectSource, Color.White);
 
         }
@@ -137,7 +93,7 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, mapDest, mapSource, Color.White);
     }
 
-    private void DrawInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    public void DrawInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         DrawBaseInventory(spriteBatch, xOffset, yOffset);
         DrawInventoryItems(spriteBatch, xOffset, yOffset);
@@ -148,7 +104,7 @@ public class InventoryManager
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
 
-        foreach (secondaryWeaponManager.secondaryWeapons secondaryWeapon in secondaryWeaponManager.secondaryWeaponList)
+        foreach (secondaryWeaponManager.secondaryWeapons secondaryWeapon in inventory.secondaryWeaponManager.secondaryWeaponList)
         {
             Rectangle secondaryWeaponSource = InventoryRectStorage.GetSecondaryWeaponSourceRect(secondaryWeapon);
             Rectangle secondaryWeaponDest = InventoryRectStorage.GetSecondaryWeaponDestRect(secondaryWeapon);
@@ -165,35 +121,5 @@ public class InventoryManager
         baseInventoryDestRect.Offset(xOffset, yOffset);
         spriteBatch.Draw(baseInventory, baseInventoryDestRect, baseInventorySourceRect, Color.White);
 
-    }
-
-    public int getBombs()
-    {
-        return numBombs;
-    }
-
-    public int getRupees()
-    {
-        return numRupees;
-    }
-
-    public int getKeys()
-    {
-        return numKeys;
-    }
-
-    public IWeapon getPrimaryWeapon()
-    {
-        return primaryWeaponManager.getPrimaryWeapon();
-    }
-
-    public IWeapon getSecondaryWeapon()
-    {
-        return secondaryWeaponManager.getSecondaryWeapon();
-    }
-
-    internal void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)
-    {
-        DrawInventory(spriteBatch, xOffset, yOffset);
     }
 }
