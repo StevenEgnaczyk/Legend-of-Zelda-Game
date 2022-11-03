@@ -14,10 +14,18 @@ public class Arrow : IItem
     private int Width = 16;
     private int Height = 16;
 
-    public Arrow(int xPosition, int yPosition)
+    private ItemManager man;
+    public Arrow(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -25,7 +33,7 @@ public class Arrow : IItem
         Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getArrowSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(arrow, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(arrow, destRect, sourceRect, Color.White);
 
     }
 

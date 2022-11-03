@@ -12,13 +12,22 @@ public class WoodenBoomerang : IItem
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
+    private ItemManager man;
 
-    public WoodenBoomerang(int xPosition, int yPosition)
+
+    public WoodenBoomerang(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        man.removeItem(this);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -26,7 +35,7 @@ public class WoodenBoomerang : IItem
         Texture2D woodenBoomerang = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getWoodenBoomerangSprites(currentIndex);
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(woodenBoomerang, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(woodenBoomerang, destRect, sourceRect, Color.White);
 
     }
 

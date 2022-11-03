@@ -19,7 +19,7 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private Inventory itemManager;
+    private ItemManager itemManager;
     private List<IItem> items;
 
     private Link link;
@@ -36,38 +36,37 @@ public class Room
         roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
 
         enemyManager = new EnemyManager(spriteBatch);
-        enemies = populateEnemies(roomInformation[2], spriteBatch);
+        populateEnemies(roomInformation[2], spriteBatch);
 
         tileManager = new TileManager(spriteBatch);
-        tiles = populateTiles(roomInformation[1]);
+        populateTiles(roomInformation[1]);
 
-        itemManager = new Inventory(link);
-        items = populateItems(roomInformation[3]);
+        itemManager = new ItemManager(spriteBatch);
+        populateItems(roomInformation[3]);
 
 
     }
 
-    private List<IItem> populateItems(List<List<int>> itemInformation)
+    private void populateItems(List<List<int>> itemInformation)
     {
         List<IItem> items = new List<IItem>();
         for (int row = 0; row < itemInformation.Count; row++)
         {
             for (int col = 0; col < itemInformation[row].Count; col++)
             {
-
                 switch (itemInformation[row][col])
                 {
                     case 31:
-                        items.Add(new Candle(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        new Candle(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
                     case 32:
-                        items.Add(new WoodenBoomerang(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        new WoodenBoomerang(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
                     case 33:
-                        items.Add(new Bow(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        new Bow(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
                     case 34:
-                        items.Add(new Bomb(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        new Bomb(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
                     default:
 
@@ -75,25 +74,21 @@ public class Room
                 }
             }
         }
-
-        return items;
     }
 
-    private List<ITile> populateTiles(List<List<int>> itemInformation)
+    private void populateTiles(List<List<int>> itemInformation)
     {
         List<ITile> tiles = new List<ITile>();
         for (int row = 0; row < itemInformation.Count; row++)
         {
             for (int col = 0; col < itemInformation[row].Count; col++)
             {
-                tiles.Add(TileManager.instance.getTileByIndex(itemInformation[row][col], row, col));
+                tileManager.addTile(TileManager.instance.getTileByIndex(itemInformation[row][col], row, col));
             }
         }
-
-        return tiles;
     }
 
-    private List<IEnemy> populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
+    private void populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
     {
         List<IEnemy> enemies = new List<IEnemy>();  
         for (int row = 0; row < enemyInformation.Count; row++)
@@ -133,26 +128,16 @@ public class Room
 
                 }
             }
-        return enemies;
     }
 
     internal void draw(SpriteBatch spriteBatch)
     {
 
         drawBackground(spriteBatch, roomInformation[0]);
-        drawBlocks(spriteBatch, tiles);
+        tileManager.Draw(spriteBatch);
         enemyManager.Draw();
-        drawItems(spriteBatch, items);
+        itemManager.Draw(spriteBatch);
 
-    }
-
-    private void drawItems(SpriteBatch spriteBatch, List<IItem> items)
-    {
-        foreach (IItem i in items)
-        {
-            Debug.WriteLine(i.ToString());
-            i.Draw(spriteBatch);
-        }
     }
 
     public void drawBackground(SpriteBatch spriteBatch, List<List<int>> backgroundInformation)
@@ -188,6 +173,6 @@ public class Room
 
     public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.primaryWeaponManager);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory.primaryWeaponManager);
     }
 }

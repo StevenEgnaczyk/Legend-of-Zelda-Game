@@ -36,7 +36,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             this.link = link;
             secondaryWeaponList = new List<secondaryWeapons>();
-            secondaryWeaponList.Add(secondaryWeapons.Boomerang);
             secondaryWeapon = null;
         }
 

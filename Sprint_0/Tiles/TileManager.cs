@@ -96,13 +96,13 @@ public class TileManager
         }
     }
 
-    public void Draw()
+    public void Draw(SpriteBatch spriteBatch)
     {
-        /*
-        foreach (Tile tile in tileList)
+        
+        foreach (ITile tile in tileList)
         {
-            tile.Draw(sb);
+            tile.Draw(spriteBatch);
         }
-        */
+        
     }
 }

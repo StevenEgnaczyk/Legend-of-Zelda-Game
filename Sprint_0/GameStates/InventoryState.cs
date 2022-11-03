@@ -36,14 +36,13 @@ namespace Sprint_0.GameStates
             {
                 game.roomManager.drawRoom(spriteBatch);
                 game.link.Draw(spriteBatch);
-                game.map.Draw(spriteBatch);
                 game.HUD.Draw(spriteBatch, 0, 704 + currentOffset);
-                game.inventoryManager.Draw(spriteBatch, 0, currentOffset);
+                game.link.inventory.Draw(spriteBatch, 0, currentOffset);
 
             } else
             {
                 game.HUD.Draw(spriteBatch, 0, 704);
-                game.inventoryManager.Draw(spriteBatch);
+                game.link.inventory.DrawInventory(spriteBatch);
             }
         }
 

@@ -17,12 +17,18 @@ public class Candle : IItem
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
-    public Candle(int xPosition, int yPosition)
+
+    private ItemManager man;
+    public Candle(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
+
+        man = manager;
+
+        man.addItem(this);
     }
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -78,5 +84,11 @@ public class Candle : IItem
 
 
 
+    }
+
+    public void delete()
+    {
+        man.removeItem(this);
+        
     }
 }

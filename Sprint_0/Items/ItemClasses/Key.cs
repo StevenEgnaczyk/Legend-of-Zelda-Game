@@ -13,17 +13,27 @@ public class Key : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Key(int xPosition, int yPosition)
+
+    private ItemManager man;
+    public Key(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
     }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D key = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getKeySprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(key, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(key, destRect, sourceRect, Color.White);
 
     }
     public int getHeight()

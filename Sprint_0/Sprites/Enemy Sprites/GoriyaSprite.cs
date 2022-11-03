@@ -45,7 +45,7 @@ public class GoriyaSprite : IEnemySprite
     public void draw(int frame, SpriteBatch sb)
     {
         goriyaTexture = Texture2DStorage.getEnemySpritesheet();
-        //sb.Draw(this.goriyaTexture, this.destinationRectantgle, this.walk0Rectangle, Color.White);
+        //sb.DrawInventory(this.goriyaTexture, this.destinationRectantgle, this.walk0Rectangle, Color.White);
         if (this.flip)
         {
             drawFlipped(this.left, this.up, this.destinationRectantgle, sb);

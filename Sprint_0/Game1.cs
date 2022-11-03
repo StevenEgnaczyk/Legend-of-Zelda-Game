@@ -53,10 +53,8 @@ namespace Sprint_0
             collisionManager = new CollisionManager(); 
             link = new Link();
             HUD = new HUDManager(link, link.inventory);
-            map = new Map(950, 350);
             roomManager = new RoomManager(spriteBatch, link);
             currentGameState = new GameplayState(this);
-            inventoryManager = new Inventory(link);
 
             keyboardController = new KeyboardController(this, Content, link);
             mouseController = new MouseController(Content, roomManager);

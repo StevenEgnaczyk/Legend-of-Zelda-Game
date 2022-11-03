@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint_0.LinkPlayer.LinkInventory;
 using System;
+using System.Diagnostics;
 
 public class InventoryManager
 {
