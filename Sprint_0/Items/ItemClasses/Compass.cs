@@ -13,10 +13,18 @@ public class Compass : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Compass(int xPosition, int yPosition)
+    private ItemManager man;
+    public Compass(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -24,7 +32,7 @@ public class Compass : IItem
         Texture2D compass = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getCompassSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(compass, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(compass, destRect, sourceRect, Color.White);
 
     }
 

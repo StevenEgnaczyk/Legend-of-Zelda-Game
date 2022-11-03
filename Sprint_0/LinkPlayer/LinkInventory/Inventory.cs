@@ -19,8 +19,6 @@ public class Inventory
     private bool hasMap;
     private bool hasCompass;
 
-    public List<IItem> itemList { get; set; }
-
     public Inventory(Link link)
     {
         this.Link = link;
@@ -33,7 +31,6 @@ public class Inventory
         primaryWeaponManager = new primaryWeaponManager(link);
         secondaryWeaponManager = new secondaryWeaponManager(link);
         inventoryManager = new InventoryManager(link, this);
-        itemList = new List<IItem>();
     }
 
     public void addItem(IItem item)
@@ -41,26 +38,12 @@ public class Inventory
         switch(item)
         {
             case Candle:
-                secondaryWeaponManager.secondaryWeaponList.Add(secondaryWeaponManager.secondaryWeapons.Fire);
+                this.secondaryWeaponManager.secondaryWeaponList.Add(secondaryWeaponManager.secondaryWeapons.Fire);
                 break;
-
         }
     }
 
-    public void removeItem(IItem item)
-    {
-        itemList.Remove(item);
-    }
-
-    public void Update()
-    {
-        foreach (IItem item in itemList)
-        {
-            item.Update();
-        }
-    }
-
-    public void Draw(SpriteBatch spriteBatch)
+    public void DrawInventory(SpriteBatch spriteBatch)
     {
         inventoryManager.DrawInventory(spriteBatch, 0, 0);
     }

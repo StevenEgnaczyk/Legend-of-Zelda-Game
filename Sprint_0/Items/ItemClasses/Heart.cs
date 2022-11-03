@@ -18,16 +18,23 @@ public class Heart : IItem
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
-    
 
+    private ItemManager man;
 
-    public Heart(int xPosition, int yPosition)
+    public Heart(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
         bufferInts = new int[3] {currentIndex, bufferIndex, bufferMax};
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -35,7 +42,7 @@ public class Heart : IItem
         Texture2D heart = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getHeartSprites(currentIndex);
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(heart, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(heart, destRect, sourceRect, Color.White);
     }
 
     public int getHeight()

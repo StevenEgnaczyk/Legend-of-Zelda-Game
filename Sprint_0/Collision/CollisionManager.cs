@@ -59,7 +59,7 @@ public class CollisionManager
 
         }
 
-        foreach (IItem item in items)
+        foreach (IItem item in items.ToArray())
         {
             CollisionResponse.collisionResponse(link, item);
         }

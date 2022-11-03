@@ -33,7 +33,6 @@ namespace Sprint_0.GameStates
         {
             game.roomManager.drawRoom(spriteBatch);
             game.link.Draw(spriteBatch);
-            game.map.Draw(spriteBatch);
 
             if (transitioning)
             {
@@ -64,7 +63,6 @@ namespace Sprint_0.GameStates
                 game.mouseController.ProcessInput(this);
 
                 game.link.Update();
-                game.map.Update();
                 game.roomManager.Update();
             }
         }

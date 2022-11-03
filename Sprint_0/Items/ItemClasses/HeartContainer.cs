@@ -14,10 +14,19 @@ public class HeartContainer : IItem
     private int Width = 16;
     private int Height = 16;
 
-    public HeartContainer(int xPosition, int yPosition)
+    private ItemManager man;
+
+    public HeartContainer(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -25,7 +34,7 @@ public class HeartContainer : IItem
         Texture2D heartContainer = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getHeartContainerSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(heartContainer, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(heartContainer, destRect, sourceRect, Color.White);
 
     }
     public int getHeight()

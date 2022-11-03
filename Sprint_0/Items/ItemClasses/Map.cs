@@ -14,10 +14,19 @@ public class Map : IItem
     private int Width = 32;
     private int Height = 64;
 
-    public Map(int xPosition, int yPosition)
+    private ItemManager man;
+
+    public Map(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
