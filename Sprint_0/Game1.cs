@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.GameStates;
 using Sprint_0.HUD;
 using System;
@@ -21,6 +22,8 @@ namespace Sprint_0
         public CollisionManager collisionManager;
         public InventoryManager inventoryManager;
         public HUDManager HUD;
+        public AudioManager aud;
+
 
 
         //Keyboard variables
@@ -57,6 +60,7 @@ namespace Sprint_0
             roomManager = new RoomManager(spriteBatch, link);
             currentGameState = new GameplayState(this);
             inventoryManager = new InventoryManager(link);
+            aud = new AuidoManager(Content);
 
             keyboardController = new KeyboardController(this, Content, link);
             mouseController = new MouseController(Content, roomManager);
@@ -69,7 +73,8 @@ namespace Sprint_0
         protected override void LoadContent()
         {
             //Create the spriteBatch
-            
+
+
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }
