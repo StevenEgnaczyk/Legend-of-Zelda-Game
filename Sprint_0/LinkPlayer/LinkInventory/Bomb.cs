@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class Bomb : IWeapon
+    public class Bomb : ISecondaryWeapon
     {
         private Link link;
         private Texture2D bomb;
@@ -46,29 +46,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
 
         public Bomb(Link link)
-        {
-            if (link.state.ToString().Equals("DownMovingLinkState"))
-            {
-                linkState = startingState.Down;
-            }
-            else if (link.state.ToString().Equals("UpMovingLinkState"))
-            {
-                linkState = startingState.Up;
-            }
-            else if (link.state.ToString().Equals("LeftMovingLinkState"))
-            {
-                linkState = startingState.Left;
-            }
-            else if (link.state.ToString().Equals("RightMovingLinkState"))
-            {
-                linkState = startingState.Right;
-            }
-
+        { 
             this.link = link;
-            bufferIndex = 0;
-            bomb = Texture2DStorage.GetItemSpritesheet();
-            startingRect = getStartingRect();
-            updateHeightAndWidth(sourceRect);
         }
         private Vector2 getStartingRect()
         {
@@ -108,7 +87,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             Rectangle sourceRect = bombSprites[bombSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)startingRect.X, (int)startingRect.Y, sourceRect.Width * 4, sourceRect.Height * 4);
             spriteBatch.Draw(bomb, destinationRect, sourceRect, Color.White);
-
             updateHeightAndWidth(destinationRect);
 
         }
@@ -164,6 +142,31 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public int getWidth()
         {
             return width;
+        }
+
+        public void Attack()
+        {
+            if (link.state.ToString().Equals("DownMovingLinkState"))
+            {
+                linkState = startingState.Down;
+            }
+            else if (link.state.ToString().Equals("UpMovingLinkState"))
+            {
+                linkState = startingState.Up;
+            }
+            else if (link.state.ToString().Equals("LeftMovingLinkState"))
+            {
+                linkState = startingState.Left;
+            }
+            else if (link.state.ToString().Equals("RightMovingLinkState"))
+            {
+                linkState = startingState.Right;
+            }
+
+            bufferIndex = 0;
+            bomb = Texture2DStorage.GetItemSpritesheet();
+            startingRect = getStartingRect();
+            updateHeightAndWidth(sourceRect);
         }
     }
 

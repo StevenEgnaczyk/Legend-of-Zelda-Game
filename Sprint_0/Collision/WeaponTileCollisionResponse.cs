@@ -15,7 +15,7 @@ public class WeaponTileCollisionResponse
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
-        //IWeapon weaponObj = weapon.currentWeapon;
+        //IPrimaryWeapon weaponObj = weapon.currentWeapon;
         Rectangle weaponRec = new Rectangle(weapon.primaryWeapon.getXPos(), weapon.primaryWeapon.getYPos(), weapon.primaryWeapon.getWidth(), weapon.primaryWeapon.getHeight());
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 32, 32);
 

@@ -24,7 +24,7 @@ public class Compass : IItem
 
     public void delete()
     {
-        throw new NotImplementedException();
+        man.removeItem(this);
     }
 
     public void Draw(SpriteBatch spriteBatch)

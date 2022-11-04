@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.Interfaces
 {
-    public interface IWeapon
+    public interface IPrimaryWeapon
     {
         void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch);
         void Update();

@@ -56,6 +56,8 @@ public static class HUDRectStorage
     {
         {"Bow", new Rectangle(555, 137, 8, 16) },
         {"Boomerang", new Rectangle(564, 137, 8, 16) },
+        {"Bomb", new Rectangle(604, 137, 8, 16) },
+        {"Fire", new Rectangle(653, 137, 8, 16) },
     };
 
     private static Rectangle fullHeartSourceRect = new Rectangle(645, 117, 8, 8);
@@ -191,7 +193,7 @@ public static class HUDRectStorage
         return primaryWeaponDestRect;
     }
 
-    internal static Rectangle GetPrimaryWeaponSourceRect(IWeapon primaryWeapon)
+    internal static Rectangle GetPrimaryWeaponSourceRect(IPrimaryWeapon primaryWeapon)
     {
         if (primaryWeapon == null)
         {
@@ -221,7 +223,7 @@ public static class HUDRectStorage
         return secondaryWeaponDestRect;
     }
 
-    internal static Rectangle GetSecondaryWeaponSourceRect(IWeapon secondaryWeapon)
+    internal static Rectangle GetSecondaryWeaponSourceRect(ISecondaryWeapon secondaryWeapon)
     {
         if (secondaryWeapon == null)
         {

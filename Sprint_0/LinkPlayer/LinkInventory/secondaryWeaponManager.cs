@@ -11,7 +11,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class secondaryWeaponManager
     {
-        public IWeapon secondaryWeapon{ get; set; }
+        public ISecondaryWeapon secondaryWeapon{ get; set; }
 
         public enum secondaryWeapons
         {
@@ -39,11 +39,20 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             secondaryWeapon = null;
         }
 
+        public void AddSecondaryWeapon(secondaryWeapons weapon)
+        {
+            if (secondaryWeaponList.Count == 0)
+            {
+                secondaryWeapon = getSecondaryWeaponType(weapon);
+            }
+            secondaryWeaponList.Add(weapon);
+
+        }
+
         public void UseBoomerang()
         {
             if (!usingSecondaryWeapon)
             {
-                boomerang = new Boomerang(link);
                 usingSecondaryWeapon = true;
             }
 
@@ -53,7 +62,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (!usingSecondaryWeapon)
             {
-                bow = new Bow(link);
                 usingSecondaryWeapon = true;
             }
 
@@ -63,7 +71,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (!usingSecondaryWeapon)
             {
-                bomb = new Bomb(link);
                 usingSecondaryWeapon = true;
             }
 
@@ -73,7 +80,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (!usingSecondaryWeapon)
             {
-                fire = new Fire(link);
                 usingSecondaryWeapon = true;
             }
 
@@ -85,6 +91,18 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 secondaryWeapon.Update();
             }
+        }
+
+        public ISecondaryWeapon getSecondaryWeaponType(secondaryWeapons secondaryWeapon)
+        {
+            return secondaryWeapon switch
+            {
+                secondaryWeaponManager.secondaryWeapons.Fire => new Fire(link),
+                secondaryWeaponManager.secondaryWeapons.Bow => new Bow(link),
+                secondaryWeaponManager.secondaryWeapons.Bomb => new Bomb(link),
+                secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
+                _ => null
+            };
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -101,30 +119,17 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             usingSecondaryWeapon = false;
         }
 
-        public IWeapon getSecondaryWeapon()
+        public ISecondaryWeapon getSecondaryWeapon()
         {
             return secondaryWeapon;
         }
 
         public void UseSecondaryWeapon()
         {
-            switch(secondaryWeapon)
+            if (!usingSecondaryWeapon)
             {
-                case Bow:
-                    UseBow();
-                    break;
-                case Fire:
-                    UseFire();
-                    break;
-                case Boomerang:
-                    UseBoomerang();
-                    break;
-                case Bomb:
-                    UseBomb();
-                    break;
-                default:
-                    break;
-
+                secondaryWeapon.Attack();
+                usingSecondaryWeapon = true;
             }
         }
     }

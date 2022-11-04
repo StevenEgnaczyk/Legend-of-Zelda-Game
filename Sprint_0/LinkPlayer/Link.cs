@@ -53,7 +53,7 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.primaryWeaponManager.Update();
+        inventory.Update();
     }
 
     public void Die()
@@ -76,6 +76,9 @@ public class Link
         if (inventory.primaryWeaponManager.usingPrimaryWeapon)
         {
             inventory.primaryWeaponManager.Draw(_spriteBatch);
+        } else if (inventory.secondaryWeaponManager.usingSecondaryWeapon)
+        {
+            inventory.secondaryWeaponManager.Draw(_spriteBatch);
         }
         else
         {

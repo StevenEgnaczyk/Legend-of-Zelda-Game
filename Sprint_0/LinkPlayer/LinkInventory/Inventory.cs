@@ -26,8 +26,8 @@ public class Inventory
         numBombs = 0;
         numKeys = 0;
         numRupees = 0;
-        hasMap = true;
-        hasCompass = true;
+        hasMap = false;
+        hasCompass = false;
         primaryWeaponManager = new primaryWeaponManager(link);
         secondaryWeaponManager = new secondaryWeaponManager(link);
         inventoryManager = new InventoryManager(link, this);
@@ -38,9 +38,50 @@ public class Inventory
         switch(item)
         {
             case Candle:
-                this.secondaryWeaponManager.secondaryWeaponList.Add(secondaryWeaponManager.secondaryWeapons.Fire);
+                this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Fire);
                 break;
+            case Bow:
+                this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Bow);
+                break;
+            case Arrow:
+
+                break;
+            case Bomb:
+                this.addBombs();
+                this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Bomb);
+                break;
+            case Clock:
+                break;
+            case Compass:
+                this.hasCompass = true;
+                break;
+            case Fairy:
+                break;
+            case Heart:
+
+                break;
+            case HeartContainer:
+
+                break;
+            case Key:
+                this.addKeys();
+                break;
+            case Map:
+                this.hasMap = true;
+                break;
+            case Rupee:
+
+                break;
+            case WoodenBoomerang:
+                this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Boomerang);
+                break;
+
         }
+    }
+
+    private void addKeys()
+    {
+        numKeys++;
     }
 
     public void DrawInventory(SpriteBatch spriteBatch)
@@ -51,6 +92,11 @@ public class Inventory
     public int getBombs()
     {
         return numBombs;
+    }
+
+    public void addBombs()
+    {
+        numBombs++;
     }
 
     public int getRupees()
@@ -73,12 +119,12 @@ public class Inventory
         return hasCompass;
     }
 
-    public IWeapon getPrimaryWeapon()
+    public IPrimaryWeapon getPrimaryWeapon()
     {
         return primaryWeaponManager.getPrimaryWeapon();
     }
 
-    public IWeapon getSecondaryWeapon()
+    public ISecondaryWeapon getSecondaryWeapon()
     {
         return secondaryWeaponManager.getSecondaryWeapon();
     }
@@ -86,5 +132,11 @@ public class Inventory
     internal void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         inventoryManager.DrawInventory(spriteBatch, xOffset, yOffset);
+    }
+
+    public void Update()
+    {
+        primaryWeaponManager.Update();
+        secondaryWeaponManager.Update();
     }
 }

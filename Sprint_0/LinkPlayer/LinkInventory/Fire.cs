@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class Fire : IWeapon
+    public class Fire : ISecondaryWeapon
     {
         private Link link;
         private Vector2 start;
@@ -230,6 +230,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public int getWidth()
         {
             return width;
+        }
+
+        public void Attack()
+        {
+            throw new NotImplementedException();
         }
     }
 

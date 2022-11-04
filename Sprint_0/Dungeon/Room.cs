@@ -68,6 +68,12 @@ public class Room
                     case 34:
                         new Bomb(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
+                    case 35:
+                        new Compass(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    case 36:
+                        new Map(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
                     default:
 
                         break;
