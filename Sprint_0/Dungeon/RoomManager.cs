@@ -11,6 +11,7 @@ public class RoomManager
     private int roomNumber;
     Room currentRoom;
     SpriteBatch spriteBatch;
+    public static int NUM_ROOMS = 17;
 
     //This class calls a new room and manages the switching between different rooms
     public RoomManager(SpriteBatch sb, Link link)
@@ -33,7 +34,7 @@ public class RoomManager
     {
         //increments room number index, if over max room number set to initial room 
         roomNumber++;
-        if (roomNumber == 18)
+        if (roomNumber > NUM_ROOMS)
         {
             roomNumber = 0;
         }

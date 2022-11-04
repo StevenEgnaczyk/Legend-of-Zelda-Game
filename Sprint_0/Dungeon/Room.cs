@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,12 +19,8 @@ public class Room
     private TileManager tileManager;
     private List<ITile> tiles;
 
-    private InventoryManager itemManager;
+    private ItemManager itemManager;
     private List<IItem> items;
-
-    private List<List<IDoor>> doors;
-    private List<IDoor> HorizontalDoors;
-    private List<IDoor> VerticalDoors;
 
     private Link link;
 
@@ -39,101 +36,59 @@ public class Room
         roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
 
         enemyManager = new EnemyManager(spriteBatch);
-        enemies = populateEnemies(roomInformation[2], spriteBatch);
+        populateEnemies(roomInformation[2], spriteBatch);
 
         tileManager = new TileManager(spriteBatch);
-        tiles = populateTiles(roomInformation[1]);
+        populateTiles(roomInformation[1]);
 
-        itemManager = new InventoryManager(link);
-        items = populateItems(roomInformation[2]);
-
-        doors = populateDoors(roomInformation[0][0]);
+        itemManager = new ItemManager(spriteBatch);
+        populateItems(roomInformation[3]);
 
 
     }
 
-    private List<IItem> populateItems(List<List<int>> itemInformation)
+    private void populateItems(List<List<int>> itemInformation)
     {
-
         List<IItem> items = new List<IItem>();
         for (int row = 0; row < itemInformation.Count; row++)
         {
             for (int col = 0; col < itemInformation[row].Count; col++)
             {
-
                 switch (itemInformation[row][col])
                 {
+                    case 31:
+                        new Candle(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    case 32:
+                        new WoodenBoomerang(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    case 33:
+                        new Bow(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    case 34:
+                        new Bomb(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    default:
 
+                        break;
                 }
             }
         }
-
-        return items;
     }
 
-    private List<ITile> populateTiles(List<List<int>> itemInformation)
+    private void populateTiles(List<List<int>> itemInformation)
     {
         List<ITile> tiles = new List<ITile>();
         for (int row = 0; row < itemInformation.Count; row++)
         {
             for (int col = 0; col < itemInformation[row].Count; col++)
             {
-                switch (itemInformation[row][col])
-                {
-                    case 0:
-                        tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 1:
-                        tiles.Add(new walkTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 2:
-                        tiles.Add(new BrickTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 3:
-                        tiles.Add(new BlueSandTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 4:
-                        tiles.Add(new WaterTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 5:
-                        tiles.Add(new StatueRightTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 6:
-                        tiles.Add(new StatueLeftTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 7:
-                        tiles.Add(new BlackTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 8:
-                        tiles.Add(new StairTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 9:
-                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 10:
-                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 11:
-                        tiles.Add(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 12:
-                        tiles.Add(new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    case 13:
-                        tiles.Add(new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-                    default:
-                        tiles.Add(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-                        break;
-
-                }
+                tileManager.addTile(TileManager.instance.getTileByIndex(itemInformation[row][col], row, col));
             }
         }
-
-        return tiles;
     }
 
-    private List<IEnemy> populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
+    private void populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
     {
         List<IEnemy> enemies = new List<IEnemy>();  
         for (int row = 0; row < enemyInformation.Count; row++)
@@ -173,15 +128,15 @@ public class Room
 
                 }
             }
-        return enemies;
     }
 
     internal void draw(SpriteBatch spriteBatch)
     {
 
-        drawBlocks(spriteBatch, tiles);
         drawBackground(spriteBatch, roomInformation[0]);
+        tileManager.Draw(spriteBatch);
         enemyManager.Draw();
+        itemManager.Draw(spriteBatch);
 
     }
 
@@ -192,29 +147,6 @@ public class Room
         Rectangle bgRect = RoomRectStorage.getBasicRoom(0);
         Rectangle destRect = new Rectangle(0, HUD_SIZE, bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
-
-    }
-
-    private List<List<IDoor>> populateDoors(List<int> doorInformation) {
-
-        List<List<IDoor>> doors = new List<List<IDoor>>();
-        List<IDoor> horizontalDoors = new List<IDoor>();
-        List<IDoor> verticalDoors = new List<IDoor>();
-
-        for (int i = 0; i < doorInformation.Count; i++)
-        {
-            if (i % 2 == 1)
-            {
-                horizontalDoors.Add(new HorizontalDoor(doorInformation[i]));
-            } else
-            {
-                verticalDoors.Add(new VerticalDoor(doorInformation[i]));
-            }
-
-        }
-        doors.Add(horizontalDoors);
-        doors.Add(verticalDoors);
-        return doors;
 
     }
 
@@ -241,6 +173,6 @@ public class Room
 
     public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tiles, items, link.inventory.weaponManager);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory.primaryWeaponManager);
     }
 }

@@ -9,7 +9,7 @@ using System.Reflection.Metadata;
 public class Link
 {
     public ILinkState state;
-    public InventoryManager inventory;
+    public Inventory inventory;
     public int currentRoom;
 
     public float xPos, yPos;
@@ -22,8 +22,7 @@ public class Link
     {
 
         state = new DownMovingLinkState(this);
-        inventory = new InventoryManager(this);
-        inventory.weaponManager = new userWeapons(this);
+        inventory = new Inventory(this);
 
         linkHealth = linkMaxHealth;
 
@@ -54,7 +53,7 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.weaponManager.Update();
+        inventory.primaryWeaponManager.Update();
     }
 
     public void Die()
@@ -66,7 +65,7 @@ public class Link
     public void reset()
     {
         state = new DownMovingLinkState(this);
-        inventory.weaponManager = new userWeapons(this);
+        inventory.primaryWeaponManager = new primaryWeaponManager(this);
 
         xPos = 500;
         yPos = 500;
@@ -74,9 +73,9 @@ public class Link
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        if (inventory.weaponManager.usingWeapon)
+        if (inventory.primaryWeaponManager.usingPrimaryWeapon)
         {
-            inventory.weaponManager.Draw(_spriteBatch);
+            inventory.primaryWeaponManager.Draw(_spriteBatch);
         }
         else
         {
@@ -99,12 +98,12 @@ public class Link
 
     internal void UseSecondaryWeapon()
     {
-        inventory.weaponManager.UseSecondaryWeapon();
+        inventory.secondaryWeaponManager.UseSecondaryWeapon();
     }
 
     internal void UsePrimaryWeapon()
     {
-        inventory.weaponManager.UsePrimaryWeapon();
+        inventory.primaryWeaponManager.UsePrimaryWeapon();
     }
 
     public float getHealth()

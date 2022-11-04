@@ -66,4 +66,12 @@ public class PushTile : ITile
     {
         return isWalkable;
     }
+    public void setXPos(int x)
+    {
+        xPosition = x;
+    }
+    public void setYPos(int y)
+    {
+        yPosition = y;
+    }
 }

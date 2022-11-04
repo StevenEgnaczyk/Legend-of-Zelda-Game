@@ -5,8 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 
-public class StairTile : ITile
+public class UnlockedDoorTileRight : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -16,12 +17,13 @@ public class StairTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
-    public StairTile(int xPos, int yPos)
+
+    public UnlockedDoorTileRight(int xPos, int yPos)
     {
-        this.xPosition = xPos;
+        this.xPosition = xPos + 16;
         this.yPosition = yPos;
 
-        this.width = 64;
+        this.width = 48;
         this.height = 64;
 
         this.isPushable = false;
@@ -31,7 +33,7 @@ public class StairTile : ITile
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(8);
+        Rectangle sourceRect = Texture2DStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
@@ -65,12 +67,14 @@ public class StairTile : ITile
     {
         return isWalkable;
     }
+
     public void setXPos(int x)
     {
-
+        throw new NotImplementedException();
     }
+
     public void setYPos(int y)
     {
-        
+        throw new NotImplementedException();
     }
 }

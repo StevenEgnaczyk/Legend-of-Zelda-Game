@@ -26,7 +26,7 @@ public class CollisionManager
 
 
     /* Not very efficient, may want to refactor in the future*/
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, userWeapons userInv)
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, primaryWeaponManager userInv)
     {
         //Collisions for link vs enemies, enemies vs block
         foreach (IEnemy enemy in enemies.ToArray()) {
@@ -59,7 +59,7 @@ public class CollisionManager
 
         }
 
-        foreach (IItem item in items)
+        foreach (IItem item in items.ToArray())
         {
             CollisionResponse.collisionResponse(link, item);
         }

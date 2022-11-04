@@ -12,5 +12,7 @@ namespace Sprint_0.GameStates
 
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
+
+        public void changeToTransitioning();
     }
 }

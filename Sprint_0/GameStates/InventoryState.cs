@@ -11,23 +11,57 @@ namespace Sprint_0.GameStates
     {
 
         private Game1 game;
+        private bool transitioning;
+        private int currentOffset;
+        private ChangeToGameplayStateCommand command;
 
         public InventoryState(Game1 game)
         {
             this.game = game;
+            command = new ChangeToGameplayStateCommand(game);
 
         }
+
+        public void changeToTransitioning()
+        {
+            this.transitioning = true;
+            this.currentOffset = 0;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            game.HUD.Draw(spriteBatch);
-            game.inventoryManager.Draw(spriteBatch);
+
+
+            if (transitioning)
+            {
+                game.roomManager.drawRoom(spriteBatch);
+                game.link.Draw(spriteBatch);
+                game.HUD.Draw(spriteBatch, 0, 704 + currentOffset);
+                game.link.inventory.Draw(spriteBatch, 0, currentOffset);
+
+            } else
+            {
+                game.HUD.Draw(spriteBatch, 0, 704);
+                game.link.inventory.DrawInventory(spriteBatch);
+            }
         }
 
         public void Update()
         {
-            //Process Keyboard Input
-            game.keyboardController.ProcessInput(this);
-            game.mouseController.ProcessInput(this);
+            if (transitioning)
+            {
+                currentOffset-=10;
+                if (currentOffset <= -704)
+                {
+                    transitioning = false;
+                    command.Execute();
+                }
+            } else
+            {
+                //Process Keyboard Input
+                game.keyboardController.ProcessInput(this);
+                game.mouseController.ProcessInput(this);
+            }
         }
     }
 }

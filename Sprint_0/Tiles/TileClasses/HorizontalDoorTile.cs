@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class InvisibleTileBottom : ITile
+public class VerticalDoorTile : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -18,16 +18,16 @@ public class InvisibleTileBottom : ITile
     private bool isPushable;
     private bool isWalkable;
 
-    public InvisibleTileBottom(int xPos, int yPos)
+    public VerticalDoorTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
-        this.yPosition = yPos + 32;
+        this.yPosition = yPos;
 
         this.width = 64;
-        this.height = 32;
+        this.height = 64;
 
         this.isPushable = false;
-        this.isWalkable = false;
+        this.isWalkable = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -66,5 +66,15 @@ public class InvisibleTileBottom : ITile
     public bool Walkable()
     {
         return isWalkable;
+    }
+
+    public void setXPos(int x)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setYPos(int y)
+    {
+        throw new NotImplementedException();
     }
 }

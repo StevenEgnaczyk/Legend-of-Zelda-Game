@@ -130,7 +130,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 bombSpriteIndex++;
                 if (bombSpriteIndex == maxFrames)
                 {
-                    link.inventory.weaponManager.stopUsingWeapon();
+                    link.inventory.primaryWeaponManager.stopUsingWeapon();
                     bombSpriteIndex = 0;
                 }
             }

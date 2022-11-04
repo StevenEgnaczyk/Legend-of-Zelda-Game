@@ -67,4 +67,12 @@ public class InvisibleTile : ITile
     {
         return isWalkable;
     }
+    public void setXPos(int x)
+    {
+
+    }
+    public void setYPos(int y)
+    {
+        
+    }
 }

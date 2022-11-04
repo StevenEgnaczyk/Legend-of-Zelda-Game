@@ -2,12 +2,12 @@
 using Sprint_0;
 using System;
 
-public class OpenGameCommand : ICommand
+public class ChangeToGameplayStateCommand : ICommand
 {
 
     private Game1 game;
 
-    public OpenGameCommand(Game1 game)
+    public ChangeToGameplayStateCommand(Game1 game)
     {
         this.game = game;
     }

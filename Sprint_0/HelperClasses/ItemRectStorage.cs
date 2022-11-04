@@ -81,6 +81,8 @@ public static class ItemRectStorage
         new Rectangle(135, 30, 8, 5)
     };
 
+    private static Rectangle candleSprite = new Rectangle(160, 0, 8, 16);
+
 
     public static Rectangle getArrowSprite()
     {
@@ -160,4 +162,8 @@ public static class ItemRectStorage
 
     }
 
+    internal static Rectangle getCandleSprite()
+    {
+        return candleSprite;
+    }
 }

@@ -13,10 +13,18 @@ public class Clock : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Clock(int xPosition, int yPosition)
+    private ItemManager man;
+    public Clock(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -24,7 +32,7 @@ public class Clock : IItem
         Texture2D clock = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getClockSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(clock, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(clock, destRect, sourceRect, Color.White);
 
     }
 

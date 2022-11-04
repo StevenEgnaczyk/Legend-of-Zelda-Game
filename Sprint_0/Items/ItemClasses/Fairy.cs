@@ -18,11 +18,20 @@ public class Fairy : IItem
     private int bufferIndex;
     private int bufferMax = 20;
 
-    public Fairy(int xPosition, int yPosition)
+    private ItemManager man;
+
+    public Fairy(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
         this.currentIndex = 0;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        throw new NotImplementedException();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -30,7 +39,7 @@ public class Fairy : IItem
         Texture2D fairy = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getFairySprites(currentIndex);
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(fairy, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(fairy, destRect, sourceRect, Color.White);
 
     }
 

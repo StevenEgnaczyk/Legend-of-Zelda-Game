@@ -13,10 +13,18 @@ public class Bow : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
-    public Bow(int xPosition, int yPosition)
+    private ItemManager man;
+    public Bow(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
+    }
+
+    public void delete()
+    {
+        man.removeItem(this);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -24,7 +32,7 @@ public class Bow : IItem
         Texture2D bow = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getBowSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(bow, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(bow, destRect, sourceRect, Color.White);
 
     }
 

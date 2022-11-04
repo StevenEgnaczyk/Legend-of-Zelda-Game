@@ -11,18 +11,29 @@ public class Bomb : IItem
     private int yPos;
     private int Width = 16;
     private int Height = 16;
+    private ItemManager man;
 
-    public Bomb(int xPosition, int yPosition)
+
+    public Bomb(ItemManager manager, int xPosition, int yPosition)
     {
+
         this.xPos = xPosition;
         this.yPos = yPosition;
+        man = manager;
+        man.addItem(this);
     }
+
+    public void delete()
+    {
+        man.removeItem(this);
+    }
+
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D bomb = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getBombSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(bomb, sourceRect, destRect, Color.White);
+        spriteBatch.Draw(bomb, destRect, sourceRect, Color.White);
     }
 
     public int getHeight()

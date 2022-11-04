@@ -6,31 +6,37 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Threading;
 
-public class Flame : IItem
+public class Candle : IItem
 {
 
     private int xPos;
     private int yPos;
-    private int Width = 16;
-    private int Height = 16;
+    private int Width = 24;
+    private int Height = 48;
 
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
-    public Flame(int xPosition, int yPosition)
+
+    private ItemManager man;
+    public Candle(ItemManager manager, int xPosition, int yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
         currentIndex = 0;
         bufferIndex = 0;
+
+        man = manager;
+
+        man.addItem(this);
     }
     public void Draw(SpriteBatch spriteBatch)
     {
 
         Texture2D flame = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = ItemRectStorage.getFlameSprites(currentIndex);
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(flame, sourceRect, destRect, Color.White);
+        Rectangle sourceRect = ItemRectStorage.getCandleSprite();
+        Rectangle destRect = new Rectangle(this.xPos + 20, this.yPos + 8, this.Width, this.Height);
+        spriteBatch.Draw(flame, destRect, sourceRect, Color.White);
 
     }
 
@@ -78,5 +84,11 @@ public class Flame : IItem
 
 
 
+    }
+
+    public void delete()
+    {
+        man.removeItem(this);
+        
     }
 }

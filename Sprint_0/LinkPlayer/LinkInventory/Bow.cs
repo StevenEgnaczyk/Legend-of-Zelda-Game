@@ -40,10 +40,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private startingState linkState;
 
-        public Bow(Link link, string arrowType)
+        public Bow(Link link)
         {
-            if (arrowType.Equals("Red"))
-            {
                 if (link.state.ToString().Equals("DownMovingLinkState"))
                 {
                     linkState = startingState.Down;
@@ -68,38 +66,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                     sourceRect = new Rectangle(148, 32, 16, 5);
 
                 }
-            }
-            else
-            {
-                if (arrowType.Equals("Blue"))
-                {
-                    if (link.state.ToString().Equals("DownMovingLinkState"))
-                    {
-                        linkState = startingState.Down;
-                        sourceRect = new Rectangle(171, 35, 5, 16);
-
-                    }
-                    else if (link.state.ToString().Equals("UpMovingLinkState"))
-                    {
-                        linkState = startingState.Up;
-                        sourceRect = new Rectangle(154, 16, 5, 16);
-
-                    }
-                    else if (link.state.ToString().Equals("LeftMovingLinkState"))
-                    {
-                        linkState = startingState.Left;
-                        sourceRect = new Rectangle(178, 34, 16, 5);
-
-                    }
-                    else if (link.state.ToString().Equals("RightMovingLinkState"))
-                    {
-                        linkState = startingState.Right;
-                        sourceRect = new Rectangle(178, 40, 16, 5);
-
-                    }
-
-                }
-            }
+            
 
             this.link = link;
             start = getStartingRect();
@@ -199,7 +166,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
             {
-                link.inventory.weaponManager.stopUsingWeapon();
+                link.inventory.primaryWeaponManager.stopUsingWeapon();
             }
 
             bufferFrame++;

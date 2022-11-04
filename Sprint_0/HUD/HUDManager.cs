@@ -13,9 +13,9 @@ namespace Sprint_0.HUD
     {
 
         private Link link;
-        private InventoryManager linkInventory;
+        private Inventory linkInventory;
 
-        public HUDManager(Link player, InventoryManager inventory)
+        public HUDManager(Link player, Inventory inventory)
         {
             this.link = player;
             this.linkInventory = inventory;
@@ -24,30 +24,43 @@ namespace Sprint_0.HUD
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            DrawBasicHUD(spriteBatch);
-            DrawLevelText(spriteBatch);
-            DrawMap(spriteBatch);
-            DrawItems(spriteBatch);
-            DrawWeapons(spriteBatch);
-            DrawLife(spriteBatch);
+            DrawBasicHUD(spriteBatch, 0, 0);
+            DrawLevelText(spriteBatch, 0, 0);
+            DrawMap(spriteBatch, 0, 0);
+            DrawItems(spriteBatch, 0, 0);
+            DrawWeapons(spriteBatch, 0, 0);
+            DrawLife(spriteBatch, 0, 0);
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        {
+            DrawBasicHUD(spriteBatch, xOffset, yOffset);
+            DrawLevelText(spriteBatch, xOffset, yOffset);
+            DrawMap(spriteBatch, xOffset, yOffset);
+            DrawItems(spriteBatch, xOffset, yOffset);
+            DrawWeapons(spriteBatch, xOffset, yOffset);
+            DrawLife(spriteBatch, xOffset, yOffset);
             
         }
 
-        private void DrawLevelText(SpriteBatch spriteBatch)
+        private void DrawLevelText(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle levelTextSourceRect = HUDRectStorage.GetLevelTextSourceRect();
             Rectangle levelTextDestRect = HUDRectStorage.GetLevelTextDestRect();
+            levelTextDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, levelTextDestRect, levelTextSourceRect, Color.White);
 
             Rectangle levelNumSourceRect = HUDRectStorage.getDigit(1);
             Rectangle levelNumDestRect = HUDRectStorage.GetLevelNumDestRect();
+            levelNumDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, levelNumDestRect, levelNumSourceRect, Color.White);
 
 
         }
 
-        private void DrawLife(SpriteBatch spriteBatch)
+        private void DrawLife(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
 
@@ -60,6 +73,7 @@ namespace Sprint_0.HUD
                 
                 Rectangle heartSourceRect = HUDRectStorage.GetFullHeartSourceRect();
                 Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                heartDestRect.Offset(xOffset, yOffset);
                 spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
                 linkHealth -= 1.0f;
                 heartIndex++;
@@ -69,6 +83,7 @@ namespace Sprint_0.HUD
             {
                 Rectangle heartSourceRect = HUDRectStorage.GetHalfHeartSourceRect();
                 Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                heartDestRect.Offset(xOffset, yOffset);
                 spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
             }
 
@@ -76,39 +91,45 @@ namespace Sprint_0.HUD
             {
                 Rectangle heartSourceRect = HUDRectStorage.GetEmptyHeartSourceRect();
                 Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
+                heartDestRect.Offset(xOffset, yOffset);
                 spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
             }
         }
 
-        private void DrawWeapons(SpriteBatch spriteBatch)
+        private void DrawWeapons(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
-            DrawPrimaryWeapon(spriteBatch);
-            //DrawSecondaryWeapon(spriteBatch);
+            DrawPrimaryWeapon(spriteBatch, xOffset, yOffset);
+            DrawSecondaryWeapon(spriteBatch, xOffset, yOffset);
         }
 
-        private void DrawSecondaryWeapon(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DrawPrimaryWeapon(SpriteBatch spriteBatch)
+        private void DrawSecondaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
-            Rectangle primaryWeaponSourceRect = HUDRectStorage.GetPrimaryWeaponSourceRect(linkInventory.weaponManager.primaryWeapon);
+            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.secondaryWeapon);
+            Rectangle secondaryWeaponDestRect = HUDRectStorage.GetSecondaryWeaponDestRect();
+            secondaryWeaponDestRect.Offset(xOffset, yOffset);
+            spriteBatch.Draw(basicHUD, secondaryWeaponDestRect, secondaryWeaponSourceRect, Color.White);
+        }
+
+        private void DrawPrimaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        {
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle primaryWeaponSourceRect = HUDRectStorage.GetPrimaryWeaponSourceRect(linkInventory.primaryWeaponManager.primaryWeapon);
             Rectangle primaryWeaponDestRect = HUDRectStorage.GetPrimaryWeaponDestRect();
+            primaryWeaponDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, primaryWeaponDestRect, primaryWeaponSourceRect, Color.White);
             
         }
 
-        private void DrawItems(SpriteBatch spriteBatch)
+        private void DrawItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
-            DrawRupees(spriteBatch);
-            DrawKeys(spriteBatch);
-            DrawBombs(spriteBatch);
+            DrawRupees(spriteBatch, xOffset, yOffset);
+            DrawKeys(spriteBatch, xOffset, yOffset);
+            DrawBombs(spriteBatch, xOffset, yOffset);
             
         }
 
-        private void DrawBombs(SpriteBatch spriteBatch)
+        private void DrawBombs(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numBombs = link.inventory.getBombs();
             Rectangle digit1SourceRect;
@@ -117,6 +138,7 @@ namespace Sprint_0.HUD
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle xSourceRect = HUDRectStorage.getXIcon();
             Rectangle xDestRect = HUDRectStorage.getBombXDestRect();
+            xDestRect.Offset(xOffset, yOffset);
 
             if (numBombs > 10)
             {
@@ -130,14 +152,16 @@ namespace Sprint_0.HUD
             }
 
             Rectangle digit1DestRect = HUDRectStorage.getBombDigit1DestRect();
+            digit1DestRect.Offset(xOffset, yOffset);
             Rectangle digit2DestRect = HUDRectStorage.getBombDigit2DestRect();
+            digit2DestRect.Offset(xOffset, yOffset);
 
             spriteBatch.Draw(basicHUD, xDestRect, xSourceRect, Color.White);
             spriteBatch.Draw(basicHUD, digit1DestRect, digit1SourceRect, Color.White);
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
-        private void DrawKeys(SpriteBatch spriteBatch)
+        private void DrawKeys(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numKeys = link.inventory.getKeys();
             Rectangle digit1SourceRect;
@@ -146,6 +170,7 @@ namespace Sprint_0.HUD
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle xSourceRect = HUDRectStorage.getXIcon();
             Rectangle xDestRect = HUDRectStorage.getKeyXDestRect();
+            xDestRect.Offset(xOffset, yOffset);
 
             if (numKeys > 10)
             {
@@ -159,14 +184,16 @@ namespace Sprint_0.HUD
             }
 
             Rectangle digit1DestRect = HUDRectStorage.getKeyDigit1DestRect();
+            digit1DestRect.Offset(xOffset, yOffset);
             Rectangle digit2DestRect = HUDRectStorage.getKeyDigit2DestRect();
+            digit2DestRect.Offset(xOffset, yOffset);
 
             spriteBatch.Draw(basicHUD, xDestRect, xSourceRect, Color.White);
             spriteBatch.Draw(basicHUD, digit1DestRect, digit1SourceRect, Color.White);
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
-        private void DrawRupees(SpriteBatch spriteBatch)
+        private void DrawRupees(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numRupees = link.inventory.getRupees();
             Rectangle digit1SourceRect;
@@ -175,6 +202,7 @@ namespace Sprint_0.HUD
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle xSourceRect = HUDRectStorage.getXIcon();
             Rectangle xDestRect = HUDRectStorage.getRupeeXDestRect();
+            xDestRect.Offset(xOffset, yOffset);
 
             if (numRupees > 10)
             {
@@ -188,7 +216,9 @@ namespace Sprint_0.HUD
             }
 
             Rectangle digit1DestRect = HUDRectStorage.getRupeeDigit1DestRect();
+            digit1DestRect.Offset(xOffset, yOffset);
             Rectangle digit2DestRect = HUDRectStorage.getRupeeDigit2DestRect();
+            digit2DestRect.Offset(xOffset, yOffset);
 
             spriteBatch.Draw(basicHUD, xDestRect, xSourceRect, Color.White);
             spriteBatch.Draw(basicHUD, digit1DestRect, digit1SourceRect, Color.White);
@@ -196,19 +226,21 @@ namespace Sprint_0.HUD
         }
     
 
-        private void DrawMap(SpriteBatch spriteBatch)
+        private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle sourceRect = HUDRectStorage.getMapIcon();
             Rectangle destinationRect = HUDRectStorage.getMapLocation(link.currentRoom);
+            destinationRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
         }
 
-        public void DrawBasicHUD(SpriteBatch spriteBatch)
+        public void DrawBasicHUD(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle sourceRect = HUDRectStorage.getBasicHUD();
             Rectangle destinationRect = new Rectangle(0, 0, sourceRect.Width * 4, sourceRect.Height * 4);
+            destinationRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
         }
     }
