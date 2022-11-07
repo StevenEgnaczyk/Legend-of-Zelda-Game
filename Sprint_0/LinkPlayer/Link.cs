@@ -62,13 +62,8 @@ public class Link
 
     public void Die()
     {
-       //room.reset();
-    }
-
-    public void reset()
-    {
-        state = new DownMovingLinkState(this);
-        inventory.primaryWeaponManager = new primaryWeaponManager(this);
+       roomManager.reset();
+       linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;

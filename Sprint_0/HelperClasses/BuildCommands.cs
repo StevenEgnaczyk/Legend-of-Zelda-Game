@@ -51,7 +51,6 @@ public class BuildCommands
         inventoryControllerMappings = new Dictionary<Keys, ICommand>();
 
         _quitCommand = new QuitCommand();
-        resetCommand = new ResetCommand(linkPlayer);
         turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
         turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
         turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
