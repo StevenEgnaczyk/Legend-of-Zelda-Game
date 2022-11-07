@@ -28,8 +28,6 @@ public class BuildCommands
     public ICommand openGameCommand;
     public ICommand transitionToGameCommand;
 
-    public ICommand dieCommand;
-
     public ICommand cycleEnemyNextCommand;
     public ICommand cycleEnemyPreviousCommand;
 
@@ -38,6 +36,12 @@ public class BuildCommands
     public ICommand _dynamicTilesCommand;
     public ICommand _dynamicTilesCommandPrev;
     public ICommand resetCommand;
+
+    public ICommand cycleInventoryRightCommand;
+
+    public ICommand muteCommand;
+    public ICommand volUpCommand;
+    public ICommand volDownCommand;
 
     public Keys[] state;
 
@@ -61,7 +65,12 @@ public class BuildCommands
         openGameCommand = new ChangeToGameplayStateCommand(game);
         transitionToGameCommand = new TransitionToGameCommmand(game);
 
-        dieCommand = new DieCommand(linkPlayer);
+        cycleInventoryRightCommand = new CycleInventoryRight(linkPlayer.inventory);
+
+        muteCommand = new MuteCommand();
+        volUpCommand = new VolUpCommand();
+        volDownCommand = new VolDownCommand();
+
 
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
@@ -78,7 +87,14 @@ public class BuildCommands
 
         RegisterGameplayCommand(Keys.E, transitionToInventoryCommand);
 
+        RegisterGameplayCommand(Keys.M, muteCommand);
+        RegisterGameplayCommand(Keys.L, volUpCommand);
+        RegisterGameplayCommand(Keys.K, volDownCommand);
+        
+
         RegisterInventoryCommand(Keys.Escape, transitionToGameCommand);
+        RegisterInventoryCommand(Keys.Right, cycleInventoryRightCommand);
+
     }
 
     public void RegisterGameplayCommand(Keys key, ICommand command)

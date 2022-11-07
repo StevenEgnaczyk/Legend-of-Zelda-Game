@@ -68,6 +68,12 @@ public class Room
                     case 34:
                         new Bomb(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                         break;
+                    case 35:
+                        new Compass(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
+                    case 36:
+                        new Map(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                        break;
                     default:
 
                         break;
@@ -164,6 +170,15 @@ public class Room
 
     }
 
+    public void drawDoor(SpriteBatch spriteBatch, int newDoorTexture, int doorIndex)
+    {
+        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
+        Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(newDoorTexture, doorIndex);
+        Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(0);
+        spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
+
+    }
+
     public void drawBlocks(SpriteBatch spriteBatch, List<ITile> tiles)
     {
         foreach (ITile t in tiles) {
@@ -173,6 +188,6 @@ public class Room
 
     public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory.primaryWeaponManager);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
     }
 }

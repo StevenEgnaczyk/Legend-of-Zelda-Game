@@ -12,7 +12,7 @@ public class GelSprite : IEnemySprite
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
 
-
+    //1 hp no damaged animation
     public GelSprite(Texture2D spritsheet)
     {
         this.gelTexture = spritsheet;
