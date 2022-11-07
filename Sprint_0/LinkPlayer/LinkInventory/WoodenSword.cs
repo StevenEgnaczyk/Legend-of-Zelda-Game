@@ -66,7 +66,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         }
         private Vector2 getStartingRect()
         {
-            Vector2 startingRect = new Vector2();
+            Vector2 startingRect = new();
 
             if (linkState.Equals(startingState.Down))
             {

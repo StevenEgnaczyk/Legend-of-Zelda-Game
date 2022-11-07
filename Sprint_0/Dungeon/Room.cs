@@ -170,6 +170,15 @@ public class Room
 
     }
 
+    public void drawDoor(SpriteBatch spriteBatch, int newDoorTexture, int doorIndex)
+    {
+        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
+        Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(newDoorTexture, doorIndex);
+        Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(0);
+        spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
+
+    }
+
     public void drawBlocks(SpriteBatch spriteBatch, List<ITile> tiles)
     {
         foreach (ITile t in tiles) {
@@ -179,6 +188,6 @@ public class Room
 
     public void Update()
     {
-        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory.primaryWeaponManager);
+        collisionManager.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
     }
 }

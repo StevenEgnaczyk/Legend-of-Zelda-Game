@@ -17,7 +17,7 @@ public class RoomManager
     public RoomManager(SpriteBatch sb, Link link)
     {
         this.spriteBatch = sb;
-        roomNumber = 0;
+        roomNumber = 1;
         this.link = link;
         this.link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
@@ -30,34 +30,15 @@ public class RoomManager
 
     }
 
-    internal void nextRoom()
-    {
-        //increments room number index, if over max room number set to initial room 
-        roomNumber++;
-        if (roomNumber > NUM_ROOMS)
-        {
-            roomNumber = 0;
-        }
-        link.currentRoom = roomNumber;
-        currentRoom = new Room(roomNumber, spriteBatch, this.link);
-    }
-
-    internal void prevRoom()
-    {
-        //decrements room number index, if over min room number set to last room
-        roomNumber--;
-        if (roomNumber == -1)
-        {
-            roomNumber = 17;
-        }
-        link.currentRoom = roomNumber;
-        currentRoom = new Room(roomNumber, spriteBatch, this.link);
-
-    }
-
     public void Update()
     {
         currentRoom.Update();
+    }
+
+    internal void loadRoom(int roomNumber)
+    {
+        link.currentRoom = roomNumber;
+        currentRoom = new Room(roomNumber, spriteBatch, this.link);
     }
 }
 

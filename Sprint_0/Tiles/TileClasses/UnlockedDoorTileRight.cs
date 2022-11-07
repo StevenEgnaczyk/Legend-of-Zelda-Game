@@ -17,6 +17,7 @@ public class UnlockedDoorTileRight : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
 
     public UnlockedDoorTileRight(int xPos, int yPos)
     {
@@ -28,14 +29,17 @@ public class UnlockedDoorTileRight : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        /*
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(0);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
+        */
     }
 
     public int getXPos()
@@ -66,6 +70,11 @@ public class UnlockedDoorTileRight : ITile
     public bool Walkable()
     {
         return isWalkable;
+    }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
     }
 
     public void setXPos(int x)

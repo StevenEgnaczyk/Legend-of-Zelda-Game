@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 usingSecondaryWeapon = true;
             }
 
+            link.inventory.removeBombs();
+            if (link.inventory.getBombs() < 1)
+            {
+                this.secondaryWeaponList.Remove(secondaryWeapons.Bomb);
+            }
         }
 
         public void UseFire()
@@ -126,11 +132,16 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void UseSecondaryWeapon()
         {
-            if (!usingSecondaryWeapon)
+            if (!usingSecondaryWeapon && !link.inventory.primaryWeaponManager.usingPrimaryWeapon && secondaryWeapon != null)
             {
                 secondaryWeapon.Attack();
                 usingSecondaryWeapon = true;
             }
+        }
+
+        internal Rectangle getRect()
+        {
+            return new Rectangle(secondaryWeapon.getXPos(), secondaryWeapon.getYPos(), secondaryWeapon.getWidth(), secondaryWeapon.getHeight());
         }
     }
 }

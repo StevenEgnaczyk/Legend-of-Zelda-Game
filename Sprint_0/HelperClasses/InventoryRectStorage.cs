@@ -3,6 +3,7 @@ using Sprint_0.Interfaces;
 using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ public static class InventoryRectStorage
 
     private static Rectangle emptyMapSourceRect = new Rectangle(488, 118, 8, 16);
     private static Rectangle emptyMapDestRect = new Rectangle(48 * 4, baseInventoryDestRect.Height + (24 * 4), 8 * 4, 16 * 4);
+
+    private static Rectangle secondaryWeaponDestRect = new Rectangle(68 * 4, 48 * 4, 8 * 4, 16 * 4);
 
     private static List<Rectangle> dungeonMapInformationSourceRects = new List<Rectangle>
     {
@@ -197,5 +200,22 @@ public static class InventoryRectStorage
             secondaryWeaponManager.secondaryWeapons.Boomerang => new Rectangle(584, 137, 8, 16),
             _ => new Rectangle(0, 0, 16, 16),
         };
+    }
+
+    internal static Rectangle GetSecondaryWeaponSourceRect(ISecondaryWeapon secondaryWeapon)
+    {
+        return secondaryWeapon.GetType().ToString().Split(".")[3].ToString() switch
+        {
+            "Fire" => new Rectangle(653, 137, 8, 16),
+            "Bow" => new Rectangle(625, 137, 16, 16),
+            "Bomb" => new Rectangle(604, 137, 8, 16),
+            "Boomerang" => new Rectangle(584, 137, 8, 16),
+            _ => new Rectangle(0, 0, 16, 16),
+        };
+    }
+
+    internal static Rectangle GetCurrentSecondaryWeaponDestinationRect()
+    {
+        return secondaryWeaponDestRect;
     }
 }

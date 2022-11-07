@@ -108,7 +108,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 bombSpriteIndex++;
                 if (bombSpriteIndex == maxFrames)
                 {
-                    link.inventory.primaryWeaponManager.stopUsingWeapon();
+                    link.inventory.secondaryWeaponManager.stopUsingWeapon();
+                    link.inventory.removeBombs();
                     bombSpriteIndex = 0;
                 }
             }
@@ -146,28 +147,28 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Attack()
         {
-            if (link.state.ToString().Equals("DownMovingLinkState"))
-            {
-                linkState = startingState.Down;
-            }
-            else if (link.state.ToString().Equals("UpMovingLinkState"))
-            {
-                linkState = startingState.Up;
-            }
-            else if (link.state.ToString().Equals("LeftMovingLinkState"))
-            {
-                linkState = startingState.Left;
-            }
-            else if (link.state.ToString().Equals("RightMovingLinkState"))
-            {
-                linkState = startingState.Right;
-            }
+                if (link.state.ToString().Equals("DownMovingLinkState"))
+                {
+                    linkState = startingState.Down;
+                }
+                else if (link.state.ToString().Equals("UpMovingLinkState"))
+                {
+                    linkState = startingState.Up;
+                }
+                else if (link.state.ToString().Equals("LeftMovingLinkState"))
+                {
+                    linkState = startingState.Left;
+                }
+                else if (link.state.ToString().Equals("RightMovingLinkState"))
+                {
+                    linkState = startingState.Right;
+                }
 
-            bufferIndex = 0;
-            bomb = Texture2DStorage.GetItemSpritesheet();
-            startingRect = getStartingRect();
-            updateHeightAndWidth(sourceRect);
+                bufferIndex = 0;
+                bomb = Texture2DStorage.GetItemSpritesheet();
+                startingRect = getStartingRect();
+                updateHeightAndWidth(sourceRect);
+            }
         }
-    }
 
 }

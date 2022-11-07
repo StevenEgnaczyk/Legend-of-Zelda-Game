@@ -112,6 +112,14 @@ public class InventoryManager
             secondaryWeaponDest.Offset(xOffset, yOffset);
             spriteBatch.Draw(HUDSpritesheet, secondaryWeaponDest, secondaryWeaponSource, Color.White);
         }
+
+        if (inventory.secondaryWeaponManager.secondaryWeapon != null)
+        {
+            Rectangle secondaryWeaponSource = InventoryRectStorage.GetSecondaryWeaponSourceRect(inventory.secondaryWeaponManager.secondaryWeapon);
+            Rectangle secondaryWeaponDest = InventoryRectStorage.GetCurrentSecondaryWeaponDestinationRect();
+            secondaryWeaponDest.Offset(xOffset, yOffset);
+            spriteBatch.Draw(HUDSpritesheet, secondaryWeaponDest, secondaryWeaponSource, Color.White);
+        }
     }
 
     private void DrawBaseInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)

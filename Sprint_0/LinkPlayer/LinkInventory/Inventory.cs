@@ -99,6 +99,16 @@ public class Inventory
         numBombs++;
     }
 
+    public void removeBombs()
+    {
+        numBombs--;
+        if (numBombs == 0)
+        {
+            secondaryWeaponManager.secondaryWeaponList.Remove(secondaryWeaponManager.secondaryWeapons.Bomb);
+            secondaryWeaponManager.secondaryWeapon = null;
+        }
+    }
+
     public int getRupees()
     {
         return numRupees;
@@ -119,14 +129,18 @@ public class Inventory
         return hasCompass;
     }
 
-    public IPrimaryWeapon getPrimaryWeapon()
+    public Rectangle getWeapon()
     {
-        return primaryWeaponManager.getPrimaryWeapon();
-    }
-
-    public ISecondaryWeapon getSecondaryWeapon()
-    {
-        return secondaryWeaponManager.getSecondaryWeapon();
+        if (primaryWeaponManager.usingPrimaryWeapon)
+        {
+            return primaryWeaponManager.getRect();
+        } else if (secondaryWeaponManager.usingSecondaryWeapon)
+        {
+            return secondaryWeaponManager.getRect();
+        } else
+        {
+            return new Rectangle(0, 0, 0, 0);
+        }
     }
 
     internal void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)
@@ -138,5 +152,22 @@ public class Inventory
     {
         primaryWeaponManager.Update();
         secondaryWeaponManager.Update();
+    }
+
+    internal bool UsingWeapon()
+    {
+        return primaryWeaponManager.usingPrimaryWeapon || secondaryWeaponManager.usingSecondaryWeapon;
+    }
+
+    internal void StopUsingWeapon()
+    {
+        if (primaryWeaponManager.usingPrimaryWeapon)
+        {
+            primaryWeaponManager.stopUsingWeapon();
+        }
+        else if (secondaryWeaponManager.usingSecondaryWeapon)
+        {
+            secondaryWeaponManager.stopUsingWeapon();
+        }
     }
 }

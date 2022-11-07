@@ -11,18 +11,21 @@ public class Link
     public ILinkState state;
     public Inventory inventory;
     public int currentRoom;
+    public RoomManager roomManager;
 
     public float xPos, yPos;
     public int linkSpeed = 3;
     private float linkHealth;
     private float linkMaxHealth = 3.0f;
+
     
 
-    public Link()
+    public Link(SpriteBatch spriteBatch)
     {
 
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
+        roomManager = new RoomManager(spriteBatch, this);
 
         linkHealth = linkMaxHealth;
 
@@ -117,5 +120,10 @@ public class Link
     public float getMaxHealth()
     {
         return linkMaxHealth;
+    }
+
+    public void teleportToRoom(int roomNum)
+    {
+        roomManager.loadRoom(roomNum);
     }
 }

@@ -28,8 +28,6 @@ public class BuildCommands
     public ICommand openGameCommand;
     public ICommand transitionToGameCommand;
 
-    public ICommand dieCommand;
-
     public ICommand cycleEnemyNextCommand;
     public ICommand cycleEnemyPreviousCommand;
 
@@ -60,8 +58,6 @@ public class BuildCommands
         transitionToInventoryCommand = new TransitionToInventoryCommand(game);
         openGameCommand = new ChangeToGameplayStateCommand(game);
         transitionToGameCommand = new TransitionToGameCommmand(game);
-
-        dieCommand = new DieCommand(linkPlayer);
 
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);

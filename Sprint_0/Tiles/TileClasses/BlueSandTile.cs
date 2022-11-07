@@ -16,6 +16,9 @@ public class BlueSandTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
+
     public BlueSandTile(int xPos, int yPos)
     {
         this.xPosition = xPos;
@@ -26,12 +29,13 @@ public class BlueSandTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = false;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(3);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(3);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
@@ -65,6 +69,12 @@ public class BlueSandTile : ITile
     {
         return isWalkable;
     }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
+    }
+
     public void setXPos(int x)
     {
 

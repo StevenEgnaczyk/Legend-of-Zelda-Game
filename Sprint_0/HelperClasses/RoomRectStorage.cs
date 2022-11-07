@@ -99,6 +99,24 @@ public static class RoomRectStorage
         
     }
 
+    internal static Rectangle getBlockRect(int blockID)
+    {
+        return blockID switch
+        {
+            0 => new Rectangle(3, 145, 16, 16),
+            1 => new Rectangle(1, 192, 16, 16),
+            2 => new Rectangle(81, 355, 16, 16),
+            3 => new Rectangle(244, 272, 16, 16),
+            4 => new Rectangle(244, 438, 16, 16),
+            5 => new Rectangle(260, 272, 16, 16),
+            6 => new Rectangle(308, 240, 16, 16),
+            7 => new Rectangle(81, 898, 16, 16),
+            8 => new Rectangle(97, 470, 16, 16),
+            9 => new Rectangle(81, 355, 16, 16),
+            _ => new Rectangle(521, 84, 16, 16),
+        };
+    }
+
     internal static Rectangle getDoorDestinationRect(int doorPos)
     {
         switch(doorPos)

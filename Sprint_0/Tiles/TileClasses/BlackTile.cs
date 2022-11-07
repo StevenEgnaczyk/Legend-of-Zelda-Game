@@ -17,6 +17,8 @@ public class BlackTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
     public BlackTile(int xPos, int yPos)
     {
@@ -28,12 +30,16 @@ public class BlackTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = false;
+        this.isLocked = false;
+
+
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(7);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(7);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
@@ -75,5 +81,9 @@ public class BlackTile : ITile
     public void setYPos(int y)
     {
         
+    }
+    public bool Teleporter()
+    {
+        return isTeleport;
     }
 }

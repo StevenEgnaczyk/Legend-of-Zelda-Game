@@ -42,45 +42,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public Bow(Link link)
         {
-                if (link.state.ToString().Equals("DownMovingLinkState"))
-                {
-                    linkState = startingState.Down;
-                    sourceRect = new Rectangle(154, 44, 5, 16);
-
-                }
-                else if (link.state.ToString().Equals("UpMovingLinkState"))
-                {
-                    linkState = startingState.Up;
-                    sourceRect = new Rectangle(154, 0, 5, 16);
-
-                }
-                else if (link.state.ToString().Equals("LeftMovingLinkState"))
-                {
-                    linkState = startingState.Left;
-                    sourceRect = new Rectangle(148, 38, 16, 5);
-
-                }
-                else if (link.state.ToString().Equals("RightMovingLinkState"))
-                {
-                    linkState = startingState.Right;
-                    sourceRect = new Rectangle(148, 32, 16, 5);
-
-                }
-            
-
             this.link = link;
-            start = getStartingRect();
-            end = getTargetRect(start);
-            current = start;
-
-            goingOut = true;
-            distanceToTravel = 500;
-            bufferFrame = 0;
-
-            arrow = Texture2DStorage.GetItemSpritesheet();
-            updateHeightAndWidth(sourceRect);
-
-            Debug.WriteLine(linkState.ToString());
         }
 
         private Vector2 getTargetRect(Vector2 startRect)
@@ -161,12 +123,10 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Update()
         {
-            Debug.WriteLine(current.ToString());
-            Debug.WriteLine(end.ToString());
 
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
             {
-                link.inventory.primaryWeaponManager.stopUsingWeapon();
+                link.inventory.secondaryWeaponManager.stopUsingWeapon();
             }
 
             bufferFrame++;
@@ -232,7 +192,43 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Attack()
         {
-            throw new NotImplementedException();
+            if (link.state.ToString().Equals("DownMovingLinkState"))
+            {
+                linkState = startingState.Down;
+                sourceRect = new Rectangle(154, 44, 5, 16);
+
+            }
+            else if (link.state.ToString().Equals("UpMovingLinkState"))
+            {
+                linkState = startingState.Up;
+                sourceRect = new Rectangle(154, 0, 5, 16);
+
+            }
+            else if (link.state.ToString().Equals("LeftMovingLinkState"))
+            {
+                linkState = startingState.Left;
+                sourceRect = new Rectangle(148, 38, 16, 5);
+
+            }
+            else if (link.state.ToString().Equals("RightMovingLinkState"))
+            {
+                linkState = startingState.Right;
+                sourceRect = new Rectangle(148, 32, 16, 5);
+
+            }
+
+
+            this.link = link;
+            start = getStartingRect();
+            end = getTargetRect(start);
+            current = start;
+
+            goingOut = true;
+            distanceToTravel = 500;
+            bufferFrame = 0;
+
+            arrow = Texture2DStorage.GetItemSpritesheet();
+            updateHeightAndWidth(sourceRect);
         }
     }
 

@@ -10,14 +10,14 @@ using Sprint_0;
 
 public class WeaponTileCollisionResponse
 {
-    public static void collisionResponse(primaryWeaponManager weapon, ITile tile)
+    public static void collisionResponse(Inventory userInv, ITile tile)
     {
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
         //IPrimaryWeapon weaponObj = weapon.currentWeapon;
-        Rectangle weaponRec = new Rectangle(weapon.primaryWeapon.getXPos(), weapon.primaryWeapon.getYPos(), weapon.primaryWeapon.getWidth(), weapon.primaryWeapon.getHeight());
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 32, 32);
+        Rectangle weaponRec = userInv.getWeapon();
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
         /* 
@@ -28,7 +28,7 @@ public class WeaponTileCollisionResponse
             string collisionFace = CollisionDetection.collides(weaponRec, tileRec);
             if (collisionFace != "No Collision")
             {
-                weapon.stopUsingWeapon();
+                userInv.StopUsingWeapon();
             }
         }
     }

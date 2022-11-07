@@ -55,7 +55,7 @@ public static class HUDRectStorage
     private static Dictionary<String, Rectangle> secondaryWeaponSourceRectangles = new Dictionary<string, Rectangle>()
     {
         {"Bow", new Rectangle(555, 137, 8, 16) },
-        {"Boomerang", new Rectangle(564, 137, 8, 16) },
+        {"Boomerang", new Rectangle(583, 137, 8, 16) },
         {"Bomb", new Rectangle(604, 137, 8, 16) },
         {"Fire", new Rectangle(653, 137, 8, 16) },
     };
@@ -229,8 +229,11 @@ public static class HUDRectStorage
         {
             return emptyWeaponSourceRect;
         }
-        string[] secondaryWeaponInfo = secondaryWeapon.GetType().ToString().Split(".");
-        return secondaryWeaponSourceRectangles[secondaryWeaponInfo[3].ToString()];
+        else
+        {
+            string[] secondaryWeaponInfo = secondaryWeapon.GetType().ToString().Split(".");
+            return secondaryWeaponSourceRectangles[secondaryWeaponInfo[3].ToString()];
+        }
     }
 
     internal static Rectangle getXIcon()

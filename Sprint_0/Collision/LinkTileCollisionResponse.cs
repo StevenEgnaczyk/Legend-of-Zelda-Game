@@ -15,12 +15,55 @@ public class LinkTileCollisionResponse
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
+
         /*
          * Link doesn't turn when hitting a wall, so this just stops his x or y position
          * from moving further into the block (instead of turning) 
          * 
          * Need: A special method for the block that gets pushed
          */
+
+        if (tile.Teleporter())
+        {
+
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+                
+                case "Top":
+                    int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
+                    link.xPos = 500;
+                    link.yPos = 250;
+                    link.roomManager.loadRoom(roomToTeleportTop);
+                    break;
+
+                case "Left":
+                    int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
+                    link.xPos = 775;
+                    link.yPos = 500;
+                    link.roomManager.loadRoom(roomToTeleportLeft);
+
+                    break;
+
+                case "Right":
+
+                    int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
+                    link.xPos = 175;
+                    link.yPos = 525;
+                    link.roomManager.loadRoom(roomToTeleportRight);
+
+                    break;
+
+                case "Bottom":
+                    int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
+                    link.xPos = 500;
+                    link.yPos = 700;
+                    link.roomManager.loadRoom(roomToTeleportBottom);
+
+                    break;
+            }
+        }
+
         if (!tile.Walkable())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);

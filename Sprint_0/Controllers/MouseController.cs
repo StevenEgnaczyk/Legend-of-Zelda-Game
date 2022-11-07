@@ -10,17 +10,11 @@ using System.Threading;
 
 public class MouseController : IController
 {
-
-    private ICommand nextMapCommand;
-    private ICommand prevMapCommand;
     private MouseState lastMouseState;
 
 
     public MouseController(ContentManager c, RoomManager room)
     {
-
-        nextMapCommand = new NextMapCommand(room);
-        prevMapCommand = new PrevMapCommand(room);
 
     }
 
@@ -46,7 +40,6 @@ public class MouseController : IController
 
             if ((mousePos.X < 982 && mousePos.X > 950) && (mousePos.Y > 350 && mousePos.Y < 414))
             {
-                nextMapCommand.Execute();
             }
         }
         //sets last state to current to stop fast map switching

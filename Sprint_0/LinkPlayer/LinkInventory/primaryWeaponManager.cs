@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -74,12 +75,15 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         internal void UsePrimaryWeapon()
         {
-            UseWoodenSword();
+            if (!usingPrimaryWeapon && !link.inventory.secondaryWeaponManager.usingSecondaryWeapon)
+            {
+                UseWoodenSword();
+            }
         }
 
-        internal void UseSecondaryWeapon()
+        internal Rectangle getRect()
         {
-            throw new NotImplementedException();
+            return new Rectangle(primaryWeapon.getXPos(), primaryWeapon.getYPos(), primaryWeapon.getWidth(), primaryWeapon.getHeight());
         }
     }
 }
