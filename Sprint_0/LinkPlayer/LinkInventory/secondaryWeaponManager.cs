@@ -76,10 +76,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
             };
         }
-                bomb = new Bomb(link);
-                usingSecondaryWeapon = true;
-                //audio handled in bomb class due to multiple sounds on separate frames
-            }
+            
 
         public ISecondaryWeapon getSecondaryWeaponTypeByInt(int secondaryWeapon)
         {

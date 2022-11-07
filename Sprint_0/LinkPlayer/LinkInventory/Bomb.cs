@@ -84,6 +84,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Texture2D bomb = Texture2DStorage.GetItemSpritesheet();
             Rectangle sourceRect = bombSprites[bombSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)startingRect.X, (int)startingRect.Y, sourceRect.Width * 4, sourceRect.Height * 4);
             spriteBatch.Draw(bomb, destinationRect, sourceRect, Color.White);

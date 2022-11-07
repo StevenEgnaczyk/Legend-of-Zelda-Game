@@ -14,7 +14,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class primaryWeaponManager
     { 
-        public IWeapon primaryWeapon { get; set;}
+        public IPrimaryWeapon primaryWeapon { get; set;}
 
         public WoodenSword woodenSword;
         public MagicSword magicSword;

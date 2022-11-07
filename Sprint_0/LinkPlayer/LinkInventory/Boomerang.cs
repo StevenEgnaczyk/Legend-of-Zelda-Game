@@ -60,6 +60,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            boomerang = Texture2DStorage.GetItemSpritesheet();
             sourceRect = boomerangSprite[boomerangSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 5, sourceRect.Height * 5);
             spriteBatch.Draw(boomerang, destinationRect, sourceRect, Color.White);
