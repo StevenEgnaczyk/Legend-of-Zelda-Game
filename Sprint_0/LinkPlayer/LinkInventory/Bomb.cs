@@ -108,7 +108,13 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             Rectangle sourceRect = bombSprites[bombSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)startingRect.X, (int)startingRect.Y, sourceRect.Width * 4, sourceRect.Height * 4);
             spriteBatch.Draw(bomb, destinationRect, sourceRect, Color.White);
-
+            if (bombSpriteIndex == 0)
+            {
+                AudioStorage.GetBombDrop().Play();
+            }else if(bombSpriteIndex == 2)
+            {
+                AudioStorage.GetBombBlow().Play();
+            }
             updateHeightAndWidth(destinationRect);
 
         }
