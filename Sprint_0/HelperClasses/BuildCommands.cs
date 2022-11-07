@@ -37,6 +37,8 @@ public class BuildCommands
     public ICommand _dynamicTilesCommandPrev;
     public ICommand resetCommand;
 
+    public ICommand cycleInventoryRightCommand;
+
     public Keys[] state;
 
     public BuildCommands(Link linkPlayer, Game1 game)
@@ -59,6 +61,8 @@ public class BuildCommands
         openGameCommand = new ChangeToGameplayStateCommand(game);
         transitionToGameCommand = new TransitionToGameCommmand(game);
 
+        cycleInventoryRightCommand = new CycleInventoryRight(linkPlayer.inventory);
+
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
         RegisterGameplayCommand(Keys.Q, _quitCommand);
@@ -75,6 +79,8 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.E, transitionToInventoryCommand);
 
         RegisterInventoryCommand(Keys.Escape, transitionToGameCommand);
+        RegisterInventoryCommand(Keys.Right, cycleInventoryRightCommand);
+
     }
 
     public void RegisterGameplayCommand(Keys key, ICommand command)

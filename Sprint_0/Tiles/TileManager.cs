@@ -65,15 +65,13 @@ public class TileManager
             case 9:
                 return(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 10:
-                return (new UnlockedDoorTileLeft(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 11:
-                return (new UnlockedDoorTileRight(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-            case 12:
-                return(new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 13:
-                return(new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                return (new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 14:
-                return (new VerticalDoorTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));               
+                return (new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
                 return(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
 

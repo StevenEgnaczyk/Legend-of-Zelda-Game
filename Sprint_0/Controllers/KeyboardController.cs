@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 public class KeyboardController : IController
 {
 	public BuildCommands buildCommands;
+	Keys[] previouslyPressedKeys;
 
     public KeyboardController(Game1 game, ContentManager c, Link linkPlayer)
 	{
@@ -58,6 +59,7 @@ public class KeyboardController : IController
                     }
                 }
                 buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+				previouslyPressedKeys = pressedKeys;
                 break;
         }
 	}

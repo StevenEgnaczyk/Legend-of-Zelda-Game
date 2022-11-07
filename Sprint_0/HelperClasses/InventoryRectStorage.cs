@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Sprint_0.LinkPlayer.LinkInventory.secondaryWeaponManager;
 
 public static class InventoryRectStorage
 {
@@ -101,6 +102,16 @@ public static class InventoryRectStorage
 
 
         },
+    };
+
+    private static Rectangle currentWeaponBox = new Rectangle(519, 137, 16, 16);
+
+    private static List<Rectangle> secondaryWeaponDestinationRectangles = new List<Rectangle>()
+    {
+        new Rectangle((129 * 4), (47 * 4), (16 * 4), (16 * 4)),
+        new Rectangle((153 * 4), (47 * 4), (16 * 4), (16 * 4)),
+        new Rectangle((177 * 4), (47 * 4), (16 * 4), (16 * 4)),
+        new Rectangle((201 * 4), (47 * 4), (16 * 4), (16 * 4)),
     };
 
     public static Rectangle getDungeonMapDestinationRectangles(int x, int y)
@@ -217,5 +228,15 @@ public static class InventoryRectStorage
     internal static Rectangle GetCurrentSecondaryWeaponDestinationRect()
     {
         return secondaryWeaponDestRect;
+    }
+
+    internal static Rectangle GetCurrentWeaponSourceRect()
+    {
+        return currentWeaponBox;
+    }
+
+    internal static Rectangle GetCurrentWeaponDestinationRect(int currentWeaponIndex)
+    {
+        return secondaryWeaponDestinationRectangles[currentWeaponIndex];
     }
 }

@@ -33,7 +33,7 @@ public class LinkTileCollisionResponse
                 case "Top":
                     int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
                     link.xPos = 500;
-                    link.yPos = 250;
+                    link.yPos = 700;
                     link.roomManager.loadRoom(roomToTeleportTop);
                     break;
 
@@ -57,7 +57,7 @@ public class LinkTileCollisionResponse
                 case "Bottom":
                     int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
                     link.xPos = 500;
-                    link.yPos = 700;
+                    link.yPos = 250;
                     link.roomManager.loadRoom(roomToTeleportBottom);
 
                     break;

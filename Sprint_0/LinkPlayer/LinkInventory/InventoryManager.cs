@@ -8,6 +8,7 @@ public class InventoryManager
 {
     private Link link;
     private Inventory inventory;
+    private int selectedWeaponIndex;
 
     public InventoryManager(Link link, Inventory inventory)
     {
@@ -99,6 +100,7 @@ public class InventoryManager
         DrawBaseInventory(spriteBatch, xOffset, yOffset);
         DrawInventoryItems(spriteBatch, xOffset, yOffset);
         DrawMapSection(spriteBatch, xOffset, yOffset);
+
     }
 
     private void DrawInventoryItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
@@ -130,5 +132,46 @@ public class InventoryManager
         baseInventoryDestRect.Offset(xOffset, yOffset);
         spriteBatch.Draw(baseInventory, baseInventoryDestRect, baseInventorySourceRect, Color.White);
 
+        if (link.inventory.secondaryWeaponManager.secondaryWeaponList.Count > 0)
+        {
+            DrawCurrentWeaponRectangle(spriteBatch, xOffset, yOffset);
+        }
+
+    }
+
+    private void DrawCurrentWeaponRectangle(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    {
+        Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
+        Rectangle currentWeaponSourceRectangle = InventoryRectStorage.GetCurrentWeaponSourceRect();
+        Rectangle currentWeaponDestRectangle = InventoryRectStorage.GetCurrentWeaponDestinationRect(selectedWeaponIndex);
+        currentWeaponDestRectangle.Offset(xOffset, yOffset);
+        spriteBatch.Draw(baseInventory, currentWeaponDestRectangle, currentWeaponSourceRectangle, Color.White);
+    }
+
+    public int getSelectedSecondaryWeaponIndex()
+    {
+        return selectedWeaponIndex;
+    }
+    public void setSelectedSecondaryWeaponIndex(int index)
+    {
+        selectedWeaponIndex = index;
+    }
+
+    internal void cycleItemRight()
+    {
+        int startingIndex = selectedWeaponIndex;
+        selectedWeaponIndex++;
+        if (selectedWeaponIndex == 4)
+        {
+            selectedWeaponIndex = 0;
+        }
+        while ((selectedWeaponIndex != startingIndex) && !(inventory.secondaryWeaponManager.HasSelectedWeapon(selectedWeaponIndex))) {
+            selectedWeaponIndex++;
+
+            if (selectedWeaponIndex == 4)
+            {
+                selectedWeaponIndex = 0;
+            }
+        }
     }
 }

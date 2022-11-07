@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class UnlockedDoorTileLeft : ITile
+public class DoorTileHorizontal : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -18,13 +18,14 @@ public class UnlockedDoorTileLeft : ITile
     private bool isPushable;
     private bool isWalkable;
     private bool isTeleport;
+    private bool isLocked;
 
-    public UnlockedDoorTileLeft(int xPos, int yPos)
+    public DoorTileHorizontal(int xPos, int yPos)
     {
-        this.xPosition = xPos + 16;
+        this.xPosition = xPos;
         this.yPosition = yPos;
 
-        this.width = 48;
+        this.width = 64;
         this.height = 64;
 
         this.isPushable = false;
@@ -71,7 +72,6 @@ public class UnlockedDoorTileLeft : ITile
     {
         return isWalkable;
     }
-
     public bool Teleporter()
     {
         return isTeleport;

@@ -17,8 +17,8 @@ public class Bomb : IItem
     public Bomb(ItemManager manager, int xPosition, int yPosition)
     {
 
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = xPosition + 24;
+        this.yPos = yPosition + 8;
         man = manager;
         man.addItem(this);
     }

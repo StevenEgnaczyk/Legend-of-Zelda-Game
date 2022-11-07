@@ -44,50 +44,10 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (secondaryWeaponList.Count == 0)
             {
-                secondaryWeapon = getSecondaryWeaponType(weapon);
+                secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
             }
             secondaryWeaponList.Add(weapon);
-
-        }
-
-        public void UseBoomerang()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                usingSecondaryWeapon = true;
-            }
-
-        }
-
-        public void UseBow()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                usingSecondaryWeapon = true;
-            }
-
-        }
-
-        public void UseBomb()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                usingSecondaryWeapon = true;
-            }
-
-            link.inventory.removeBombs();
-            if (link.inventory.getBombs() < 1)
-            {
-                this.secondaryWeaponList.Remove(secondaryWeapons.Bomb);
-            }
-        }
-
-        public void UseFire()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                usingSecondaryWeapon = true;
-            }
+            link.inventory.inventoryManager.setSelectedSecondaryWeaponIndex(getSecondaryWeaponIndexByEnum(weapon));
 
         }
 
@@ -99,7 +59,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
-        public ISecondaryWeapon getSecondaryWeaponType(secondaryWeapons secondaryWeapon)
+        public ISecondaryWeapon getSecondaryWeaponTypeByEnum(secondaryWeapons secondaryWeapon)
         {
             return secondaryWeapon switch
             {
@@ -107,8 +67,41 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeaponManager.secondaryWeapons.Bow => new Bow(link),
                 secondaryWeaponManager.secondaryWeapons.Bomb => new Bomb(link),
                 secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
-                _ => null
             };
+        }
+
+        public ISecondaryWeapon getSecondaryWeaponTypeByInt(int secondaryWeapon)
+        {
+            return secondaryWeapon switch
+            {
+                0 => new Boomerang(link),
+                1 => new Bomb(link),
+                2 => new Bow(link),
+                3 => new Fire(link),
+            };
+        }
+
+        public int getSecondaryWeaponIndexByEnum(secondaryWeapons weapon)
+        {
+            return weapon switch
+            {
+                secondaryWeapons.Boomerang => 0,
+                secondaryWeapons.Bomb => 1,
+                secondaryWeapons.Bow => 2,
+                secondaryWeapons.Fire => 3,
+            };
+        }
+
+        internal bool HasSelectedWeapon(int selectedWeaponIndex)
+        {
+            return selectedWeaponIndex switch
+            {
+                0 => secondaryWeaponList.Contains(secondaryWeapons.Boomerang),
+                1 => secondaryWeaponList.Contains(secondaryWeapons.Bomb),
+                2 => secondaryWeaponList.Contains(secondaryWeapons.Bow),
+                3 => secondaryWeaponList.Contains(secondaryWeapons.Fire),
+            };
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -142,6 +135,14 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         internal Rectangle getRect()
         {
             return new Rectangle(secondaryWeapon.getXPos(), secondaryWeapon.getYPos(), secondaryWeapon.getWidth(), secondaryWeapon.getHeight());
+        }
+
+        internal void SetSecondaryWeapon(int weapon)
+        {
+            if (HasSelectedWeapon(weapon))
+            {
+                secondaryWeapon = getSecondaryWeaponTypeByInt(weapon);
+            }
         }
     }
 }
