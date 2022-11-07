@@ -93,6 +93,7 @@ namespace Sprint_0.HUD
                 Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
                 heartDestRect.Offset(xOffset, yOffset);
                 spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
+                heartIndex++;
             }
         }
 
