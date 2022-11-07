@@ -24,7 +24,11 @@ public static class RoomLoader
         List<int> itemInfoLine = new List<int>();
 
 
+<<<<<<< Updated upstream
         using (var reader = new StreamReader("..\\..\\..\\Dungeon\\RoomCSVs\\Map" + (currentRoomIndex) + ".csv"))
+=======
+        using (var reader = new StreamReader("/Users/jhom/Documents/GitHubFiles/HnH/Sprint_0/Dungeon/RoomCSVs/Map" + (currentRoomIndex + 1) + ".csv"))
+>>>>>>> Stashed changes
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");
