@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 woodenSword = new WoodenSword(link);
                 primaryWeapon = woodenSword;
                 usingPrimaryWeapon = true;
-               // AudioStorage.GetSword.Play();
+                AudioStorage.GetSwordSlash().Play();
             }
         }
 
@@ -45,6 +46,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 magicSword = new MagicSword(link);
                 primaryWeapon = magicSword;
                 usingPrimaryWeapon = true;
+                AudioStorage.GetSwordShoot().Play();
             }
         }
 

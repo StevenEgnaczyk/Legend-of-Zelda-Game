@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 boomerang = new Boomerang(link);
                 usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
             }
 
         }
@@ -55,6 +57,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 bow = new Bow(link);
                 usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
             }
 
         }
