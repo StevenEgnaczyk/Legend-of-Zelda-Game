@@ -78,6 +78,7 @@ public class Aquamentus : IEnemy
     public void die()
     {
         //TO DO: death animation
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
     }
 
