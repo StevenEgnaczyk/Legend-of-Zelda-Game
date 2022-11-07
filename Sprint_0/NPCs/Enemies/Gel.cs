@@ -74,6 +74,7 @@ public class Gel : IEnemy
     public void die()
     {
         //TO DO: Death animation
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 
     }
