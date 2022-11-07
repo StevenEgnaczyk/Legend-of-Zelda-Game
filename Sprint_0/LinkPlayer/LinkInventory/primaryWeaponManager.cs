@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class primaryWeaponManager
-    {
+    { 
         public IWeapon primaryWeapon { get; set;}
 
         public WoodenSword woodenSword;
@@ -32,6 +34,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 woodenSword = new WoodenSword(link);
                 primaryWeapon = woodenSword;
                 usingPrimaryWeapon = true;
+               // AudioStorage.GetSword.Play();
             }
         }
 

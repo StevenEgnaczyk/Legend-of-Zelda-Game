@@ -59,5 +59,10 @@ public class RoomManager
     {
         currentRoom.Update();
     }
+
+    public void reset()
+    {
+        currentRoom = new Room(0, spriteBatch, this.link);
+    }
 }
 
