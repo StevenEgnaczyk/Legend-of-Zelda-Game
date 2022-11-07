@@ -127,6 +127,12 @@
 /processorParam:Quality=Best
 /build:LOZ_Enemy_Hit.wav
 
+#begin LOZ_Get_Item.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Get_Item.wav
+
 #begin LOZ_Link_Die.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

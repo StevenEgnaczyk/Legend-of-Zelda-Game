@@ -68,6 +68,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 bomb = new Bomb(link);
                 usingSecondaryWeapon = true;
+                //audio handled in bomb class due to multiple sounds on separate frames
             }
 
         }

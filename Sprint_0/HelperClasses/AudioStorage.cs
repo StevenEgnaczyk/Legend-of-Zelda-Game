@@ -21,10 +21,11 @@ public static class AudioStorage
     public static SoundEffect enemy_die;
     public static SoundEffect link_hurt;
     public static SoundEffect link_die;
+    public static SoundEffect get_item;
 
     public static void LoadAllSounds(ContentManager content)
     {
-        song = content.Load<Song>("Suge");
+        song = content.Load<Song>("LOZ_title");
         sword_Slash = content.Load<SoundEffect>("LOZ_Sword_Slash");
         sword_Shoot = content.Load<SoundEffect>("LOZ_Sword_Shoot");
         arrow = content.Load<SoundEffect>("LOZ_Arrow_Boomerang");
@@ -34,6 +35,7 @@ public static class AudioStorage
         enemy_die = content.Load<SoundEffect>("LOZ_Enemy_Die");
         link_hurt = content.Load<SoundEffect>("LOZ_Link_Hurt");
         link_die = content.Load<SoundEffect>("LOZ_Link_Die");
+        get_item = content.Load<SoundEffect>("LOZ_Get_Item");
     }
 
     public static Song GetSong()
@@ -84,5 +86,10 @@ public static class AudioStorage
     public static SoundEffect GetLinkDie()
     {
         return link_die;
+    }
+
+    public static SoundEffect GetGetItem()
+    {
+        return get_item;
     }
 }
