@@ -11,8 +11,8 @@ public class Rupee : IItem
 
     private int xPos;
     private int yPos;
-    private int Width = 16;
-    private int Height = 16;
+    private int Width = 24;
+    private int Height = 48;
 
     private int currentIndex;
     private int bufferIndex;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class Boomerang : IWeapon
+    public class Boomerang : ISecondaryWeapon
     {
         private Link link;
         private Vector2 start;
@@ -56,55 +56,14 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public Boomerang(Link link)
         {
             this.link = link;
-
-            if (link.state.ToString().Equals("DownMovingLinkState"))
-            {
-                linkState = startingState.Down;
-                sourceRect = new Rectangle(120, 30, 8, 5);
-                boomerangSpriteIndex = 1;
-
-            }
-            else if (link.state.ToString().Equals("UpMovingLinkState"))
-            {
-                linkState = startingState.Up;
-                sourceRect = new Rectangle(135, 30, 8, 5);
-                boomerangSpriteIndex = 3;
-
-            }
-            else if (link.state.ToString().Equals("LeftMovingLinkState"))
-            {
-                linkState = startingState.Left;
-                sourceRect = new Rectangle(129, 3, 5, 8);
-                boomerangSpriteIndex = 0;
-
-            }
-            else if (link.state.ToString().Equals("RightMovingLinkState"))
-            {
-                linkState = startingState.Right;
-                sourceRect = new Rectangle(129, 28, 5, 8);
-                boomerangSpriteIndex = 2;
-
-            }
-
-            start = getStartingRect();
-            end = getTargetRect(start);
-            current = start;
-
-            goingOut = true;
-            distanceToTravel = 150;
-            bufferFrame = 0;
-
-            boomerang = Texture2DStorage.GetItemSpritesheet();
-            updateHeightAndWidth(sourceRect);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            boomerang = Texture2DStorage.GetItemSpritesheet();
             sourceRect = boomerangSprite[boomerangSpriteIndex];
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 5, sourceRect.Height * 5);
             spriteBatch.Draw(boomerang, destinationRect, sourceRect, Color.White);
-
             updateHeightAndWidth(sourceRect);
 
         }
@@ -117,7 +76,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
             else if (!goingOut && Math.Abs(start.X - current.X) < 1 && Math.Abs(start.Y - current.Y) < 1)
             {
-                link.inventory.primaryWeaponManager.stopUsingWeapon();
+                link.inventory.secondaryWeaponManager.stopUsingWeapon();
             }
 
             bufferFrame++;
@@ -288,6 +247,50 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public int getWidth()
         {
             return width;
+        }
+
+        public void Attack()
+        {
+
+            if (link.state.ToString().Equals("DownMovingLinkState"))
+            {
+                linkState = startingState.Down;
+                sourceRect = new Rectangle(120, 30, 8, 5);
+                boomerangSpriteIndex = 1;
+
+            }
+            else if (link.state.ToString().Equals("UpMovingLinkState"))
+            {
+                linkState = startingState.Up;
+                sourceRect = new Rectangle(135, 30, 8, 5);
+                boomerangSpriteIndex = 3;
+
+            }
+            else if (link.state.ToString().Equals("LeftMovingLinkState"))
+            {
+                linkState = startingState.Left;
+                sourceRect = new Rectangle(129, 3, 5, 8);
+                boomerangSpriteIndex = 0;
+
+            }
+            else if (link.state.ToString().Equals("RightMovingLinkState"))
+            {
+                linkState = startingState.Right;
+                sourceRect = new Rectangle(129, 28, 5, 8);
+                boomerangSpriteIndex = 2;
+
+            }
+
+            start = getStartingRect();
+            end = getTargetRect(start);
+            current = start;
+
+            goingOut = true;
+            distanceToTravel = 150;
+            bufferFrame = 0;
+
+            boomerang = Texture2DStorage.GetItemSpritesheet();
+            updateHeightAndWidth(sourceRect);
         }
     }
 }

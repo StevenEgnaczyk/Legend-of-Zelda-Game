@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class VerticalDoorTile : ITile
+public class DoorTileVertical : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -17,8 +17,9 @@ public class VerticalDoorTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
 
-    public VerticalDoorTile(int xPos, int yPos)
+    public DoorTileVertical(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
@@ -28,14 +29,17 @@ public class VerticalDoorTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        /*
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(0);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
+        */
     }
 
     public int getXPos()
@@ -66,6 +70,11 @@ public class VerticalDoorTile : ITile
     public bool Walkable()
     {
         return isWalkable;
+    }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
     }
 
     public void setXPos(int x)

@@ -16,6 +16,8 @@ public class BrickTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
     public BrickTile(int xPos, int yPos)
     {
@@ -27,12 +29,14 @@ public class BrickTile : ITile
 
         this.isPushable = false;
         this.isWalkable = false;
+        this.isTeleport = false;
+
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(2);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(2);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
@@ -64,6 +68,11 @@ public class BrickTile : ITile
     public bool Walkable()
     {
         return isWalkable;
+    }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
     }
     public void setXPos(int x)
     {

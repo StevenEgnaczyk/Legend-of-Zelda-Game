@@ -34,7 +34,7 @@ namespace Sprint_0.GameStates
 
             if (transitioning)
             {
-                game.roomManager.drawRoom(spriteBatch);
+                game.link.roomManager.drawRoom(spriteBatch);
                 game.link.Draw(spriteBatch);
                 game.HUD.Draw(spriteBatch, 0, 704 + currentOffset);
                 game.link.inventory.Draw(spriteBatch, 0, currentOffset);

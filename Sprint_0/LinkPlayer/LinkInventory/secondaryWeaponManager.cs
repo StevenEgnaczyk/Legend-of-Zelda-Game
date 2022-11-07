@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class secondaryWeaponManager
     {
-        public IWeapon secondaryWeapon{ get; set; }
+        public ISecondaryWeapon secondaryWeapon{ get; set; }
 
         public enum secondaryWeapons
         {
@@ -39,43 +41,17 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             secondaryWeapon = null;
         }
 
-        public void UseBoomerang()
+        public void AddSecondaryWeapon(secondaryWeapons weapon)
         {
-            if (!usingSecondaryWeapon)
+            if (secondaryWeaponList.Count == 0)
             {
                 boomerang = new Boomerang(link);
                 usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
+                secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
             }
-
-        }
-
-        public void UseBow()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                bow = new Bow(link);
-                usingSecondaryWeapon = true;
-            }
-
-        }
-
-        public void UseBomb()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                bomb = new Bomb(link);
-                usingSecondaryWeapon = true;
-            }
-
-        }
-
-        public void UseFire()
-        {
-            if (!usingSecondaryWeapon)
-            {
-                fire = new Fire(link);
-                usingSecondaryWeapon = true;
-            }
+            secondaryWeaponList.Add(weapon);
+            link.inventory.inventoryManager.setSelectedSecondaryWeaponIndex(getSecondaryWeaponIndexByEnum(weapon));
 
         }
 
@@ -83,8 +59,57 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (usingSecondaryWeapon)
             {
+                bow = new Bow(link);
+                usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
                 secondaryWeapon.Update();
             }
+        }
+
+        public ISecondaryWeapon getSecondaryWeaponTypeByEnum(secondaryWeapons secondaryWeapon)
+        {
+            return secondaryWeapon switch
+            {
+                secondaryWeaponManager.secondaryWeapons.Fire => new Fire(link),
+                secondaryWeaponManager.secondaryWeapons.Bow => new Bow(link),
+                secondaryWeaponManager.secondaryWeapons.Bomb => new Bomb(link),
+                secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
+            };
+        }
+            
+
+        public ISecondaryWeapon getSecondaryWeaponTypeByInt(int secondaryWeapon)
+        {
+            return secondaryWeapon switch
+            {
+                0 => new Boomerang(link),
+                1 => new Bomb(link),
+                2 => new Bow(link),
+                3 => new Fire(link),
+            };
+        }
+
+        public int getSecondaryWeaponIndexByEnum(secondaryWeapons weapon)
+        {
+            return weapon switch
+            {
+                secondaryWeapons.Boomerang => 0,
+                secondaryWeapons.Bomb => 1,
+                secondaryWeapons.Bow => 2,
+                secondaryWeapons.Fire => 3,
+            };
+        }
+
+        internal bool HasSelectedWeapon(int selectedWeaponIndex)
+        {
+            return selectedWeaponIndex switch
+            {
+                0 => secondaryWeaponList.Contains(secondaryWeapons.Boomerang),
+                1 => secondaryWeaponList.Contains(secondaryWeapons.Bomb),
+                2 => secondaryWeaponList.Contains(secondaryWeapons.Bow),
+                3 => secondaryWeaponList.Contains(secondaryWeapons.Fire),
+            };
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -101,30 +126,30 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             usingSecondaryWeapon = false;
         }
 
-        public IWeapon getSecondaryWeapon()
+        public ISecondaryWeapon getSecondaryWeapon()
         {
             return secondaryWeapon;
         }
 
         public void UseSecondaryWeapon()
         {
-            switch(secondaryWeapon)
+            if (!usingSecondaryWeapon && !link.inventory.primaryWeaponManager.usingPrimaryWeapon && secondaryWeapon != null)
             {
-                case Bow:
-                    UseBow();
-                    break;
-                case Fire:
-                    UseFire();
-                    break;
-                case Boomerang:
-                    UseBoomerang();
-                    break;
-                case Bomb:
-                    UseBomb();
-                    break;
-                default:
-                    break;
+                secondaryWeapon.Attack();
+                usingSecondaryWeapon = true;
+            }
+        }
 
+        internal Rectangle getRect()
+        {
+            return new Rectangle(secondaryWeapon.getXPos(), secondaryWeapon.getYPos(), secondaryWeapon.getWidth(), secondaryWeapon.getHeight());
+        }
+
+        internal void SetSecondaryWeapon(int weapon)
+        {
+            if (HasSelectedWeapon(weapon))
+            {
+                secondaryWeapon = getSecondaryWeaponTypeByInt(weapon);
             }
         }
     }

@@ -24,7 +24,7 @@ public static class RoomLoader
         List<int> itemInfoLine = new List<int>();
 
 
-        using (var reader = new StreamReader("..\\..\\..\\Dungeon\\RoomCSVs\\Map" + (currentRoomIndex + 1) + ".csv"))
+        using (var reader = new StreamReader("..\\..\\..\\Dungeon\\RoomCSVs\\Map" + (currentRoomIndex) + ".csv"))
         {
 
             string[] doorInformation = reader.ReadLine().Split(",");

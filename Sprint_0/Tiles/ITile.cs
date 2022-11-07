@@ -15,7 +15,8 @@ public interface ITile
     public int getHeight();
 
     public bool Pushable();
-
     public bool Walkable();
+    public bool Teleporter();
+
     public void Draw(SpriteBatch _spriteBatch);
 }

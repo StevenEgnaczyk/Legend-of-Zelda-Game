@@ -15,6 +15,7 @@ public class ChangeToGameplayStateCommand : ICommand
     public void Execute()
     {
         game.currentGameState = new Sprint_0.GameStates.GameplayState(game);
+        game.link.inventory.secondaryWeaponManager.SetSecondaryWeapon(game.link.inventory.inventoryManager.getSelectedSecondaryWeaponIndex());
         
     }
 }

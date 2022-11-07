@@ -26,7 +26,7 @@ public class CollisionManager
 
 
     /* Not very efficient, may want to refactor in the future*/
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, primaryWeaponManager userInv)
+    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, Inventory userInv)
     {
         //Collisions for link vs enemies, enemies vs block
         foreach (IEnemy enemy in enemies.ToArray()) {
@@ -38,7 +38,7 @@ public class CollisionManager
                 CollisionResponse.collisionResponse(enemy, tile);
             }
 
-            if (userInv.primaryWeapon != null)
+            if (userInv.UsingWeapon() != null)
             {
                 CollisionResponse.collisionResponse(enemy, userInv);
             }
@@ -52,7 +52,7 @@ public class CollisionManager
         {
             CollisionResponse.collisionResponse(link, tile);
 
-            if (userInv.primaryWeapon != null)
+            if (userInv.UsingWeapon() != null)
             {
                 CollisionResponse.collisionResponse(userInv, tile);
             }

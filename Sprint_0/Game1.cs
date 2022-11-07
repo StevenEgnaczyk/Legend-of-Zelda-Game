@@ -52,9 +52,8 @@ namespace Sprint_0
              */
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(); 
-            link = new Link();
+            link = new Link(spriteBatch);
             HUD = new HUDManager(link, link.inventory);
-            roomManager = new RoomManager(spriteBatch, link);
             currentGameState = new GameplayState(this);
 
             keyboardController = new KeyboardController(this, Content, link);
@@ -69,6 +68,8 @@ namespace Sprint_0
         {
             //Create the spriteBatch
             AudioStorage.LoadAllSounds(Content);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(AudioStorage.GetSong());
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class UnlockedDoorTileLeft : ITile
+public class DoorTileHorizontal : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -17,25 +17,30 @@ public class UnlockedDoorTileLeft : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
-    public UnlockedDoorTileLeft(int xPos, int yPos)
+    public DoorTileHorizontal(int xPos, int yPos)
     {
-        this.xPosition = xPos + 16;
+        this.xPosition = xPos;
         this.yPosition = yPos;
 
-        this.width = 48;
+        this.width = 64;
         this.height = 64;
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        /*
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(0);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
+        */
     }
 
     public int getXPos()
@@ -66,6 +71,10 @@ public class UnlockedDoorTileLeft : ITile
     public bool Walkable()
     {
         return isWalkable;
+    }
+    public bool Teleporter()
+    {
+        return isTeleport;
     }
 
     public void setXPos(int x)

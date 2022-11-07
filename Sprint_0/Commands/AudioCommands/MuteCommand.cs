@@ -3,7 +3,6 @@ using System;
 
 public class MuteCommand : ICommand
 {
-
 	public MuteCommand()
 	{
 	}
