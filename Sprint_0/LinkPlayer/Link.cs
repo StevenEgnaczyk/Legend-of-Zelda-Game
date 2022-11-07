@@ -62,7 +62,11 @@ public class Link
 
     public void Die()
     {
-       
+       roomManager.reset();
+       linkHealth = linkMaxHealth;
+
+        xPos = 500;
+        yPos = 500;
     }
 
     public void Draw(SpriteBatch _spriteBatch)

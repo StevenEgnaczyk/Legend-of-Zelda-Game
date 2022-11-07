@@ -43,7 +43,7 @@ public class RoomManager
 
     public void reset()
     {
-        roomNumber = 0;
+        roomNumber = 1;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
     }
 }
