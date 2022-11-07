@@ -12,7 +12,8 @@ using System.Collections.Generic;
 public static class AudioStorage
 {
     public static Song song;
-    public static SoundEffect sword;
+    public static SoundEffect sword_Slash;
+    public static SoundEffect sword_Shoot;
     public static SoundEffect arrow;
     public static SoundEffect bomb_drop;
     public static SoundEffect bomb_blow;
@@ -23,8 +24,9 @@ public static class AudioStorage
 
     public static void LoadAllSounds(ContentManager content)
     {
-        song = content.Load<Song>("LOZ_title");
-        sword = content.Load<SoundEffect>("LOZ_Sword_Slash");
+        song = content.Load<Song>("Suge");
+        sword_Slash = content.Load<SoundEffect>("LOZ_Sword_Slash");
+        sword_Shoot = content.Load<SoundEffect>("LOZ_Sword_Shoot");
         arrow = content.Load<SoundEffect>("LOZ_Arrow_Boomerang");
         bomb_drop = content.Load<SoundEffect>("LOZ_Bomb_Drop");
         bomb_blow = content.Load<SoundEffect>("LOZ_Bomb_Blow");
@@ -39,9 +41,14 @@ public static class AudioStorage
         return song;
     }
 
-    public static SoundEffect GetSword()
+    public static SoundEffect GetSwordSlash()
     {
-        return sword;
+        return sword_Slash;
+    }
+
+    public static SoundEffect GetSwordShoot()
+    {
+        return sword_Shoot;
     }
 
     public static SoundEffect GetArrow()

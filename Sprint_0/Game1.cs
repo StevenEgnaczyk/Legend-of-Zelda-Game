@@ -69,6 +69,7 @@ namespace Sprint_0
         {
             //Create the spriteBatch
             AudioStorage.LoadAllSounds(Content);
+            MediaPlayer.Play(AudioStorage.GetSong());
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }
