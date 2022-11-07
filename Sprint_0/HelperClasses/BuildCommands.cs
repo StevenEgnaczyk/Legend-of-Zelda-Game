@@ -39,6 +39,10 @@ public class BuildCommands
 
     public ICommand cycleInventoryRightCommand;
 
+    public ICommand muteCommand;
+    public ICommand volUpCommand;
+    public ICommand volDownCommand;
+
     public Keys[] state;
 
     public BuildCommands(Link linkPlayer, Game1 game)
@@ -63,6 +67,11 @@ public class BuildCommands
 
         cycleInventoryRightCommand = new CycleInventoryRight(linkPlayer.inventory);
 
+        muteCommand = new MuteCommand();
+        volUpCommand = new VolUpCommand();
+        volDownCommand = new VolDownCommand();
+
+
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
         RegisterGameplayCommand(Keys.Q, _quitCommand);
@@ -77,6 +86,11 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
 
         RegisterGameplayCommand(Keys.E, transitionToInventoryCommand);
+
+        RegisterGameplayCommand(Keys.M, muteCommand);
+        RegisterGameplayCommand(Keys.L, volUpCommand);
+        RegisterGameplayCommand(Keys.K, volDownCommand);
+        
 
         RegisterInventoryCommand(Keys.Escape, transitionToGameCommand);
         RegisterInventoryCommand(Keys.Right, cycleInventoryRightCommand);

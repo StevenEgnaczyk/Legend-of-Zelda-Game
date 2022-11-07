@@ -35,6 +35,7 @@ public class Inventory
 
     public void addItem(IItem item)
     {
+        AudioStorage.GetGetItem().Play();
         switch(item)
         {
             case Candle:

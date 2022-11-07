@@ -40,5 +40,10 @@ public class RoomManager
         link.currentRoom = roomNumber;
         currentRoom = new Room(roomNumber, spriteBatch, this.link);
     }
+
+    public void reset()
+    {
+        currentRoom = new Room(0, spriteBatch, this.link);
+    }
 }
 

@@ -10,7 +10,7 @@ public class StalfosSprite : IEnemySprite
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
-
+    //2 hp implement damaged animation
 
     public StalfosSprite(Texture2D spritesheet)
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.GameStates;
 using Sprint_0.HUD;
 using System;
@@ -66,7 +67,9 @@ namespace Sprint_0
         protected override void LoadContent()
         {
             //Create the spriteBatch
-            
+            AudioStorage.LoadAllSounds(Content);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(AudioStorage.GetSong());
             Texture2DStorage.LoadAllTextures(Content);
             base.LoadContent();
         }

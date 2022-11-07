@@ -12,6 +12,7 @@ public class Link
     public Inventory inventory;
     public int currentRoom;
     public RoomManager roomManager;
+    public RoomManager room;
 
     public float xPos, yPos;
     public int linkSpeed = 3;
@@ -61,8 +62,7 @@ public class Link
 
     public void Die()
     {
-        //linkHealth -= 1f;
-        state.Die();
+       //room.reset();
     }
 
     public void reset()
@@ -120,6 +120,15 @@ public class Link
     public float getMaxHealth()
     {
         return linkMaxHealth;
+    }
+
+    public void takeDamage()
+    {
+        linkHealth -= 0.5f;
+        if(linkHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void teleportToRoom(int roomNum)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,9 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (secondaryWeaponList.Count == 0)
             {
+                boomerang = new Boomerang(link);
+                usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
                 secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
             }
             secondaryWeaponList.Add(weapon);
@@ -55,6 +59,9 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (usingSecondaryWeapon)
             {
+                bow = new Bow(link);
+                usingSecondaryWeapon = true;
+                AudioStorage.GetArrow().Play();
                 secondaryWeapon.Update();
             }
         }
@@ -69,6 +76,10 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
             };
         }
+                bomb = new Bomb(link);
+                usingSecondaryWeapon = true;
+                //audio handled in bomb class due to multiple sounds on separate frames
+            }
 
         public ISecondaryWeapon getSecondaryWeaponTypeByInt(int secondaryWeapon)
         {
