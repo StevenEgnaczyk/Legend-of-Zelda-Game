@@ -11,7 +11,7 @@ public class WallmasterSprite : IEnemySprite
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
-
+    //2 hp implement damaged animation
     public WallmasterSprite(Texture2D spritsheet)
     {
         this.wallmasterTexture = spritsheet;

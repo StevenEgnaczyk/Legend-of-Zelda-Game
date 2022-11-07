@@ -22,7 +22,7 @@ public class GoriyaSprite : IEnemySprite
     private int frame;
     private int bufferIndex;
     private int bufferMax = 40;
-
+    //3 hp implement damage animation
     public GoriyaSprite(Texture2D spritesheet)
     {
         this.goriyaTexture = spritesheet;

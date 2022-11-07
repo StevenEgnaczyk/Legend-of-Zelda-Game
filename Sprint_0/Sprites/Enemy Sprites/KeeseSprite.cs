@@ -11,7 +11,7 @@ public class KeeseSprite : IEnemySprite
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
-
+    //1 hp no damaged animation
     public KeeseSprite (Texture2D spritesheet)
     {
         this.keeseTexture = spritesheet;
