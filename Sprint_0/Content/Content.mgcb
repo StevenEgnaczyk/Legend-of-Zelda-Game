@@ -115,6 +115,12 @@
 /processorParam:Quality=Best
 /build:LOZ_Bomb_Drop.wav
 
+#begin LOZ_Boss_Scream1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Boss_Scream1.wav
+
 #begin LOZ_Enemy_Die.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

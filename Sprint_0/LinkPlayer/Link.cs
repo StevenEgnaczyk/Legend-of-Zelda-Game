@@ -119,9 +119,11 @@ public class Link
     public void takeDamage()
     {
         linkHealth -= 0.5f;
-        if(linkHealth <= 0)
+        AudioStorage.GetLinkHurt().Play();
+        if (linkHealth <= 0)
         {
             Die();
+            AudioStorage.GetLinkDie().Play();
         }
     }
 }

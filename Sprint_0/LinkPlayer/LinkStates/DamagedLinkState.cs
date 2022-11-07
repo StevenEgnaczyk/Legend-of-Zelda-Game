@@ -48,7 +48,7 @@ public class DamagedLinkState : ILinkState
         Texture2D downMovingLink = Texture2DStorage.GetLinkSpriteSheet();
         Rectangle sourceRect = LinkRectStorage.getDamagedLinkSprites(currentIndex);
         link.DrawSprite(spriteBatch, downMovingLink, sourceRect, 0, 0);
-
+        
     }
 
     public void Update()

@@ -24,12 +24,14 @@ public class Aquamentus : IEnemy
     private int bufferIndex;
     private int bufferMax = 20;
     private int frame;
+    private int health;
 
     public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
         xPos = startX;
         yPos = startY;
+        health = 60;
 
         sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
         _spriteBatch = sb;
@@ -72,12 +74,25 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        man.removeEnemy(this);
+        if (health > 0)
+        {
+            health--;
+
+            if(health % 10 == 0)
+            AudioStorage.GetBossScream().Play();
+        }
+        else
+        {
+            die();
+        }
+
+       // man.removeEnemy(this);
     }
 
     public void die()
     {
         //TO DO: death animation
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
     }
 

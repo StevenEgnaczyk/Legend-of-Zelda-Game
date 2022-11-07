@@ -16,5 +16,6 @@ public class DieCommand : ICommand
 	public void Execute()
 	{
 		linkPlayer.Die();
+		AudioStorage.GetLinkDie().Play();
     }
 }

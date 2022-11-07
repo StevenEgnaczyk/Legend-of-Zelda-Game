@@ -19,6 +19,7 @@ public static class AudioStorage
     public static SoundEffect bomb_blow;
     public static SoundEffect enemy_hit;
     public static SoundEffect enemy_die;
+    public static SoundEffect boss_scream;
     public static SoundEffect link_hurt;
     public static SoundEffect link_die;
     public static SoundEffect get_item;
@@ -36,6 +37,7 @@ public static class AudioStorage
         link_hurt = content.Load<SoundEffect>("LOZ_Link_Hurt");
         link_die = content.Load<SoundEffect>("LOZ_Link_Die");
         get_item = content.Load<SoundEffect>("LOZ_Get_Item");
+        boss_scream = content.Load<SoundEffect>("LOZ_Boss_Scream1");
     }
 
     public static Song GetSong()
@@ -91,5 +93,10 @@ public static class AudioStorage
     public static SoundEffect GetGetItem()
     {
         return get_item;
+    }
+
+    public static SoundEffect GetBossScream()
+    {
+        return boss_scream;
     }
 }
