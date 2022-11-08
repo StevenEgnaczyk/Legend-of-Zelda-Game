@@ -46,7 +46,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (secondaryWeaponList.Count == 0)
             {
                 boomerang = new Boomerang(link);
-                usingSecondaryWeapon = true;
                 AudioStorage.GetArrow().Play();
                 secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
             }

@@ -118,9 +118,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             Rectangle sourceRect = ItemRectStorage.getArrowSprite();
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 3, sourceRect.Height * 3);
             spriteBatch.Draw(arrow, destinationRect, sourceRect, Color.White);
-
             updateHeightAndWidth(destinationRect);
-
         }
 
         public void Update()
