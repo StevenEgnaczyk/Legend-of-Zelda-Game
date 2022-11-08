@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework.Content;
 public class GelSprite : IEnemySprite
 {
     private Texture2D gelTexture;
+    private Texture2D deathTexture;
 
+    private Rectangle deathRectangle;
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
@@ -38,6 +40,14 @@ public class GelSprite : IEnemySprite
         }
     }
 
+    public void drawDeath(int deadFrame, SpriteBatch sb)
+    {
+        deathTexture = Texture2DStorage.GetDeathSpriteSheet();
+        deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        sb.Draw(deathTexture, destinationRectangle, deathRectangle, Color.White);
+
+
+    }
     public void update(int xPos, int yPos)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);

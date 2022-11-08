@@ -11,7 +11,7 @@ public class BladeTrap : IEnemy
     public EnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
-
+    public int health { get; set; }
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
     private const int height = 64;

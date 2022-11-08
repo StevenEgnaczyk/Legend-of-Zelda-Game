@@ -11,6 +11,8 @@ public class Aquamentus : IEnemy
     public EnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
@@ -19,10 +21,15 @@ public class Aquamentus : IEnemy
     private const int enemySpeed = 3;
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
+
     
     /* Buffer properties*/
     private int bufferIndex;
     private int bufferMax = 20;
+    private int deadBuffer;
+    private int deadBufferMax = 30;
+    private int maxFrame = 4;
+    private int deadFrame = 0;
     private int frame;
 
     public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
@@ -37,8 +44,9 @@ public class Aquamentus : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-
+        health = 40;
         bufferIndex = 0;
+        deadBuffer = 0;
         frame = 0;
     }
 
@@ -72,7 +80,8 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        man.removeEnemy(this);
+        health--;
+       
     }
 
     public void die()
@@ -116,11 +125,42 @@ public class Aquamentus : IEnemy
                 this.frame = 0;
             }
         }
+        //death Animation playthrough
+        if (health <= 0)
+        {
+            if (deadFrame == 0)
+            {
+                deadBuffer++;
+            }
+            else
+            {
+                deadBuffer += 5;
+            }
+
+            if (deadBuffer == deadBufferMax)
+            {
+                deadBuffer = 0;
+                deadFrame++;
+                if (deadFrame == maxFrame)
+                {
+                    //fix problem with crash when removing enemy while looping through list in enemy manager
+                    die();
+                    deadFrame = 0;
+                }
+            }
+        }
     }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(this.frame, sb);
+        if (health >= 0)
+        {
+            sprite.draw(this.frame, sb);
+        }
+        else
+        {
+            sprite.drawDeath(deadFrame, sb);
+        }
     }
 
 

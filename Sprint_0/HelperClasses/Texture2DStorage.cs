@@ -19,7 +19,7 @@ public static class Texture2DStorage
 	private static Texture2D bossSpritesheet;
 	private static Texture2D dungeonSpritesheet;
     private static Texture2D hudSpriteSheet;
-
+	private static Texture2D deathSpriteSheet;
 
     // More private static Texture2D fields follow
 
@@ -33,6 +33,8 @@ public static class Texture2DStorage
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 		dungeonSpritesheet = content.Load<Texture2D>("dungeonTileset");
         hudSpriteSheet = content.Load<Texture2D>("HUDSpritesheet");
+		deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
+
 
 
         /*
@@ -86,4 +88,9 @@ public static class Texture2DStorage
     {
         return hudSpriteSheet;
     }
+
+	public static Texture2D GetDeathSpriteSheet()
+	{
+		return deathSpriteSheet;
+	}
 }

@@ -28,6 +28,10 @@ public class BladeTrapSprite : IEnemySprite
         sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
+    public void drawDeath(int deadFrame, SpriteBatch sb)
+    {
+        throw new NotImplementedException();
+    }
     public void update(int xPos, int yPos)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
