@@ -62,13 +62,8 @@ public class Link
 
     public void Die()
     {
-       //room.reset();
-    }
-
-    public void reset()
-    {
-        state = new DownMovingLinkState(this);
-        inventory.primaryWeaponManager = new primaryWeaponManager(this);
+       roomManager.reset();
+       linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;
@@ -125,8 +120,10 @@ public class Link
     public void takeDamage()
     {
         linkHealth -= 0.5f;
-        if(linkHealth <= 0)
+        AudioStorage.GetLinkHurt().Play();
+        if (linkHealth <= 0)
         {
+            AudioStorage.GetLinkDie().Play();
             Die();
         }
     }
