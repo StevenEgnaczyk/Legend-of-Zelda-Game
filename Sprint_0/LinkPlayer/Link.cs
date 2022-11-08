@@ -67,6 +67,7 @@ public class Link
 
         xPos = 500;
         yPos = 500;
+        currentRoom = 0;
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -120,6 +121,7 @@ public class Link
     public void takeDamage()
     {
         linkHealth -= 0.5f;
+        state = new DamagedLinkState(this);
         AudioStorage.GetLinkHurt().Play();
         if (linkHealth <= 0)
         {
