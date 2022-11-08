@@ -8,6 +8,7 @@ public interface IEnemy
 {
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
 
     void draw(SpriteBatch _spriteBatch);
     void update();
@@ -15,8 +16,7 @@ public interface IEnemy
     void moveDown();
     void moveLeft();
     void moveRight();
-    void hurt();
-   
+    void hurt();   
     int getEnemyUp();
     int getEnemyLeft();
     int getHeight();

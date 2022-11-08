@@ -7,13 +7,14 @@ using Microsoft.Xna.Framework.Content;
 public class GoriyaSprite : IEnemySprite
 {
     private Texture2D goriyaTexture;
-
+    private Texture2D deathTexture;
     private Rectangle destinationRectantgle;
 
     private Rectangle walk0Rectangle;
     private Rectangle walk1Rectangle;
     private Rectangle upRectangle;
     private Rectangle downRectangle;
+    private Rectangle deathRectangle;
 
     public int left = 1;
     public int up = 1;
@@ -110,6 +111,13 @@ public class GoriyaSprite : IEnemySprite
         }
     }
 
+    public void drawDeath(int deadFrame, SpriteBatch sb)
+    {
+        deathTexture = Texture2DStorage.GetDeathSpriteSheet();
+        deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        sb.Draw(deathTexture, destinationRectantgle, deathRectangle, Color.White);
+
+    }
     public void update(int xPos, int yPos)
     {
         if (this.frame == 0)

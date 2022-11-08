@@ -7,9 +7,11 @@ using Microsoft.Xna.Framework.Content;
 public class StalfosSprite : IEnemySprite
 {
     private Texture2D stalfosTexture;
+    private Texture2D deathTexture;
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
+    private Rectangle deathRectangle;
     //2 hp implement damaged animation
 
     public StalfosSprite(Texture2D spritesheet)
@@ -36,6 +38,13 @@ public class StalfosSprite : IEnemySprite
         }
     }
 
+    public void drawDeath(int deadFrame, SpriteBatch sb)
+    {
+        deathTexture = Texture2DStorage.GetDeathSpriteSheet();
+        deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        sb.Draw(deathTexture, destinationRectangle, deathRectangle, Color.White);
+
+    }
     public void update(int xPos, int yPos)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);

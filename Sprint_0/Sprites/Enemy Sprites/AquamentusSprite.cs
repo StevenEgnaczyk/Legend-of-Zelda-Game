@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 public class AquamentusSprite : IEnemySprite
 {
     private Texture2D AquamentusTexture;
-
+    private Texture2D deathTexture;
     private Rectangle destinationRectangle;
 
     //Note: Projectiles shoots only on frame 1
@@ -15,6 +15,7 @@ public class AquamentusSprite : IEnemySprite
     private Rectangle frame1Rectangle;
     private Rectangle frame2Rectangle;
     private Rectangle frame3Rectangle;
+    private Rectangle deathRectangle;
     //2 hp but only can take damage from bombs add animation but allow for everything to do damage
 
     public AquamentusSprite(Texture2D spritesheet)
@@ -52,6 +53,12 @@ public class AquamentusSprite : IEnemySprite
         }
     }
 
+    public void drawDeath(int deadFrame, SpriteBatch sb)
+    {
+        deathTexture = Texture2DStorage.GetDeathSpriteSheet();
+        deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        sb.Draw(deathTexture, destinationRectangle, deathRectangle, Color.White);
+    }
     public void update(int xPos, int yPos)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 48, 64);
