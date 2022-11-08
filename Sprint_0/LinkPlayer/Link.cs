@@ -12,7 +12,8 @@ public class Link
     public Inventory inventory;
     public int currentRoom;
     public RoomManager roomManager;
-    public RoomManager room;
+    public secondaryWeaponManager secondWeaponManager;
+
 
     public float xPos, yPos;
     public int linkSpeed = 3;
@@ -27,6 +28,7 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
         roomManager = new RoomManager(spriteBatch, this);
+        secondWeaponManager = new secondaryWeaponManager(this);
 
         linkHealth = linkMaxHealth;
 
@@ -62,16 +64,13 @@ public class Link
 
     public void Die()
     {
-       //room.reset();
-    }
-
-    public void reset()
-    {
-        state = new DownMovingLinkState(this);
-        inventory.primaryWeaponManager = new primaryWeaponManager(this);
+       roomManager.reset();
+       secondWeaponManager.reset();
+       linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;
+        currentRoom = 1;
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -125,6 +124,7 @@ public class Link
     public void takeDamage()
     {
         linkHealth -= 0.5f;
+        state = new DamagedLinkState(this);
         AudioStorage.GetLinkHurt().Play();
         if (linkHealth <= 0)
         {

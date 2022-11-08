@@ -32,34 +32,44 @@ public class LinkTileCollisionResponse
                 
                 case "Top":
                     int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
-                    link.xPos = 500;
-                    link.yPos = 700;
-                    link.roomManager.loadRoom(roomToTeleportTop);
+                    if (roomToTeleportTop > 0)
+                    {
+                        link.xPos = 500;
+                        link.yPos = 700;
+                        link.roomManager.loadRoom(roomToTeleportTop);
+                    }
                     break;
 
                 case "Left":
+                    
                     int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
-                    link.xPos = 775;
-                    link.yPos = 500;
-                    link.roomManager.loadRoom(roomToTeleportLeft);
-
+                    if (roomToTeleportLeft > 0)
+                    {
+                        link.xPos = 775;
+                        link.yPos = 500;
+                        link.roomManager.loadRoom(roomToTeleportLeft);
+                    }
                     break;
 
                 case "Right":
-
+                    
                     int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
-                    link.xPos = 175;
-                    link.yPos = 525;
-                    link.roomManager.loadRoom(roomToTeleportRight);
-
+                    if (roomToTeleportRight > 0)
+                    {
+                        link.xPos = 175;
+                        link.yPos = 525;
+                        link.roomManager.loadRoom(roomToTeleportRight);
+                    }
                     break;
 
                 case "Bottom":
                     int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
-                    link.xPos = 500;
-                    link.yPos = 250;
-                    link.roomManager.loadRoom(roomToTeleportBottom);
-
+                    if (roomToTeleportBottom > 0)
+                    {
+                        link.xPos = 500;
+                        link.yPos = 250;
+                        link.roomManager.loadRoom(roomToTeleportBottom);
+                    }
                     break;
             }
         }
@@ -90,6 +100,44 @@ public class LinkTileCollisionResponse
                 case "Bottom":
 
                     link.yPos -= link.linkSpeed;
+
+                    break;
+            }
+        }
+        if (tile.Pushable())
+        {
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+                case "Top":
+
+                    link.yPos += link.linkSpeed;
+                    int y = tile.getYPos() - 1;
+                    tile.setYPos(y);
+
+                    break;
+
+                case "Left":
+
+                    link.xPos += link.linkSpeed;
+                    int x = tile.getXPos() - 1;
+                    tile.setXPos(x);
+
+                    break;
+
+                case "Right":
+
+                    link.xPos -= link.linkSpeed;
+                    int z = tile.getXPos() + 1;
+                    tile.setXPos(z);
+
+                    break;
+
+                case "Bottom":
+
+                    link.yPos -= link.linkSpeed;
+                    int w = tile.getYPos() + 1;
+                    tile.setYPos(w);
 
                     break;
             }

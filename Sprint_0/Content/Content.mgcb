@@ -85,6 +85,12 @@
 /processorParam:TextureFormat=Color
 /build:ItemSpritesheet.png
 
+#begin Lets_go.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Lets_go.wav
+
 #begin Link.png
 /importer:TextureImporter
 /processor:TextureProcessor

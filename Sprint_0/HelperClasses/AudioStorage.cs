@@ -22,6 +22,7 @@ public static class AudioStorage
     public static SoundEffect link_hurt;
     public static SoundEffect link_die;
     public static SoundEffect get_item;
+    public static SoundEffect lets_go;
 
     public static void LoadAllSounds(ContentManager content)
     {
@@ -36,6 +37,7 @@ public static class AudioStorage
         link_hurt = content.Load<SoundEffect>("LOZ_Link_Hurt");
         link_die = content.Load<SoundEffect>("LOZ_Link_Die");
         get_item = content.Load<SoundEffect>("LOZ_Get_Item");
+        lets_go = content.Load<SoundEffect>("Lets_go");
     }
 
     public static Song GetSong()
@@ -91,5 +93,10 @@ public static class AudioStorage
     public static SoundEffect GetGetItem()
     {
         return get_item;
+    }
+
+    public static SoundEffect GetLetsGo()
+    {
+        return lets_go;
     }
 }
