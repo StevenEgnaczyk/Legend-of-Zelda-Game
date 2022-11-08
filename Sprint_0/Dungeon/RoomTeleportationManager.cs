@@ -19,6 +19,7 @@ public static class RoomTeleportationManager
             8 => 13,
             10 => 14,
             13 => 16,
+            _ => -1
         };
 
     }
@@ -36,7 +37,8 @@ public static class RoomTeleportationManager
             11 => 8,
             12 => 11,
             14 => 15,
-            17 => 16
+            17 => 16,
+            _ => -1
         };
 
     }
@@ -54,7 +56,8 @@ public static class RoomTeleportationManager
             10 => 9,
             11 => 12,
             15 => 14,
-            16 => 17
+            16 => 17,
+            _ => -1
         };
     }
 
@@ -70,6 +73,7 @@ public static class RoomTeleportationManager
             13 => 8,
             14 => 10,
             16 => 13,
+            _ => -1
         };
 
     }

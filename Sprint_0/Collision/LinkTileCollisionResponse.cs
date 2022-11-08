@@ -32,34 +32,44 @@ public class LinkTileCollisionResponse
                 
                 case "Top":
                     int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
-                    link.xPos = 500;
-                    link.yPos = 700;
-                    link.roomManager.loadRoom(roomToTeleportTop);
+                    if (roomToTeleportTop > 0)
+                    {
+                        link.xPos = 500;
+                        link.yPos = 700;
+                        link.roomManager.loadRoom(roomToTeleportTop);
+                    }
                     break;
 
                 case "Left":
+                    
                     int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
-                    link.xPos = 775;
-                    link.yPos = 500;
-                    link.roomManager.loadRoom(roomToTeleportLeft);
-
+                    if (roomToTeleportLeft > 0)
+                    {
+                        link.xPos = 775;
+                        link.yPos = 500;
+                        link.roomManager.loadRoom(roomToTeleportLeft);
+                    }
                     break;
 
                 case "Right":
-
+                    
                     int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
-                    link.xPos = 175;
-                    link.yPos = 525;
-                    link.roomManager.loadRoom(roomToTeleportRight);
-
+                    if (roomToTeleportRight > 0)
+                    {
+                        link.xPos = 175;
+                        link.yPos = 525;
+                        link.roomManager.loadRoom(roomToTeleportRight);
+                    }
                     break;
 
                 case "Bottom":
                     int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
-                    link.xPos = 500;
-                    link.yPos = 250;
-                    link.roomManager.loadRoom(roomToTeleportBottom);
-
+                    if (roomToTeleportBottom > 0)
+                    {
+                        link.xPos = 500;
+                        link.yPos = 250;
+                        link.roomManager.loadRoom(roomToTeleportBottom);
+                    }
                     break;
             }
         }

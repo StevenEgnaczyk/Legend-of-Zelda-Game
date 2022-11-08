@@ -35,7 +35,7 @@ public class walkTile : ITile
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = RoomRectStorage.getBlockRect(1);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
