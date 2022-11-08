@@ -67,7 +67,7 @@ public class Link
 
         xPos = 500;
         yPos = 500;
-        currentRoom = 0;
+        currentRoom = 1;
     }
 
     public void Draw(SpriteBatch _spriteBatch)
