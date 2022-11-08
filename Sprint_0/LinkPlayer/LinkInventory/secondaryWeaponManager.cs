@@ -151,5 +151,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeapon = getSecondaryWeaponTypeByInt(weapon);
             }
         }
+
+        public void reset()
+        {
+            secondaryWeaponList = new List<secondaryWeapons>();
+            secondaryWeapon = null;   
+        }
     }
 }

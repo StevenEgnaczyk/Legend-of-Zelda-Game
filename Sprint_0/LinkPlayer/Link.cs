@@ -12,7 +12,8 @@ public class Link
     public Inventory inventory;
     public int currentRoom;
     public RoomManager roomManager;
-    public RoomManager room;
+    public secondaryWeaponManager secondWeaponManager;
+
 
     public float xPos, yPos;
     public int linkSpeed = 3;
@@ -27,6 +28,7 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
         roomManager = new RoomManager(spriteBatch, this);
+        secondWeaponManager = new secondaryWeaponManager(this);
 
         linkHealth = linkMaxHealth;
 
@@ -63,6 +65,7 @@ public class Link
     public void Die()
     {
        roomManager.reset();
+       secondWeaponManager.reset();
        linkHealth = linkMaxHealth;
 
         xPos = 500;
