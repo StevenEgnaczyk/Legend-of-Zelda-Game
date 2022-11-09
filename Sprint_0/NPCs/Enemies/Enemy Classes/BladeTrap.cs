@@ -8,28 +8,30 @@ using System.Reflection.Metadata;
 public class BladeTrap : IEnemy
 {
     /* Properties that change, the heart of the enemy*/
-    public EnemyState state {  get;  set; }
+    public IEnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+    public int randTime { get; set; }
+
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
     private const int enemySpeed = 3;
-    private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
     /* No buffer properties as it is not animated*/
 
-    public BladeTrap(SpriteBatch sb, EnemyManager manager, int startX, int startY)
+    public BladeTrap(EnemyManager manager, int startX, int startY)
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        state = new IdleEnemyState(this);
         xPos = startX;
         yPos = startY;
+        health = 1000;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateBladeTrapSprite();
-        _spriteBatch = sb;
+        sprite = EnemySpriteFactory.instance.CreateBladeTrapSprite();
         man = manager;
 
         //Enemy adds itself to the list of enemies
@@ -59,6 +61,11 @@ public class BladeTrap : IEnemy
         state.moveDown(this);
     }
 
+    public void idle()
+    {
+        state.idle(this);
+    }
+
     public void hurt()
     {
         //do nothing, cannot die
@@ -66,26 +73,21 @@ public class BladeTrap : IEnemy
 
     public void update()
     {
-        sprite.update(xPos, yPos);
+    
+        sprite.update(xPos, yPos, state.facingDirection, 0);
+
     }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(0, sb);
+        sprite.draw(sb);
     }
+
+    public void changeToRandState() { }
 
     /*
      * Getter methods
      */
-    public int getEnemyUp()
-    {
-        return state.up;
-    }
-
-    public int getEnemyLeft()
-    {
-        return state.left;
-    }
 
     public int getHeight()
     {

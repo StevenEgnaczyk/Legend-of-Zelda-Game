@@ -8,23 +8,27 @@ public class StalfosSprite : IEnemySprite
 {
     private Texture2D stalfosTexture;
 
+    private int frame;
+
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
 
 
     public StalfosSprite(Texture2D spritesheet)
     {
-        this.stalfosTexture = spritesheet;
-        this.destinationRectangle = new Rectangle(0, 0, 32, 32);
-        this.frame0Rectangle = new Rectangle(1, 59, 16, 16);
+        frame = 0;
+        stalfosTexture = spritesheet;
+        destinationRectangle = new Rectangle(0, 0, 32, 32);
+        frame0Rectangle = new Rectangle(1, 59, 16, 16);
 
     }
 
-    public void draw(int frame, SpriteBatch sb)
+    public void draw(SpriteBatch sb)
     {
         stalfosTexture = Texture2DStorage.getEnemySpritesheet();
         float zero = 0.0F;
-        if ((frame % 2) == 0)
+
+        if (frame == 0)
         {
             sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
@@ -36,8 +40,18 @@ public class StalfosSprite : IEnemySprite
         }
     }
 
-    public void update(int xPos, int yPos)
+    public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+
+        if (time % 2 == 0)
+        {
+            frame = 0;
+
+        }
+        else
+        {
+            frame = 1;
+        }
     }
 }

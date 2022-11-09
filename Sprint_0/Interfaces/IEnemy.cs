@@ -6,8 +6,11 @@ using System.Reflection.Metadata;
 
 public interface IEnemy
 {
+    public IEnemyState state { get; set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+    public int randTime { get; set; }
 
     void draw(SpriteBatch _spriteBatch);
     void update();
@@ -15,10 +18,11 @@ public interface IEnemy
     void moveDown();
     void moveLeft();
     void moveRight();
+    void idle();
     void hurt();
-   
-    int getEnemyUp();
-    int getEnemyLeft();
+
+    void changeToRandState();
+
     int getHeight();
     int getWidth();
     int getSpeed();

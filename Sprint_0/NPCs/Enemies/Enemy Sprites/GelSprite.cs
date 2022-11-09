@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 public class GelSprite : IEnemySprite
 {
     private Texture2D gelTexture;
+    private int frame;
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
@@ -15,17 +16,18 @@ public class GelSprite : IEnemySprite
 
     public GelSprite(Texture2D spritsheet)
     {
-        this.gelTexture = spritsheet;
+        gelTexture = spritsheet;
+        frame = 0;
 
-        this.destinationRectangle = new Rectangle(0, 0, 32, 32);
-        this.frame0Rectangle = new Rectangle(1, 11, 8, 16);
-        this.frame1Rectangle = new Rectangle(10, 11, 8, 16);
+        destinationRectangle = new Rectangle(0, 0, 32, 32);
+        frame0Rectangle = new Rectangle(1, 11, 8, 16);
+        frame1Rectangle = new Rectangle(10, 11, 8, 16);
 
     }
 
-    public void draw(int frame, SpriteBatch sb)
+    public void draw(SpriteBatch sb)
     {
-        if ((frame % 2) == 0)
+        if (frame == 0)
         {
             gelTexture = Texture2DStorage.getEnemySpritesheet();
             sb.Draw(this.gelTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
@@ -38,8 +40,18 @@ public class GelSprite : IEnemySprite
         }
     }
 
-    public void update(int xPos, int yPos)
+    public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+
+        if (time % 2 == 0)
+        {
+            frame = 0;
+
+        }
+        else
+        {
+            frame = 1;
+        }
     }
 }

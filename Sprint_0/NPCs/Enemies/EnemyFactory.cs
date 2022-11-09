@@ -4,15 +4,15 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class EnemySpriteAndStateFactory
+public class EnemySpriteFactory
 	{
 
 	private Texture2D enemySpritesheet;
 	private Texture2D bossSpritesheet;
 	
-	public static EnemySpriteAndStateFactory instance = new EnemySpriteAndStateFactory();
+	public static EnemySpriteFactory instance = new EnemySpriteFactory();
 				
-	public static EnemySpriteAndStateFactory Instance
+	public static EnemySpriteFactory Instance
 		{
 		get
 		{
@@ -20,7 +20,7 @@ public class EnemySpriteAndStateFactory
 		}
 	}
 		
-	public EnemySpriteAndStateFactory()
+	public EnemySpriteFactory()
 	{
 		this.enemySpritesheet = Texture2DStorage.getEnemySpritesheet();
         this.bossSpritesheet = Texture2DStorage.getBossSpritesheet();
@@ -61,8 +61,4 @@ public class EnemySpriteAndStateFactory
 		return new AquamentusSprite(bossSpritesheet);
 	}
 
-	public EnemyState CreateEnemyState()
-	{
-		return new EnemyState();
-	}
 }

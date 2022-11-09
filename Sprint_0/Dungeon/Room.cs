@@ -99,25 +99,25 @@ public class Room
                 switch (enemyInformation[row][col])
                 {
                     case 21:
-                        enemyManager.addEnemy(new Keese(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Keese(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 22:
-                        enemyManager.addEnemy(new Stalfos(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Stalfos(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 23:
-                        enemyManager.addEnemy(new Goriya(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Goriya(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 24:
-                        enemyManager.addEnemy(new Wallmaster(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Wallmaster(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 25:
-                        enemyManager.addEnemy(new Aquamentus(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Aquamentus(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 26:
-                        enemyManager.addEnemy(new BladeTrap(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new BladeTrap(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     case 27:
-                        enemyManager.addEnemy(new Gel(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        enemyManager.addEnemy(new Gel(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
                     default:
 

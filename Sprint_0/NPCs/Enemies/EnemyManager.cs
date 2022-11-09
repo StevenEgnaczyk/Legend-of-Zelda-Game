@@ -56,4 +56,37 @@ public  class EnemyManager
         }
     }
 
+    public void randomStateGenerator(IEnemy e, int bound1, int bound2)
+    {
+        Random r = new Random();
+        int randVal = r.Next(bound1, bound2);
+
+        if(randVal == 0)
+        {
+
+            e.state = new UpMovingEnemyState(e);
+
+        } else if (randVal == 1)
+        {
+
+            e.state = new DownMovingEnemyState(e);
+
+        } else if (randVal == 2)
+        {
+
+            e.state = new LeftMovingEnemyState(e);
+
+        } else if (randVal == 3)
+        {
+
+            e.state = new RightMovingEnemyState(e);
+
+        } else if (randVal == 4)
+        {
+
+            e.state = new ShootingProjectileEnemyState(e, e.state.facingDirection);
+
+        }
+    }
+
 }

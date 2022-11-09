@@ -7,39 +7,44 @@ using System.Reflection.Metadata;
 
 public class Aquamentus : IEnemy
 {
+    /*
+     * TO DO: Determine if aquamentus's state needs to be updated. 
+     * /
+
+
     /* Properties that change, the heart of the enemy*/
-    public EnemyState state {  get;  set; }
+    public IEnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+    public int randTime { get; set; }
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
     private const int enemySpeed = 3;
-    private SpriteBatch _spriteBatch;
     private EnemyManager man;
-    
-    /* Buffer properties*/
-    private int bufferIndex;
-    private int bufferMax = 20;
-    private int frame;
 
-    public Aquamentus(SpriteBatch sb, EnemyManager manager, int startX, int startY)
+    /* Buffer properties*/
+    private int[] bufferVals = new int[3];
+
+    public Aquamentus(EnemyManager manager, int startX, int startY)
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        state = new LeftMovingEnemyState(this);
         xPos = startX;
         yPos = startY;
+        health = 3;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateAquamentusSprite();
-        _spriteBatch = sb;
+        randTime = 0;
+
+        sprite = EnemySpriteFactory.instance.CreateAquamentusSprite();
         man = manager;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferIndex = 0;
-        frame = 0;
+        bufferVals[2] = 20;
     }
 
     /*
@@ -57,22 +62,27 @@ public class Aquamentus : IEnemy
 
     public void moveUp()
     {
-        //do nothing, it cannot  move up 
+        state.moveLeft(this); 
     }
 
     public void moveDown()
     {
-        //do nothing, it cannot move down
+        state.moveRight(this);
+    }
+
+    public void idle()
+    {
+        state.idle(this);
     }
 
     public void shootProjectile()
     {
-        //nothing yet
+        state.shootProjectile(this);
     }
 
     public void hurt()
     {
-        man.removeEnemy(this);
+        state.hurt(this);
     }
 
     public void die()
@@ -83,59 +93,29 @@ public class Aquamentus : IEnemy
 
     public void update()
     {
-
-
-        if (this.frame == 0)
+     
+        if (Buffer.itemBuffer(bufferVals))
         {
-            this.bufferIndex++;
-        }
-        else
-        {
-            this.bufferIndex += 2;
-        }
-
-        if (this.bufferIndex == this.bufferMax)
-        {
-            state.moveLeft(this);
-            this.bufferIndex = 0;
-            this.frame++;
-            if (this.frame == 4)
-            {
-                Random r = new Random();
-                int nextValue = r.Next(0, 2);
-
-                if (nextValue == 1)
-                {
-                    sprite.update(this.xPos += 3, this.yPos);
-                }
-                else
-                {
-                    sprite.update(this.xPos -= 3, this.yPos);
-                }
-                this.frame = 0;
-            }
+            state.update();
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
+            
         }
     }
 
-    public void draw(SpriteBatch sb)
+    public void draw(SpriteBatch _spriteBatch)
     {
-        sprite.draw(this.frame, sb);
+        sprite.draw(_spriteBatch);
+    }
+
+    public void changeToRandState()
+    {
+        man.randomStateGenerator(this, 2, 5);
     }
 
 
     /* 
      * Getter methods 
      */
-    public int getEnemyUp()
-    {
-        return state.up;
-    }
-
-    public int getEnemyLeft()
-    {
-        return state.left;
-    }
-
     public int getHeight()
     {
         return height;

@@ -22,13 +22,13 @@ public class BladeTrapSprite : IEnemySprite
 
     }
 
-    public void draw(int frame, SpriteBatch sb)
+    public void draw(SpriteBatch sb)
     {
         BladeTrapTexture = Texture2DStorage.getEnemySpritesheet();
         sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
-    public void update(int xPos, int yPos)
+    public void update(int xPos, int yPos, int facingDirection, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
     }

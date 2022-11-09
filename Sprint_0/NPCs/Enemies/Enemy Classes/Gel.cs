@@ -5,45 +5,47 @@ using System;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
-public class Wallmaster : IEnemy
+public class Gel : IEnemy
 {
     /* Properties that change, the heart of the enemy*/
-    public EnemyState state {  get;  set; }
+    public IEnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+    public int randTime { get; set; }
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
-    private const int height = 48;
-    private const int width = 48;
+    private const int height = 64;
+    private const int width = 64;
     private const int enemySpeed = 3;
-    private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
     /* Buffer properties*/
-    private int bufferIndex;
-    private int bufferMax = 20;
+    private int[] bufferVals = new int[3];
     private int frame;
 
-    public Wallmaster(SpriteBatch sb, EnemyManager manager, int startX, int startY)
+    public Gel(EnemyManager manager, int startX, int startY)
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        state = new LeftMovingEnemyState(this);
         xPos = startX;
         yPos = startY;
+        health = 1;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateWallmasterSprite();
-        _spriteBatch = sb;
+        randTime = 0;
+
+        sprite = EnemySpriteFactory.instance.CreateGelSprite();
         man = manager;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        
-        frame = 0;
-        bufferIndex = 0;
+
+        bufferVals[2] = 20;
     }
 
+
     /*
-     * Core methods to change Wallmaster's state and draws/updates
+     * Core methods to change Gel's state and draws/updates
      */
     public void moveLeft()
     {
@@ -65,60 +67,47 @@ public class Wallmaster : IEnemy
         state.moveDown(this);
     }
 
+    public void idle()
+    {
+        state.idle(this);
+    }
+
     public void hurt()
     {
-        //TO DO: hurt animation (2 health)
-        this.die();
+        die();
     }
 
     public void die()
     {
         //TO DO: Death animation
         man.removeEnemy(this);
+
     }
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
-        if (this.frame == 0)
-        {
-            this.bufferIndex++;
-        }
-        else
-        {
-            this.bufferIndex += 2;
-        }
 
-        if (this.bufferIndex == this.bufferMax)
+        if (Buffer.itemBuffer(bufferVals))
         {
-            state.moveLeft(this);
-            this.bufferIndex = 0;
-            this.frame++;
-            if (this.frame == 2)
-            {
-                this.frame = 0;
-            }
+            state.update();
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
+            
         }
     }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(this.frame, sb);
+        sprite.draw(sb);
+    }
+
+    public void changeToRandState()
+    {
+        man.randomStateGenerator(this, 0, 4);
     }
 
     /*
      * Getter methods
      */
-    public int getEnemyUp()
-    {
-        return state.up;
-    }
-
-    public int getEnemyLeft()
-    {
-        return state.left;
-    }
-
     public int getHeight()
     {
         return height;
