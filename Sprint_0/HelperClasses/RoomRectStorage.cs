@@ -11,11 +11,18 @@ public static class RoomRectStorage
 
     private static List<Rectangle> basicRoomRect = new List<Rectangle>()
     {
-        new Rectangle(521, 11, 256, 176)
+        new Rectangle(521, 11, 256, 176),
+        new Rectangle(421, 1009, 256, 160)
     };
     public static Rectangle getBasicRoom(int index)
     {
-        return basicRoomRect[0];
+        if (index < 18)
+        {
+            return basicRoomRect[0];
+        } else
+        {
+            return basicRoomRect[1];
+        }
 
     }
 

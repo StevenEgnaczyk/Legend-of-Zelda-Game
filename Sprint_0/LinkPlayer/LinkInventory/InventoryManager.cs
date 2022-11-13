@@ -174,4 +174,23 @@ public class InventoryManager
             }
         }
     }
+
+    internal void cycleItemLeft()
+    {
+        int startingIndex = selectedWeaponIndex;
+        selectedWeaponIndex--;
+        if (selectedWeaponIndex == -1)
+        {
+            selectedWeaponIndex = 3;
+        }
+        while ((selectedWeaponIndex != startingIndex) && !(inventory.secondaryWeaponManager.HasSelectedWeapon(selectedWeaponIndex)))
+        {
+            selectedWeaponIndex--;
+
+            if (selectedWeaponIndex == -1)
+            {
+                selectedWeaponIndex = 3;
+            }
+        }
+    }
 }

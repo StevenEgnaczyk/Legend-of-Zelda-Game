@@ -40,6 +40,8 @@ public class BrickTile : ITile
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
+
+    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -60,6 +62,7 @@ public class BrickTile : ITile
         return height;
     }
 
+    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -74,12 +77,26 @@ public class BrickTile : ITile
     {
         return isTeleport;
     }
+
+    public bool Locked()
+    {
+        return isLocked;
+    }
+
+    /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
-
+        this.xPosition = x;
     }
     public void setYPos(int y)
     {
-        
+        this.yPosition = y;
+    }
+
+    /* Extraneous commands */
+    public void Unlock()
+    {
+        isLocked = false;
+        isTeleport = true;
     }
 }

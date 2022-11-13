@@ -171,4 +171,9 @@ public class Inventory
             secondaryWeaponManager.stopUsingWeapon();
         }
     }
+
+    internal void removeKey()
+    {
+        numKeys--;
+    }
 }
