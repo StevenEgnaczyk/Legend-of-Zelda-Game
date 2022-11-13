@@ -125,6 +125,12 @@ public class Room
                     case 27:
                         enemyManager.addEnemy(new Gel(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
                         break;
+                    case 28:
+                        enemyManager.addEnemy(new OldMan(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
+                    case 29:
+                        enemyManager.addEnemy(new Flame(spriteBatch, enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                        break;
                     default:
 
                         break;
