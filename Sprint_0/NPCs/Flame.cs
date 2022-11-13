@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
-public class OldMan : IEnemy
+public class Flame : IEnemy
 {
 
     //public OldManSprite sprite;
@@ -19,13 +19,13 @@ public class OldMan : IEnemy
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
-    public OldMan(SpriteBatch sb, EnemyManager manager, int startX, int startY)
+    public Flame(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
-        xPos = startX +32;
+        xPos = startX;
         yPos = startY;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateOldManSprite();
+        sprite = EnemySpriteAndStateFactory.instance.CreateFlameSprite();
         _spriteBatch = sb;
         man = manager;
     }
