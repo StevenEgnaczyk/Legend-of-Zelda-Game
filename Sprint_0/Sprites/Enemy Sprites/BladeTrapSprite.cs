@@ -28,7 +28,7 @@ public class BladeTrapSprite : IEnemySprite
         sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
-    public void drawDeath(int deadFrame, SpriteBatch sb)
+    public void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos)
     {
         throw new NotImplementedException();
     }

@@ -25,7 +25,7 @@ public class Keese : IEnemy
     private int bufferIndex;
     private int bufferMax = 24;
     private int deadBuffer;
-    private int deadBufferMax = 30;
+    private int deadBufferMax = 10;
     private int maxFrame = 4;
     private int deadFrame = 0;
     private int frame;
@@ -77,7 +77,7 @@ public class Keese : IEnemy
 
     public void hurt()
     {
-        //find way to play animation before enemy manager removes enemny
+        
         health--;
     }
 
@@ -91,52 +91,53 @@ public class Keese : IEnemy
     {
         Random r = new Random();
         int nextValue = r.Next(0, 2);
-
-        if (nextValue == 1)
+        if (health >= 0)
         {
-            sprite.update(this.xPos += 1, this.yPos);
-        }
-        else
-        {
-            sprite.update(this.xPos -= 1, this.yPos);
-        }
-
-        nextValue = r.Next(0, 2);
-
-        if (nextValue == 1)
-        {
-            sprite.update(this.xPos, this.yPos += 1);
-        }
-        else
-        {
-            sprite.update(this.xPos, this.yPos -= 1);
-        }
-
-        sprite.update(this.xPos, this.yPos);
-        if (this.frame == 0)
-        {
-            this.bufferIndex++;
-        }
-        else
-        {
-            this.bufferIndex += 2;
-        }
-
-        if (this.bufferIndex == this.bufferMax)
-        {
-            state.moveLeft(this);
-            this.bufferIndex = 0;
-            this.frame++;
-            if (this.frame == 2)
+            if (nextValue == 1)
             {
-                this.frame = 0;
+                sprite.update(this.xPos += 1, this.yPos);
+            }
+            else
+            {
+                sprite.update(this.xPos -= 1, this.yPos);
+            }
+
+            nextValue = r.Next(0, 2);
+
+            if (nextValue == 1)
+            {
+                sprite.update(this.xPos, this.yPos += 1);
+            }
+            else
+            {
+                sprite.update(this.xPos, this.yPos -= 1);
+            }
+
+            sprite.update(this.xPos, this.yPos);
+            if (this.frame == 0)
+            {
+                this.bufferIndex++;
+            }
+            else
+            {
+                this.bufferIndex += 2;
+            }
+
+            if (this.bufferIndex == this.bufferMax)
+            {
+                state.moveLeft(this);
+                this.bufferIndex = 0;
+                this.frame++;
+                if (this.frame == 2)
+                {
+                    this.frame = 0;
+                }
             }
         }
-
-        //death Animation playthrough
-        if(health <= 0)
+        else
         {
-            if(deadFrame == 0)
+            //playthrough death animation
+            if (deadFrame == 0)
             {
                 deadBuffer++;
             }
@@ -145,13 +146,13 @@ public class Keese : IEnemy
                 deadBuffer += 5;
             }
 
-            if(deadBuffer == deadBufferMax)
+            if (deadBuffer == deadBufferMax)
             {
                 deadBuffer = 0;
                 deadFrame++;
-                if(deadFrame == maxFrame)
+                if (deadFrame == maxFrame)
                 {
-                    //fix problem with crash when removing enemy while looping through list in enemy manager
+
                     die();
                     deadFrame = 0;
                 }
@@ -167,7 +168,7 @@ public class Keese : IEnemy
         }
         else
         {
-            sprite.drawDeath(deadFrame, sb);           
+            sprite.drawDeath(deadFrame, sb, xPos, yPos);           
         }
     }
 

@@ -111,10 +111,11 @@ public class GoriyaSprite : IEnemySprite
         }
     }
 
-    public void drawDeath(int deadFrame, SpriteBatch sb)
+    public void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos)
     {
         deathTexture = Texture2DStorage.GetDeathSpriteSheet();
         deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        destinationRectantgle = new Rectangle(xPos, yPos, 32, 32);
         sb.Draw(deathTexture, destinationRectantgle, deathRectangle, Color.White);
 
     }

@@ -27,7 +27,7 @@ public class Aquamentus : IEnemy
     private int bufferIndex;
     private int bufferMax = 20;
     private int deadBuffer;
-    private int deadBufferMax = 30;
+    private int deadBufferMax = 10;
     private int maxFrame = 4;
     private int deadFrame = 0;
     private int frame;
@@ -94,40 +94,42 @@ public class Aquamentus : IEnemy
     public void update()
     {
 
-
-        if (this.frame == 0)
+        if(health >= 0)
         {
-            this.bufferIndex++;
+            if (this.frame == 0)
+            {
+                this.bufferIndex++;
+            }
+            else
+            {
+                this.bufferIndex += 2;
+            }
+
+            if (this.bufferIndex == this.bufferMax)
+            {
+                state.moveLeft(this);
+                this.bufferIndex = 0;
+                this.frame++;
+                if (this.frame == 4)
+                {
+                    Random r = new Random();
+                    int nextValue = r.Next(0, 2);
+
+                    if (nextValue == 1)
+                    {
+                        sprite.update(this.xPos += 3, this.yPos);
+                    }
+                    else
+                    {
+                        sprite.update(this.xPos -= 3, this.yPos);
+                    }
+                    this.frame = 0;
+                }
+            }
         }
         else
         {
-            this.bufferIndex += 2;
-        }
-
-        if (this.bufferIndex == this.bufferMax)
-        {
-            state.moveLeft(this);
-            this.bufferIndex = 0;
-            this.frame++;
-            if (this.frame == 4)
-            {
-                Random r = new Random();
-                int nextValue = r.Next(0, 2);
-
-                if (nextValue == 1)
-                {
-                    sprite.update(this.xPos += 3, this.yPos);
-                }
-                else
-                {
-                    sprite.update(this.xPos -= 3, this.yPos);
-                }
-                this.frame = 0;
-            }
-        }
-        //death Animation playthrough
-        if (health <= 0)
-        {
+            //death animation playthrough
             if (deadFrame == 0)
             {
                 deadBuffer++;
@@ -143,7 +145,6 @@ public class Aquamentus : IEnemy
                 deadFrame++;
                 if (deadFrame == maxFrame)
                 {
-                    //fix problem with crash when removing enemy while looping through list in enemy manager
                     die();
                     deadFrame = 0;
                 }
@@ -159,7 +160,7 @@ public class Aquamentus : IEnemy
         }
         else
         {
-            sprite.drawDeath(deadFrame, sb);
+            sprite.drawDeath(deadFrame, sb, xPos, yPos);
         }
     }
 

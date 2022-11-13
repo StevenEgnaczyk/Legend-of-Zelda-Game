@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
@@ -25,7 +26,7 @@ public class Gel : IEnemy
     private int bufferIndex;
     private int bufferMax = 20;
     private int deadBuffer;
-    private int deadBufferMax = 30;
+    private int deadBufferMax = 10;
     private int maxFrame = 4;
     private int deadFrame = 0;
     private int frame;
@@ -88,30 +89,32 @@ public class Gel : IEnemy
 
     public void update()
     {
-        sprite.update(this.xPos, this.yPos);
-        if (this.frame == 0)
+        if(health >= 0)
         {
-            this.bufferIndex++;
+            sprite.update(this.xPos, this.yPos);
+            if (this.frame == 0)
+            {
+                this.bufferIndex++;
+            }
+            else
+            {
+                this.bufferIndex += 2;
+            }
+
+            if (this.bufferIndex == this.bufferMax)
+            {
+                state.moveLeft(this);
+                this.bufferIndex = 0;
+                this.frame++;
+                if (this.frame == 2)
+                {
+                    this.frame = 0;
+                }
+            }
         }
         else
         {
-            this.bufferIndex += 2;
-        }
-
-        if (this.bufferIndex == this.bufferMax)
-        {
-            state.moveLeft(this);
-            this.bufferIndex = 0;
-            this.frame++;
-            if (this.frame == 2)
-            {
-                this.frame = 0;
-            }
-        }
-
-        //death Animation playthrough
-        if (health <= 0)
-        {
+            //death Animation playthrough
             if (deadFrame == 0)
             {
                 deadBuffer++;
@@ -127,7 +130,6 @@ public class Gel : IEnemy
                 deadFrame++;
                 if (deadFrame == maxFrame)
                 {
-                    //fix problem with crash when removing enemy while looping through list in enemy manager
                     die();
                     deadFrame = 0;
                 }
@@ -143,7 +145,7 @@ public class Gel : IEnemy
         }
         else
         {
-            sprite.drawDeath(deadFrame, sb);
+            sprite.drawDeath(deadFrame, sb, xPos, yPos);
         }
     }
 
