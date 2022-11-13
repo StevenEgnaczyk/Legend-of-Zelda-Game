@@ -65,16 +65,51 @@ public class TileManager
             case 9:
                 return(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 10:
-                return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                //Unlocked Vertical Door
+                if (col == 0)
+                {
+                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileVertical.Location.left));
+                } else
+                {
+                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileVertical.Location.right));
+                }
             case 11:
-                return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                //Unlocked Horizontal Door
+                if (row == 0)
+                {
+                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileHorizontal.Location.top));
+                }
+                else
+                {
+                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileHorizontal.Location.bottom));
+                }
+            case 12:
+                //Locked Vertical Door
+                if (col == 0)
+                {
+                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileVertical.Location.left));
+                }
+                else
+                {
+                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileVertical.Location.right));
+                }
             case 13:
-                return (new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                //Locked Horizontal Door
+                if (row == 0)
+                {
+                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileHorizontal.Location.top));
+                }
+                else
+                {
+                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileHorizontal.Location.bottom));
+                }
+
             case 14:
+                return (new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+            case 15:
                 return (new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
-                return(new InvisibleTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-
+                return(new InvisibleTileWalkable(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
         }
     }
 

@@ -56,6 +56,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public Boomerang(Link link)
         {
             this.link = link;
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -143,6 +144,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 bufferIndex = 0;
                 boomerangSpriteIndex++;
+                AudioStorage.GetArrow().Play();
+
                 if (boomerangSpriteIndex == 4)
                 {
                     boomerangSpriteIndex = 0;

@@ -46,7 +46,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (secondaryWeaponList.Count == 0)
             {
                 boomerang = new Boomerang(link);
-                AudioStorage.GetArrow().Play();
+                //AudioStorage.GetArrow().Play();
                 secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
             }
             secondaryWeaponList.Add(weapon);
@@ -60,7 +60,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 bow = new Bow(link);
                 usingSecondaryWeapon = true;
-                AudioStorage.GetArrow().Play();
+                //AudioStorage.GetArrow().Play();
                 secondaryWeapon.Update();
             }
         }

@@ -54,7 +54,7 @@ public static class HUDRectStorage
     private static Rectangle secondaryWeaponDestRect = new Rectangle(128 * 4, 24 * 4, 8 * 4, 16 * 4);
     private static Dictionary<String, Rectangle> secondaryWeaponSourceRectangles = new Dictionary<string, Rectangle>()
     {
-        {"Bow", new Rectangle(555, 137, 8, 16) },
+        {"Bow", new Rectangle(633, 137, 8, 16) },
         {"Boomerang", new Rectangle(583, 137, 8, 16) },
         {"Bomb", new Rectangle(604, 137, 8, 16) },
         {"Fire", new Rectangle(653, 137, 8, 16) },

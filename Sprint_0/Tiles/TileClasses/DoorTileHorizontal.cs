@@ -20,29 +20,35 @@ public class DoorTileHorizontal : ITile
     private bool isTeleport;
     private bool isLocked;
 
-    public DoorTileHorizontal(int xPos, int yPos)
+    public enum Location
+    {
+        top,
+        bottom,
+    }
+
+    private Location location;
+
+    public DoorTileHorizontal(int xPos, int yPos, bool locked, Location location)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
 
-        this.width = 64;
+        this.width = 128;
         this.height = 64;
 
         this.isPushable = false;
         this.isWalkable = true;
-        this.isTeleport = true;
+
+        this.isLocked = locked;
+        this.isTeleport = !locked;
+        this.location = location;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        /*
-        Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
-        Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
-        spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
-        */
     }
 
+    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -63,6 +69,7 @@ public class DoorTileHorizontal : ITile
         return height;
     }
 
+    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -72,18 +79,32 @@ public class DoorTileHorizontal : ITile
     {
         return isWalkable;
     }
+
     public bool Teleporter()
     {
         return isTeleport;
     }
 
-    public void setXPos(int x)
+    public bool Locked()
     {
-        throw new NotImplementedException();
+        return isLocked;
     }
 
+    /* Setters for the tiles x and y positions */
+    public void setXPos(int x)
+    {
+        this.xPosition = x;
+    }
     public void setYPos(int y)
     {
-        throw new NotImplementedException();
+        this.yPosition = y;
+    }
+
+    /* Extraneous commands */
+    public void Unlock()
+    {
+        this.height -= 32;
+        isLocked = false;
+        isTeleport = true;
     }
 }

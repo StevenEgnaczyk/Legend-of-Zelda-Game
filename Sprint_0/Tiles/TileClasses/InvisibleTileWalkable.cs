@@ -5,8 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 
-public class PushTile : ITile
+public class InvisibleTileWalkable : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -19,7 +20,7 @@ public class PushTile : ITile
     private bool isTeleport;
     private bool isLocked;
 
-    public PushTile(int xPos, int yPos)
+    public InvisibleTileWalkable(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
@@ -27,20 +28,23 @@ public class PushTile : ITile
         this.width = 64;
         this.height = 64;
 
-        this.isPushable = true;
-        this.isWalkable = false;
+        this.isPushable = false;
+        this.isWalkable = true;
         this.isTeleport = false;
+        this.isLocked = false;
+
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = RoomRectStorage.getBlockRect(9);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
+        
     }
 
-    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -61,7 +65,6 @@ public class PushTile : ITile
         return height;
     }
 
-    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -76,26 +79,20 @@ public class PushTile : ITile
     {
         return isTeleport;
     }
-
     public bool Locked()
     {
         return isLocked;
     }
-
-    /* Setters for the tiles x and y positions */
-    public void setXPos(int x)
-    {
-        this.xPosition = x;
-    }
-    public void setYPos(int y)
-    {
-        this.yPosition = y;
-    }
-
-    /* Extraneous commands */
     public void Unlock()
     {
         isLocked = false;
-        isTeleport = true;
+    }
+    public void setXPos(int x)
+    {
+
+    }
+    public void setYPos(int y)
+    {
+        
     }
 }

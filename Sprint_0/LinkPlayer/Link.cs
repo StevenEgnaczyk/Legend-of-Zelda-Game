@@ -137,4 +137,9 @@ public class Link
     {
         roomManager.loadRoom(roomNum);
     }
+
+    internal bool hasKeys()
+    {
+        return inventory.getKeys() > 0;
+    }
 }

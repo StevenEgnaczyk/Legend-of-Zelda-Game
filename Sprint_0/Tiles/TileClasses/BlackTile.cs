@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 public class BlackTile : ITile
 {
@@ -44,6 +45,7 @@ public class BlackTile : ITile
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
 
+    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -64,7 +66,7 @@ public class BlackTile : ITile
         return height;
     }
 
-
+    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -74,16 +76,31 @@ public class BlackTile : ITile
     {
         return isWalkable;
     }
-    public void setXPos(int x)
-    {
 
-    }
-    public void setYPos(int y)
-    {
-        
-    }
     public bool Teleporter()
     {
         return isTeleport;
+    }
+
+    public bool Locked()
+    {
+        return isLocked;
+    }
+
+    /* Setters for the tiles x and y positions */
+    public void setXPos(int x)
+    {
+        this.xPosition = x;
+    }
+    public void setYPos(int y)
+    {
+        this.yPosition = y;
+    }
+
+    /* Extraneous commands */
+    public void Unlock()
+    {
+        isLocked = false;
+        isTeleport = true;
     }
 }

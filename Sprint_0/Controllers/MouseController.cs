@@ -40,6 +40,7 @@ public class MouseController : IController
 
             if ((mousePos.X < 982 && mousePos.X > 950) && (mousePos.Y > 350 && mousePos.Y < 414))
             {
+
             }
         }
         //sets last state to current to stop fast map switching

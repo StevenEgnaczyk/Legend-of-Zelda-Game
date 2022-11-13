@@ -51,7 +51,7 @@ namespace Sprint_0
              * ItemManager (less instances of spritebatch) - EH
              */
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            collisionManager = new CollisionManager(); 
+            collisionManager = new CollisionManager(this); 
             link = new Link(spriteBatch);
             HUD = new HUDManager(link, link.inventory);
             currentGameState = new GameplayState(this);
