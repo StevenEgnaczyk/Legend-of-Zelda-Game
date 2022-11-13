@@ -34,7 +34,6 @@ public static class Buffer
         }
         bufferInts[0] = currentIndex;
         bufferInts[1] = bufferIndex;
-        bufferInts[2] = bufferMax;
         return bufferInts;
     }
 }

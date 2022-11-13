@@ -19,6 +19,14 @@ public class Flame : IEnemy
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
+    private int bufferIndex;
+    private int bufferMax = 20;
+    private int deadBuffer;
+    private int deadBufferMax = 10;
+    private int maxFrame = 4;
+    private int deadFrame = 0;
+    private int frame;
+
     public Flame(SpriteBatch sb, EnemyManager manager, int startX, int startY)
     {
         state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
@@ -28,6 +36,10 @@ public class Flame : IEnemy
         sprite = EnemySpriteAndStateFactory.instance.CreateFlameSprite();
         _spriteBatch = sb;
         man = manager;
+
+        frame = 0;
+        deadBuffer = 0;
+        bufferIndex = 0;
     }
     /*public void Update()
     {
@@ -70,12 +82,30 @@ public class Flame : IEnemy
 
     public void update()
     {
-        sprite.update(xPos, yPos);
+        sprite.update(this.xPos, this.yPos);
+        if (this.frame == 0)
+        {
+            this.bufferIndex++;
+        }
+        else
+        {
+            this.bufferIndex += 2;
+        }
+
+        if (this.bufferIndex == this.bufferMax)
+        {
+            this.bufferIndex = 0;
+            this.frame++;
+            if (this.frame == 2)
+            {
+                this.frame = 0;
+            }
+        }
     }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(0, sb);
+        sprite.draw(this.frame, sb);
     }
 
     /*

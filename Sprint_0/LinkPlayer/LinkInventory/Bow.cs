@@ -226,6 +226,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             goingOut = true;
             distanceToTravel = 500;
             bufferFrame = 0;
+            AudioStorage.GetArrow().Play();
 
             arrow = Texture2DStorage.GetItemSpritesheet();
             updateHeightAndWidth(sourceRect);
