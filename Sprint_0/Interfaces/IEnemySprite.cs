@@ -9,5 +9,5 @@ public interface IEnemySprite
 
     void draw(int frame, SpriteBatch sb);
 
-    void drawDeath(int deadFrame, SpriteBatch sb);
+    void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos);
 }

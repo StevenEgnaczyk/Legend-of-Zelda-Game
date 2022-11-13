@@ -53,10 +53,11 @@ public class AquamentusSprite : IEnemySprite
         }
     }
 
-    public void drawDeath(int deadFrame, SpriteBatch sb)
+    public void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos)
     {
         deathTexture = Texture2DStorage.GetDeathSpriteSheet();
         deathRectangle = ItemRectStorage.getDeathAnimation(deadFrame);
+        destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
         sb.Draw(deathTexture, destinationRectangle, deathRectangle, Color.White);
     }
     public void update(int xPos, int yPos)
