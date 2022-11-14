@@ -68,6 +68,11 @@ public class CollisionManager
             //Link collisions
             CollisionResponse.collisionResponse(link, item);
         }
+
+        foreach (IDoor door in doorList.ToArray())
+        {
+            CollisionResponse.collisionResponse(link, door, game);
+        }
     }
 
 }

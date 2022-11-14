@@ -6,6 +6,15 @@ using System.Reflection.Metadata;
 
 public interface IDoor
 {
+    public enum state
+    {
+        blank,
+        open,
+        locked,
+        closed,
+        bombed,
+    }
+
     public int getXPos();
     public int getYPos();
     public void setXPos(int x);
@@ -19,5 +28,7 @@ public interface IDoor
     public void Draw(SpriteBatch _spriteBatch);
     bool Locked();
     void Unlock();
+
+    void Update();
 
 }

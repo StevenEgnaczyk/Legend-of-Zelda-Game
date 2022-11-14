@@ -95,7 +95,8 @@ public class Room
         {
             for (int col = 0; col < doorInformation[row].Count; col++)
             {
-                    doorManager.addDoor(DoorManager.instance.getDoorByIndex(doorInformation[row][col], row, col));
+
+                doorManager.addDoor(DoorManager.instance.getDoorByIndex(doorInformation[row][col], row, col));
             }
         }
     }
@@ -116,6 +117,7 @@ public class Room
     }
 
     internal void draw(SpriteBatch spriteBatch)
+
     {
         roomManager.drawBackground(spriteBatch);
         doorManager.DrawDoors(spriteBatch);
@@ -137,6 +139,7 @@ public class Room
 
     public void Update()
     {
+        doorManager.Update();
         CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
     }
 

@@ -29,22 +29,22 @@ public static class RoomRectStorage
 
     }
 
-    internal static Rectangle getDoorSourceRect(int doorState, int doorPos)
+    internal static Rectangle getDoorSourceRect(IDoor.state doorState, int doorPos)
     {
         switch(doorPos)
         {
             case 0:
                 switch(doorState)
                 {
-                    case 0:
+                    case IDoor.state.blank:
                         return new Rectangle(815, 11, 32, 32);
-                    case 1:
+                    case IDoor.state.open:
                         return new Rectangle(848, 11, 32, 32);
-                    case 2:
+                    case IDoor.state.locked:
                         return new Rectangle(881, 11, 32, 32);
-                    case 3:
+                    case IDoor.state.closed:
                         return new Rectangle(914, 11, 32, 32);
-                    case 4:
+                    case IDoor.state.bombed:
                         return new Rectangle(947, 11, 32, 32);
                     default:
                         break;
@@ -53,15 +53,15 @@ public static class RoomRectStorage
             case 1:
                 switch (doorState)
                 {
-                    case 0:
+                    case IDoor.state.blank:
                         return new Rectangle(815, 44, 32, 32);
-                    case 1:
+                    case IDoor.state.open:
                         return new Rectangle(848, 44, 32, 32);
-                    case 2:
+                    case IDoor.state.locked:
                         return new Rectangle(881, 44, 32, 32);
-                    case 3:
+                    case IDoor.state.closed:
                         return new Rectangle(914, 44, 32, 32);
-                    case 4:
+                    case IDoor.state.bombed:
                         return new Rectangle(947, 44, 32, 32);
                     default:
                         break;
@@ -70,15 +70,15 @@ public static class RoomRectStorage
             case 2:
                 switch (doorState)
                 {
-                    case 0:
+                    case IDoor.state.blank:
                         return new Rectangle(815, 77, 32, 32);
-                    case 1:
+                    case IDoor.state.open:
                         return new Rectangle(848, 77, 32, 32);
-                    case 2:
+                    case IDoor.state.locked:
                         return new Rectangle(881, 77, 32, 32);
-                    case 3:
+                    case IDoor.state.closed:
                         return new Rectangle(914, 77, 32, 32);
-                    case 4:
+                    case IDoor.state.bombed:
                         return new Rectangle(947, 77, 32, 32);
                     default:
                         break;
@@ -87,15 +87,15 @@ public static class RoomRectStorage
             case 3:
                 switch (doorState)
                 {
-                    case 0:
+                    case IDoor.state.blank:
                         return new Rectangle(815, 110, 32, 32);
-                    case 1:
+                    case IDoor.state.open:
                         return new Rectangle(848, 110, 32, 32);
-                    case 2:
+                    case IDoor.state.locked:
                         return new Rectangle(881, 110, 32, 32);
-                    case 3:
+                    case IDoor.state.closed:
                         return new Rectangle(914, 110, 32, 32);
-                    case 4:
+                    case IDoor.state.bombed:
                         return new Rectangle(947, 110, 32, 32);
                     default:
                         break;

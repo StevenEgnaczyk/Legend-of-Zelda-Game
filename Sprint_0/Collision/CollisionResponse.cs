@@ -55,4 +55,9 @@ public class CollisionResponse
     {
         WeaponTileCollisionResponse.collisionResponse(userInv, tile);
     }
+
+    public static void collisionResponse(Link link, IDoor door, Sprint_0.Game1 game)
+    {
+        LinkDoorCollisionResponse.collisionResponse(link, door, game);
+    }
 }

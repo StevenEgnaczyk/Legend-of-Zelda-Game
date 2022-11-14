@@ -14,17 +14,9 @@ public class DoorBottom : IDoor
 
     private int width;
     private int height;
+    private int location;
 
-    private enum state
-    {
-        blank,
-        open,
-        locked,
-        closed,
-        bombed,
-    }
-
-    private state doorState;
+    private IDoor.state doorState;
 
     private bool isTeleport;
     private bool isLocked;
@@ -33,31 +25,32 @@ public class DoorBottom : IDoor
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
+        this.location = 2;
 
         switch (index)
         {
             case 0:
-                doorState = state.blank;
+                doorState = IDoor.state.blank;
                 break;
             case 1:
-                doorState = state.open;
+                doorState = IDoor.state.open;
                 break;
             case 2:
-                doorState = state.locked;
+                doorState = IDoor.state.locked;
                 break;
             case 3:
-                doorState = state.closed;
+                doorState = IDoor.state.closed;
                 break;
             case 4:
-                doorState = state.bombed;
+                doorState = IDoor.state.bombed;
                 break;
             default:
-                doorState = state.blank;
+                doorState = IDoor.state.blank;
                 break;
 
         }
 
-        if (this.doorState == state.locked)
+        if (this.doorState == IDoor.state.locked)
         {
             this.width = 128;
             this.height = 64;
@@ -67,12 +60,16 @@ public class DoorBottom : IDoor
             this.height = 32;
         }
 
-        this.isLocked = (this.doorState == state.locked);
-        this.isTeleport = (this.doorState == state.open || this.doorState == state.bombed);
+        this.isLocked = (this.doorState == IDoor.state.locked);
+        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        Texture2D doorTiles = Texture2DStorage.GetDungeonTileset();
+        Rectangle doorSource = RoomRectStorage.getDoorSourceRect(doorState, location);
+        Rectangle doorDest = RoomRectStorage.getDoorDestinationRect(location);
+        spriteBatch.Draw(doorTiles, doorDest, doorSource, Color.White);
     }
 
     /* Getters for x,y positons as well as width/height */
@@ -124,5 +121,10 @@ public class DoorBottom : IDoor
         this.height -= 32;
         isLocked = false;
         isTeleport = true;
+    }
+    public void Update()
+    {
+        this.isLocked = (this.doorState == IDoor.state.locked);
+        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
     }
 }
