@@ -30,5 +30,5 @@ public interface IDoor
     void Unlock();
 
     void Update();
-
+    bool Closed();
 }

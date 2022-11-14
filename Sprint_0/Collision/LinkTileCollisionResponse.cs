@@ -34,7 +34,6 @@ public class LinkTileCollisionResponse
                     if (link.hasKeys())
                     {
                         tile.Unlock();
-                        game.roomManager.currentRoom.changeDoor(0, 1);
                         link.inventory.removeKey();
                     }
                     break;

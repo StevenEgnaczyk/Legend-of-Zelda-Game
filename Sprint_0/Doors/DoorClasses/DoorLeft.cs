@@ -119,13 +119,17 @@ public class DoorLeft : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.width -= 32;
-        isLocked = false;
-        isTeleport = true;
+        this.width -= 64;
+        doorState = IDoor.state.open;
     }
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
         this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+    }
+
+    public bool Closed()
+    {
+        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank));
     }
 }

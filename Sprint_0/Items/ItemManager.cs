@@ -74,7 +74,6 @@ public class ItemManager
 
         foreach (IItem item in itemList)
         {
-            Debug.WriteLine(item.ToString());
             item.Draw(spriteBatch);
         }
 

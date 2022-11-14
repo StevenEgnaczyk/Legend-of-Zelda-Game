@@ -35,7 +35,6 @@ public class LinkDoorCollisionResponse
                     if (link.hasKeys())
                     {
                         door.Unlock();
-                        game.roomManager.currentRoom.changeDoor(0, 1);
                         link.inventory.removeKey();
                     } else
                     {
@@ -80,6 +79,7 @@ public class LinkDoorCollisionResponse
                     break;
             }
         }
+
         if (door.Teleporter())
         {
 
@@ -131,6 +131,27 @@ public class LinkDoorCollisionResponse
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportBottom);
                     }
+                    break;
+            }
+        }
+
+        if (door.Closed())
+        {
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+
+                case "Top":
+                    link.yPos += link.linkSpeed;
+                    break;
+                case "Left":
+                    link.xPos += link.linkSpeed;
+                    break;
+                case "Right":
+                    link.xPos -= link.linkSpeed;
+                    break;
+                case "Bottom":
+                    link.yPos -= link.linkSpeed;
                     break;
             }
         }

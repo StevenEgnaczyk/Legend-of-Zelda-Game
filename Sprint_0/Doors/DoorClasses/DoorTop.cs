@@ -129,4 +129,8 @@ public class DoorTop : IDoor
         this.height -= 64;
         doorState = IDoor.state.open;
     }
+    public bool Closed()
+    {
+        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank));
+    }
 }

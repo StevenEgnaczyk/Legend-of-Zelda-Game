@@ -50,14 +50,15 @@ public class DoorBottom : IDoor
 
         }
 
-        if (this.doorState == IDoor.state.locked)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
             this.width = 128;
-            this.height = 64;
+            this.height = 128;
         } else
         {
             this.width = 128;
-            this.height = 32;
+            this.yPosition += 64;
+            this.height = 64;
         }
 
         this.isLocked = (this.doorState == IDoor.state.locked);
@@ -118,13 +119,18 @@ public class DoorBottom : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.height -= 32;
-        isLocked = false;
-        isTeleport = true;
+        this.height -= 64;
+        this.yPosition += 64;
+        doorState = IDoor.state.open;
     }
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
         this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+    }
+
+    public bool Closed()
+    {
+        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank));
     }
 }

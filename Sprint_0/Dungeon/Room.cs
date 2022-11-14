@@ -110,7 +110,7 @@ public class Room
             {
                 if(enemyInformation[row][col] != 20)
                 {
-                    enemyManager.addEnemy(EnemyManager.instance.getEnemyByIndex(enemyInformation[row][col], row, col));
+                    EnemyManager.instance.getEnemyByIndex(enemyManager, enemyInformation[row][col], row, col);
                 }
             }
         }
@@ -127,19 +127,10 @@ public class Room
 
     }
 
-    public void changeDoor(int doorIndex, int newDoorSource)
-    {
-        /*
-        tileManager.removeDoor(doorIndex);
-        doorManager.addDoor(doorIndex, newDoorSource);
-        */
-
-
-    }
-
     public void Update()
     {
         doorManager.Update();
+        enemyManager.Update();
         CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
     }
 
