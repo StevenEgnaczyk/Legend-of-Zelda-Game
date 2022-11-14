@@ -9,6 +9,8 @@ using System.Collections.Generic;
 public class TileManager
 {
     public  List<ITile> tileList { get; set; }
+    public List<ITile> doorList { get; set; }
+
     private static SpriteBatch sb;
 
     /* We only want one instance*/
@@ -65,55 +67,15 @@ public class TileManager
             case 9:
                 return(new PushTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 10:
-                //Unlocked Vertical Door
-                if (col == 0)
-                {
-                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileVertical.Location.left));
-                } else
-                {
-                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileVertical.Location.right));
-                }
-            case 11:
-                //Unlocked Horizontal Door
-                if (row == 0)
-                {
-                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileHorizontal.Location.top));
-                }
-                else
-                {
-                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), false, DoorTileHorizontal.Location.bottom));
-                }
-            case 12:
-                //Locked Vertical Door
-                if (col == 0)
-                {
-                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileVertical.Location.left));
-                }
-                else
-                {
-                    return (new DoorTileVertical(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileVertical.Location.right));
-                }
-            case 13:
-                //Locked Horizontal Door
-                if (row == 0)
-                {
-                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileHorizontal.Location.top));
-                }
-                else
-                {
-                    return (new DoorTileHorizontal(64 + (col * 64), HUD_SIZE + 64 + (64 * row), true, DoorTileHorizontal.Location.bottom));
-                }
-
-            case 14:
                 return (new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
-            case 15:
+            case 11:
                 return (new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
                 return(new InvisibleTileWalkable(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void DrawTiles(SpriteBatch spriteBatch)
     {
         
         foreach (ITile tile in tileList)

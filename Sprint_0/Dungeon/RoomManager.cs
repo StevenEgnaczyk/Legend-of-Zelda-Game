@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,10 +11,16 @@ public class RoomManager
 {
     private Link link;
     private int roomNumber;
-    Room currentRoom;
+    public Room currentRoom;
+
     SpriteBatch spriteBatch;
     public static int NUM_ROOMS = 18;
     private static int HUD_SIZE = 224;
+
+    public Dictionary<int, List<IDoor>> doorMemory;
+    public Dictionary<int, List<ITile>> tileMemory;
+    public Dictionary<int, List<IEnemy>> enemyMemory;
+    public Dictionary<int, List<IItem>> itemMemory;
 
     //This class calls a new room and manages the switching between different rooms
     public RoomManager(SpriteBatch sb, Link link)
@@ -22,6 +29,12 @@ public class RoomManager
         roomNumber = 1;
         this.link = link;
         this.link.currentRoom = roomNumber;
+
+        doorMemory = new Dictionary<int, List<IDoor>>();
+        tileMemory = new Dictionary<int, List<ITile>>();
+        enemyMemory = new Dictionary<int, List<IEnemy>>();
+        itemMemory = new Dictionary<int, List<IItem>>();
+
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
         
     }
@@ -49,9 +62,8 @@ public class RoomManager
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
     }
 
-    public void drawBackground(SpriteBatch spriteBatch, List<List<int>> backgroundInformation)
+    public void drawBackground(SpriteBatch spriteBatch)
     {
-        drawDoors(spriteBatch, backgroundInformation[0]);
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle bgRect = RoomRectStorage.getBasicRoom(roomNumber);
         Rectangle destRect = new(0, HUD_SIZE + ((176 - bgRect.Height) * 4), bgRect.Width * 4, bgRect.Height * 4);
@@ -73,13 +85,16 @@ public class RoomManager
 
     }
 
-    public void drawDoor(int newDoorTexture, int doorIndex)
+    internal void saveRoomInfo()
     {
-        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
-        Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(newDoorTexture, doorIndex);
-        Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(0);
-        spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
-
+        int roomNum = currentRoom.getIndex();
+        if (!doorMemory.ContainsKey(roomNum))
+        {
+            doorMemory.Add(roomNum, currentRoom.getDoors());
+            tileMemory.Add(roomNum, currentRoom.getTiles());
+            enemyMemory.Add(roomNum, currentRoom.getEnemies());
+            itemMemory.Add(roomNum, currentRoom.getItems());
+        }
     }
 }
 

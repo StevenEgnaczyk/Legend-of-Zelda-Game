@@ -1,59 +1,56 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sprint_0.GameStates
 {
-    public class InventoryState : IState
+    public class StartupScreenState : IState
     {
-
         private Game1 game;
         private bool transitioning;
-        private int currentOffset;
         private ChangeToGameplayStateCommand command;
+        float alpha;
 
-        public InventoryState(Game1 game)
+        public StartupScreenState(Game1 game)
         {
             this.game = game;
+            this.transitioning = false;
             command = new ChangeToGameplayStateCommand(game);
+            alpha = 255f;
 
         }
 
         public void changeToTransitioning()
         {
             this.transitioning = true;
-            this.currentOffset = 0;
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-
             if (transitioning)
             {
                 game.roomManager.drawRoom(spriteBatch);
-                game.link.Draw(spriteBatch);
-                game.HUD.Draw(spriteBatch, 0, 704 + currentOffset);
-                game.link.inventory.Draw(spriteBatch, 0, currentOffset);
-
-            } else
-            {
-                game.HUD.Draw(spriteBatch, 0, 704);
-                game.link.inventory.DrawInventory(spriteBatch);
             }
+            Texture2D startUpScreen = Texture2DStorage.GetStartupSpriteSheet();
+            Rectangle startupSourceRect = RoomRectStorage.getStartupSourceRect();
+            Rectangle startupDestRect = RoomRectStorage.getStartupDestRect();
+            spriteBatch.Draw(startUpScreen, startupDestRect, startupSourceRect,new Color(Color.White, (int) alpha));
         }
 
         public void Update()
         {
             if (transitioning)
             {
-                currentOffset-=10;
-                if (currentOffset <= -704)
+                alpha -= 5f;
+                if (alpha <= 0)
                 {
-                    transitioning = false;
+                    game.roomManager.loadRoom(1);
                     command.Execute();
                 }
             } else
@@ -62,6 +59,7 @@ namespace Sprint_0.GameStates
                 game.keyboardController.ProcessInput(this);
                 game.mouseController.ProcessInput(this);
             }
+
         }
     }
 }

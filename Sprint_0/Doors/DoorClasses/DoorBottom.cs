@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 
-public class walkTile : ITile
+public class DoorBottom : IDoor
 {
     private int xPosition;
     private int yPosition;
@@ -15,30 +15,64 @@ public class walkTile : ITile
     private int width;
     private int height;
 
-    private bool isPushable;
-    private bool isWalkable;
+    private enum state
+    {
+        blank,
+        open,
+        locked,
+        closed,
+        bombed,
+    }
+
+    private state doorState;
+
     private bool isTeleport;
     private bool isLocked;
 
-    public walkTile(int xPos, int yPos)
+    public DoorBottom(int xPos, int yPos, int index)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
 
-        this.width = 64;
-        this.height = 64;
+        switch (index)
+        {
+            case 0:
+                doorState = state.blank;
+                break;
+            case 1:
+                doorState = state.open;
+                break;
+            case 2:
+                doorState = state.locked;
+                break;
+            case 3:
+                doorState = state.closed;
+                break;
+            case 4:
+                doorState = state.bombed;
+                break;
+            default:
+                doorState = state.blank;
+                break;
 
-        this.isPushable = false;
-        this.isWalkable = true;
-        this.isTeleport = false;
+        }
+
+        if (this.doorState == state.locked)
+        {
+            this.width = 128;
+            this.height = 64;
+        } else
+        {
+            this.width = 128;
+            this.height = 32;
+        }
+
+        this.isLocked = (this.doorState == state.locked);
+        this.isTeleport = (this.doorState == state.open || this.doorState == state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = RoomRectStorage.getBlockRect(1);
-        Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
-        spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
 
     /* Getters for x,y positons as well as width/height */
@@ -63,15 +97,6 @@ public class walkTile : ITile
     }
 
     /* Boolean getters for the tiles main characteristics */
-    public bool Pushable()
-    {
-        return isPushable;
-    }
-
-    public bool Walkable()
-    {
-        return isWalkable;
-    }
 
     public bool Teleporter()
     {
@@ -96,6 +121,7 @@ public class walkTile : ITile
     /* Extraneous commands */
     public void Unlock()
     {
+        this.height -= 32;
         isLocked = false;
         isTeleport = true;
     }

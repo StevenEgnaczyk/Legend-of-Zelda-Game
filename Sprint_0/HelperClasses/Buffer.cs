@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 public static class Buffer
 {
     
-    public static int[] itemBuffer(int[] bufferInts)
+    public static bool itemBuffer(int[] bufferInts)
     {
+        bool ready = false;
         int currentIndex = bufferInts[0];
         int bufferIndex = bufferInts[1];
         int bufferMax = bufferInts[2];
-        int numFrames = bufferInts[3];
+
         if (currentIndex == 0)
         {
             bufferIndex++;
@@ -25,15 +26,14 @@ public static class Buffer
 
         if (bufferIndex == bufferMax)
         {
+            ready = true;
             bufferIndex = 0;
             currentIndex++;
-            if (currentIndex == numFrames)
-            {
-                currentIndex = 0;
-            }
         }
         bufferInts[0] = currentIndex;
         bufferInts[1] = bufferIndex;
-        return bufferInts;
+        bufferInts[2] = bufferMax;
+        
+        return ready;
     }
 }

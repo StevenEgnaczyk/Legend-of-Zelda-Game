@@ -21,6 +21,7 @@ public static class Texture2DStorage
     private static Texture2D hudSpriteSheet;
 	private static Texture2D deathSpriteSheet;
 	private static Texture2D daBabySpriteSheet;
+	private static Texture2D startupSpriteSheet;
 	private static Texture2D black;
 
     // More private static Texture2D fields follow
@@ -37,6 +38,7 @@ public static class Texture2DStorage
         hudSpriteSheet = content.Load<Texture2D>("HUDSpritesheet");
 		deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
 		daBabySpriteSheet = content.Load<Texture2D>("DaBaby");
+		startupSpriteSheet = content.Load<Texture2D>("TitleScreen");
 		black = content.Load<Texture2D>("Black");
 
 
@@ -101,5 +103,10 @@ public static class Texture2DStorage
 	public static Texture2D GetDeathSpriteSheet()
 	{
 		return deathSpriteSheet;
+	}
+
+	internal static Texture2D GetStartupSpriteSheet()
+	{
+		return startupSpriteSheet;
 	}
 }

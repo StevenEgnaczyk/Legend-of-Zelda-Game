@@ -14,6 +14,9 @@ public static class RoomRectStorage
         new Rectangle(521, 11, 256, 176),
         new Rectangle(421, 1009, 256, 160)
     };
+
+    private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
+    private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
     public static Rectangle getBasicRoom(int index)
     {
         if (index < 18)
@@ -145,5 +148,15 @@ public static class RoomRectStorage
                 throw new NotImplementedException();
 
         }
+    }
+
+    internal static Rectangle getStartupSourceRect()
+    {
+        return startupSourceRect;
+    }
+
+    internal static Rectangle getStartupDestRect()
+    {
+        return startupDestRect;
     }
 }

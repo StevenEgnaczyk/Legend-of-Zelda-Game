@@ -7,10 +7,12 @@ public class OldMan : IEnemy
 {
 
     //public OldManSprite sprite;
-    public EnemyState state { get; set; }
+    public IEnemyState state { get; set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
     public int health { get; set; }
+    public int randTime { get; set; }
+
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
     private const int height = 64;
@@ -19,78 +21,40 @@ public class OldMan : IEnemy
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
-    public OldMan(SpriteBatch sb, EnemyManager manager, int startX, int startY)
+    public OldMan(EnemyManager manager, int startX, int startY)
     {
-        state = EnemySpriteAndStateFactory.instance.CreateEnemyState();
+        state = new IdleEnemyState(this);
         xPos = startX +32;
         yPos = startY;
 
-        sprite = EnemySpriteAndStateFactory.instance.CreateOldManSprite();
-        _spriteBatch = sb;
+        sprite = EnemySpriteFactory.instance.CreateOldManSprite();
         man = manager;
     }
-    /*public void Update()
-    {
-        throw new NotImplementedException();
-    }
-    public void Draw(SpriteBatch _spriteBatch)
-    {
 
-    }
-    public void DrawSprite(SpriteBatch _spriteBatch, Texture2D oldManSprite, Rectangle sourceRect)
-    {
-        Rectangle destinationRect = new Rectangle((int)x, (int)y, sourceRect.Width * 3, sourceRect.Height * 3);
-        _spriteBatch.Draw(oldManSprite, destinationRect, sourceRect, Color.White);
-    }*/
+    public void moveLeft() { }
 
-    public void moveLeft()
-    {
-        state.moveLeft(this);
-    }
+    public void moveRight() { }
 
-    public void moveRight()
-    {
-        state.moveRight(this);
-    }
+    public void moveUp() { }
 
-    public void moveUp()
-    {
-        state.moveUp(this);
-    }
+    public void moveDown() { }
 
-    public void moveDown()
-    {
-        state.moveDown(this);
-    }
+    public void hurt() { }
 
-    public void hurt()
-    {
-        //do nothing, cannot die
-    }
+    public void idle() { }
 
-    public void update()
-    {
-        sprite.update(xPos, yPos);
-    }
+    public void update() { }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(0, sb);
+        sprite.draw(sb);
     }
+
+    public void changeToRandState() { }
 
     /*
      * Getter methods
      */
-    public int getEnemyUp()
-    {
-        return state.up;
-    }
-
-    public int getEnemyLeft()
-    {
-        return state.left;
-    }
-
     public int getHeight()
     {
         return height;

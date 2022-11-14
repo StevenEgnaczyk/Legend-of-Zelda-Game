@@ -5,9 +5,7 @@ using System;
 public interface IEnemySprite
 {
 
-    void update(int xPos, int yPos);
+    void update(int xPos, int yPos, int facingDirections, int time);
 
-    void draw(int frame, SpriteBatch sb);
-
-    void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos);
+    void draw(SpriteBatch sb);
 }
