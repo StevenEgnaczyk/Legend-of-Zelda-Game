@@ -71,7 +71,7 @@ public class Inventory
                 this.hasMap = true;
                 break;
             case Rupee:
-
+                this.addRupee();
                 break;
             case WoodenBoomerang:
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Boomerang);
@@ -98,6 +98,11 @@ public class Inventory
     public void addBombs()
     {
         numBombs++;
+    }
+
+    public void addRupee()
+    {
+        numRupees++;
     }
 
     public void removeBombs()
