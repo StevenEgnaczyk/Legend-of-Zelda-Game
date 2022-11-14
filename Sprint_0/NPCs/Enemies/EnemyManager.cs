@@ -57,33 +57,26 @@ public  class EnemyManager
         }
     }
 
-    public void getEnemyByIndex(EnemyManager enemyManager, int enemyIndex, int row, int col)
+    public IEnemy getEnemyByIndex(int enemyIndex, int row, int col)
     {
         switch (enemyIndex)
         {
             case 21:
-                new Keese(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Keese(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 22:
-                new Stalfos(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Stalfos(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 23:
-                new Goriya(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Goriya(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 24:
-                new Wallmaster(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Wallmaster(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 25:
-                new Aquamentus(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Aquamentus(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 26:
-                new BladeTrap(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new BladeTrap(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 27:
-                new Gel(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
+                return(new Gel(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
-                break;
+                return null;
 
         }
     }
