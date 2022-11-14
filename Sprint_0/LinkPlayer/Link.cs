@@ -132,6 +132,11 @@ public class Link
             Die();
         }
     }
+    public void gainHealth()
+    {
+        if(linkHealth <= 3.0f)
+        linkHealth++;
+    }
 
     public void teleportToRoom(int roomNum)
     {

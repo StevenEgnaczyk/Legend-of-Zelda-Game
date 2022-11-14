@@ -115,7 +115,18 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public void Draw(SpriteBatch spriteBatch)
         {
             Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
-            Rectangle sourceRect = ItemRectStorage.getArrowSprite();
+            Rectangle sourceRect = ItemRectStorage.getUpArrowSprite();
+            if (linkState == startingState.Down)
+            {
+               sourceRect = ItemRectStorage.getDownArrowSprite();
+            }else if (linkState == startingState.Right)
+            {
+                sourceRect = ItemRectStorage.getRightArrowSprite();
+            }else if (linkState == startingState.Left)
+            {
+                sourceRect = ItemRectStorage.getLeftArrowSprite();
+            }
+
             Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 3, sourceRect.Height * 3);
             spriteBatch.Draw(arrow, destinationRect, sourceRect, Color.White);
             updateHeightAndWidth(destinationRect);

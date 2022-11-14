@@ -7,9 +7,24 @@ using System.Threading.Tasks;
 
 public static class ItemRectStorage
 {
-    private static List<Rectangle> arrowSprite = new List<Rectangle>()
+    private static List<Rectangle> upArrowSprite = new List<Rectangle>()
     {
         new Rectangle(154, 0, 5, 16)
+    };
+
+    private static List<Rectangle> rightArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(148, 32, 16, 5)
+    };
+
+    private static List<Rectangle> leftArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(148, 38, 16, 5)
+    };
+
+    private static List<Rectangle> downArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(154, 44, 5, 16)
     };
 
     private static List<Rectangle> bombSprite = new List<Rectangle>()
@@ -91,9 +106,27 @@ public static class ItemRectStorage
         new Rectangle(51, 3, 9, 10)
     };
 
-    public static Rectangle getArrowSprite()
+    public static Rectangle getUpArrowSprite()
     {
-        return arrowSprite[0];
+        return upArrowSprite[0];
+
+    }
+
+    public static Rectangle getRightArrowSprite()
+    {
+        return rightArrowSprite[0];
+
+    }
+
+    public static Rectangle getLeftArrowSprite()
+    {
+        return leftArrowSprite[0];
+
+    }
+
+    public static Rectangle getDownArrowSprite()
+    {
+        return downArrowSprite[0];
 
     }
 
