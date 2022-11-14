@@ -22,7 +22,7 @@ public class GoriyaSprite : IEnemySprite
     {
         goriyaTexture = spritesheet;
 
-        destinationRectantgle = new Rectangle(0, 0, 32, 32);
+        destinationRectangle = new Rectangle(0, 0, 32, 32);
         walk0Rectangle = new Rectangle(273, 11, 16, 16);
         walk1Rectangle = new Rectangle(256, 11, 16, 16);
         upRectangle = new Rectangle(239, 11, 16, 16);
@@ -56,22 +56,22 @@ public class GoriyaSprite : IEnemySprite
 
         if (frame == 4)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, walk0Rectangle, Color.White);
+            sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.White);
 
         }
         else if (frame == 5 || frame == 7)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, walk1Rectangle, Color.White);
+            sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.White);
 
         }
         else if (frame == 14 || frame == 2)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, upRectangle, Color.White);
+            sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.White);
 
         }
         else if (frame == 13 || frame == 1)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, downRectangle, Color.White);
+            sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.White);
 
         }
     }
@@ -81,22 +81,22 @@ public class GoriyaSprite : IEnemySprite
         float zero = 0.0F;
         if (frame == 8)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, walk0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+            sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
         else if (frame == 11 || frame == 9)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, walk1Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+            sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
         else if (frame == 14 || frame == 2)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, upRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+            sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
         else if (frame == 13 || frame == 1)
         {
-            sb.Draw(goriyaTexture, destinationRectantgle, downRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+            sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
     }

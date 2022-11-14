@@ -35,7 +35,7 @@ public class IdleEnemyState : IEnemyState
 
     public void hurt(IEnemy enemy)
     {
-        enemy.state = new HurtEnemyState(enemy);
+        enemy.state = new HurtEnemyState(enemy, facingDirection);
     }
 
     public void shootProjectile(IEnemy enemy)
