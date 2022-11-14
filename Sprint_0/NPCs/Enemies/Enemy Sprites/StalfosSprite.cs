@@ -7,12 +7,14 @@ using Microsoft.Xna.Framework.Content;
 public class StalfosSprite : IEnemySprite
 {
     private Texture2D stalfosTexture;
+    private Texture2D deathTexture;
 
     private int frame;
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
-
+    private Rectangle deathRectangle;
+    //2 hp implement damaged animation
 
     public StalfosSprite(Texture2D spritesheet)
     {

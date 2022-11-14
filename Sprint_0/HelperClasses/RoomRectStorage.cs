@@ -11,11 +11,18 @@ public static class RoomRectStorage
 
     private static List<Rectangle> basicRoomRect = new List<Rectangle>()
     {
-        new Rectangle(521, 11, 256, 176)
+        new Rectangle(521, 11, 256, 176),
+        new Rectangle(421, 1009, 256, 160)
     };
     public static Rectangle getBasicRoom(int index)
     {
-        return basicRoomRect[0];
+        if (index < 18)
+        {
+            return basicRoomRect[0];
+        } else
+        {
+            return basicRoomRect[1];
+        }
 
     }
 
@@ -97,6 +104,24 @@ public static class RoomRectStorage
 
         return new Rectangle(0, 0, 0, 0);
         
+    }
+
+    internal static Rectangle getBlockRect(int blockID)
+    {
+        return blockID switch
+        {
+            0 => new Rectangle(3, 145, 16, 16),
+            1 => new Rectangle(1, 192, 16, 16),
+            2 => new Rectangle(81, 355, 16, 16),
+            3 => new Rectangle(244, 272, 16, 16),
+            4 => new Rectangle(244, 438, 16, 16),
+            5 => new Rectangle(260, 272, 16, 16),
+            6 => new Rectangle(308, 240, 16, 16),
+            7 => new Rectangle(81, 898, 16, 16),
+            8 => new Rectangle(97, 470, 16, 16),
+            9 => new Rectangle(81, 355, 16, 16),
+            _ => new Rectangle(521, 84, 16, 16),
+        };
     }
 
     internal static Rectangle getDoorDestinationRect(int doorPos)

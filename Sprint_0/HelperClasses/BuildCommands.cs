@@ -20,6 +20,8 @@ public class BuildCommands
     public ICommand turnPlayerUpCommand;
     public ICommand turnPlayerDownCommand;
 
+    public ICommand gainHealthCommand;
+
     public ICommand usePrimaryWeaponCommand;
     public ICommand useSecondaryWeaponCommand;
 
@@ -27,8 +29,6 @@ public class BuildCommands
     public ICommand transitionToInventoryCommand;
     public ICommand openGameCommand;
     public ICommand transitionToGameCommand;
-
-    public ICommand dieCommand;
 
     public ICommand cycleEnemyNextCommand;
     public ICommand cycleEnemyPreviousCommand;
@@ -39,6 +39,13 @@ public class BuildCommands
     public ICommand _dynamicTilesCommandPrev;
     public ICommand resetCommand;
 
+    public ICommand cycleInventoryRightCommand;
+    public ICommand cycleInventoryLeftCommand;
+
+    public ICommand muteCommand;
+    public ICommand volUpCommand;
+    public ICommand volDownCommand;
+
     public Keys[] state;
 
     public BuildCommands(Link linkPlayer, Game1 game)
@@ -47,11 +54,12 @@ public class BuildCommands
         inventoryControllerMappings = new Dictionary<Keys, ICommand>();
 
         _quitCommand = new QuitCommand();
-        resetCommand = new ResetCommand(linkPlayer);
         turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
         turnPlayerRightCommand = new TurnPlayerRightCommand(linkPlayer);
         turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
         turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
+
+        gainHealthCommand = new GainHealthCommand(linkPlayer);
 
         usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
         useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
@@ -61,7 +69,13 @@ public class BuildCommands
         openGameCommand = new ChangeToGameplayStateCommand(game);
         transitionToGameCommand = new TransitionToGameCommmand(game);
 
-        dieCommand = new DieCommand(linkPlayer);
+        cycleInventoryRightCommand = new CycleInventoryRight(linkPlayer.inventory);
+        cycleInventoryLeftCommand = new CycleInventoryLeft(linkPlayer.inventory);
+
+        muteCommand = new MuteCommand();
+        volUpCommand = new VolUpCommand();
+        volDownCommand = new VolDownCommand();
+
 
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
@@ -73,12 +87,22 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.Up, turnPlayerUpCommand);
         RegisterGameplayCommand(Keys.Down, turnPlayerDownCommand);
 
+        RegisterGameplayCommand(Keys.J, gainHealthCommand);
+
         RegisterGameplayCommand(Keys.A, usePrimaryWeaponCommand);
         RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
 
         RegisterGameplayCommand(Keys.E, transitionToInventoryCommand);
 
+        RegisterGameplayCommand(Keys.M, muteCommand);
+        RegisterGameplayCommand(Keys.L, volUpCommand);
+        RegisterGameplayCommand(Keys.K, volDownCommand);
+        
+
         RegisterInventoryCommand(Keys.Escape, transitionToGameCommand);
+        RegisterInventoryCommand(Keys.Right, cycleInventoryRightCommand);
+        RegisterInventoryCommand(Keys.Left, cycleInventoryLeftCommand);
+
     }
 
     public void RegisterGameplayCommand(Keys key, ICommand command)

@@ -20,6 +20,7 @@ public class Goriya : IEnemy
     private const int width = 64;
     private const int enemySpeed = 3;
     private EnemyManager man;
+    
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
@@ -77,7 +78,7 @@ public class Goriya : IEnemy
 
     public void die()
     {
-        //TO DO: Death animation
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
     }
 

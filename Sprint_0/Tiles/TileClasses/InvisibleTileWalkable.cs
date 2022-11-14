@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
-public class VerticalDoorTile : ITile
+public class InvisibleTileWalkable : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -17,8 +17,10 @@ public class VerticalDoorTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
-    public VerticalDoorTile(int xPos, int yPos)
+    public InvisibleTileWalkable(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
@@ -28,14 +30,19 @@ public class VerticalDoorTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = false;
+        this.isLocked = false;
+
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(0);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
+        
     }
 
     public int getXPos()
@@ -68,13 +75,24 @@ public class VerticalDoorTile : ITile
         return isWalkable;
     }
 
+    public bool Teleporter()
+    {
+        return isTeleport;
+    }
+    public bool Locked()
+    {
+        return isLocked;
+    }
+    public void Unlock()
+    {
+        isLocked = false;
+    }
     public void setXPos(int x)
     {
-        throw new NotImplementedException();
-    }
 
+    }
     public void setYPos(int y)
     {
-        throw new NotImplementedException();
+        
     }
 }

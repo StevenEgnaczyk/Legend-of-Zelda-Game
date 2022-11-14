@@ -33,7 +33,7 @@ public class LinkEnemyCollisionResponse
                 enemy.yPos += enemy.getSpeed();
                 
                 //Make link look hurt
-                link.Die();
+                link.takeDamage();
                 
                 //I'm pretty sure link changes directions when hurt
                 link.TurnDown();
@@ -48,7 +48,7 @@ public class LinkEnemyCollisionResponse
                 link.xPos += link.linkSpeed * 32;
                 enemy.xPos -= enemy.getSpeed();
 
-                link.Die();
+                link.takeDamage();
                 
                 link.TurnRight();
 
@@ -59,7 +59,7 @@ public class LinkEnemyCollisionResponse
                 link.xPos -= link.linkSpeed;
                 enemy.xPos += enemy.getSpeed();
 
-                link.Die();
+                link.takeDamage();
                 
                 link.TurnLeft();
 
@@ -70,7 +70,7 @@ public class LinkEnemyCollisionResponse
                 link.yPos += link.linkSpeed;
                 enemy.yPos -= enemy.getSpeed();
 
-                link.Die();
+                link.takeDamage();
                 
                 link.TurnUp();
 

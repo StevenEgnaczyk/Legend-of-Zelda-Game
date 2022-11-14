@@ -11,8 +11,8 @@ public class Arrow : IItem
 
     private int xPos;
     private int yPos;
-    private int Width = 16;
-    private int Height = 16;
+    private int Width = 24;
+    private int Height = 48;
 
     private ItemManager man;
     public Arrow(ItemManager manager, int xPosition, int yPosition)
@@ -31,7 +31,7 @@ public class Arrow : IItem
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = ItemRectStorage.getArrowSprite();
+        Rectangle sourceRect = ItemRectStorage.getUpArrowSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
         spriteBatch.Draw(arrow, destRect, sourceRect, Color.White);
 

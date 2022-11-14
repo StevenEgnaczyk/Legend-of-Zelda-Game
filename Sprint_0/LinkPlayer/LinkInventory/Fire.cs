@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class Fire : IWeapon
+    public class Fire : ISecondaryWeapon
     {
         private Link link;
         private Vector2 start;
@@ -52,33 +52,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public Fire(Link link)
         {
-            if (link.state.ToString().Equals("DownMovingLinkState"))
-            {
-                linkState = startingState.Down;
-            }
-            else if (link.state.ToString().Equals("UpMovingLinkState"))
-            {
-                linkState = startingState.Up;
-            }
-            else if (link.state.ToString().Equals("LeftMovingLinkState"))
-            {
-                linkState = startingState.Left;
-            }
-            else if (link.state.ToString().Equals("RightMovingLinkState"))
-            {
-                linkState = startingState.Right;
-            }
-
             this.link = link;
-            start = getStartingRect();
-            end = getTargetRect(start);
-            current = start;
-
-            goingOut = true;
-            distanceToTravel = 500;
-            bufferFrame = 0;
-
-            fire = Texture2DStorage.GetOldManSpriteSheet();
         }
 
         private Vector2 getTargetRect(Vector2 startRect)
@@ -158,12 +132,10 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         public void Update()
         {
-            Debug.WriteLine(current.ToString());
-            Debug.WriteLine(end.ToString());
 
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
             {
-                link.inventory.primaryWeaponManager.stopUsingWeapon();
+                link.inventory.secondaryWeaponManager.stopUsingWeapon();
             }
 
             bufferFrame++;
@@ -230,6 +202,36 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public int getWidth()
         {
             return width;
+        }
+
+        public void Attack()
+        {
+            if (link.state.ToString().Equals("DownMovingLinkState"))
+            {
+                linkState = startingState.Down;
+            }
+            else if (link.state.ToString().Equals("UpMovingLinkState"))
+            {
+                linkState = startingState.Up;
+            }
+            else if (link.state.ToString().Equals("LeftMovingLinkState"))
+            {
+                linkState = startingState.Left;
+            }
+            else if (link.state.ToString().Equals("RightMovingLinkState"))
+            {
+                linkState = startingState.Right;
+            }
+
+            start = getStartingRect();
+            end = getTargetRect(start);
+            current = start;
+
+            goingOut = true;
+            distanceToTravel = 500;
+            bufferFrame = 0;
+
+            fire = Texture2DStorage.GetOldManSpriteSheet();
         }
     }
 

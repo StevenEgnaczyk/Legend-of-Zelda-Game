@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Sprint_0.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,8 +13,8 @@ using System.Threading.Tasks;
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class primaryWeaponManager
-    {
-        public IWeapon primaryWeapon { get; set;}
+    { 
+        public IPrimaryWeapon primaryWeapon { get; set;}
 
         public WoodenSword woodenSword;
         public MagicSword magicSword;
@@ -32,6 +36,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 woodenSword = new WoodenSword(link);
                 primaryWeapon = woodenSword;
                 usingPrimaryWeapon = true;
+                AudioStorage.GetSwordSlash().Play();
             }
         }
 
@@ -42,6 +47,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 magicSword = new MagicSword(link);
                 primaryWeapon = magicSword;
                 usingPrimaryWeapon = true;
+                AudioStorage.GetSwordShoot().Play();
             }
         }
 
@@ -67,19 +73,22 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             usingPrimaryWeapon = false;
         }
 
-        public IWeapon getPrimaryWeapon()
+        public IPrimaryWeapon getPrimaryWeapon()
         {
             return primaryWeapon;
         }
 
         internal void UsePrimaryWeapon()
         {
-            UseWoodenSword();
+            if (!usingPrimaryWeapon && !link.inventory.secondaryWeaponManager.usingSecondaryWeapon)
+            {
+                UseWoodenSword();
+            }
         }
 
-        internal void UseSecondaryWeapon()
+        internal Rectangle getRect()
         {
-            throw new NotImplementedException();
+            return new Rectangle(primaryWeapon.getXPos(), primaryWeapon.getYPos(), primaryWeapon.getWidth(), primaryWeapon.getHeight());
         }
     }
 }

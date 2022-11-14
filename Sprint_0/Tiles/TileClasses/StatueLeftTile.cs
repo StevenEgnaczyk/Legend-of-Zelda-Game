@@ -16,6 +16,8 @@ public class StatueLeftTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
     public StatueLeftTile(int xPos, int yPos)
     {
@@ -27,16 +29,18 @@ public class StatueLeftTile : ITile
 
         this.isPushable = false;
         this.isWalkable = false;
+        this.isTeleport = false;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(6);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(6);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
 
+    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -56,6 +60,8 @@ public class StatueLeftTile : ITile
     {
         return height;
     }
+
+    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -65,12 +71,31 @@ public class StatueLeftTile : ITile
     {
         return isWalkable;
     }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
+    }
+
+    public bool Locked()
+    {
+        return isLocked;
+    }
+
+    /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
-
+        this.xPosition = x;
     }
     public void setYPos(int y)
     {
-        
+        this.yPosition = y;
+    }
+
+    /* Extraneous commands */
+    public void Unlock()
+    {
+        isLocked = false;
+        isTeleport = true;
     }
 }

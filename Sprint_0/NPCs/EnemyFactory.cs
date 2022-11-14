@@ -9,6 +9,7 @@ public class EnemySpriteFactory
 
 	private Texture2D enemySpritesheet;
 	private Texture2D bossSpritesheet;
+	private Texture2D npcSpritesheet;
 	
 	public static EnemySpriteFactory instance = new EnemySpriteFactory();
 				
@@ -24,6 +25,7 @@ public class EnemySpriteFactory
 	{
 		this.enemySpritesheet = Texture2DStorage.getEnemySpritesheet();
         this.bossSpritesheet = Texture2DStorage.getBossSpritesheet();
+		this.npcSpritesheet = Texture2DStorage.GetOldManSpriteSheet();
     }
 
 	public IEnemySprite CreateKeeseSprite()
@@ -49,6 +51,16 @@ public class EnemySpriteFactory
 	public IEnemySprite CreateBladeTrapSprite()
 	{
 		return new BladeTrapSprite(enemySpritesheet);
+	}
+
+	public IEnemySprite CreateOldManSprite()
+	{
+		return new OldManSprite(enemySpritesheet);
+	}
+
+	public IEnemySprite CreateFlameSprite()
+	{
+		return new FlameSprite(enemySpritesheet);
 	}
 
 	public IEnemySprite CreateWallmasterSprite()

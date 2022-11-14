@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 public static class CollisionDetection
 {
 
-
+    //Check the collision between two rectangles
     public static string collides(Rectangle r1, Rectangle r2)
     {
         string collisionFace = "No Collision";
@@ -48,6 +48,7 @@ public static class CollisionDetection
             }
         }
 
+        //Return the collision face, or "No Collision" if there are no collisions
         return collisionFace;
 
     }

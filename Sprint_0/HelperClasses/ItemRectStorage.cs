@@ -7,9 +7,24 @@ using System.Threading.Tasks;
 
 public static class ItemRectStorage
 {
-    private static List<Rectangle> arrowSprite = new List<Rectangle>()
+    private static List<Rectangle> upArrowSprite = new List<Rectangle>()
     {
         new Rectangle(154, 0, 5, 16)
+    };
+
+    private static List<Rectangle> rightArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(148, 32, 16, 5)
+    };
+
+    private static List<Rectangle> leftArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(148, 38, 16, 5)
+    };
+
+    private static List<Rectangle> downArrowSprite = new List<Rectangle>()
+    {
+        new Rectangle(154, 44, 5, 16)
     };
 
     private static List<Rectangle> bombSprite = new List<Rectangle>()
@@ -83,10 +98,35 @@ public static class ItemRectStorage
 
     private static Rectangle candleSprite = new Rectangle(160, 0, 8, 16);
 
-
-    public static Rectangle getArrowSprite()
+    private static List<Rectangle> deathAnimation = new List<Rectangle>()
     {
-        return arrowSprite[0];
+        new Rectangle(0, 0, 15, 16),
+        new Rectangle(16, 0, 15, 16),
+        new Rectangle(35, 3, 9, 10),
+        new Rectangle(51, 3, 9, 10)
+    };
+
+    public static Rectangle getUpArrowSprite()
+    {
+        return upArrowSprite[0];
+
+    }
+
+    public static Rectangle getRightArrowSprite()
+    {
+        return rightArrowSprite[0];
+
+    }
+
+    public static Rectangle getLeftArrowSprite()
+    {
+        return leftArrowSprite[0];
+
+    }
+
+    public static Rectangle getDownArrowSprite()
+    {
+        return downArrowSprite[0];
 
     }
 
@@ -165,5 +205,10 @@ public static class ItemRectStorage
     internal static Rectangle getCandleSprite()
     {
         return candleSprite;
+    }
+    
+    public static Rectangle getDeathAnimation(int index)
+    {
+        return deathAnimation[index];
     }
 }

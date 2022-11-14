@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework.Content;
 
 public class LinkTileCollisionResponse
 {
-    public static void collisionResponse(Link link, ITile tile)
+
+    public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
@@ -15,12 +16,109 @@ public class LinkTileCollisionResponse
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
+        ChangeRoomStateCommand roomChange = new ChangeRoomStateCommand(game);
+
         /*
          * Link doesn't turn when hitting a wall, so this just stops his x or y position
          * from moving further into the block (instead of turning) 
          * 
          * Need: A special method for the block that gets pushed
          */
+
+        if (tile.Locked())
+        {
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+
+                case "Top":
+                    if (link.hasKeys())
+                    {
+                        tile.Unlock();
+                        link.roomManager.drawDoor(1, 0);
+                        link.inventory.removeKey();
+                    }
+                    break;
+
+                case "Left":
+
+                    if (link.hasKeys())
+                    {
+                        tile.Unlock();
+                        link.inventory.removeKey();
+                    }
+                    break;
+
+                case "Right":
+
+                    if (link.hasKeys())
+                    {
+                        tile.Unlock();
+                        link.inventory.removeKey();
+                    }
+                    break;
+
+                case "Bottom":
+
+                    if (link.hasKeys())
+                    {
+                        tile.Unlock();
+                        link.inventory.removeKey();
+                    }
+                    break;
+            }
+        }
+        if (tile.Teleporter())
+        {
+
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+                
+                case "Top":
+                    int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
+                    if (roomToTeleportTop > 0)
+                    {
+                        game.link.xPos = 475;
+                        game.link.yPos = 675;
+                        roomChange.Execute(link, roomToTeleportTop);
+                    }
+                    break;
+
+                case "Left":
+                    
+                    int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
+                    if (roomToTeleportLeft > 0)
+                    {
+                        link.xPos = 775;
+                        link.yPos = 500;
+                        roomChange.Execute(link, roomToTeleportLeft);
+                    }
+                    break;
+
+                case "Right":
+                    
+                    int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
+                    if (roomToTeleportRight > 0)
+                    {
+                        link.xPos = 125;
+                        link.yPos = 550;
+                        roomChange.Execute(link, roomToTeleportRight);
+                    }
+                    break;
+
+                case "Bottom":
+                    int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
+                    if (roomToTeleportBottom > 0)
+                    {
+                        link.xPos = 500;
+                        link.yPos = 250;
+                        roomChange.Execute(link, roomToTeleportBottom);
+                    }
+                    break;
+            }
+        }
+
         if (!tile.Walkable())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
@@ -47,6 +145,44 @@ public class LinkTileCollisionResponse
                 case "Bottom":
 
                     link.yPos -= link.linkSpeed;
+
+                    break;
+            }
+        }
+        if (tile.Pushable())
+        {
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+                case "Top":
+
+                    link.yPos += link.linkSpeed;
+                    int y = tile.getYPos() - 1;
+                    tile.setYPos(y);
+
+                    break;
+
+                case "Left":
+
+                    link.xPos += link.linkSpeed;
+                    int x = tile.getXPos() - 1;
+                    tile.setXPos(x);
+
+                    break;
+
+                case "Right":
+
+                    link.xPos -= link.linkSpeed;
+                    int z = tile.getXPos() + 1;
+                    tile.setXPos(z);
+
+                    break;
+
+                case "Bottom":
+
+                    link.yPos -= link.linkSpeed;
+                    int w = tile.getYPos() + 1;
+                    tile.setYPos(w);
 
                     break;
             }

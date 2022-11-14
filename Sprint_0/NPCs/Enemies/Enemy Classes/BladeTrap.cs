@@ -11,9 +11,6 @@ public class BladeTrap : IEnemy
     public IEnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
-    public int health { get; set; }
-    public int randTime { get; set; }
-
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;

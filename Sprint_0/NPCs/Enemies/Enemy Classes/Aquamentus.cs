@@ -19,6 +19,7 @@ public class Aquamentus : IEnemy
     public int health { get; set; }
     public int randTime { get; set; }
 
+
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
     private const int height = 64;
@@ -88,6 +89,7 @@ public class Aquamentus : IEnemy
     public void die()
     {
         //TO DO: death animation
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
     }
 

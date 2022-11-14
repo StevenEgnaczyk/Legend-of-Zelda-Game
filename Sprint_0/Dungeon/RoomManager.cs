@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,17 @@ public class RoomManager
     private int roomNumber;
     Room currentRoom;
     SpriteBatch spriteBatch;
-    public static int NUM_ROOMS = 17;
+    public static int NUM_ROOMS = 18;
+    private static int HUD_SIZE = 224;
 
     //This class calls a new room and manages the switching between different rooms
     public RoomManager(SpriteBatch sb, Link link)
     {
         this.spriteBatch = sb;
-        roomNumber = 0;
+        roomNumber = 1;
         this.link = link;
         this.link.currentRoom = roomNumber;
-        currentRoom = new Room(roomNumber, spriteBatch, this.link);
+        currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
         
     }
 
@@ -30,34 +32,54 @@ public class RoomManager
 
     }
 
-    internal void nextRoom()
-    {
-        //increments room number index, if over max room number set to initial room 
-        roomNumber++;
-        if (roomNumber > NUM_ROOMS)
-        {
-            roomNumber = 0;
-        }
-        link.currentRoom = roomNumber;
-        currentRoom = new Room(roomNumber, spriteBatch, this.link);
-    }
-
-    internal void prevRoom()
-    {
-        //decrements room number index, if over min room number set to last room
-        roomNumber--;
-        if (roomNumber == -1)
-        {
-            roomNumber = 17;
-        }
-        link.currentRoom = roomNumber;
-        currentRoom = new Room(roomNumber, spriteBatch, this.link);
-
-    }
-
     public void Update()
     {
         currentRoom.Update();
+    }
+
+    internal void loadRoom(int roomNumber)
+    {
+        link.currentRoom = roomNumber;
+        currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
+    }
+
+    public void reset()
+    {
+        roomNumber = 1;
+        currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
+    }
+
+    public void drawBackground(SpriteBatch spriteBatch, List<List<int>> backgroundInformation)
+    {
+        drawDoors(spriteBatch, backgroundInformation[0]);
+        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
+        Rectangle bgRect = RoomRectStorage.getBasicRoom(roomNumber);
+        Rectangle destRect = new(0, HUD_SIZE + ((176 - bgRect.Height) * 4), bgRect.Width * 4, bgRect.Height * 4);
+        spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
+
+    }
+
+    public void drawDoors(SpriteBatch spriteBatch, List<int> doorInformation)
+    {
+        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
+
+        for (int i = 0; i < 4; i++)
+        {
+
+            Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(doorInformation[i], i);
+            Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(i);
+            spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
+        }
+
+    }
+
+    public void drawDoor(int newDoorTexture, int doorIndex)
+    {
+        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
+        Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(newDoorTexture, doorIndex);
+        Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(0);
+        spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
+
     }
 }
 

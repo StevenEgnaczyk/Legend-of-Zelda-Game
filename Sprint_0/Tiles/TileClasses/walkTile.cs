@@ -17,6 +17,8 @@ public class walkTile : ITile
 
     private bool isPushable;
     private bool isWalkable;
+    private bool isTeleport;
+    private bool isLocked;
 
     public walkTile(int xPos, int yPos)
     {
@@ -28,16 +30,18 @@ public class walkTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
+        this.isTeleport = false;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = Texture2DStorage.getBlockRect(1);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
 
+    /* Getters for x,y positons as well as width/height */
     public int getXPos()
     {
         return xPosition;
@@ -57,6 +61,8 @@ public class walkTile : ITile
     {
         return height;
     }
+
+    /* Boolean getters for the tiles main characteristics */
     public bool Pushable()
     {
         return isPushable;
@@ -66,12 +72,31 @@ public class walkTile : ITile
     {
         return isWalkable;
     }
+
+    public bool Teleporter()
+    {
+        return isTeleport;
+    }
+
+    public bool Locked()
+    {
+        return isLocked;
+    }
+
+    /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
-
+        this.xPosition = x;
     }
     public void setYPos(int y)
     {
-        
+        this.yPosition = y;
+    }
+
+    /* Extraneous commands */
+    public void Unlock()
+    {
+        isLocked = false;
+        isTeleport = true;
     }
 }

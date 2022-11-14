@@ -11,18 +11,24 @@ public class Link
     public ILinkState state;
     public Inventory inventory;
     public int currentRoom;
+    public RoomManager roomManager;
+    public secondaryWeaponManager secondWeaponManager;
+
 
     public float xPos, yPos;
     public int linkSpeed = 3;
     private float linkHealth;
     private float linkMaxHealth = 3.0f;
+
     
 
-    public Link()
+    public Link(SpriteBatch spriteBatch)
     {
 
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
+        roomManager = new RoomManager(spriteBatch, this);
+        secondWeaponManager = new secondaryWeaponManager(this);
 
         linkHealth = linkMaxHealth;
 
@@ -53,22 +59,18 @@ public class Link
     public void Update()
     {
         state.Update();
-        inventory.primaryWeaponManager.Update();
+        inventory.Update();
     }
 
     public void Die()
     {
-        //linkHealth -= 1f;
-        state.Die();
-    }
-
-    public void reset()
-    {
-        state = new DownMovingLinkState(this);
-        inventory.primaryWeaponManager = new primaryWeaponManager(this);
+       roomManager.reset();
+       secondWeaponManager.reset();
+       linkHealth = linkMaxHealth;
 
         xPos = 500;
         yPos = 500;
+        currentRoom = 1;
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -76,6 +78,9 @@ public class Link
         if (inventory.primaryWeaponManager.usingPrimaryWeapon)
         {
             inventory.primaryWeaponManager.Draw(_spriteBatch);
+        } else if (inventory.secondaryWeaponManager.usingSecondaryWeapon)
+        {
+            inventory.secondaryWeaponManager.Draw(_spriteBatch);
         }
         else
         {
@@ -114,5 +119,32 @@ public class Link
     public float getMaxHealth()
     {
         return linkMaxHealth;
+    }
+
+    public void takeDamage()
+    {
+        linkHealth -= 0.5f;
+        state = new DamagedLinkState(this);
+        AudioStorage.GetLinkHurt().Play();
+        if (linkHealth <= 0)
+        {
+            AudioStorage.GetLinkDie().Play();
+            Die();
+        }
+    }
+    public void gainHealth()
+    {
+        if(linkHealth <= 3.0f)
+        linkHealth++;
+    }
+
+    public void teleportToRoom(int roomNum)
+    {
+        roomManager.loadRoom(roomNum);
+    }
+
+    internal bool hasKeys()
+    {
+        return inventory.getKeys() > 0;
     }
 }

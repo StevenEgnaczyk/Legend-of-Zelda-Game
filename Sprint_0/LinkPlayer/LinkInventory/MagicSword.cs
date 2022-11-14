@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.LinkPlayer.LinkInventory
 {
-    public class MagicSword : IWeapon
+    public class MagicSword : IPrimaryWeapon
     {
         private Link link;
         private Texture2D magicSword;

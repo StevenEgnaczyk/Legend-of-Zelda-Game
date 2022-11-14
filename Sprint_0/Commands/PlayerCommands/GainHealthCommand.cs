@@ -4,17 +4,17 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
-public class DieCommand : ICommand
+public class GainHealthCommand : ICommand
 {
 	public Link linkPlayer;
 
-	public DieCommand(Link link)
+	public GainHealthCommand(Link link)
 	{
 		linkPlayer = link;
 	}
 
 	public void Execute()
 	{
-		linkPlayer.Die();
+		linkPlayer.gainHealth();
     }
 }

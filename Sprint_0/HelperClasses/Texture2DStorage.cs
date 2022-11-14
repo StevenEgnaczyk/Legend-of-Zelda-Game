@@ -19,7 +19,9 @@ public static class Texture2DStorage
 	private static Texture2D bossSpritesheet;
 	private static Texture2D dungeonSpritesheet;
     private static Texture2D hudSpriteSheet;
-
+	private static Texture2D deathSpriteSheet;
+	private static Texture2D daBabySpriteSheet;
+	private static Texture2D black;
 
     // More private static Texture2D fields follow
 
@@ -33,6 +35,10 @@ public static class Texture2DStorage
 		bossSpritesheet = content.Load<Texture2D>("bossSpritesheet");
 		dungeonSpritesheet = content.Load<Texture2D>("dungeonTileset");
         hudSpriteSheet = content.Load<Texture2D>("HUDSpritesheet");
+		deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
+		daBabySpriteSheet = content.Load<Texture2D>("DaBaby");
+		black = content.Load<Texture2D>("Black");
+
 
 
         /*
@@ -52,6 +58,11 @@ public static class Texture2DStorage
 		 */
 
     }
+
+	public static Texture2D GetDaBaby()
+	{
+		return black;
+	}
 
     public static Texture2D GetLinkSpriteSheet()
 	{
@@ -82,25 +93,13 @@ public static class Texture2DStorage
         return dungeonSpritesheet;
     }
 
-    internal static Rectangle getBlockRect(int blockID)
-    {
-        return blockID switch
-        {
-            1 => new Rectangle(1, 192, 16, 16),
-            2 => new Rectangle(81, 355, 16, 16),
-            3 => new Rectangle(244, 272, 16, 16),
-            4 => new Rectangle(244, 438, 16, 16),
-            5 => new Rectangle(260, 272, 16, 16),
-            6 => new Rectangle(308, 240, 16, 16),
-            7 => new Rectangle(81, 898, 16, 16),
-            8 => new Rectangle(97, 470, 16, 16),
-            9 => new Rectangle(81, 355, 16, 16),
-            _ => new Rectangle(521, 84, 16, 16),
-        };
-    }
-
     internal static Texture2D GetHUDSpriteSheet()
     {
         return hudSpriteSheet;
     }
+
+	public static Texture2D GetDeathSpriteSheet()
+	{
+		return deathSpriteSheet;
+	}
 }
