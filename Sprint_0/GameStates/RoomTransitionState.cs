@@ -41,7 +41,7 @@ namespace Sprint_0.GameStates
             {
                 game.link.Draw(spriteBatch);
             }
-            game.link.roomManager.drawRoom(spriteBatch);
+            game.roomManager.drawRoom(spriteBatch);
             Texture2D blackBackground = Texture2DStorage.GetDaBaby();
             Debug.WriteLine(alpha);
             spriteBatch.Draw(blackBackground, new Rectangle(0, 0, 1200, 1000), new Color(Color.White, (int)alpha));
@@ -56,7 +56,7 @@ namespace Sprint_0.GameStates
                 alpha += 10f;
                 if (alpha >= 255)
                 {
-                    game.link.roomManager.loadRoom(room);
+                    game.roomManager.loadRoom(room);
                     changeToTransitioning();
                 }
             } else

@@ -35,7 +35,7 @@ public class LinkTileCollisionResponse
                     if (link.hasKeys())
                     {
                         tile.Unlock();
-                        link.roomManager.drawDoor(1, 0);
+                        game.roomManager.currentRoom.changeDoor(0, 1);
                         link.inventory.removeKey();
                     }
                     break;
@@ -79,8 +79,9 @@ public class LinkTileCollisionResponse
                     int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
                     if (roomToTeleportTop > 0)
                     {
-                        game.link.xPos = 475;
-                        game.link.yPos = 675;
+                        game.link.xPos = 490;
+                        game.link.yPos = 725;
+                        game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportTop);
                     }
                     break;
@@ -90,8 +91,9 @@ public class LinkTileCollisionResponse
                     int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
                     if (roomToTeleportLeft > 0)
                     {
-                        link.xPos = 775;
-                        link.yPos = 500;
+                        link.xPos = 850;
+                        link.yPos = 550;
+                        game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportLeft);
                     }
                     break;
@@ -103,6 +105,7 @@ public class LinkTileCollisionResponse
                     {
                         link.xPos = 125;
                         link.yPos = 550;
+                        game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportRight);
                     }
                     break;
@@ -111,8 +114,9 @@ public class LinkTileCollisionResponse
                     int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
                     if (roomToTeleportBottom > 0)
                     {
-                        link.xPos = 500;
-                        link.yPos = 250;
+                        link.xPos = 475;
+                        link.yPos = 350;
+                        game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportBottom);
                     }
                     break;

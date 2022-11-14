@@ -13,6 +13,7 @@ public class BuildCommands
 {
     public Dictionary<Keys, ICommand> gameplayControllerMappings;
     public Dictionary<Keys, ICommand> inventoryControllerMappings;
+    public Dictionary<Keys, ICommand> startupControllerMappings;
 
     public ICommand _quitCommand;
     public ICommand turnPlayerLeftCommand;
@@ -46,12 +47,15 @@ public class BuildCommands
     public ICommand volUpCommand;
     public ICommand volDownCommand;
 
+    public ICommand startGameCommand;
+
     public Keys[] state;
 
     public BuildCommands(Link linkPlayer, Game1 game)
     {
         gameplayControllerMappings = new Dictionary<Keys, ICommand>();
         inventoryControllerMappings = new Dictionary<Keys, ICommand>();
+        startupControllerMappings = new Dictionary<Keys, ICommand>();
 
         _quitCommand = new QuitCommand();
         turnPlayerLeftCommand = new TurnPlayerLeftCommand(linkPlayer);
@@ -75,6 +79,8 @@ public class BuildCommands
         muteCommand = new MuteCommand();
         volUpCommand = new VolUpCommand();
         volDownCommand = new VolDownCommand();
+
+        startGameCommand = new TransitionToGameCommmand(game);
 
 
         RegisterGameplayCommand(Keys.D0, _quitCommand);
@@ -103,6 +109,8 @@ public class BuildCommands
         RegisterInventoryCommand(Keys.Right, cycleInventoryRightCommand);
         RegisterInventoryCommand(Keys.Left, cycleInventoryLeftCommand);
 
+        RegisterStartupCommand(Keys.Space, startGameCommand);
+
     }
 
     public void RegisterGameplayCommand(Keys key, ICommand command)
@@ -113,6 +121,11 @@ public class BuildCommands
     public void RegisterInventoryCommand(Keys key, ICommand command)
     {
         inventoryControllerMappings.Add(key, command);
+    }
+
+    public void RegisterStartupCommand(Keys key, ICommand command)
+    {
+        startupControllerMappings.Add(key, command);
     }
 
 

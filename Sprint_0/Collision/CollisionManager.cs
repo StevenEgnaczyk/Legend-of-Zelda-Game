@@ -27,7 +27,7 @@ public class CollisionManager
 
 
     /* Manage the collisions between all collidable objects */
-    public  void manageCollisions(Link link, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, Inventory userInv)
+    public  void manageCollisions(Link link, List<IDoor> doorList, List<IEnemy> enemies, List<ITile> tiles, List<IItem> items, Inventory userInv)
     {
         //Collisions for enemies between link, tiles, and weapons
         foreach (IEnemy enemy in enemies.ToArray()) {

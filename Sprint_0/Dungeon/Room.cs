@@ -9,34 +9,57 @@ using System.Diagnostics;
 public class Room
 {
 
-    RoomManager roomManager;
-
     private int currentRoomIndex;
     List<List<List<int>>> roomInformation;
 
+    private DoorManager doorManager;
     private EnemyManager enemyManager;
     private TileManager tileManager;
     private ItemManager itemManager;
 
     private Link link;
 
+    RoomManager roomManager;
+
     public Room(int roomIndex, SpriteBatch spriteBatch, Link link, RoomManager roomManager)
     {
         this.currentRoomIndex = roomIndex;
         this.link = link;
-
-        roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
-
-        enemyManager = new EnemyManager(spriteBatch);
-        populateEnemies(roomInformation[2], spriteBatch);
-
-        tileManager = new TileManager(spriteBatch);
-        populateTiles(roomInformation[1]);
-
-        itemManager = new ItemManager(spriteBatch);
-        populateItems(roomInformation[3]);
-
         this.roomManager = roomManager;
+
+        if (roomManager.doorMemory.ContainsKey(currentRoomIndex))
+        {
+
+            doorManager = new DoorManager(spriteBatch);
+            doorManager.doorList = roomManager.doorMemory[currentRoomIndex];
+
+            enemyManager = new EnemyManager(spriteBatch);
+            enemyManager.enemiesList = roomManager.enemyMemory[currentRoomIndex];
+
+            tileManager = new TileManager(spriteBatch);
+            tileManager.tileList = roomManager.tileMemory[currentRoomIndex];
+
+            itemManager = new ItemManager(spriteBatch);
+            itemManager.itemList = roomManager.itemMemory[currentRoomIndex];
+
+
+        }
+        else
+        {
+            roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
+
+            doorManager = new DoorManager(spriteBatch);
+            populateDoors(roomInformation[0]);
+
+            tileManager = new TileManager(spriteBatch);
+            populateTiles(roomInformation[1]);
+
+            enemyManager = new EnemyManager(spriteBatch);
+            populateEnemies(roomInformation[2], spriteBatch);
+
+            itemManager = new ItemManager(spriteBatch);
+            populateItems(roomInformation[3]);
+        }
     }
 
     private void populateItems(List<List<int>> itemInformation)
@@ -66,6 +89,17 @@ public class Room
         }
     }
 
+    private void populateDoors(List<List<int>> doorInformation)
+    {
+        for (int row = 0; row < doorInformation.Count; row++)
+        {
+            for (int col = 0; col < doorInformation[row].Count; col++)
+            {
+                    doorManager.addDoor(DoorManager.instance.getDoorByIndex(doorInformation[row][col], row, col));
+            }
+        }
+    }
+
     private void populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
     {
         List<IEnemy> enemies = new List<IEnemy>();  
@@ -83,16 +117,51 @@ public class Room
 
     internal void draw(SpriteBatch spriteBatch)
     {
-
-        roomManager.drawBackground(spriteBatch, roomInformation[0]);
-        tileManager.Draw(spriteBatch);
+        roomManager.drawBackground(spriteBatch);
+        doorManager.DrawDoors(spriteBatch);
+        tileManager.DrawTiles(spriteBatch);
         enemyManager.Draw();
         itemManager.Draw(spriteBatch);
 
     }
 
+    public void changeDoor(int doorIndex, int newDoorSource)
+    {
+        /*
+        tileManager.removeDoor(doorIndex);
+        doorManager.addDoor(doorIndex, newDoorSource);
+        */
+
+
+    }
+
     public void Update()
     {
-        CollisionManager.instance.manageCollisions(link, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
+        CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
+    }
+
+    internal int getIndex()
+    {
+        return currentRoomIndex;
+    }
+
+    public List<IDoor> getDoors()
+    {
+        return doorManager.doorList;
+    }
+
+    public List<ITile> getTiles()
+    {
+        return tileManager.tileList;
+    }
+
+    public List<IEnemy> getEnemies()
+    {
+        return enemyManager.enemiesList;
+    }
+
+    public List<IItem> getItems()
+    {
+        return itemManager.itemList;
     }
 }

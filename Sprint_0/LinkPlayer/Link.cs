@@ -11,7 +11,6 @@ public class Link
     public ILinkState state;
     public Inventory inventory;
     public int currentRoom;
-    public RoomManager roomManager;
     public secondaryWeaponManager secondWeaponManager;
 
 
@@ -27,8 +26,6 @@ public class Link
 
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
-        roomManager = new RoomManager(spriteBatch, this);
-        secondWeaponManager = new secondaryWeaponManager(this);
 
         linkHealth = linkMaxHealth;
 
@@ -64,8 +61,7 @@ public class Link
 
     public void Die()
     {
-       roomManager.reset();
-       secondWeaponManager.reset();
+        secondWeaponManager.reset();
        linkHealth = linkMaxHealth;
 
         xPos = 500;
@@ -136,11 +132,6 @@ public class Link
     {
         if(linkHealth <= 3.0f)
         linkHealth++;
-    }
-
-    public void teleportToRoom(int roomNum)
-    {
-        roomManager.loadRoom(roomNum);
     }
 
     internal bool hasKeys()

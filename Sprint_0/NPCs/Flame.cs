@@ -21,10 +21,6 @@ public class Flame : IEnemy
 
     private int bufferIndex;
     private int bufferMax = 20;
-    private int deadBuffer;
-    private int deadBufferMax = 10;
-    private int maxFrame = 4;
-    private int deadFrame = 0;
     private int frame;
 
     public Flame(SpriteBatch sb, EnemyManager manager, int startX, int startY)
@@ -38,7 +34,6 @@ public class Flame : IEnemy
         man = manager;
 
         frame = 0;
-        deadBuffer = 0;
         bufferIndex = 0;
     }
     /*public void Update()

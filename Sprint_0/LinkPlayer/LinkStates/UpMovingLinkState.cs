@@ -13,8 +13,6 @@ public class UpMovingLinkState : ILinkState
     private int bufferIndex;
     private int bufferMax = 10;
 
-    private int woodenSwordFrames = 4;
-
     public UpMovingLinkState(Link link)
     {
         this.link = link;

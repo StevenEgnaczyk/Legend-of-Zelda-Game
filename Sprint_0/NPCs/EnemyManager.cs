@@ -68,7 +68,6 @@ public  class EnemyManager
                 return(new Gel(sb, this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
                 return null;
-                break;
 
         }
     }

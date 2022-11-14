@@ -73,6 +73,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeaponManager.secondaryWeapons.Bow => new Bow(link),
                 secondaryWeaponManager.secondaryWeapons.Bomb => new Bomb(link),
                 secondaryWeaponManager.secondaryWeapons.Boomerang => new Boomerang(link),
+                _ => throw new NotImplementedException(),
             };
         }
             
@@ -85,6 +86,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 1 => new Bomb(link),
                 2 => new Bow(link),
                 3 => new Fire(link),
+                _ => throw new NotImplementedException(),
             };
         }
 
@@ -96,6 +98,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 secondaryWeapons.Bomb => 1,
                 secondaryWeapons.Bow => 2,
                 secondaryWeapons.Fire => 3,
+                _ => throw new NotImplementedException(),
             };
         }
 
@@ -107,6 +110,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 1 => secondaryWeaponList.Contains(secondaryWeapons.Bomb),
                 2 => secondaryWeaponList.Contains(secondaryWeapons.Bow),
                 3 => secondaryWeaponList.Contains(secondaryWeapons.Fire),
+                _ => throw new NotImplementedException(),
             };
 
         }

@@ -18,6 +18,7 @@ namespace Sprint_0
 
         public Link link;
         public IItem map;
+
         public RoomManager roomManager;
         public CollisionManager collisionManager;
         public Inventory inventoryManager;
@@ -51,10 +52,12 @@ namespace Sprint_0
              * ItemManager (less instances of spritebatch) - EH
              */
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            collisionManager = new CollisionManager(this); 
+            collisionManager = new CollisionManager(this);
             link = new Link(spriteBatch);
+            roomManager = new RoomManager(spriteBatch, link);
+            
             HUD = new HUDManager(link, link.inventory);
-            currentGameState = new GameplayState(this);
+            currentGameState = new StartupScreenState(this);
 
             keyboardController = new KeyboardController(this, Content, link);
             mouseController = new MouseController(Content, roomManager);

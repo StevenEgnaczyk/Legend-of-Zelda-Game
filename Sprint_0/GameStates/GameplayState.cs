@@ -31,7 +31,7 @@ namespace Sprint_0.GameStates
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            game.link.roomManager.drawRoom(spriteBatch);
+            game.roomManager.drawRoom(spriteBatch);
             game.link.Draw(spriteBatch);
 
             if (transitioning)
@@ -63,7 +63,7 @@ namespace Sprint_0.GameStates
                 game.mouseController.ProcessInput(this);
 
                 game.link.Update();
-                game.link.roomManager.Update();
+                game.roomManager.Update();
             }
         }
     }
