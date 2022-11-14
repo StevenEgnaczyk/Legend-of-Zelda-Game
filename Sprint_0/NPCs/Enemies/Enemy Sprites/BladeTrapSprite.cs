@@ -10,7 +10,6 @@ public class BladeTrapSprite : IEnemySprite
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
-    //cant die add large number of hp so they cant die
 
     public BladeTrapSprite(Texture2D spritesheet)
     {
@@ -22,17 +21,13 @@ public class BladeTrapSprite : IEnemySprite
 
     }
 
-    public void draw(int frame, SpriteBatch sb)
+    public void draw(SpriteBatch sb)
     {
         BladeTrapTexture = Texture2DStorage.getEnemySpritesheet();
         sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
-    public void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos)
-    {
-        throw new NotImplementedException();
-    }
-    public void update(int xPos, int yPos)
+    public void update(int xPos, int yPos, int facingDirection, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
     }
