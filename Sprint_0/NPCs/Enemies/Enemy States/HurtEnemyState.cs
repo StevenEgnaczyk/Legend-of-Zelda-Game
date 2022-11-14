@@ -5,7 +5,7 @@ public class HurtEnemyState : IEnemyState
 
     private IEnemy enemy;
 
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
 
     public HurtEnemyState(IEnemy e, int oldFacingDirection)

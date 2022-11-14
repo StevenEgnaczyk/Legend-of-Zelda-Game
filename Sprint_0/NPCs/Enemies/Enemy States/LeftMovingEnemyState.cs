@@ -6,12 +6,14 @@ public class LeftMovingEnemyState  : IEnemyState
     private IEnemy enemy;
 
 
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
     public LeftMovingEnemyState(IEnemy e)
     {
         enemy = e;
         facingDirection = 8;
+        enemy.xPos -= enemy.getSpeed();
+
 
     }
 
@@ -56,7 +58,7 @@ public class LeftMovingEnemyState  : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(50, 200);
+            enemy.randTime = r.Next(500, 1000);
 
             enemy.changeToRandState();
 
@@ -64,7 +66,7 @@ public class LeftMovingEnemyState  : IEnemyState
         else
         {
             enemy.randTime--;
-            moveLeft(enemy);
+            enemy.xPos -= enemy.getSpeed();
         }
     }
 

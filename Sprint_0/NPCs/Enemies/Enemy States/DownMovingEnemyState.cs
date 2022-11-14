@@ -14,12 +14,13 @@ public class DownMovingEnemyState : IEnemyState
             0100 = 4 = Walking Right
             0010 = 2 = Walking Up
             0001 = 1 = Walking down*/
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
     public DownMovingEnemyState(IEnemy e)
     {
         enemy = e;
         facingDirection = 1; // = 0001 = Walking down
+        enemy.yPos += enemy.getSpeed();
 
     }
 
@@ -64,7 +65,7 @@ public class DownMovingEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(50, 200);
+            enemy.randTime = r.Next(500, 1000);
 
             enemy.changeToRandState();
 
@@ -72,7 +73,7 @@ public class DownMovingEnemyState : IEnemyState
         else
         {
             enemy.randTime--;
-            moveDown(enemy);
+            enemy.yPos += enemy.getSpeed();
         }
     }
 

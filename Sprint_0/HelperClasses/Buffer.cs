@@ -14,7 +14,7 @@ public static class Buffer
         int currentIndex = bufferInts[0];
         int bufferIndex = bufferInts[1];
         int bufferMax = bufferInts[2];
-        int numFrames = bufferInts[3];
+
         if (currentIndex == 0)
         {
             bufferIndex++;
@@ -29,10 +29,6 @@ public static class Buffer
             ready = true;
             bufferIndex = 0;
             currentIndex++;
-            if (currentIndex == numFrames)
-            {
-                currentIndex = 0;
-            }
         }
         bufferInts[0] = currentIndex;
         bufferInts[1] = bufferIndex;

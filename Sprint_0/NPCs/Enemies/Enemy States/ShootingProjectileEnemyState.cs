@@ -5,7 +5,7 @@ public class ShootingProjectileEnemyState : IEnemyState
 
     private IEnemy enemy;
 
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
     public ShootingProjectileEnemyState(IEnemy e, int oldFacingDirection)
     {
@@ -66,7 +66,7 @@ public class ShootingProjectileEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(50, 200);
+            enemy.randTime = r.Next(500, 1000);
 
             enemy.changeToRandState();
 
@@ -74,7 +74,7 @@ public class ShootingProjectileEnemyState : IEnemyState
         else
         {
             enemy.randTime--;
-            moveLeft(enemy); //TO DO: change to implement projectiles
+            idle(enemy);
         }
     }
 

@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 
 public interface IEnemyState
 {
-    int facingDirection { get { return facingDirection; }}
+    public int facingDirection { get; set; }
 
     void update();
     void moveLeft(IEnemy e);

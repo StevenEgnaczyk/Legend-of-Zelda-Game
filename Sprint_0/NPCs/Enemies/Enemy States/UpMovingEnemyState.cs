@@ -5,13 +5,15 @@ public class UpMovingEnemyState : IEnemyState
 
     private IEnemy enemy;
 
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
     public UpMovingEnemyState(IEnemy e)
     {
         enemy = e;
 
         facingDirection = 2;
+        enemy.yPos -= enemy.getSpeed();
+
 
     }
 
@@ -56,14 +58,14 @@ public class UpMovingEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(50, 200);
+            enemy.randTime = r.Next(500, 1000);
 
             enemy.changeToRandState();
 
         } else
         {
             enemy.randTime--;
-            moveUp(enemy);
+            enemy.yPos -= enemy.getSpeed();
         }
     }
 
