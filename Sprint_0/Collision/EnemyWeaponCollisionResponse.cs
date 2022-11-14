@@ -10,13 +10,13 @@ using System.Diagnostics;
 
 public class EnemyWeaponCollisionResponse
 {
-    public static void collisionResponse(IEnemy enemy, Inventory userInv)
+    public static void collisionResponse(IEnemy enemy, Link link)
     {
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
-        Rectangle weaponRec = userInv.getWeapon();
+        Rectangle weaponRec = link.inventory.getWeapon();
 
         /* 
          * Weapons continue after colliding with an enemy (not the case for a collidable tile
@@ -25,6 +25,7 @@ public class EnemyWeaponCollisionResponse
         if (collisionFace != "No Collision")
         {
             enemy.hurt();
+                        
         }
     }
 }

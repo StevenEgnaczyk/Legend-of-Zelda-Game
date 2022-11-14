@@ -46,9 +46,9 @@ public class CollisionResponse
         EnemyTileCollisionResponse.collisionResponse(enemy, tile);
     }
 
-    public static void collisionResponse(IEnemy enemy, Inventory userInv)
+    public static void collisionResponse(IEnemy enemy, Link link)
     {
-        EnemyWeaponCollisionResponse.collisionResponse(enemy, userInv);
+        EnemyWeaponCollisionResponse.collisionResponse(enemy, link);
     }
 
     public static void collisionResponse(Inventory userInv, ITile tile)
