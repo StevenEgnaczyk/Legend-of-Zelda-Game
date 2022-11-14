@@ -4,24 +4,24 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class EnemyTileCollisionResponse
+public class EnemyDoorCollisionResponse
 {
-    public static void collisionResponse(IEnemy enemy, ITile tile)
+    public static void collisionResponse(IEnemy enemy, IDoor door)
     {
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
-        Rectangle tileRec = new Rectangle((int)tile.getXPos(), (int)tile.getYPos(), tile.getWidth(), tile.getHeight());
+        Rectangle doorRect = new Rectangle((int)door.getXPos(), (int)door.getYPos(), door.getWidth(), door.getHeight());
 
 
         /* 
          * Stops enemies and tiles occupying the same space, then makes sure the enemy 
          * turns away and doesn't collide again (not the same for collisions with link)
          */
-        if (!tile.Walkable())
+        if (door.Locked())
         {
-            string collisionFace = CollisionDetection.collides(enemyRec, tileRec);
+            string collisionFace = CollisionDetection.collides(enemyRec, doorRect);
             switch (collisionFace)
             {
                 case "Top":
@@ -37,14 +37,14 @@ public class EnemyTileCollisionResponse
                 case "Left":
 
                     enemy.xPos -= enemy.getSpeed();
-                    enemy.moveRight();
+                    enemy.moveLeft();
 
                     break;
 
                 case "Right":
 
                     enemy.xPos += enemy.getSpeed();
-                    enemy.moveLeft();
+                    enemy.moveRight();
 
                     break;
 

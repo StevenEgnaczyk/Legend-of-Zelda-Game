@@ -50,15 +50,15 @@ public class DoorLeft : IDoor
 
         }
 
-        if (this.doorState == IDoor.state.locked)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
-            this.width = 64;
-            this.height = 64;
+            this.width = 128;
+            this.height = 128;
         }
         else
         {
-            this.width = 32;
-            this.height = 64;
+            this.width = 64;
+            this.height = 128;
         }
 
         this.isLocked = (this.doorState == IDoor.state.locked);

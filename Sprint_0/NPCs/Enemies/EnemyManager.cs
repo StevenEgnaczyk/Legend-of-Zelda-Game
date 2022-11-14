@@ -35,9 +35,31 @@ public  class EnemyManager
         enemiesList.Add(enemy);
     }
 
-    public void removeEnemy (IEnemy enemy)
+    public void removeEnemy(IEnemy enemy)
     {
         enemiesList.Remove(enemy);
+
+        if (enemiesList.Count == 0)
+        {
+            ItemManager.instance.dropKey(enemy.xPos, enemy.yPos);
+        }
+        else
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(0, 100);
+
+            if (num >= 0 && num < 30)
+            {
+                ItemManager.instance.dropRupee(enemy.xPos, enemy.yPos);
+            }
+            else if (num >= 30 && num < 50)
+            {
+                ItemManager.instance.dropHeart(enemy.xPos, enemy.yPos);
+            }
+
+        }
+
+
     }
 
     public void Update()
@@ -57,26 +79,33 @@ public  class EnemyManager
         }
     }
 
-    public IEnemy getEnemyByIndex(int enemyIndex, int row, int col)
+    public void getEnemyByIndex(EnemyManager enemyManager, int enemyIndex, int row, int col)
     {
         switch (enemyIndex)
         {
             case 21:
-                return(new Keese(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Keese(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 22:
-                return(new Stalfos(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Stalfos(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 23:
-                return(new Goriya(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Goriya(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 24:
-                return(new Wallmaster(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Wallmaster(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 25:
-                return(new Aquamentus(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Aquamentus(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 26:
-                return(new BladeTrap(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new BladeTrap(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 27:
-                return(new Gel(this, 64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+                new Gel(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             default:
-                return null;
+                break;
 
         }
     }

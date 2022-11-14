@@ -73,6 +73,16 @@ public class CollisionManager
         {
             //Door collisions
             CollisionResponse.collisionResponse(link, door, game);
+
+            //Weapon Collisions
+            CollisionResponse.collisionResponse(userInv, door);
+
+            //Enemy Collisions
+            foreach (IEnemy enemy in enemies.ToArray())
+            {
+                CollisionResponse.collisionResponse(enemy, door);
+            }
+            
         }
     }
 

@@ -59,7 +59,7 @@ public class Inventory
             case Fairy:
                 break;
             case Heart:
-
+                this.Link.gainHealth();
                 break;
             case HeartContainer:
 

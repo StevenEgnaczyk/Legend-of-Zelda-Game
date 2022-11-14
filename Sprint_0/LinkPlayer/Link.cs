@@ -128,8 +128,11 @@ public class Link
     }
     public void gainHealth()
     {
-        if(linkHealth <= 3.0f)
         linkHealth++;
+        if (linkHealth >= linkMaxHealth)
+        {
+            linkHealth = linkMaxHealth;
+        }
     }
 
     internal bool hasKeys()

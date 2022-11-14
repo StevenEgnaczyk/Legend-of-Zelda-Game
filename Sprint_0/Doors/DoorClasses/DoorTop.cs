@@ -51,7 +51,7 @@ public class DoorTop : IDoor
 
         }
 
-        if (this.doorState == IDoor.state.locked)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
             this.width = 128;
             this.height = 128;

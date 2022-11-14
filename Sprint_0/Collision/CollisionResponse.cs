@@ -60,4 +60,14 @@ public class CollisionResponse
     {
         LinkDoorCollisionResponse.collisionResponse(link, door, game);
     }
+
+    public static void collisionResponse(Inventory userInv, IDoor door)
+    {
+        WeaponDoorCollisionResponse.collisionResponse(userInv, door);
+    }
+
+    public static void collisionResponse(IEnemy enemy, IDoor door)
+    {
+        EnemyDoorCollisionResponse.collisionResponse(enemy, door);
+    }
 }

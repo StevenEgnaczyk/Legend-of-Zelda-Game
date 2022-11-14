@@ -39,7 +39,7 @@ public class Room
             tileManager = new TileManager(spriteBatch);
             tileManager.tileList = roomManager.tileMemory[currentRoomIndex];
 
-            itemManager = new ItemManager(spriteBatch);
+            itemManager = new ItemManager(this, spriteBatch);
             itemManager.itemList = roomManager.itemMemory[currentRoomIndex];
 
 
@@ -57,7 +57,7 @@ public class Room
             enemyManager = new EnemyManager(spriteBatch);
             populateEnemies(roomInformation[2], spriteBatch);
 
-            itemManager = new ItemManager(spriteBatch);
+            itemManager = new ItemManager(this, spriteBatch);
             populateItems(roomInformation[3]);
         }
     }
@@ -110,7 +110,7 @@ public class Room
             {
                 if(enemyInformation[row][col] != 20)
                 {
-                    enemyManager.addEnemy(EnemyManager.instance.getEnemyByIndex(enemyInformation[row][col], row, col));
+                    EnemyManager.instance.getEnemyByIndex(enemyManager, enemyInformation[row][col], row, col);
                 }
             }
         }
@@ -157,5 +157,10 @@ public class Room
     public List<IItem> getItems()
     {
         return itemManager.itemList;
+    }
+
+    public ItemManager getItemManager()
+    {
+        return itemManager;
     }
 }
