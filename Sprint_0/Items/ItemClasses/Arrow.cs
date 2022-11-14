@@ -31,7 +31,7 @@ public class Arrow : IItem
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = ItemRectStorage.getArrowSprite();
+        Rectangle sourceRect = ItemRectStorage.getUpArrowSprite();
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
         spriteBatch.Draw(arrow, destRect, sourceRect, Color.White);
 

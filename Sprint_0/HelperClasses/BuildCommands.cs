@@ -20,6 +20,8 @@ public class BuildCommands
     public ICommand turnPlayerUpCommand;
     public ICommand turnPlayerDownCommand;
 
+    public ICommand gainHealthCommand;
+
     public ICommand usePrimaryWeaponCommand;
     public ICommand useSecondaryWeaponCommand;
 
@@ -57,6 +59,8 @@ public class BuildCommands
         turnPlayerUpCommand = new TurnPlayerUpCommand(linkPlayer);
         turnPlayerDownCommand = new TurnPlayerDownCommand(linkPlayer);
 
+        gainHealthCommand = new GainHealthCommand(linkPlayer);
+
         usePrimaryWeaponCommand = new UsePrimaryWeaponCommand(linkPlayer);
         useSecondaryWeaponCommand = new UseSecondaryWeaponCommand(linkPlayer);
 
@@ -82,6 +86,8 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.Right, turnPlayerRightCommand);
         RegisterGameplayCommand(Keys.Up, turnPlayerUpCommand);
         RegisterGameplayCommand(Keys.Down, turnPlayerDownCommand);
+
+        RegisterGameplayCommand(Keys.J, gainHealthCommand);
 
         RegisterGameplayCommand(Keys.A, usePrimaryWeaponCommand);
         RegisterGameplayCommand(Keys.B, useSecondaryWeaponCommand);
