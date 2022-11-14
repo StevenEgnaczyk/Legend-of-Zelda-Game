@@ -5,7 +5,7 @@ public class IdleEnemyState : IEnemyState
 
     private IEnemy enemy;
 
-    private int facingDirection { get; }
+    public int facingDirection { get; set; }
 
 
     public IdleEnemyState(IEnemy e)
