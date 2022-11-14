@@ -16,7 +16,6 @@ public class AquamentusSprite : IEnemySprite
     private Rectangle frame1Rectangle;
     private Rectangle frame2Rectangle;
     private Rectangle frame3Rectangle;
-    private Rectangle deathRectangle;
     //2 hp but only can take damage from bombs add animation but allow for everything to do damage
 
     public AquamentusSprite(Texture2D spritesheet)

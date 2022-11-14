@@ -11,6 +11,8 @@ public class HurtEnemyState : IEnemyState
     public HurtEnemyState(IEnemy e, int oldFacingDirection)
     {
         enemy = e;
+        e.health--;
+
         facingDirection = oldFacingDirection;
 
     }

@@ -11,6 +11,8 @@ public class BladeTrap : IEnemy
     public IEnemyState state {  get;  set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
+    public int health { get; set; }
+    public int randTime { get; set; }
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
@@ -65,7 +67,6 @@ public class BladeTrap : IEnemy
 
     public void hurt()
     {
-        //do nothing, cannot die
     }
 
     public void update()
@@ -81,6 +82,7 @@ public class BladeTrap : IEnemy
     }
 
     public void changeToRandState() { }
+
 
     /*
      * Getter methods

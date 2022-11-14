@@ -72,13 +72,20 @@ public class Stalfos : IEnemy
 
     public void hurt()
     {
-       die();
+        state.hurt(this);
+
+        if (health == 0)
+        {
+            die();
+        }
     }
 
     public void die()
     {
-        //TO DO: Death animation
+        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
+
     }
 
     public void update()

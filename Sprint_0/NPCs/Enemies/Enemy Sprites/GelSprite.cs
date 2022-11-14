@@ -9,7 +9,6 @@ public class GelSprite : IEnemySprite
     private Texture2D gelTexture;
     private int frame;
 
-    private Rectangle deathRectangle;
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;

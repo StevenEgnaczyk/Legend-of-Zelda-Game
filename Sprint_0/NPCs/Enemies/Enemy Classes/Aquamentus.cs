@@ -84,13 +84,19 @@ public class Aquamentus : IEnemy
     public void hurt()
     {
         state.hurt(this);
+
+        if (health == 0)
+        {
+            die();
+        }
     }
 
     public void die()
     {
-        //TO DO: death animation
+        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
+
     }
 
     public void update()

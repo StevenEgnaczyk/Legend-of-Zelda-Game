@@ -98,13 +98,6 @@ public static class ItemRectStorage
 
     private static Rectangle candleSprite = new Rectangle(160, 0, 8, 16);
 
-    private static List<Rectangle> deathAnimation = new List<Rectangle>()
-    {
-        new Rectangle(0, 0, 15, 16),
-        new Rectangle(16, 0, 15, 16),
-        new Rectangle(35, 3, 9, 10),
-        new Rectangle(51, 3, 9, 10)
-    };
 
     public static Rectangle getUpArrowSprite()
     {
@@ -207,8 +200,4 @@ public static class ItemRectStorage
         return candleSprite;
     }
     
-    public static Rectangle getDeathAnimation(int index)
-    {
-        return deathAnimation[index];
-    }
 }

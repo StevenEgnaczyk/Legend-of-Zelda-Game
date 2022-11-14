@@ -74,12 +74,19 @@ public class Goriya : IEnemy
     public void hurt()
     {
         state.hurt(this);
+
+        if (health == 0)
+        {
+            die();
+        }
     }
 
     public void die()
     {
+        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
+
     }
 
     public void shootProjectile()

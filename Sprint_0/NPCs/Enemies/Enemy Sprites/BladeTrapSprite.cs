@@ -10,7 +10,6 @@ public class BladeTrapSprite : IEnemySprite
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
-    //cant die add large number of hp so they cant die
 
     public BladeTrapSprite(Texture2D spritesheet)
     {

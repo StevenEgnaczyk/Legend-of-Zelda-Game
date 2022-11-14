@@ -75,13 +75,19 @@ public class Gel : IEnemy
 
     public void hurt()
     {
-        die();
+        state.hurt(this);
+
+        if (health == 0)
+        {
+            die();
+        }
     }
 
     public void die()
     {
-        
+        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
         AudioStorage.GetEnemyDie().Play();
+        //if death animation finished, remove
         man.removeEnemy(this);
 
     }

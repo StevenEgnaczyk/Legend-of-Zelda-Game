@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Content;
 
 public class FlameSprite : IEnemySprite
 {
-    private Texture2D OldManTexture;
-
+    private Texture2D FlameTexture;
+    private int frame;
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
@@ -17,41 +17,42 @@ public class FlameSprite : IEnemySprite
 
     public FlameSprite(Texture2D spritesheet)
     {
-        this.OldManTexture = spritesheet;
+        FlameTexture = spritesheet;
 
-        this.destinationRectangle = new Rectangle(0, 0, 32, 32);
+        destinationRectangle = new Rectangle(0, 0, 32, 32);
 
         frame0Rectangle = new Rectangle(52, 11, 16, 16);
-
         frame1Rectangle = new Rectangle(68, 11, 16, 16);
+
+        frame = 0;
     }
 
-    public void draw(int frame, SpriteBatch sb)
+    public void draw(SpriteBatch sb)
     {
-        if ((frame % 2) == 0)
+        if (frame == 0)
         {
-            OldManTexture = Texture2DStorage.GetOldManSpriteSheet();
-            sb.Draw(this.OldManTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            sb.Draw(this.FlameTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
         }
         else
         {
-            sb.Draw(this.OldManTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
+            sb.Draw(this.FlameTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
 
         }
     }
 
-        public void drawDeath(int deadFrame, SpriteBatch sb)
-    {
-        throw new NotImplementedException();
-    }
-    public void update(int xPos, int yPos)
+    public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
-    }
 
-    public void drawDeath(int deadFrame, SpriteBatch sb, int xPos, int yPos)
-    {
-        throw new NotImplementedException();
+        if (time % 2 == 0)
+        {
+            frame = 0;
+
+        }
+        else
+        {
+            frame = 1;
+        }
     }
 }

@@ -10,6 +10,7 @@ public class EnemySpriteFactory
 	private Texture2D enemySpritesheet;
 	private Texture2D bossSpritesheet;
 	private Texture2D npcSpritesheet;
+	private Texture2D deathSpritesheet;
 	
 	public static EnemySpriteFactory instance = new EnemySpriteFactory();
 				
@@ -23,9 +24,10 @@ public class EnemySpriteFactory
 		
 	public EnemySpriteFactory()
 	{
-		this.enemySpritesheet = Texture2DStorage.getEnemySpritesheet();
-        this.bossSpritesheet = Texture2DStorage.getBossSpritesheet();
-		this.npcSpritesheet = Texture2DStorage.GetOldManSpriteSheet();
+		enemySpritesheet = Texture2DStorage.getEnemySpritesheet();
+        bossSpritesheet = Texture2DStorage.getBossSpritesheet();
+		npcSpritesheet = Texture2DStorage.GetOldManSpriteSheet();
+		deathSpritesheet = Texture2DStorage.GetDeathSpriteSheet();
     }
 
 	public IEnemySprite CreateKeeseSprite()
@@ -71,6 +73,11 @@ public class EnemySpriteFactory
 	public IEnemySprite CreateAquamentusSprite()
 	{
 		return new AquamentusSprite(bossSpritesheet);
+	}
+
+	public IEnemySprite CreateDeathSprite()
+	{
+		return new DeathSprite(deathSpritesheet);
 	}
 
 }
