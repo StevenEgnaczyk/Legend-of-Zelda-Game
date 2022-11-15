@@ -50,14 +50,13 @@ namespace Sprint_0.GameStates
                 alpha -= 5f;
                 if (alpha <= 0)
                 {
-                    game.roomManager.loadRoom(1);
+                    game.roomManager.loadRoom(11);
                     command.Execute();
                 }
             } else
             {
                 //Process Keyboard Input
                 game.keyboardController.ProcessInput(this);
-                game.mouseController.ProcessInput(this);
             }
 
         }

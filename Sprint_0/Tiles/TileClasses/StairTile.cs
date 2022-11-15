@@ -29,7 +29,7 @@ public class StairTile : ITile
 
         this.isPushable = false;
         this.isWalkable = true;
-        this.isTeleport = false;
+        this.isTeleport = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
+using System.Diagnostics;
 
 public class LinkTileCollisionResponse
 {
@@ -24,100 +25,82 @@ public class LinkTileCollisionResponse
          * Need: A special method for the block that gets pushed
          */
 
-        if (tile.Locked())
-        {
-            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-            switch (collisionFace)
-            {
-
-                case "Top":
-                    if (link.hasKeys())
-                    {
-                        tile.Unlock();
-                        link.inventory.removeKey();
-                    }
-                    break;
-
-                case "Left":
-
-                    if (link.hasKeys())
-                    {
-                        tile.Unlock();
-                        link.inventory.removeKey();
-                    }
-                    break;
-
-                case "Right":
-
-                    if (link.hasKeys())
-                    {
-                        tile.Unlock();
-                        link.inventory.removeKey();
-                    }
-                    break;
-
-                case "Bottom":
-
-                    if (link.hasKeys())
-                    {
-                        tile.Unlock();
-                        link.inventory.removeKey();
-                    }
-                    break;
-            }
-        }
         if (tile.Teleporter())
         {
-
-            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-            switch (collisionFace)
+            if (tile.GetType().ToString().Equals("StairTile"))
             {
-                
-                case "Top":
-                    int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
-                    if (roomToTeleportTop > 0)
-                    {
-                        game.link.xPos = 490;
-                        game.link.yPos = 725;
-                        game.roomManager.saveRoomInfo();
-                        roomChange.Execute(link, roomToTeleportTop);
-                    }
-                    break;
+                string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+                if (collisionFace != "No Collision")
+                {
+                    game.link.xPos = 490;
+                    game.link.yPos = 725;
+                    game.roomManager.saveRoomInfo();
+                    roomChange.Execute(link, 18);
+                }
+            } else if (tile.GetType().ToString().Equals("UndergroundTeleporter"))
+            {
+                string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+                if (collisionFace != "No Collision")
+                {
+                    game.link.xPos = 490;
+                    game.link.yPos = 725;
+                    game.roomManager.saveRoomInfo();
+                    roomChange.Execute(link, 17);
+                }
+            }
+            else
+            {
 
-                case "Left":
-                    
-                    int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
-                    if (roomToTeleportLeft > 0)
-                    {
-                        link.xPos = 850;
-                        link.yPos = 550;
-                        game.roomManager.saveRoomInfo();
-                        roomChange.Execute(link, roomToTeleportLeft);
-                    }
-                    break;
+                string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+                switch (collisionFace)
+                {
 
-                case "Right":
-                    
-                    int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
-                    if (roomToTeleportRight > 0)
-                    {
-                        link.xPos = 125;
-                        link.yPos = 550;
-                        game.roomManager.saveRoomInfo();
-                        roomChange.Execute(link, roomToTeleportRight);
-                    }
-                    break;
+                    case "Top":
+                        int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
+                        if (roomToTeleportTop > 0)
+                        {
+                            game.link.xPos = 490;
+                            game.link.yPos = 725;
+                            game.roomManager.saveRoomInfo();
+                            roomChange.Execute(link, roomToTeleportTop);
+                        }
+                        break;
 
-                case "Bottom":
-                    int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
-                    if (roomToTeleportBottom > 0)
-                    {
-                        link.xPos = 475;
-                        link.yPos = 350;
-                        game.roomManager.saveRoomInfo();
-                        roomChange.Execute(link, roomToTeleportBottom);
-                    }
-                    break;
+                    case "Left":
+
+                        int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
+                        if (roomToTeleportLeft > 0)
+                        {
+                            link.xPos = 850;
+                            link.yPos = 550;
+                            game.roomManager.saveRoomInfo();
+                            roomChange.Execute(link, roomToTeleportLeft);
+                        }
+                        break;
+
+                    case "Right":
+
+                        int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
+                        if (roomToTeleportRight > 0)
+                        {
+                            link.xPos = 125;
+                            link.yPos = 550;
+                            game.roomManager.saveRoomInfo();
+                            roomChange.Execute(link, roomToTeleportRight);
+                        }
+                        break;
+
+                    case "Bottom":
+                        int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
+                        if (roomToTeleportBottom > 0)
+                        {
+                            link.xPos = 475;
+                            link.yPos = 350;
+                            game.roomManager.saveRoomInfo();
+                            roomChange.Execute(link, roomToTeleportBottom);
+                        }
+                        break;
+                }
             }
         }
 
@@ -159,32 +142,36 @@ public class LinkTileCollisionResponse
                 case "Top":
 
                     link.yPos += link.linkSpeed;
-                    int y = tile.getYPos() - 1;
+                    int y = tile.getYPos() - 5;
                     tile.setYPos(y);
+                    game.roomManager.puzzleManager.managePuzzles();
 
                     break;
 
                 case "Left":
 
                     link.xPos += link.linkSpeed;
-                    int x = tile.getXPos() - 1;
+                    int x = tile.getXPos() - 5;
                     tile.setXPos(x);
+                    game.roomManager.puzzleManager.managePuzzles();
 
                     break;
 
                 case "Right":
 
                     link.xPos -= link.linkSpeed;
-                    int z = tile.getXPos() + 1;
+                    int z = tile.getXPos() + 5;
                     tile.setXPos(z);
+                    game.roomManager.puzzleManager.managePuzzles();
 
                     break;
 
                 case "Bottom":
 
                     link.yPos -= link.linkSpeed;
-                    int w = tile.getYPos() + 1;
+                    int w = tile.getYPos() + 5;
                     tile.setYPos(w);
+                    game.roomManager.puzzleManager.managePuzzles();
 
                     break;
             }

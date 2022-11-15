@@ -19,7 +19,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private Texture2D fire;
         private bool goingOut;
 
-        private Rectangle sourceRect;
         private const int height = 16;
         private const int width = 16;
 
@@ -136,6 +135,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
             {
                 link.inventory.secondaryWeaponManager.stopUsingWeapon();
+                goingOut = false;
             }
 
             bufferFrame++;
@@ -228,7 +228,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             current = start;
 
             goingOut = true;
-            distanceToTravel = 500;
+            distanceToTravel = 50;
             bufferFrame = 0;
 
             fire = Texture2DStorage.GetOldManSpriteSheet();

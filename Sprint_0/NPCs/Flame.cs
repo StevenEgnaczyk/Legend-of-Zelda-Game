@@ -23,9 +23,6 @@ public class Flame : IEnemy
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
-    private int bufferIndex;
-    private int bufferMax = 20;
-    private int frame;
 
     public Flame(EnemyManager manager, int startX, int startY)
     {
@@ -40,8 +37,6 @@ public class Flame : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        frame = 0;
-        bufferIndex = 0;
     }
     
     public void Update()

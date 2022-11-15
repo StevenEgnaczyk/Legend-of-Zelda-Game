@@ -12,6 +12,7 @@ public class RoomManager
     private Link link;
     private int roomNumber;
     public Room currentRoom;
+    public PuzzleManager puzzleManager;
 
     SpriteBatch spriteBatch;
     public static int NUM_ROOMS = 18;
@@ -23,20 +24,21 @@ public class RoomManager
     public Dictionary<int, List<IItem>> itemMemory;
 
     //This class calls a new room and manages the switching between different rooms
-    public RoomManager(SpriteBatch sb, Link link)
+    public RoomManager(SpriteBatch sb, Link link, int roomNum)
     {
         this.spriteBatch = sb;
-        roomNumber = 1;
         this.link = link;
-        this.link.currentRoom = roomNumber;
+        this.link.currentRoom = roomNum;
+        this.roomNumber = roomNum;
 
         doorMemory = new Dictionary<int, List<IDoor>>();
         tileMemory = new Dictionary<int, List<ITile>>();
         enemyMemory = new Dictionary<int, List<IEnemy>>();
         itemMemory = new Dictionary<int, List<IItem>>();
 
-        currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
         
+        currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
+        puzzleManager = new PuzzleManager(link, currentRoom);
     }
 
     public void drawRoom(SpriteBatch spriteBatch)
@@ -65,7 +67,7 @@ public class RoomManager
     public void drawBackground(SpriteBatch spriteBatch)
     {
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
-        Rectangle bgRect = RoomRectStorage.getBasicRoom(roomNumber);
+        Rectangle bgRect = RoomRectStorage.getBasicRoom(this.link.currentRoom);
         Rectangle destRect = new(0, HUD_SIZE + ((176 - bgRect.Height) * 4), bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
 

@@ -13,6 +13,7 @@ public interface IDoor
         locked,
         closed,
         bombed,
+        invisible,
     }
 
     public int getXPos();

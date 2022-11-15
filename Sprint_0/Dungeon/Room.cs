@@ -17,6 +17,7 @@ public class Room
     private TileManager tileManager;
     private ItemManager itemManager;
 
+
     private Link link;
 
     RoomManager roomManager;
@@ -60,6 +61,7 @@ public class Room
             itemManager = new ItemManager(this, spriteBatch);
             populateItems(roomInformation[3]);
         }
+
     }
 
     private void populateItems(List<List<int>> itemInformation)
@@ -131,7 +133,7 @@ public class Room
     {
         doorManager.Update();
         enemyManager.Update();
-        CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
+        CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, tileManager.pushBlockList, itemManager.itemList, link.inventory);
     }
 
     internal int getIndex()
@@ -162,5 +164,10 @@ public class Room
     public ItemManager getItemManager()
     {
         return itemManager;
+    }
+
+    public DoorManager getDoorManager()
+    {
+        return this.doorManager;
     }
 }

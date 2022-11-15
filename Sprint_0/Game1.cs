@@ -16,60 +16,49 @@ namespace Sprint_0
         public GraphicsDeviceManager _graphics;
         public SpriteBatch spriteBatch;
 
+        //Set up link
         public Link link;
-        public IItem map;
 
+        //Set up managers
         public RoomManager roomManager;
         public CollisionManager collisionManager;
-        public Inventory inventoryManager;
         public HUDManager HUD;
-
 
         //Keyboard variables
         public IController keyboardController;
         public IController mouseController;
 
+        //Game State
         public IState currentGameState;
 
         public Game1()
         {
-
             //Initialize objects
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 1024;
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
         {
 
-            //lastDrawn = 5;
-
-            /* 
-             * Make spriteBatch not a property for items, instead pass it through
-             * ItemManager (less instances of spritebatch) - EH
-             */
+            //Set up game variables that are needed
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(this);
             link = new Link(spriteBatch);
-            roomManager = new RoomManager(spriteBatch, link);
-            
+            roomManager = new RoomManager(spriteBatch, link, 1);
             HUD = new HUDManager(link, link.inventory);
             currentGameState = new StartupScreenState(this);
-
             keyboardController = new KeyboardController(this, Content, link);
-            mouseController = new MouseController(Content, roomManager);
-
-
             base.Initialize();
 
         }
 
         protected override void LoadContent()
         {
-            //Create the spriteBatch
+            //Load all content
             AudioStorage.LoadAllSounds(Content);
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(AudioStorage.GetSong());
@@ -79,6 +68,7 @@ namespace Sprint_0
 
         protected override void Update(GameTime gameTime)
         {
+            //Update the game
             base.Update(gameTime);
             currentGameState.Update();
 
@@ -86,13 +76,11 @@ namespace Sprint_0
 
         protected override void Draw(GameTime gameTime)
         {
-
+            //Draw the game
             GraphicsDevice.Clear(Color.Black);
-
             spriteBatch.Begin();
             currentGameState.Draw(spriteBatch);
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }

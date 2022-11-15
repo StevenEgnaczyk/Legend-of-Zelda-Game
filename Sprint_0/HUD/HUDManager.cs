@@ -205,7 +205,7 @@ namespace Sprint_0.HUD
             Rectangle xDestRect = HUDRectStorage.getRupeeXDestRect();
             xDestRect.Offset(xOffset, yOffset);
 
-            if (numRupees > 10)
+            if (numRupees >= 10)
             {
                 digit1SourceRect = HUDRectStorage.getDigit(numRupees / 10);
                 digit2SourceRect = HUDRectStorage.getDigit(numRupees % 10);

@@ -47,7 +47,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private Vector2 getTargetRect(Vector2 startRect)
         {
-            Vector2 targetRect = new Vector2();
+            Vector2 targetRect = new();
 
             if (linkState.Equals(startingState.Down))
             {
@@ -81,7 +81,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private Vector2 getStartingRect()
         {
-            Vector2 startingRect = new Vector2();
+            Vector2 startingRect = new();
 
             if (linkState.Equals(startingState.Down))
             {
@@ -127,7 +127,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 sourceRect = ItemRectStorage.getLeftArrowSprite();
             }
 
-            Rectangle destinationRect = new Rectangle((int)current.X, (int)current.Y, sourceRect.Width * 3, sourceRect.Height * 3);
+            Rectangle destinationRect = new((int)current.X, (int)current.Y, sourceRect.Width * 3, sourceRect.Height * 3);
             spriteBatch.Draw(arrow, destinationRect, sourceRect, Color.White);
             updateHeightAndWidth(destinationRect);
         }
@@ -228,8 +228,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
             }
 
-
-            this.link = link;
             start = getStartingRect();
             end = getTargetRect(start);
             current = start;

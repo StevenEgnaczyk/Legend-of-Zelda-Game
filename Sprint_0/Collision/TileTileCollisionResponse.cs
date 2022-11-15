@@ -29,62 +29,28 @@ public class TileTileCollisionResponse
             {
                 case "Top":
 
-                    //link.yPos += link.linkSpeed;
+                    tile1.setYPos(tile1.getYPos() + 3);
 
                     break;
 
                 case "Left":
 
-                    //link.xPos += link.linkSpeed;
+                    tile1.setXPos(tile1.getXPos() + 3);
 
                     break;
 
                 case "Right":
 
-                   // link.xPos -= link.linkSpeed;
+                    tile1.setXPos(tile1.getXPos() - 3);
 
                     break;
 
                 case "Bottom":
 
-                    //link.yPos -= link.linkSpeed;
+                    tile1.setYPos(tile1.getYPos() - 3);
 
                     break;
             }
         }
-        // if (tile.Pushable())
-        // {
-        //     string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-        //     switch (collisionFace)
-        //     {
-        //         case "Top":
-
-        //             link.yPos += link.linkSpeed;
-        //             int y = tile.getYPos() - 1;
-        //             tile.setYPos(y);
-        //             break;
-
-        //         case "Left":
-
-        //             link.xPos += link.linkSpeed;
-        //             int x = tile.getXPos() - 1;
-        //             tile.setXPos(x);
-        //             break;
-
-        //         case "Right":
-
-        //             link.xPos -= link.linkSpeed;
-        //             int z = tile.getXPos() + 1;
-        //             tile.setXPos(z);
-        //             break;
-
-        //         case "Bottom":
-
-        //             link.yPos -= link.linkSpeed;
-        //             int w = tile.getYPos() + 1;
-        //             tile.setYPos(w);
-        //             break;
-        //     }
-        // }
     }
 }

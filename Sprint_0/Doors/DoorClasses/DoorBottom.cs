@@ -44,6 +44,9 @@ public class DoorBottom : IDoor
             case 4:
                 doorState = IDoor.state.bombed;
                 break;
+            case 5:
+                doorState = IDoor.state.invisible;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;

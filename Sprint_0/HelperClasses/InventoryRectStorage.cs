@@ -31,6 +31,9 @@ public static class InventoryRectStorage
 
     private static Rectangle secondaryWeaponDestRect = new Rectangle(68 * 4, 48 * 4, 8 * 4, 16 * 4);
 
+    private static Rectangle weaponBoxSource = new Rectangle(519, 137, 16, 16);
+    private static Rectangle weaponBoxDest = new Rectangle(68 * 4, 48 * 4, 8 * 4, 16 * 4);
+
     private static List<Rectangle> dungeonMapInformationSourceRects = new List<Rectangle>
     {
         new Rectangle(519, 108, 8, 8),
@@ -104,7 +107,7 @@ public static class InventoryRectStorage
         },
     };
 
-    private static Rectangle currentWeaponBox = new Rectangle(519, 137, 16, 16);
+
 
     private static List<Rectangle> secondaryWeaponDestinationRectangles = new List<Rectangle>()
     {
@@ -230,13 +233,13 @@ public static class InventoryRectStorage
         return secondaryWeaponDestRect;
     }
 
-    internal static Rectangle GetCurrentWeaponSourceRect()
+    internal static Rectangle GetWeaponBoxSource()
     {
-        return currentWeaponBox;
+        return weaponBoxSource;
     }
 
-    internal static Rectangle GetCurrentWeaponDestinationRect(int currentWeaponIndex)
+    internal static Rectangle GetSecondaryWeaponDestRect(int index)
     {
-        return secondaryWeaponDestinationRectangles[currentWeaponIndex];
+        return secondaryWeaponDestinationRectangles[index];
     }
 }

@@ -25,10 +25,13 @@ public class WeaponTileCollisionResponse
          */
         if (!tile.Walkable())
         {
-            string collisionFace = CollisionDetection.collides(weaponRec, tileRec);
-            if (collisionFace != "No Collision")
+            if (!tile.GetType().ToString().Equals("WaterTile"))
             {
-                userInv.StopUsingWeapon();
+                string collisionFace = CollisionDetection.collides(weaponRec, tileRec);
+                if (collisionFace != "No Collision")
+                {
+                    userInv.StopUsingWeapon();
+                }
             }
         }
     }
