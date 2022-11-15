@@ -39,7 +39,7 @@ public class Room
             tileManager = new TileManager(spriteBatch);
             tileManager.tileList = roomManager.tileMemory[currentRoomIndex];
 
-            itemManager = new ItemManager(spriteBatch);
+            itemManager = new ItemManager(this, spriteBatch);
             itemManager.itemList = roomManager.itemMemory[currentRoomIndex];
 
 
@@ -57,7 +57,7 @@ public class Room
             enemyManager = new EnemyManager(spriteBatch);
             populateEnemies(roomInformation[2], spriteBatch);
 
-            itemManager = new ItemManager(spriteBatch);
+            itemManager = new ItemManager(this, spriteBatch);
             populateItems(roomInformation[3]);
         }
     }
@@ -95,7 +95,8 @@ public class Room
         {
             for (int col = 0; col < doorInformation[row].Count; col++)
             {
-                    doorManager.addDoor(DoorManager.instance.getDoorByIndex(doorInformation[row][col], row, col));
+
+                doorManager.addDoor(DoorManager.instance.getDoorByIndex(doorInformation[row][col], row, col));
             }
         }
     }
@@ -109,13 +110,14 @@ public class Room
             {
                 if(enemyInformation[row][col] != 20)
                 {
-                    enemyManager.addEnemy(EnemyManager.instance.getEnemyByIndex(enemyInformation[row][col], row, col));
+                    EnemyManager.instance.getEnemyByIndex(enemyManager, enemyInformation[row][col], row, col);
                 }
             }
         }
     }
 
     internal void draw(SpriteBatch spriteBatch)
+
     {
         roomManager.drawBackground(spriteBatch);
         doorManager.DrawDoors(spriteBatch);
@@ -125,18 +127,10 @@ public class Room
 
     }
 
-    public void changeDoor(int doorIndex, int newDoorSource)
-    {
-        /*
-        tileManager.removeDoor(doorIndex);
-        doorManager.addDoor(doorIndex, newDoorSource);
-        */
-
-
-    }
-
     public void Update()
     {
+        doorManager.Update();
+        enemyManager.Update();
         CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, itemManager.itemList, link.inventory);
     }
 
@@ -163,5 +157,10 @@ public class Room
     public List<IItem> getItems()
     {
         return itemManager.itemList;
+    }
+
+    public ItemManager getItemManager()
+    {
+        return itemManager;
     }
 }

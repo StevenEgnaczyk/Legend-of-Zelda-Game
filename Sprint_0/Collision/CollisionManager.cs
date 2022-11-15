@@ -44,7 +44,7 @@ public class CollisionManager
             //Weapon collisions
             if (userInv.UsingWeapon())
             {
-                CollisionResponse.collisionResponse(enemy, userInv);
+                CollisionResponse.collisionResponse(enemy, link);
             }
         }
 
@@ -67,6 +67,22 @@ public class CollisionManager
         {
             //Link collisions
             CollisionResponse.collisionResponse(link, item);
+        }
+
+        foreach (IDoor door in doorList.ToArray())
+        {
+            //Door collisions
+            CollisionResponse.collisionResponse(link, door, game);
+
+            //Weapon Collisions
+            CollisionResponse.collisionResponse(userInv, door);
+
+            //Enemy Collisions
+            foreach (IEnemy enemy in enemies.ToArray())
+            {
+                CollisionResponse.collisionResponse(enemy, door);
+            }
+            
         }
     }
 

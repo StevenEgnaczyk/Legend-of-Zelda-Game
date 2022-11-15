@@ -43,18 +43,20 @@ public class DoorManager
 
     public IDoor getDoorByIndex(int doorIndex, int row, int col)
     {
-        switch (doorIndex)
+
+        Rectangle doorRect = RoomRectStorage.getDoorDestinationRect(col);
+        switch (col)
         {
-            case 12:
-                return (new DoorTop(64 + (col * 64), HUD_SIZE + 64 + (64 * row), doorIndex));
-            case 13:
-                return (new DoorRight(64 + (col * 64), HUD_SIZE + 64 + (64 * row), doorIndex));
-            case 14:
-                return (new DoorBottom(64 + (col * 64), HUD_SIZE + 64 + (64 * row), doorIndex));
-            case 15:
-                return (new DoorLeft(64 + (col * 64), HUD_SIZE + 64 + (64 * row), doorIndex));
+            case 0:
+                return (new DoorTop(doorRect.X, doorRect.Y, doorIndex));
+            case 1:
+                return (new DoorRight(doorRect.X, doorRect.Y, doorIndex));
+            case 2:
+                return (new DoorBottom(doorRect.X, doorRect.Y, doorIndex));
+            case 3:
+                return (new DoorLeft(doorRect.X, doorRect.Y, doorIndex));
             default:
-                return (new DoorTop(64 + (col * 64), HUD_SIZE + 64 + (64 * row), doorIndex));
+                return (new DoorTop(doorRect.X, doorRect.Y, doorIndex));
 
         }
     }
@@ -65,5 +67,14 @@ public class DoorManager
         {
             door.Draw(spriteBatch);
         }
+    }
+
+    public void Update()
+    {
+        foreach (IDoor door in doorList)
+        {
+            door.Update();
+        }
+
     }
 }

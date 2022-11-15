@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.Interfaces;
 using System;
 using System.Reflection.Metadata;
 public class Flame : IEnemy
@@ -42,7 +43,8 @@ public class Flame : IEnemy
         frame = 0;
         bufferIndex = 0;
     }
-    /*public void Update()
+    
+    public void Update()
     {
         throw new NotImplementedException();
     }

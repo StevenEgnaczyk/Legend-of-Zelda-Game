@@ -34,7 +34,7 @@ public class Heart : IItem
 
     public void delete()
     {
-        throw new NotImplementedException();
+        man.itemList.Remove(this);
     }
 
     public void Draw(SpriteBatch spriteBatch)

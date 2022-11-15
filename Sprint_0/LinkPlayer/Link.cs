@@ -11,8 +11,6 @@ public class Link
     public ILinkState state;
     public Inventory inventory;
     public int currentRoom;
-    public secondaryWeaponManager secondWeaponManager;
-
 
     public float xPos, yPos;
     public int linkSpeed = 3;
@@ -61,7 +59,7 @@ public class Link
 
     public void Die()
     {
-        secondWeaponManager.reset();
+       inventory.secondaryWeaponManager.reset();
        linkHealth = linkMaxHealth;
 
         xPos = 500;
@@ -130,8 +128,11 @@ public class Link
     }
     public void gainHealth()
     {
-        if(linkHealth <= 3.0f)
         linkHealth++;
+        if (linkHealth >= linkMaxHealth)
+        {
+            linkHealth = linkMaxHealth;
+        }
     }
 
     internal bool hasKeys()

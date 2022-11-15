@@ -10,9 +10,10 @@ public class ItemManager
 {
     public List<IItem> itemList { get; set; }
     private static SpriteBatch sb;
+    private static Room room;
 
     /* We only want one instance*/
-    public static ItemManager instance = new ItemManager(sb);
+    public static ItemManager instance = new ItemManager(room, sb);
     private static int HUD_SIZE = 224;
 
     public static ItemManager Instance
@@ -24,9 +25,10 @@ public class ItemManager
     }
 
 
-    public ItemManager(SpriteBatch spriteBatch)
+    public ItemManager(Room currentRoom, SpriteBatch spriteBatch)
     {
         itemList = new List<IItem>();
+        room = currentRoom;
         sb = spriteBatch;
     }
 
@@ -74,9 +76,23 @@ public class ItemManager
 
         foreach (IItem item in itemList)
         {
-            Debug.WriteLine(item.ToString());
             item.Draw(spriteBatch);
         }
 
+    }
+
+    internal void dropKey(int xPos, int yPos)
+    {
+        new Key(room.getItemManager(), xPos, yPos);
+    }
+
+    internal void dropHeart(int xPos, int yPos)
+    {
+        new Heart(room.getItemManager(), xPos, yPos);
+    }
+
+    internal void dropRupee(int xPos, int yPos)
+    {
+        new Rupee(room.getItemManager(), xPos, yPos);
     }
 }

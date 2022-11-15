@@ -46,13 +46,28 @@ public class CollisionResponse
         EnemyTileCollisionResponse.collisionResponse(enemy, tile);
     }
 
-    public static void collisionResponse(IEnemy enemy, Inventory userInv)
+    public static void collisionResponse(IEnemy enemy, Link link)
     {
-        EnemyWeaponCollisionResponse.collisionResponse(enemy, userInv);
+        EnemyWeaponCollisionResponse.collisionResponse(enemy, link);
     }
 
     public static void collisionResponse(Inventory userInv, ITile tile)
     {
         WeaponTileCollisionResponse.collisionResponse(userInv, tile);
+    }
+
+    public static void collisionResponse(Link link, IDoor door, Sprint_0.Game1 game)
+    {
+        LinkDoorCollisionResponse.collisionResponse(link, door, game);
+    }
+
+    public static void collisionResponse(Inventory userInv, IDoor door)
+    {
+        WeaponDoorCollisionResponse.collisionResponse(userInv, door);
+    }
+
+    public static void collisionResponse(IEnemy enemy, IDoor door)
+    {
+        EnemyDoorCollisionResponse.collisionResponse(enemy, door);
     }
 }

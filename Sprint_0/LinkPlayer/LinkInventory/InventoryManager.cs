@@ -75,7 +75,7 @@ public class InventoryManager
     private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
-        for (int i = 0; i < RoomManager.NUM_ROOMS; i++)
+        for (int i = 0; i < RoomManager.NUM_ROOMS - 1; i++)
         {
             Rectangle mapRoomRectSource = InventoryRectStorage.GetMapRoomRectSource(0, i);
             Rectangle mapRoomRectDest = InventoryRectStorage.GetMapRoomRectDest(0, i);

@@ -4,15 +4,16 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 
-public class LinkTileCollisionResponse
+public class LinkDoorCollisionResponse
 {
-    public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
+
+    public static void collisionResponse(Link link, IDoor door, Sprint_0.Game1 game)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int)link.xPos + 8, (int)link.yPos + 8, 48, 48);
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
+        Rectangle tileRec = new Rectangle(door.getXPos(), door.getYPos(), door.getWidth(), door.getHeight());
 
 
         ChangeRoomStateCommand roomChange = new ChangeRoomStateCommand(game);
@@ -24,7 +25,7 @@ public class LinkTileCollisionResponse
          * Need: A special method for the block that gets pushed
          */
 
-        if (tile.Locked())
+        if (door.Locked())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
             switch (collisionFace)
@@ -33,8 +34,11 @@ public class LinkTileCollisionResponse
                 case "Top":
                     if (link.hasKeys())
                     {
-                        tile.Unlock();
+                        door.Unlock();
                         link.inventory.removeKey();
+                    } else
+                    {
+                        link.yPos += link.linkSpeed;
                     }
                     break;
 
@@ -42,8 +46,11 @@ public class LinkTileCollisionResponse
 
                     if (link.hasKeys())
                     {
-                        tile.Unlock();
+                        door.Unlock();
                         link.inventory.removeKey();
+                    } else
+                    {
+                        link.xPos += link.linkSpeed;
                     }
                     break;
 
@@ -51,8 +58,11 @@ public class LinkTileCollisionResponse
 
                     if (link.hasKeys())
                     {
-                        tile.Unlock();
+                        door.Unlock();
                         link.inventory.removeKey();
+                    } else
+                    {
+                        link.xPos -= link.linkSpeed;
                     }
                     break;
 
@@ -60,13 +70,17 @@ public class LinkTileCollisionResponse
 
                     if (link.hasKeys())
                     {
-                        tile.Unlock();
+                        door.Unlock();
                         link.inventory.removeKey();
+                    } else
+                    {
+                        link.yPos -= link.linkSpeed;
                     }
                     break;
             }
         }
-        if (tile.Teleporter())
+
+        if (door.Teleporter())
         {
 
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
@@ -121,73 +135,26 @@ public class LinkTileCollisionResponse
             }
         }
 
-        if (!tile.Walkable())
+        if (door.Closed())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
             switch (collisionFace)
             {
+
                 case "Top":
-
                     link.yPos += link.linkSpeed;
-
                     break;
-
                 case "Left":
-
                     link.xPos += link.linkSpeed;
-
                     break;
-
                 case "Right":
-
                     link.xPos -= link.linkSpeed;
-
                     break;
-
                 case "Bottom":
-
                     link.yPos -= link.linkSpeed;
-
                     break;
             }
         }
-        if (tile.Pushable())
-        {
-            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-            switch (collisionFace)
-            {
-                case "Top":
-
-                    link.yPos += link.linkSpeed;
-                    int y = tile.getYPos() - 1;
-                    tile.setYPos(y);
-
-                    break;
-
-                case "Left":
-
-                    link.xPos += link.linkSpeed;
-                    int x = tile.getXPos() - 1;
-                    tile.setXPos(x);
-
-                    break;
-
-                case "Right":
-
-                    link.xPos -= link.linkSpeed;
-                    int z = tile.getXPos() + 1;
-                    tile.setXPos(z);
-
-                    break;
-
-                case "Bottom":
-
-                    link.yPos -= link.linkSpeed;
-                    int w = tile.getYPos() + 1;
-                    tile.setYPos(w);
-
-                    break;
-            }
-        }
+        
     }
 }

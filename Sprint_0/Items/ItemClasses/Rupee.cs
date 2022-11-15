@@ -32,7 +32,7 @@ public class Rupee : IItem
 
     public void delete()
     {
-        throw new NotImplementedException();
+        this.man.removeItem(this);
     }
 
     public void Draw(SpriteBatch spriteBatch)

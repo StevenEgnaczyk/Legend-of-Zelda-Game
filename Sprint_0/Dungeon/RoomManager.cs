@@ -71,20 +71,6 @@ public class RoomManager
 
     }
 
-    public void drawDoors(SpriteBatch spriteBatch, List<int> doorInformation)
-    {
-        Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
-
-        for (int i = 0; i < 4; i++)
-        {
-
-            Rectangle doorSourceRect = RoomRectStorage.getDoorSourceRect(doorInformation[i], i);
-            Rectangle doorDestinationRect = RoomRectStorage.getDoorDestinationRect(i);
-            spriteBatch.Draw(dungeonTiles, doorDestinationRect, doorSourceRect, Color.White);
-        }
-
-    }
-
     internal void saveRoomInfo()
     {
         int roomNum = currentRoom.getIndex();
