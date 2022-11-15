@@ -1,25 +1,25 @@
 Readibility:
 Author: Steven Egnaczyk
-Date: 10/22/2022
-Sprint: 3
-File Name: LinkEnemyCollisionResponse.cs
+Date: 11/23/2022
+Sprint: 4
+File Name: EnemyManager.cs
 File Author: Ethan Halverson
-Time Taken: 3 minutes
-Comments: The code in Ethan's LinkEnemyCollisionResponse class is very readable. The switch cases are 
-		  clear on the functionality that they implement for Link. The comments state what happens in 
-		  the actual game.
+Time Taken: 4 minutes
+Comments: The code in Ethan's EnemyManager class is readable. The function of each method
+		  is fairly clear. More comments would help when reading methods like removeEnemy,
+		  but not the end of the world.
 
 
 Code Quality:
 Author: Steven Egnaczyk
-Date: 10/22/2022
-Sprint: 3
-File Name: LinkEnemyCollisionResponse.cs
+Date: 11/23/2022
+Sprint: 4
+File Name: EnemyManager.cs
 File Author: Ethan Halverson
 Time Taken: 5 minutes
-Comments: The quality of code in the LinkEnemyCollisionResponse class is good. The switch
-		  statement and its cases don't have any unused code and does its job.
-Change: Pertaining to this specific class, as I'm reviewing this code, it does not have the 
-		push back feature when Link collides with the enemy. That's really the only thing I
-		can think of when looking at what to change.
+Comments: The quality of code in the EnemyManager class is good. The removeEnemy with random
+		  drop rates of items looks good, and the randomStateGenerator also works very well.
+Change: On this specific class, I would maybe alter the randomStateGenerator to a switch statement
+		instead of a bunch of if else's, but it's not like that's super necessary, so overall 
+		very quality code.
 		

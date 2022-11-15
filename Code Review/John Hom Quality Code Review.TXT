@@ -1,14 +1,15 @@
 Author: Jonathan Hom
-Date: 10/22/22
-Sprint No. 3
-File Name: KeyBoardController.cs
+Date: 11/23/2022
+Sprint No. 4
+File Name: Gel.cs
 File Author: RJ Zanotti
 
-Quality Review: Code quality is pretty good. The code works as intended. Gets pressed
-                keys, checks if it's in controller mappings and then checks if it's 
-                in state and executes. Seems pretty good to me. I'm not super sure 
-                if you absolutely need to check state if you're alreadt checking 
-                controller mappings, but it's important to be cautious I guess.
+Quality Review: Code quality is good. Everything is working as intended.
+                It's similar to how all other enemies are implemented. I
+                don't have much to complain about here. I think it's good
+                and I can't think of anything else that needs to change,
+                it dies, it can change states. There's not much to ask from 
+                an enemy class.
 
 
 Time: 4 minutes
