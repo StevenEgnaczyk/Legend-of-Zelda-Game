@@ -1,13 +1,14 @@
 Author: Ethan Halverson
-Class reviewd: Room.cs
+Class reviewd: LinkDoorCollisionResponse.cs
 Author of class: Steven Egnaczyk
-Sprint number: 3
-Date: 10/22/2022
+Sprint number: 4
+Date: 11/23/2022
 Time to complete: 10 minutes
 
-Comments: In general the code is very exceptional and I like how the room 
-          is setup with the populating and drawing. The only compaint I have is 
-          with the drawing. The doors and background have their own methods, but
-          they could just be put into one, and the doors are a part of the 
-          background environment. However, it's not some big problem, and overall
-          the code quality is good.
+Comments: I can see that the code here is very exceptional. The
+          doors work as intended when Link passes through them. 
+          I don't see what more needs to be done, the doors can 
+          unlock when link has a key, and when he doesn't it's locked.
+          When link changes rooms, the information of the room is saved
+          and link is teleported to the next room. To me it's some
+          very quality code.

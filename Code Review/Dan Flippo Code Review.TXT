@@ -1,25 +1,25 @@
 Readibility:
 Author: Daniel Flippo
-Date: 10/22/2022
-Sprint: 3
-File Name: BlackTile.cs
+Date: 11/23/2022
+Sprint: 4
+File Name: PushTile.cs
 File Author: John Hom
 Time Taken: 2 mins
-Comments: Everything in John's BlackTile.cs class is readable. It is clear what 
-		  each method's purpose is, there is no unecessary code, and formatting is all acceptable.
+Comments: Everything in John's PushTile.cs class is readable. Each method is clear on
+		  what its purpose is and how it works. Very straightforward, readable code.
 
 
 Code Quality:
 Author: Daniel Flippo
-Date: 10/24/2022
-Sprint: 3
+Date: 11/23/2022
+Sprint: 4
 File Name: BlackTile.cs
 File Author: John Hom
 Time Taken: 4 mins
 Comments: On the aspect of code quality, John's code is well organized, with
-		  the use of methods to draw and get tile data. 
-Change: Not a lot one could really change here, pushable has not been used yet
-		so that could probably be something to look at and check for, but not
-		super integral currently, and especially when it's a block that isn't 
-		pushable anyway.
+		  the use of methods to get tile values such as booleans on whether or
+		  not the tile is walkable or pushable.
+Change: Not a lot I can say about makng any particular changes. Maybe have method 
+		that sets the blocks value using a vector instead of seperate methods of 
+		setting the x and y values. 
 		

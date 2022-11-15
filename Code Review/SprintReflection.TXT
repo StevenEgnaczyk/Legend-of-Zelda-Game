@@ -1,8 +1,6 @@
-For our sprint 3 divided up work based on what we thought we could accomplish.
-We had a plan on what to do and how we wanted to implement certain aspects of the game.
-By the functionality check we didn't have a lot of that functionality, but we were very
-close to having a good chunk of it done. We communicated much better this sprint on what
-we doing and how long something would take to be finished. We were mainly just confused
-on what game aspects we need to have done and implemented by the end of the sprint since 
-the sprint page wasn't the most descriptive. However we believe we got most of what this
-sprint wanted to accomplish.
+For our sprint 4, we divided up work based on what we wanted to impelment and what we thought we could do.
+We stayed organized in what we planned on doing and what got done. Some things were jsut a bit more difficult
+to implment than we originally palnned for, and so we are behinf schedule on what we wanted to get done. 
+However it's not that things have gone poorly for us, we were just a bit unprepared when trying to implment certain
+features that were in tandum with each other. We look to continue our progress and plan more accordingly as we near
+the end of the project.
