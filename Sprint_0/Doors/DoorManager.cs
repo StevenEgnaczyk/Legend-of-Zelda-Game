@@ -73,13 +73,11 @@ public class DoorManager
             door.Draw(spriteBatch);
         }
     }
-
     public void Update()
     {
         foreach (IDoor door in doorList)
         {
             door.Update();
         }
-
     }
 }

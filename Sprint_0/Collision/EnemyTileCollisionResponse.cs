@@ -26,33 +26,30 @@ public class EnemyTileCollisionResponse
             {
                 case "Top":
 
-                    //Stopping the enemy from colliding with the tile
+                    //Stopping the enemy from colliding with the tile and change its direction
                     enemy.yPos += enemy.getSpeed();
-
-                    //Makes the enemy not run into the tile again
                     enemy.moveDown();
-
                     break;
 
                 case "Left":
 
+                    //Stopping the enemy from colliding with the tile and change its direction
                     enemy.xPos -= enemy.getSpeed();
                     enemy.moveRight();
-
                     break;
 
                 case "Right":
 
+                    //Stopping the enemy from colliding with the tile and change its direction
                     enemy.xPos += enemy.getSpeed();
                     enemy.moveLeft();
-
                     break;
 
                 case "Bottom":
 
+                    //Stopping the enemy from colliding with the tile and change its direction
                     enemy.yPos -= enemy.getSpeed();
                     enemy.moveUp();
-
                     break;
             }
         }

@@ -12,17 +12,12 @@ public class WeaponTileCollisionResponse
 {
     public static void collisionResponse(Inventory userInv, ITile tile)
     {
-        /*
-         * Use sprite destination rectangles as hitboxes. 
-         */
-        //IPrimaryWeapon weaponObj = weapon.currentWeapon;
+
         Rectangle weaponRec = userInv.getWeapon();
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
-        /* 
-         * Weapons continue after colliding with an enemy (not the case for a collidable tile
-         */
+        //Stop using the weapon if it collides with a non-walkable tile (except for water)
         if (!tile.Walkable())
         {
             if (!tile.GetType().ToString().Equals("WaterTile"))

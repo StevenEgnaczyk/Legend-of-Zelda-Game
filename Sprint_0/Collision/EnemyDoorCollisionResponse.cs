@@ -14,7 +14,7 @@ namespace Sprint_0.Collision
              * Use sprite destination rectangles as hitboxes. 
              */
             Rectangle enemyRec = new(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
-            Rectangle doorRect = new(door.getXPos(), door.getYPos(), 128, 128);
+            Rectangle doorRect = new(door.getXPos(), door.getYPos(), door.getFullWidth(), door.getFullHeight());
 
 
             /* 
@@ -26,33 +26,30 @@ namespace Sprint_0.Collision
                 {
                     case "Top":
 
-                        //Stopping the enemy from colliding with the tile
+                        //Stopping the enemy from colliding with the tile and change their direction
                         enemy.yPos += enemy.getSpeed();
-
-                        //Makes the enemy not run into the tile again
                         enemy.moveDown();
-
                         break;
 
                     case "Left":
 
+                        //Stopping the enemy from colliding with the tile and change their direction
                         enemy.xPos -= enemy.getSpeed();
                         enemy.moveRight();
-
                         break;
 
                     case "Right":
 
+                        //Stopping the enemy from colliding with the tile and change their direction
                         enemy.xPos += enemy.getSpeed();
                         enemy.moveLeft();
-
                         break;
 
                     case "Bottom":
 
+                        //Stopping the enemy from colliding with the tile and change their direction
                         enemy.yPos -= enemy.getSpeed();
                         enemy.moveUp();
-
                         break;
                 
             }

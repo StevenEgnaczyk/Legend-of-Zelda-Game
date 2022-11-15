@@ -137,4 +137,14 @@ public class Link
     {
         return inventory.getKeys() > 0;
     }
+
+    internal int getWidth()
+    {
+        return 48;
+    }
+
+    internal int getHeight()
+    {
+        return 48;
+    }
 }

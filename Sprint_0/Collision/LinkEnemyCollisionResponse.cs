@@ -31,9 +31,9 @@ public class LinkEnemyCollisionResponse
             case "Top":
 
                 //push both objects away so they don't occupy the same space
-                link.yPos -= link.linkSpeed * 32;
-                enemy.yPos += enemy.getSpeed() * 32;
-                
+                link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                enemy.yPos += enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+
                 //Make link look hurt
                 link.takeDamage();
                 link.TurnDown();
@@ -42,15 +42,15 @@ public class LinkEnemyCollisionResponse
                 {
                     die.Execute();
                 } 
-
-
                 break;
 
             case "Left":
 
-                link.xPos += link.linkSpeed * 32;
-                enemy.xPos -= enemy.getSpeed() * 32;
+                //push both objects away so they don't occupy the same space
+                link.xPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                enemy.xPos -= enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
 
+                //Make link look hurt
                 link.takeDamage();
                 link.TurnRight();
 
@@ -58,37 +58,38 @@ public class LinkEnemyCollisionResponse
                 {
                     die.Execute();
                 }
-
                 break;
 
             case "Right":
 
-                link.xPos -= link.linkSpeed * 32;
-                enemy.xPos += enemy.getSpeed() * 32;
+                //push both objects away so they don't occupy the same space
+                link.xPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER; ;
+                enemy.xPos += enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
 
                 link.takeDamage();
                 link.TurnLeft();
 
+                //Make link look hurt
                 if (link.getHealth() <= 0)
                 {
                     die.Execute();
                 }
-
                 break;
 
             case "Bottom":
 
-                link.yPos += link.linkSpeed * 32;
-                enemy.yPos -= enemy.getSpeed() * 32;
+                //push both objects away so they don't occupy the same space
+                link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                enemy.yPos -= enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
 
                 link.takeDamage();
                 link.TurnUp();
 
+                //Make link look hurt
                 if (link.getHealth() <= 0)
                 {
                     die.Execute();
                 }
-
                 break;
         }
     }

@@ -32,4 +32,8 @@ public interface IDoor
 
     void Update();
     bool Closed();
+
+    int getFullWidth() { return 128; }
+    int getFullHeight() { return 128; }
+
 }
