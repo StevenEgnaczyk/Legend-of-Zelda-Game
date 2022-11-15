@@ -9,21 +9,30 @@ using System.Threading.Tasks;
 
 public class PuzzleManager
 {
-    private Link link;
-    private int roomNumber;
-    public Room currentRoom;
+    public static RoomManager manager;
+    public static PuzzleManager instance = new PuzzleManager(manager);
+
 
     //This class calls a new room and manages the switching between different rooms
-    public PuzzleManager(Link link, Room room)
+    public PuzzleManager(RoomManager roomManager)
     {
-        this.currentRoom = room;
-        this.link = link;
+        manager = roomManager;
         
     }
 
     public void managePuzzles()
     {
-        currentRoom.getDoorManager().unlockDoor(3);
+        int currentRoom = manager.currentRoom.getIndex();
+        switch (currentRoom)
+        {
+            case 11:
+                manager.currentRoom.unlockDoor(3);
+                break;
+            case 6:
+                manager.currentRoom.unlockDoor(1);
+                break;
+        }
+        
 
     }
 }

@@ -170,4 +170,9 @@ public class Room
     {
         return this.doorManager;
     }
+
+    internal void unlockDoor(int v)
+    {
+        doorManager.doorList[v].Unlock();
+    }
 }

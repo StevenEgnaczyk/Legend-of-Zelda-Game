@@ -144,7 +144,7 @@ public class LinkTileCollisionResponse
                     link.yPos += link.linkSpeed;
                     int y = tile.getYPos() - 5;
                     tile.setYPos(y);
-                    game.roomManager.puzzleManager.managePuzzles();
+                    PuzzleManager.instance.managePuzzles();
 
                     break;
 
@@ -153,7 +153,7 @@ public class LinkTileCollisionResponse
                     link.xPos += link.linkSpeed;
                     int x = tile.getXPos() - 5;
                     tile.setXPos(x);
-                    game.roomManager.puzzleManager.managePuzzles();
+                    PuzzleManager.instance.managePuzzles();
 
                     break;
 
@@ -162,7 +162,7 @@ public class LinkTileCollisionResponse
                     link.xPos -= link.linkSpeed;
                     int z = tile.getXPos() + 5;
                     tile.setXPos(z);
-                    game.roomManager.puzzleManager.managePuzzles();
+                    PuzzleManager.instance.managePuzzles();
 
                     break;
 
@@ -171,7 +171,7 @@ public class LinkTileCollisionResponse
                     link.yPos -= link.linkSpeed;
                     int w = tile.getYPos() + 5;
                     tile.setYPos(w);
-                    game.roomManager.puzzleManager.managePuzzles();
+                    PuzzleManager.instance.managePuzzles();
 
                     break;
             }

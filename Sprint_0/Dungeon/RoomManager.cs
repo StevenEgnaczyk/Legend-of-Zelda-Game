@@ -38,7 +38,7 @@ public class RoomManager
 
         
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
-        puzzleManager = new PuzzleManager(link, currentRoom);
+        puzzleManager = new PuzzleManager(this);
     }
 
     public void drawRoom(SpriteBatch spriteBatch)

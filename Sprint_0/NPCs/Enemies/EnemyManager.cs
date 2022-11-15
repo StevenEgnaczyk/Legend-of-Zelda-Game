@@ -42,6 +42,7 @@ public  class EnemyManager
         if (enemiesList.Count == 0)
         {
             ItemManager.instance.dropKey(enemy.xPos, enemy.yPos);
+            PuzzleManager.instance.managePuzzles();
         }
         else
         {
