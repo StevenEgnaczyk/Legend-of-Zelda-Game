@@ -17,7 +17,7 @@ public class Keese : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 3;
+    private const int enemySpeed = 10;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -38,7 +38,7 @@ public class Keese : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 20;
+        bufferVals[2] = 50;
     }
 
     /*
@@ -81,7 +81,7 @@ public class Keese : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 

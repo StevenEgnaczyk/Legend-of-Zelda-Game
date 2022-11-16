@@ -82,7 +82,7 @@ public class Stalfos : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 
