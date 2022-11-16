@@ -26,7 +26,7 @@ public class GoriyaBoomerang : IEnemy
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
-    private int bufferMax = 20;
+    private int bufferMax = 40;
     private int[] limit = new int[4];
 
     public GoriyaBoomerang(EnemyManager manager, int startX, int startY, IEnemy goriya)
@@ -38,17 +38,16 @@ public class GoriyaBoomerang : IEnemy
         startXPos = xPos;
         startYPos = yPos;
         health = 100000000;
-        //0 x limit right
-        //1 x limit left
-        //2 y limit down
-        //3 y limit up
+        /*
+         * [x limit right, x limit left, y limit down, y limit up]
+         */
         limit[0] = xPos + 200;
         limit[1] = xPos - 200;
         limit[2] = yPos + 200;
         limit[3] = yPos - 200;
+
         sprite = EnemySpriteFactory.instance.CreateGoyiraBoomerangSprite();
         man = manager;
-        randTime = 1000;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
@@ -98,12 +97,21 @@ public class GoriyaBoomerang : IEnemy
 
     public void idle() { }
 
+    public void shootProjectile() { }
+
+    public void die()
+    {
+
+        man.removeEnemy(this);
+    }
+
     public void update()
     {
         if (Buffer.itemBuffer(bufferVals))
         {
             state.update();
             sprite.update(xPos, yPos, state.facingDirection, randTime);
+
             if (xPos >= limit[0])
             {
                 //change right to left
@@ -130,12 +138,6 @@ public class GoriyaBoomerang : IEnemy
             }          
         }
         
-    }
-
-    public void die()
-    {
-       
-        man.removeEnemy(this);
     }
 
     public void draw(SpriteBatch sb)
@@ -165,8 +167,4 @@ public class GoriyaBoomerang : IEnemy
         return enemySpeed;
     }
 
-    public void shootProjectile()
-    {
-        throw new NotImplementedException();
-    }
 }

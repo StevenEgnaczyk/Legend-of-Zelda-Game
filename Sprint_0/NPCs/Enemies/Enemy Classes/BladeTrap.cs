@@ -18,7 +18,7 @@ public class BladeTrap : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 3;
+    private const int enemySpeed = 15;
     private EnemyManager man;
 
     /* No buffer properties as it is not animated*/
