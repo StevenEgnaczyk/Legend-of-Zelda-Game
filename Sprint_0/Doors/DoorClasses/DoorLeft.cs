@@ -56,7 +56,7 @@ public class DoorLeft : IDoor
         }
 
         //Set the width and height based on the locked/unlocked state
-        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed || this.doorState == IDoor.state.bombed)
         {
             this.width = GlobalVariables.DOOR_FULL_WIDTH;
             this.height = GlobalVariables.DOOR_FULL_HEIGHT;
@@ -139,11 +139,12 @@ public class DoorLeft : IDoor
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 
     public bool Closed()
     {
-        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank));
+        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank) || doorState.Equals(IDoor.state.bombed));
     }
 }
