@@ -19,7 +19,7 @@ public class Gel : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 3;
+    private const int enemySpeed = 8;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -41,7 +41,7 @@ public class Gel : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 20;
+        bufferVals[2] = 60;
     }
 
 
@@ -85,9 +85,8 @@ public class Gel : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy DeathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
-        //if death animation finished, remove
         man.removeEnemy(this);
 
     }
@@ -129,5 +128,10 @@ public class Gel : IEnemy
     public int getSpeed()
     {
         return enemySpeed;
+    }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
     }
 }

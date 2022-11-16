@@ -37,6 +37,7 @@ public  class EnemyManager
 
     public void removeEnemy(IEnemy enemy)
     {
+        
         enemiesList.Remove(enemy);
 
         if (enemiesList.Count == 0)
@@ -63,18 +64,25 @@ public  class EnemyManager
 
     }
 
+    public void removeEnemy(GoriyaBoomerang gb)
+    {
+        enemiesList.Remove(gb);
+    }
+
     public void Update()
     {
-        foreach (IEnemy enemy in enemiesList)
+        for (int i = 0; i < enemiesList.Count; i++)
         {
+            IEnemy enemy = enemiesList[i];
             enemy.update();
         }
     }
 
     public void Draw()
     {
-        foreach (IEnemy enemy in enemiesList)
+        for (int i = 0; i < enemiesList.Count; i++)
         {
+            IEnemy enemy = enemiesList[i];
             enemy.update();
             enemy.draw(sb);
         }
@@ -125,28 +133,26 @@ public  class EnemyManager
         if(randVal == 0)
         {
 
-            e.state = new UpMovingEnemyState(e);
+            e.state.moveLeft(e);
 
         } else if (randVal == 1)
         {
 
-            e.state = new DownMovingEnemyState(e);
+            e.state.moveDown(e);
 
         } else if (randVal == 2)
         {
 
-            e.state = new LeftMovingEnemyState(e);
+            e.state.moveLeft(e);
 
         } else if (randVal == 3)
         {
 
-            e.state = new RightMovingEnemyState(e);
+            e.state.moveRight(e);
 
         } else if (randVal == 4)
         {
-
-            e.state = new ShootingProjectileEnemyState(e, e.state.facingDirection);
-
+            e.shootProjectile();
         }
     }
 

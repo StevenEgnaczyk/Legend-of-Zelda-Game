@@ -18,7 +18,7 @@ public class Wallmaster : IEnemy
     private IEnemySprite sprite;
     private const int height = 48;
     private const int width = 48;
-    private const int enemySpeed = 3;
+    private const int enemySpeed = 8;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -39,7 +39,7 @@ public class Wallmaster : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 20;
+        bufferVals[2] = 50;
     }
 
     /*
@@ -82,7 +82,7 @@ public class Wallmaster : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 
@@ -119,5 +119,10 @@ public class Wallmaster : IEnemy
     public int getSpeed()
     {
         return enemySpeed;
+    }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
     }
 }

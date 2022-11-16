@@ -32,6 +32,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public static Fire fire;
 
         public bool usingSecondaryWeapon = false;
+        public bool weaponIsBomb = false;
         private Link link;
 
         public secondaryWeaponManager(Link link)
@@ -46,8 +47,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             if (secondaryWeaponList.Count == 0)
             {
                 boomerang = new Boomerang(link);
-                //AudioStorage.GetArrow().Play();
                 secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
+                if(weapon == secondaryWeapons.Bomb)
+                {
+                    weaponIsBomb = true;
+                }
             }
             secondaryWeaponList.Add(weapon);
             link.inventory.inventoryManager.setSelectedSecondaryWeaponIndex(getSecondaryWeaponIndexByEnum(weapon));
@@ -178,6 +182,19 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             {
                 secondaryWeapon = getSecondaryWeaponTypeByInt(weapon);
             }
+            if(weapon == 1)
+            {
+                weaponIsBomb = true;
+            }
+            else
+            {
+                weaponIsBomb = false;
+            }
+        }
+
+        public bool bombSelected()
+        {
+            return weaponIsBomb;
         }
 
         public void reset()

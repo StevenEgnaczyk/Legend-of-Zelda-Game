@@ -1,14 +1,13 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.Interfaces;
 using System;
-using System.Diagnostics;
 using System.Reflection.Metadata;
-
-public class BladeTrap : IEnemy
+public class Flame : IEnemy
 {
-    /* Properties that change, the heart of the enemy*/
-    public IEnemyState state {  get;  set; }
+    //public OldManSprite sprite;
+    public IEnemyState state { get; set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
     public int health { get; set; }
@@ -18,62 +17,63 @@ public class BladeTrap : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 15;
+    private const int enemySpeed = 3;
+    private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
-    /* No buffer properties as it is not animated*/
+    /* Buffer properties*/
+    private int[] bufferVals = new int[3];
+    private int bufferIndex;
+    private int bufferMax = 20;
+    private int frame;
 
-    public BladeTrap(EnemyManager manager, int startX, int startY)
+    public Flame(EnemyManager manager, int startX, int startY)
     {
         state = new IdleEnemyState(this);
         xPos = startX;
         yPos = startY;
-        health = 1000;
+        health = 1;
 
-        sprite = EnemySpriteFactory.instance.CreateBladeTrapSprite();
+        sprite = EnemySpriteFactory.instance.CreateFlameSprite();
         man = manager;
+        randTime = 1000;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
+        frame = 0;
+        bufferIndex = 0;
+    }
+    
+    public void Update()
+    {
+        throw new NotImplementedException();
+    }
+    public void Draw(SpriteBatch _spriteBatch)
+    {
+
+        bufferVals[2] = 20;
     }
 
-    /*
-     * Core methods to change BaldeTraps's state and draw/update
-     */
-    public void moveLeft()
-    {
-        state.moveLeft(this);
-    }
+    public void moveLeft() { }
 
-    public void moveRight()
-    {
-        state.moveRight(this);
-    }
+    public void moveRight() { }
 
-    public void moveUp()
-    {
-        state.moveUp(this);
-    }
+    public void moveUp() { }
 
-    public void moveDown()
-    {
-        state.moveDown(this);
-    }
+    public void moveDown() { }
 
-    public void idle()
-    {
-        state.idle(this);
-    }
+    public void hurt() { }
 
-    public void hurt()
-    {
-    }
+    public void idle() { }
 
     public void update()
     {
-    
-        sprite.update(xPos, yPos, state.facingDirection, 0);
+        if (Buffer.itemBuffer(bufferVals))
+        {
+            state.update();
+            sprite.update(xPos, yPos, 0, 0);
 
+        }
     }
 
     public void draw(SpriteBatch sb)
@@ -83,11 +83,9 @@ public class BladeTrap : IEnemy
 
     public void changeToRandState() { }
 
-
     /*
      * Getter methods
      */
-
     public int getHeight()
     {
         return height;

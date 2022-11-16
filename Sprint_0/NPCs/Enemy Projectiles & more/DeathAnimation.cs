@@ -1,12 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint_0.Interfaces;
 using System;
+using System.Data.Common;
 using System.Reflection.Metadata;
-public class Flame : IEnemy
+public class DeathAnimation : IEnemy
 {
-    //public OldManSprite sprite;
+
     public IEnemyState state { get; set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
@@ -15,29 +16,28 @@ public class Flame : IEnemy
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
-    private const int height = 64;
-    private const int width = 64;
-    private const int enemySpeed = 3;
-    private SpriteBatch _spriteBatch;
+    //8x8 on spritesheet
+    private const int height = 16;
+    private const int width = 16;
+    private const int enemySpeed = 0;
     private EnemyManager man;
+
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
 
-    public Flame(EnemyManager manager, int startX, int startY)
+    public DeathAnimation(EnemyManager manager,IEnemy enemy)
     {
-        state = new IdleEnemyState(this);
-        xPos = startX;
-        yPos = startY;
-        health = 1;
+        xPos = enemy.xPos;
+        yPos = enemy.yPos;
 
-        sprite = EnemySpriteFactory.instance.CreateFlameSprite();
+        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        randTime = 0;
         man = manager;
-        randTime = 1000;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        bufferVals[2] = 20;
+        bufferVals[2] = 30;
     }
 
     public void moveLeft() { }
@@ -52,14 +52,25 @@ public class Flame : IEnemy
 
     public void idle() { }
 
+    public void shootProjectile() { }
+
+    public void die()
+    {
+
+        man.removeEnemy(this);
+    }
+
     public void update()
     {
         if (Buffer.itemBuffer(bufferVals))
         {
-            state.update();
             sprite.update(xPos, yPos, 0, 0);
-
+            if (randTime == 4)
+            {
+                die();
+            }
         }
+
     }
 
     public void draw(SpriteBatch sb)
@@ -86,4 +97,5 @@ public class Flame : IEnemy
     {
         return enemySpeed;
     }
+
 }

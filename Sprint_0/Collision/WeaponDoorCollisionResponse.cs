@@ -17,11 +17,53 @@ public class WeaponDoorCollisionResponse
         Rectangle doorRect = new Rectangle(door.getXPos(), door.getYPos(), door.getWidth(), door.getHeight());
 
         //Stop using the weapon if the weapon collides with a door
-        string collisionFace = CollisionDetection.collides(weaponRec, doorRect);
-        if (collisionFace != "No Collision")
-        {
-            userInv.StopUsingWeapon();
+        if (!userInv.secondaryWeaponManager.bombSelected()) { 
+            string collisionFace = CollisionDetection.collides(weaponRec, doorRect);
+            if (collisionFace != "No Collision")
+            {
+                userInv.StopUsingWeapon();
+            }
         }
+        else
+        {
+            string collisionFace = CollisionDetection.collides(weaponRec, doorRect);
+            if (door.Bombed())
+            {
+               
+                switch (collisionFace)
+                {
+                    case "Top":
+
+                        //Unlock the door if link has keys, if not turn him away
+                           door.Unlock();
+                        break;
+
+                    case "Left":
+
+                        //Unlock the door if link has keys, if not turn him away
+                       
+                            door.Unlock();
+                        break;
+
+                    case "Right":
+
+                        //Unlock the door if link has keys, if not turn him away
+
+                            door.Unlock();
+
+                        break;
+
+                    case "Bottom":
+
+                        //Unlock the door if link has keys, if not turn him away
+
+                            door.Unlock();
+
+                        break;
+                }
+            }
+        }
+
         
     }
 }

@@ -18,9 +18,9 @@ public class Goriya : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 3;
+    private const int enemySpeed = 10;
     private EnemyManager man;
-    
+    private IEnemy boomerang;
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
@@ -28,8 +28,10 @@ public class Goriya : IEnemy
     public Goriya(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
+        
         xPos = startX;
         yPos = startY;
+        
         health = 2;
 
         randTime = 0;
@@ -39,8 +41,9 @@ public class Goriya : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-
-        bufferVals[2] = 20;
+        
+        bufferVals[2] = 50;
+        
     }
 
      /*
@@ -83,7 +86,7 @@ public class Goriya : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 
@@ -91,7 +94,15 @@ public class Goriya : IEnemy
 
     public void shootProjectile()
     {
-        state.shootProjectile(this);
+        //time boomerang is out
+        randTime = 25;
+        boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
+        int facingDirection = state.facingDirection;
+        state.idle(this);
+        state.facingDirection = facingDirection;
+        
+        
+
     }
 
     public void update()
