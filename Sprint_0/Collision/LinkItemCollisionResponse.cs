@@ -10,11 +10,9 @@ public class LinkItemCollisionResponse
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
-         * TO DO: Figure out items vs weapons and get rectangle for items
          */
-        Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, 64, 64);
+        Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, link.getWidth(), link.getHeight());
         Rectangle itemRec = new Rectangle(item.getX(), item.getY(), item.getWidth(), item.getHeight());
-
 
         /* 
          * If link collides with an item from any direction, he picks it up
@@ -22,8 +20,7 @@ public class LinkItemCollisionResponse
         string collisionFace = CollisionDetection.collides(linkRec, itemRec);
         if (collisionFace != "No Collision")
         {
-            //add a bomb or bow or whatever to link's inventory or do the thing idk
-
+            //add the item to link's inventory and delete it
             link.inventory.addItem(item);
             item.delete();
         }

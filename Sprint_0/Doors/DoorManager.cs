@@ -5,7 +5,7 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using System.Reflection;
-
+using System.Diagnostics;
 
 public class DoorManager
 {
@@ -14,7 +14,6 @@ public class DoorManager
 
     /* We only want one instance*/
     public static DoorManager instance = new DoorManager(sb);
-    private static int HUD_SIZE = 224;
 
     public static DoorManager Instance
     {
@@ -39,6 +38,12 @@ public class DoorManager
     public void removeDoor(IDoor door)
     {
         doorList.Remove(door);
+    }
+
+    public void unlockDoor(int doorIndex)
+    {
+        Rectangle doorRect = RoomRectStorage.getDoorDestinationRect(doorIndex);
+        this.doorList[doorIndex] = new DoorLeft(doorRect.X, doorRect.Y, doorIndex);
     }
 
     public IDoor getDoorByIndex(int doorIndex, int row, int col)
@@ -68,13 +73,11 @@ public class DoorManager
             door.Draw(spriteBatch);
         }
     }
-
     public void Update()
     {
         foreach (IDoor door in doorList)
         {
             door.Update();
         }
-
     }
 }

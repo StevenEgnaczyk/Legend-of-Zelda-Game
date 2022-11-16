@@ -27,6 +27,7 @@ public class DoorLeft : IDoor
         this.yPosition = yPos;
         this.location = 3;
 
+        //Set the state of the door
         switch (index)
         {
             case 0:
@@ -44,29 +45,35 @@ public class DoorLeft : IDoor
             case 4:
                 doorState = IDoor.state.bombed;
                 break;
+            case 5:
+                doorState = IDoor.state.invisible;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;
 
         }
 
+        //Set the width and height based on the locked/unlocked state
         if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
-            this.width = 128;
-            this.height = 128;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT;
         }
         else
         {
-            this.width = 64;
-            this.height = 128;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH/2;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT;
         }
 
+        //Set the locked and teleport variables
         this.isLocked = (this.doorState == IDoor.state.locked);
         this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        //Draw the door
         Texture2D doorTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle doorSource = RoomRectStorage.getDoorSourceRect(doorState, location);
         Rectangle doorDest = RoomRectStorage.getDoorDestinationRect(location);
@@ -95,7 +102,6 @@ public class DoorLeft : IDoor
     }
 
     /* Boolean getters for the tiles main characteristics */
-
     public bool Teleporter()
     {
         return isTeleport;
@@ -119,8 +125,9 @@ public class DoorLeft : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.width -= 64;
-        doorState = IDoor.state.open;
+        this.width -= GlobalVariables.DOOR_FULL_WIDTH/2;
+        this.doorState = IDoor.state.open;
+        Update();
     }
     public void Update()
     {

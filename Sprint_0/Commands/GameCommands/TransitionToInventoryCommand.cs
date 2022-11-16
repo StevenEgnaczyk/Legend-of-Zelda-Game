@@ -2,19 +2,22 @@
 using Sprint_0;
 using System;
 
-public class TransitionToInventoryCommand : ICommand
+namespace Sprint_0.Commands.GameCommands
 {
-
-    private Game1 theGame;
-
-    public TransitionToInventoryCommand(Game1 game)
+    public class TransitionToInventoryCommand : ICommand
     {
-        this.theGame = game;
-    }
 
-    public void Execute()
-    {
-        theGame.currentGameState.changeToTransitioning();
-        
+        private Game1 theGame;
+
+        public TransitionToInventoryCommand(Game1 game)
+        {
+            theGame = game;
+        }
+
+        public void Execute()
+        {
+            theGame.currentGameState.changeToTransitioning();
+
+        }
     }
 }

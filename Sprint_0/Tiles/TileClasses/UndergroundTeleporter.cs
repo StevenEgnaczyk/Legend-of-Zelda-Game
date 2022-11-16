@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class UndergroundTile : ITile
+public class UndergroundTeleporter : ITile
 {
     private int xPosition;
     private int yPosition;
@@ -17,9 +17,8 @@ public class UndergroundTile : ITile
     private bool isPushable;
     private bool isWalkable;
     private bool isTeleport;
-    private bool isLocked;
 
-    public UndergroundTile(int xPos, int yPos)
+    public UndergroundTeleporter(int xPos, int yPos)
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
@@ -28,14 +27,14 @@ public class UndergroundTile : ITile
         this.height = 64;
 
         this.isPushable = false;
-        this.isWalkable = false;
-        this.isTeleport = false;
+        this.isWalkable = true;
+        this.isTeleport = true;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D tile = Texture2DStorage.GetDungeonTileset();
-        Rectangle sourceRect = RoomRectStorage.getBlockRect(0);
+        Rectangle sourceRect = RoomRectStorage.getBlockRect(4);
         Rectangle destRect = new Rectangle(xPosition, yPosition, Texture2DStorage.BLOCK_WIDTH, Texture2DStorage.BLOCK_HEIGHT);
         spriteBatch.Draw(tile, destRect, sourceRect, Color.White);
     }
@@ -77,11 +76,6 @@ public class UndergroundTile : ITile
         return isTeleport;
     }
 
-    public bool Locked()
-    {
-        return isLocked;
-    }
-
     /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
@@ -90,12 +84,5 @@ public class UndergroundTile : ITile
     public void setYPos(int y)
     {
         this.yPosition = y;
-    }
-
-    /* Extraneous commands */
-    public void Unlock()
-    {
-        isLocked = false;
-        isTeleport = true;
     }
 }

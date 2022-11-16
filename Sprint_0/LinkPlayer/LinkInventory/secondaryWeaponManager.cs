@@ -14,6 +14,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
     public class secondaryWeaponManager
     {
         public ISecondaryWeapon secondaryWeapon{ get; set; }
+        public bool hasSecondaryWeapon = false;
 
         public enum secondaryWeapons
         {
@@ -31,7 +32,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public static Fire fire;
 
         public bool usingSecondaryWeapon = false;
-
         private Link link;
 
         public secondaryWeaponManager(Link link)
@@ -58,10 +58,17 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (usingSecondaryWeapon)
             {
-                bow = new Bow(link);
                 usingSecondaryWeapon = true;
                 //AudioStorage.GetArrow().Play();
                 secondaryWeapon.Update();
+            }
+
+            if (secondaryWeaponList.Count > 0)
+            {
+                hasSecondaryWeapon = true;
+            } else
+            {
+                hasSecondaryWeapon = false;
             }
         }
 
@@ -102,6 +109,18 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             };
         }
 
+        public int getSecondaryWeaponIndexByEnum(ISecondaryWeapon weapon)
+        {
+            return weapon switch
+            {
+                Boomerang => 0,
+                Bomb => 1,
+                Bow => 2,
+                Fire => 3,
+                _ => throw new NotImplementedException(),
+            };
+        }
+
         internal bool HasSelectedWeapon(int selectedWeaponIndex)
         {
             return selectedWeaponIndex switch
@@ -132,6 +151,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public ISecondaryWeapon getSecondaryWeapon()
         {
             return secondaryWeapon;
+        }
+
+        public int getSecondaryWeaponIndex()
+        {
+            return getSecondaryWeaponIndexByEnum(secondaryWeapon);
         }
 
         public void UseSecondaryWeapon()

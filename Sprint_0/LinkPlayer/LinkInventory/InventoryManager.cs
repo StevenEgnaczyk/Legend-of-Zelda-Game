@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint_0.Interfaces;
 using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Diagnostics;
@@ -14,6 +15,42 @@ public class InventoryManager
     {
         this.link = link;
         this.inventory = inventory;
+    }
+
+    /* Draw the inventory screen */
+    public void DrawInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    {
+        DrawBaseInventory(spriteBatch, xOffset, yOffset);
+        DrawInventoryItems(spriteBatch, xOffset, yOffset);
+        DrawMapSection(spriteBatch, xOffset, yOffset);
+
+    }
+
+    /* Draws the base inventory screen with all the weapons and items */
+    private void DrawBaseInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    {
+        Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
+        Rectangle baseInventorySourceRect = InventoryRectStorage.GetBaseInventorySourceRect();
+        Rectangle baseInventoryDestRect = InventoryRectStorage.GetBaseInventoryDestRect();
+        baseInventoryDestRect.Offset(xOffset, yOffset);
+        spriteBatch.Draw(baseInventory, baseInventoryDestRect, baseInventorySourceRect, Color.White);
+
+        /* If link has a weapon, draw it */
+        if (link.inventory.secondaryWeaponManager.hasSecondaryWeapon)
+        {
+            DrawCurrentWeapon(spriteBatch, xOffset, yOffset);
+        }
+
+    }
+
+    /* Draws the current weapon in the base inventory */
+    private void DrawCurrentWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
+    {
+        Texture2D baseMapSection = Texture2DStorage.GetHUDSpriteSheet();
+        Rectangle secondaryWeaponSource = InventoryRectStorage.GetSecondaryWeaponSourceRect(inventory.secondaryWeaponManager.secondaryWeapon);
+        Rectangle secondaryWeaponDest = InventoryRectStorage.GetCurrentSecondaryWeaponDestinationRect();
+        secondaryWeaponDest.Offset(xOffset, yOffset);
+        spriteBatch.Draw(baseMapSection, secondaryWeaponDest, secondaryWeaponSource, Color.White);
     }
 
     private void DrawMapSection(SpriteBatch spriteBatch, int xOffset, int yOffset)
@@ -95,13 +132,6 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, mapDest, mapSource, Color.White);
     }
 
-    public void DrawInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
-    {
-        DrawBaseInventory(spriteBatch, xOffset, yOffset);
-        DrawInventoryItems(spriteBatch, xOffset, yOffset);
-        DrawMapSection(spriteBatch, xOffset, yOffset);
-
-    }
 
     private void DrawInventoryItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
@@ -115,37 +145,14 @@ public class InventoryManager
             spriteBatch.Draw(HUDSpritesheet, secondaryWeaponDest, secondaryWeaponSource, Color.White);
         }
 
-        if (inventory.secondaryWeaponManager.secondaryWeapon != null)
+        if (inventory.secondaryWeaponManager.hasSecondaryWeapon)
         {
-            Rectangle secondaryWeaponSource = InventoryRectStorage.GetSecondaryWeaponSourceRect(inventory.secondaryWeaponManager.secondaryWeapon);
-            Rectangle secondaryWeaponDest = InventoryRectStorage.GetCurrentSecondaryWeaponDestinationRect();
+            Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle weaponBoxSource = InventoryRectStorage.GetWeaponBoxSource();
+            Rectangle secondaryWeaponDest = InventoryRectStorage.GetSecondaryWeaponDestRect(selectedWeaponIndex);
             secondaryWeaponDest.Offset(xOffset, yOffset);
-            spriteBatch.Draw(HUDSpritesheet, secondaryWeaponDest, secondaryWeaponSource, Color.White);
+            spriteBatch.Draw(baseInventory, secondaryWeaponDest, weaponBoxSource, Color.White);
         }
-    }
-
-    private void DrawBaseInventory(SpriteBatch spriteBatch, int xOffset, int yOffset)
-    {
-        Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
-        Rectangle baseInventorySourceRect = InventoryRectStorage.GetBaseInventorySourceRect();
-        Rectangle baseInventoryDestRect = InventoryRectStorage.GetBaseInventoryDestRect();
-        baseInventoryDestRect.Offset(xOffset, yOffset);
-        spriteBatch.Draw(baseInventory, baseInventoryDestRect, baseInventorySourceRect, Color.White);
-
-        if (link.inventory.secondaryWeaponManager.secondaryWeaponList.Count > 0)
-        {
-            DrawCurrentWeaponRectangle(spriteBatch, xOffset, yOffset);
-        }
-
-    }
-
-    private void DrawCurrentWeaponRectangle(SpriteBatch spriteBatch, int xOffset, int yOffset)
-    {
-        Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
-        Rectangle currentWeaponSourceRectangle = InventoryRectStorage.GetCurrentWeaponSourceRect();
-        Rectangle currentWeaponDestRectangle = InventoryRectStorage.GetCurrentWeaponDestinationRect(selectedWeaponIndex);
-        currentWeaponDestRectangle.Offset(xOffset, yOffset);
-        spriteBatch.Draw(baseInventory, currentWeaponDestRectangle, currentWeaponSourceRectangle, Color.White);
     }
 
     public int getSelectedSecondaryWeaponIndex()

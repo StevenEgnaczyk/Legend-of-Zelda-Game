@@ -46,6 +46,8 @@ public static class RoomRectStorage
                         return new Rectangle(914, 11, 32, 32);
                     case IDoor.state.bombed:
                         return new Rectangle(947, 11, 32, 32);
+                    case IDoor.state.invisible:
+                        return new Rectangle(782, 110, 32, 32); 
                     default:
                         break;
                 };
@@ -63,6 +65,8 @@ public static class RoomRectStorage
                         return new Rectangle(914, 44, 32, 32);
                     case IDoor.state.bombed:
                         return new Rectangle(947, 44, 32, 32);
+                    case IDoor.state.invisible:
+                        return new Rectangle(782, 110, 32, 32);
                     default:
                         break;
                 };
@@ -80,6 +84,8 @@ public static class RoomRectStorage
                         return new Rectangle(914, 77, 32, 32);
                     case IDoor.state.bombed:
                         return new Rectangle(947, 77, 32, 32);
+                    case IDoor.state.invisible:
+                        return new Rectangle(782, 110, 32, 32);
                     default:
                         break;
                 };
@@ -97,6 +103,8 @@ public static class RoomRectStorage
                         return new Rectangle(914, 110, 32, 32);
                     case IDoor.state.bombed:
                         return new Rectangle(947, 110, 32, 32);
+                    case IDoor.state.invisible:
+                        return new Rectangle(782, 110, 32, 32);
                     default:
                         break;
                 };

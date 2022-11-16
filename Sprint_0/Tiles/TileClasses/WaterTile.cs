@@ -17,7 +17,6 @@ public class WaterTile : ITile
     private bool isPushable;
     private bool isWalkable;
     private bool isTeleport;
-    private bool isLocked;
 
     public WaterTile(int xPos, int yPos)
     {
@@ -77,11 +76,6 @@ public class WaterTile : ITile
         return isTeleport;
     }
 
-    public bool Locked()
-    {
-        return isLocked;
-    }
-
     /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
@@ -90,12 +84,5 @@ public class WaterTile : ITile
     public void setYPos(int y)
     {
         this.yPosition = y;
-    }
-
-    /* Extraneous commands */
-    public void Unlock()
-    {
-        isLocked = false;
-        isTeleport = true;
     }
 }

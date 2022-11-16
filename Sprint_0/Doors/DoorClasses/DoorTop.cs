@@ -28,6 +28,7 @@ public class DoorTop : IDoor
         this.yPosition = yPos;
         this.location = 0;
 
+        //Set the state of the door
         switch (index)
         {
             case 0:
@@ -45,6 +46,9 @@ public class DoorTop : IDoor
             case 4:
                 doorState = IDoor.state.bombed;
                 break;
+            case 5:
+                doorState = IDoor.state.invisible;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;
@@ -53,13 +57,13 @@ public class DoorTop : IDoor
 
         if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
-            this.width = 128;
-            this.height = 128;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT;
         }
         else
         {
-            this.width = 128;
-            this.height = 64;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT;
         }
 
         this.isLocked = (this.doorState == IDoor.state.locked);
@@ -68,6 +72,7 @@ public class DoorTop : IDoor
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        //Draw the Door
         Texture2D doorTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle doorSource = RoomRectStorage.getDoorSourceRect(doorState, location);
         Rectangle doorDest = RoomRectStorage.getDoorDestinationRect(location);
@@ -96,7 +101,6 @@ public class DoorTop : IDoor
     }
 
     /* Boolean getters for the tiles main characteristics */
-
     public bool Teleporter()
     {
         return isTeleport;
@@ -126,7 +130,7 @@ public class DoorTop : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.height -= 64;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT/2;
         doorState = IDoor.state.open;
     }
     public bool Closed()

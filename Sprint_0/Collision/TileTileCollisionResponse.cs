@@ -12,16 +12,11 @@ public class TileTileCollisionResponse
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
-        Rectangle tile1Rec = new Rectangle(tile1.getXPos(), tile1.getYPos(), 64, 64);
-        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), 64, 64);
+        Rectangle tile1Rec = new Rectangle(tile1.getXPos(), tile1.getYPos(), tile1.getWidth(), tile1.getHeight());
+        Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
 
-        /*
-         * Link doesn't turn when hitting a wall, so this just stops his x or y position
-         * from moving further into the block (instead of turning) 
-         * 
-         * Need: A special method for the block that gets pushed
-         */
+        /* Stop blocks from pushing against each other */
         if (!tile.Walkable())
         {
             string collisionFace = CollisionDetection.collides(tile1Rec, tileRec);
@@ -29,62 +24,28 @@ public class TileTileCollisionResponse
             {
                 case "Top":
 
-                    //link.yPos += link.linkSpeed;
+                    tile1.setYPos(tile1.getYPos() + GlobalVariables.TILE_PUSHBACK_SPEED);
 
                     break;
 
                 case "Left":
 
-                    //link.xPos += link.linkSpeed;
+                    tile1.setXPos(tile1.getXPos() + GlobalVariables.TILE_PUSHBACK_SPEED);
 
                     break;
 
                 case "Right":
 
-                   // link.xPos -= link.linkSpeed;
+                    tile1.setXPos(tile1.getXPos() - GlobalVariables.TILE_PUSHBACK_SPEED);
 
                     break;
 
                 case "Bottom":
 
-                    //link.yPos -= link.linkSpeed;
+                    tile1.setYPos(tile1.getYPos() - GlobalVariables.TILE_PUSHBACK_SPEED);
 
                     break;
             }
         }
-        // if (tile.Pushable())
-        // {
-        //     string collisionFace = CollisionDetection.collides(linkRec, tileRec);
-        //     switch (collisionFace)
-        //     {
-        //         case "Top":
-
-        //             link.yPos += link.linkSpeed;
-        //             int y = tile.getYPos() - 1;
-        //             tile.setYPos(y);
-        //             break;
-
-        //         case "Left":
-
-        //             link.xPos += link.linkSpeed;
-        //             int x = tile.getXPos() - 1;
-        //             tile.setXPos(x);
-        //             break;
-
-        //         case "Right":
-
-        //             link.xPos -= link.linkSpeed;
-        //             int z = tile.getXPos() + 1;
-        //             tile.setXPos(z);
-        //             break;
-
-        //         case "Bottom":
-
-        //             link.yPos -= link.linkSpeed;
-        //             int w = tile.getYPos() + 1;
-        //             tile.setYPos(w);
-        //             break;
-        //     }
-        // }
     }
 }

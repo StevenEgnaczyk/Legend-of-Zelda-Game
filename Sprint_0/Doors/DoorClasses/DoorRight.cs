@@ -27,6 +27,7 @@ public class DoorRight : IDoor
         this.yPosition = yPos;
         this.location = 1;
 
+        //Set the state of the door
         switch (index)
         {
             case 0:
@@ -44,30 +45,36 @@ public class DoorRight : IDoor
             case 4:
                 doorState = IDoor.state.bombed;
                 break;
+            case 5:
+                doorState = IDoor.state.invisible;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;
 
         }
 
+        //Set the width and height based on the locked/unlocked state
         if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
         {
-            this.width = 64;
-            this.height = 64;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH/2;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT/2;
         }
         else
         {
-            this.xPosition += 32;
-            this.width = 64;
-            this.height = 64;
+            this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/4;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH/2;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT/2;
         }
 
+        //Set the locked and teleport variables
         this.isLocked = (this.doorState == IDoor.state.locked);
         this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        //Draw the door
         Texture2D doorTiles = Texture2DStorage.GetDungeonTileset();
         Rectangle doorSource = RoomRectStorage.getDoorSourceRect(doorState, location);
         Rectangle doorDest = RoomRectStorage.getDoorDestinationRect(location);
@@ -96,7 +103,6 @@ public class DoorRight : IDoor
     }
 
     /* Boolean getters for the tiles main characteristics */
-
     public bool Teleporter()
     {
         return isTeleport;
@@ -120,8 +126,8 @@ public class DoorRight : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.xPosition += 64;
-        this.width -= 64;
+        this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/2;
+        this.width -= GlobalVariables.DOOR_FULL_HEIGHT/2;
         doorState = IDoor.state.open;
     }
 

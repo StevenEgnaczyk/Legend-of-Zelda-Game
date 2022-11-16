@@ -12,7 +12,7 @@ public class LinkDoorCollisionResponse
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
-        Rectangle linkRec = new Rectangle((int)link.xPos + 8, (int)link.yPos + 8, 48, 48);
+        Rectangle linkRec = new Rectangle((int)link.xPos + GlobalVariables.HITBOX_OFFSET, (int)link.yPos + GlobalVariables.HITBOX_OFFSET, link.getWidth(), link.getHeight());
         Rectangle tileRec = new Rectangle(door.getXPos(), door.getYPos(), door.getWidth(), door.getHeight());
 
 
@@ -30,8 +30,9 @@ public class LinkDoorCollisionResponse
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
             switch (collisionFace)
             {
-
                 case "Top":
+
+                    //Unlock the door if link has keys, if not turn him away
                     if (link.hasKeys())
                     {
                         door.Unlock();
@@ -44,6 +45,7 @@ public class LinkDoorCollisionResponse
 
                 case "Left":
 
+                    //Unlock the door if link has keys, if not turn him away
                     if (link.hasKeys())
                     {
                         door.Unlock();
@@ -56,6 +58,7 @@ public class LinkDoorCollisionResponse
 
                 case "Right":
 
+                    //Unlock the door if link has keys, if not turn him away
                     if (link.hasKeys())
                     {
                         door.Unlock();
@@ -68,6 +71,7 @@ public class LinkDoorCollisionResponse
 
                 case "Bottom":
 
+                    //Unlock the door if link has keys, if not turn him away
                     if (link.hasKeys())
                     {
                         door.Unlock();
@@ -80,6 +84,7 @@ public class LinkDoorCollisionResponse
             }
         }
 
+        //If the door is a teleporter
         if (door.Teleporter())
         {
 
@@ -88,46 +93,52 @@ public class LinkDoorCollisionResponse
             {
                 
                 case "Top":
+
+                    //Teleport Link to the new room
                     int roomToTeleportTop = RoomTeleportationManager.topTeleporter(link.currentRoom);
                     if (roomToTeleportTop > 0)
                     {
-                        game.link.xPos = 490;
-                        game.link.yPos = 725;
+                        game.link.xPos = GlobalVariables.LINK_STARTING_X_ENTERING_TOP;
+                        game.link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_TOP;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportTop);
                     }
                     break;
 
                 case "Left":
-                    
+
+                    //Teleport Link to the new room
                     int roomToTeleportLeft = RoomTeleportationManager.leftTeleporter(link.currentRoom);
                     if (roomToTeleportLeft > 0)
                     {
-                        link.xPos = 850;
-                        link.yPos = 550;
+                        link.xPos = GlobalVariables.LINK_STARTING_X_ENTERING_RIGHT;
+                        link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_RIGHT;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportLeft);
                     }
                     break;
 
                 case "Right":
-                    
+
+                    //Teleport Link to the new room
                     int roomToTeleportRight = RoomTeleportationManager.rightTeleporter(link.currentRoom);
                     if (roomToTeleportRight > 0)
                     {
-                        link.xPos = 125;
-                        link.yPos = 550;
+                        link.xPos = GlobalVariables.LINK_STARTING_X_ENTERING_LEFT;
+                        link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_LEFT;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportRight);
                     }
                     break;
 
                 case "Bottom":
+
+                    //Teleport Link to the new room
                     int roomToTeleportBottom = RoomTeleportationManager.bottomTeleporter(link.currentRoom);
                     if (roomToTeleportBottom > 0)
                     {
-                        link.xPos = 475;
-                        link.yPos = 350;
+                        link.xPos = GlobalVariables.LINK_STARTING_X_ENTERING_BOTTOM;
+                        link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_BOTTOM;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportBottom);
                     }
@@ -135,12 +146,14 @@ public class LinkDoorCollisionResponse
             }
         }
 
+        //If the door is closed
         if (door.Closed())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
             switch (collisionFace)
             {
 
+                //Move link back
                 case "Top":
                     link.yPos += link.linkSpeed;
                     break;

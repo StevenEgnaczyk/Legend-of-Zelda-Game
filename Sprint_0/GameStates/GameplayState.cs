@@ -60,8 +60,6 @@ namespace Sprint_0.GameStates
             {
                 //Process Keyboard Input
                 game.keyboardController.ProcessInput(this);
-                game.mouseController.ProcessInput(this);
-
                 game.link.Update();
                 game.roomManager.Update();
             }

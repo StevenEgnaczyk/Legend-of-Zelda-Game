@@ -13,6 +13,7 @@ public interface IDoor
         locked,
         closed,
         bombed,
+        invisible,
     }
 
     public int getXPos();
@@ -31,4 +32,8 @@ public interface IDoor
 
     void Update();
     bool Closed();
+
+    int getFullWidth() { return 128; }
+    int getFullHeight() { return 128; }
+
 }

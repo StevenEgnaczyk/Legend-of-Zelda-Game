@@ -19,6 +19,4 @@ public interface ITile
     public bool Teleporter();
 
     public void Draw(SpriteBatch _spriteBatch);
-    bool Locked();
-    void Unlock();
 }

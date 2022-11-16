@@ -9,7 +9,6 @@ public class VolDownCommand : ICommand
 
 	public void Execute()
 	{
-//		if(MediaPlayer.Volume >= 0.0f)
 		MediaPlayer.Volume -= 0.01f;
 	}
 }

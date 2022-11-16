@@ -59,12 +59,10 @@ public class Link
 
     public void Die()
     {
-       inventory.secondaryWeaponManager.reset();
-       linkHealth = linkMaxHealth;
-
+        inventory = new Inventory(this);
+        linkHealth = linkMaxHealth;
         xPos = 500;
         yPos = 500;
-        currentRoom = 1;
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -138,5 +136,15 @@ public class Link
     internal bool hasKeys()
     {
         return inventory.getKeys() > 0;
+    }
+
+    internal int getWidth()
+    {
+        return 48;
+    }
+
+    internal int getHeight()
+    {
+        return 48;
     }
 }

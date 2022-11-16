@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class TileManager
 {
     public  List<ITile> tileList { get; set; }
-    public List<ITile> doorList { get; set; }
+    public List<ITile> pushBlockList { get; set; }
 
     private static SpriteBatch sb;
 
@@ -29,12 +29,20 @@ public class TileManager
     public TileManager(SpriteBatch spriteBatch)
     {
         tileList = new List<ITile>();
+        pushBlockList = new List<ITile>();
         sb = spriteBatch;
     }
 
     public void addTile(ITile tile)
     {
-        tileList.Add(tile);
+        if (tile.Pushable())
+        {
+            pushBlockList.Add(tile);
+        }
+        else
+        {
+            tileList.Add(tile);
+        }
     }
 
     public void removeTile(ITile tile)
@@ -70,6 +78,10 @@ public class TileManager
                 return (new UndergroundTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             case 11:
                 return (new LadderTile(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+            case 18:
+                return (new InvisibleTileWalkable(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
+            case 19:
+                return (new UndergroundTeleporter(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
             default:
                 return(new InvisibleTileWalkable(64 + (col * 64), HUD_SIZE + 64 + (64 * row)));
         }
@@ -81,6 +93,11 @@ public class TileManager
         foreach (ITile tile in tileList)
         {
             tile.Draw(spriteBatch);
+        }
+
+        foreach (ITile pushBlock in pushBlockList)
+        {
+            pushBlock.Draw(spriteBatch);
         }
         
     }
