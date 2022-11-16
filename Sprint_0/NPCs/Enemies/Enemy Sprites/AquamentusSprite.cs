@@ -22,7 +22,7 @@ public class AquamentusSprite : IEnemySprite
     {
         AquamentusTexture = spritesheet;
 
-        destinationRectangle = new Rectangle(300, 400, 48, 64);
+        destinationRectangle = new Rectangle(300, 400, 150, 180);
 
         frame0Rectangle = new Rectangle(1, 11, 24, 32);
         frame1Rectangle = new Rectangle(26, 11, 24, 32);
@@ -57,7 +57,7 @@ public class AquamentusSprite : IEnemySprite
 
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 48, 64);
+        this.destinationRectangle = new Rectangle(xPos, yPos, 150, 180);
 
         frame = facingDirections;
 

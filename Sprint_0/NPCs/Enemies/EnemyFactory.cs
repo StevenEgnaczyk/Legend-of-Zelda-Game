@@ -85,4 +85,9 @@ public class EnemySpriteFactory
 		return new GoriyaBoomerangSprite(enemySpritesheet);
 	}
 
+	public IEnemySprite CreateAquamentusFireballSprite()
+	{
+		return new AquamentusFireballSprite(bossSpritesheet);
+	}
+
 }

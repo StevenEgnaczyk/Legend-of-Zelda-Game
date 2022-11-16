@@ -33,8 +33,8 @@ public class Aquamentus : IEnemy
     public Aquamentus(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
-        xPos = startX;
-        yPos = startY;
+        xPos = 576;
+        yPos = 320 + 100;
         health = 3;
 
         randTime = 0;
@@ -61,15 +61,9 @@ public class Aquamentus : IEnemy
         state.moveRight(this);
     }
 
-    public void moveUp()
-    {
-        state.moveLeft(this); 
-    }
+    public void moveUp() { }
 
-    public void moveDown()
-    {
-        state.moveRight(this);
-    }
+    public void moveDown() { }
 
     public void idle()
     {
@@ -78,7 +72,10 @@ public class Aquamentus : IEnemy
 
     public void shootProjectile()
     {
-        state.shootProjectile(this);
+        IEnemy fireball1 = new AquamentusFireball(man, this, 0);
+        IEnemy fireball2 = new AquamentusFireball(man, this, 1);
+        IEnemy fireball3 = new AquamentusFireball(man, this, 2);
+
     }
 
     public void hurt()
@@ -104,6 +101,18 @@ public class Aquamentus : IEnemy
      
         if (Buffer.itemBuffer(bufferVals))
         {
+            if( xPos < 512)
+            {
+                
+                state.moveRight(this);
+
+            } else if (xPos > 704)
+            {
+                
+                state.moveLeft(this);
+
+            }
+
             state.update();
             sprite.update(xPos, yPos, state.facingDirection, randTime);
             
