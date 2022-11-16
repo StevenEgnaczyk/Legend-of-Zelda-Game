@@ -4,10 +4,11 @@ using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 public class LinkTileCollisionResponse
 {
-    public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
+    public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game, List<ITile> tiles)
     {
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
@@ -99,6 +100,10 @@ public class LinkTileCollisionResponse
                     link.yPos += link.linkSpeed;
                     int y = tile.getYPos() - GlobalVariables.PUSH_SPEED;
                     tile.setYPos(y);
+                    foreach (ITile t in tiles)
+                    {
+                        CollisionResponse.collisionResponse(tile, t);
+                    }
                     PuzzleManager.instance.managePuzzles();
                     break;
 
@@ -107,6 +112,10 @@ public class LinkTileCollisionResponse
                     link.xPos += link.linkSpeed;
                     int x = tile.getXPos() - GlobalVariables.PUSH_SPEED;
                     tile.setXPos(x);
+                    foreach (ITile t in tiles)
+                    {
+                        CollisionResponse.collisionResponse(tile, t);
+                    }
                     PuzzleManager.instance.managePuzzles();
                     break;
 
@@ -115,6 +124,10 @@ public class LinkTileCollisionResponse
                     link.xPos -= link.linkSpeed;
                     int z = tile.getXPos() + GlobalVariables.PUSH_SPEED;
                     tile.setXPos(z);
+                    foreach (ITile t in tiles)
+                    {
+                        CollisionResponse.collisionResponse(tile, t);
+                    }
                     PuzzleManager.instance.managePuzzles();
                     break;
 
@@ -123,6 +136,10 @@ public class LinkTileCollisionResponse
                     link.yPos -= link.linkSpeed;
                     int w = tile.getYPos() + GlobalVariables.PUSH_SPEED;
                     tile.setYPos(w);
+                    foreach (ITile t in tiles)
+                    {
+                        CollisionResponse.collisionResponse(tile, t);
+                    }
                     PuzzleManager.instance.managePuzzles();
                     break;
             }
