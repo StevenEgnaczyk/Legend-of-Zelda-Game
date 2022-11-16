@@ -10,6 +10,9 @@ public class LinkEnemyCollisionResponse
 {
     public static void collisionResponse(Link link, IEnemy enemy, Game1 game)
     {
+
+        bool isNonLethal = enemy.GetType().ToString().Equals("DeathAnimation"); 
+
         /*
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
@@ -22,90 +25,91 @@ public class LinkEnemyCollisionResponse
          * Pushes Link and enemy back so that the he is not overtop the enemy, then changes his
          * state to damaged, and turns him (I'm pretty sure he turns when hurt)
          * 
-         * Double check: Enemies don't get damaged when link collides
          * Need: A method that causes Link (and/or enemies) to slide back when hurt
          */
-        string collisionFace = CollisionDetection.collides(linkRec, enemyRec);
-        switch (collisionFace)
-        {
-            case "Top":
+        if(!isNonLethal) { 
+            string collisionFace = CollisionDetection.collides(linkRec, enemyRec);
+            switch (collisionFace)
+            {
+                case "Top":
 
-                //push both objects away so they don't occupy the same space
-                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang")){
-                    link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                    enemy.yPos += enemy.getSpeed();
-                    link.TurnDown();
-                }
+                   //push both objects away so they don't occupy the same space
+                    if (!enemy.GetType().ToString().Equals("GoriyaBoomerang")){
+                        link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                        enemy.yPos += enemy.getSpeed();
+                        link.TurnDown();
+                    }
                
 
-                //Make link look hurt
-                link.takeDamage();
+                    //Make link look hurt
+                    link.takeDamage();
                 
 
-                if (link.getHealth() <= 0)
-                {
-                    die.Execute();
-                } 
-                break;
+                    if (link.getHealth() <= 0)
+                    {
+                        die.Execute();
+                    } 
+                    break;
 
-            case "Left":
+                case "Left":
 
-                //push both objects away so they don't occupy the same space
-                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
-                {
-                    link.xPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                    enemy.xPos -= enemy.getSpeed();
-                    link.TurnRight();
-                }
-                //Make link look hurt
-                link.takeDamage();
+                    //push both objects away so they don't occupy the same space
+                    if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                    {
+                        link.xPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                        enemy.xPos -= enemy.getSpeed();
+                        link.TurnRight();
+                    }
+                    //Make link look hurt
+                    link.takeDamage();
                 
 
-                if (link.getHealth() <= 0)
-                {
-                    die.Execute();
-                }
-                break;
+                    if (link.getHealth() <= 0)
+                    {
+                        die.Execute();
+                    }
+                    break;
 
-            case "Right":
+                case "Right":
 
-                //push both objects away so they don't occupy the same space
-                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
-                {
-                    link.xPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                    enemy.xPos += enemy.getSpeed();
-                    link.TurnLeft();
-                }
-                link.takeDamage();
+                   //push both objects away so they don't occupy the same space
+                   if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                   {
+                       link.xPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                       enemy.xPos += enemy.getSpeed();
+                       link.TurnLeft();
+                   }
+                   link.takeDamage();
                 
 
-                //Make link look hurt
-                if (link.getHealth() <= 0)
-                {
-                    die.Execute();
-                }
-                break;
-
-            case "Bottom":
-
-                //push both objects away so they don't occupy the same space
-                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
-                {
-                    link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                    enemy.yPos -= enemy.getSpeed();
-                    link.TurnUp();
-                }
+                   //Make link look hurt
+                   if (link.getHealth() <= 0)
+                   {
+                        die.Execute();
+                    }
+                    break;
+    
+              case "Bottom":
+    
+                    //push both objects away so they don't occupy the same space
+                    if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                    {
+                        link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                         enemy.yPos -= enemy.getSpeed();
+                        link.TurnUp();
+                    }
                     
 
-                link.takeDamage();
+                    link.takeDamage();
                
 
-                //Make link look hurt
-                if (link.getHealth() <= 0)
-                {
-                    die.Execute();
-                }
-                break;
+                    //Make link look hurt
+                    if (link.getHealth() <= 0)
+                    {
+                        die.Execute();
+                    }
+                    break;
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ public class DoorBottom : IDoor
 
     private bool isTeleport;
     private bool isLocked;
+    private bool isBombed;
 
     public DoorBottom(int xPos, int yPos, int index)
     {
@@ -55,7 +56,7 @@ public class DoorBottom : IDoor
         }
 
         //Set the width and height based on the locked/unlocked state
-        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed || this.doorState == IDoor.state.bombed)
         {
             this.width = GlobalVariables.DOOR_FULL_WIDTH;
             this.height = GlobalVariables.DOOR_FULL_HEIGHT;
@@ -68,7 +69,8 @@ public class DoorBottom : IDoor
 
         //Set the locked and teleport variables
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -112,6 +114,11 @@ public class DoorBottom : IDoor
         return isLocked;
     }
 
+    public bool Bombed()
+    {
+        return isBombed;
+    }
+
     /* Setters for the tiles x and y positions */
     public void setXPos(int x)
     {
@@ -133,12 +140,13 @@ public class DoorBottom : IDoor
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 
     public bool Closed()
     {
-        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank));
+        return (doorState.Equals(IDoor.state.closed) || doorState.Equals(IDoor.state.locked) || doorState.Equals(IDoor.state.blank) || doorState.Equals(IDoor.state.bombed));
     }
 
 }

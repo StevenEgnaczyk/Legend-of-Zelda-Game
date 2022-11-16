@@ -168,6 +168,28 @@ public class LinkDoorCollisionResponse
                     break;
             }
         }
-        
+
+        if (door.Bombed())
+        {
+            string collisionFace = CollisionDetection.collides(linkRec, tileRec);
+            switch (collisionFace)
+            {
+
+                //Move link back
+                case "Top":
+                    link.yPos += link.linkSpeed;
+                    break;
+                case "Left":
+                    link.xPos += link.linkSpeed;
+                    break;
+                case "Right":
+                    link.xPos -= link.linkSpeed;
+                    break;
+                case "Bottom":
+                    link.yPos -= link.linkSpeed;
+                    break;
+            }
+        }
+
     }
 }

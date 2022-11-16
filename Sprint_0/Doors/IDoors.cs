@@ -28,6 +28,8 @@ public interface IDoor
 
     public void Draw(SpriteBatch _spriteBatch);
     bool Locked();
+
+    bool Bombed();
     void Unlock();
 
     void Update();

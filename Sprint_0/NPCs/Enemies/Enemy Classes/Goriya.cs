@@ -32,7 +32,7 @@ public class Goriya : IEnemy
         xPos = startX;
         yPos = startY;
         
-        health = 30;
+        health = 2;
 
         randTime = 0;
 
@@ -42,7 +42,7 @@ public class Goriya : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
         
-        bufferVals[2] = 30;
+        bufferVals[2] = 50;
         
     }
 
@@ -86,7 +86,7 @@ public class Goriya : IEnemy
 
     public void die()
     {
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
+        IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetEnemyDie().Play();
         man.removeEnemy(this);
 
