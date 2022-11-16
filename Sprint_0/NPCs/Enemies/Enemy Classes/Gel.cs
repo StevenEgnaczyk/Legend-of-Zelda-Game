@@ -130,4 +130,9 @@ public class Gel : IEnemy
     {
         return enemySpeed;
     }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
+    }
 }

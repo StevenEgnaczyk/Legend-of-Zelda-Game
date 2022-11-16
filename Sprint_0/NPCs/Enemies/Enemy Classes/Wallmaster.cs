@@ -120,4 +120,9 @@ public class Wallmaster : IEnemy
     {
         return enemySpeed;
     }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
+    }
 }

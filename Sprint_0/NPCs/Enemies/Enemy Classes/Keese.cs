@@ -125,4 +125,9 @@ public class Keese : IEnemy
     {
         return enemySpeed;
     }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
+    }
 }

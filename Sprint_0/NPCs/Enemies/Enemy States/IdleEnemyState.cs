@@ -11,6 +11,7 @@ public class IdleEnemyState : IEnemyState
     public IdleEnemyState(IEnemy e)
     {
         enemy = e;
+
     }
 
     public void moveLeft(IEnemy enemy)
@@ -43,8 +44,24 @@ public class IdleEnemyState : IEnemyState
         enemy.state = new HurtEnemyState(enemy, facingDirection);
     }
 
-    public void idle(IEnemy enemy) { }
+    public void idle(IEnemy enemy) {
+        update();
+    }
 
-    public void update() { }
+    public void update() 
+    {
+        if (enemy.randTime == 0)
+        {
+            Random r = new Random();
+            enemy.randTime = r.Next(5, 20);
+
+            enemy.changeToRandState();
+
+        }
+        else
+        {
+            enemy.randTime--;
+        }
+    }
 
 }

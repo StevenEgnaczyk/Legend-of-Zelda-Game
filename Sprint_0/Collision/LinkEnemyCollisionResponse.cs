@@ -31,12 +31,16 @@ public class LinkEnemyCollisionResponse
             case "Top":
 
                 //push both objects away so they don't occupy the same space
-                link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                enemy.yPos += enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang")){
+                    link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                    enemy.yPos += enemy.getSpeed();
+                    link.TurnDown();
+                }
+               
 
                 //Make link look hurt
                 link.takeDamage();
-                link.TurnDown();
+                
 
                 if (link.getHealth() <= 0)
                 {
@@ -47,12 +51,15 @@ public class LinkEnemyCollisionResponse
             case "Left":
 
                 //push both objects away so they don't occupy the same space
-                link.xPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                enemy.xPos -= enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-
+                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                {
+                    link.xPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                    enemy.xPos -= enemy.getSpeed();
+                    link.TurnRight();
+                }
                 //Make link look hurt
                 link.takeDamage();
-                link.TurnRight();
+                
 
                 if (link.getHealth() <= 0)
                 {
@@ -63,11 +70,14 @@ public class LinkEnemyCollisionResponse
             case "Right":
 
                 //push both objects away so they don't occupy the same space
-                link.xPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER; ;
-                enemy.xPos += enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-
+                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                {
+                    link.xPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                    enemy.xPos += enemy.getSpeed();
+                    link.TurnLeft();
+                }
                 link.takeDamage();
-                link.TurnLeft();
+                
 
                 //Make link look hurt
                 if (link.getHealth() <= 0)
@@ -79,11 +89,16 @@ public class LinkEnemyCollisionResponse
             case "Bottom":
 
                 //push both objects away so they don't occupy the same space
-                link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                enemy.yPos -= enemy.getSpeed() * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
+                {
+                    link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                    enemy.yPos -= enemy.getSpeed();
+                    link.TurnUp();
+                }
+                    
 
                 link.takeDamage();
-                link.TurnUp();
+               
 
                 //Make link look hurt
                 if (link.getHealth() <= 0)

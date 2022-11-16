@@ -80,4 +80,9 @@ public class EnemySpriteFactory
 		return new DeathSprite(deathSpritesheet);
 	}
 
+	public IEnemySprite CreateGoyiraBoomerangSprite()
+	{
+		return new GoriyaBoomerangSprite(enemySpritesheet);
+	}
+
 }

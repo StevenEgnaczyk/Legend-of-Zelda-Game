@@ -20,7 +20,7 @@ public interface IEnemy
     void moveRight();
     void idle();
     void hurt();
-
+    void shootProjectile();
     void changeToRandState();
 
     int getHeight();

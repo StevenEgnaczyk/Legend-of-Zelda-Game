@@ -52,6 +52,19 @@ public class HurtEnemyState : IEnemyState
         enemy.state = new HurtEnemyState(enemy, facingDirection);
     }
 
-    public void update() {}
+    public void update() {
+        if (enemy.randTime == 0)
+        {
+            Random r = new Random();
+            enemy.randTime = r.Next(5, 20);
+
+            enemy.changeToRandState();
+
+        }
+        else
+        {
+            enemy.randTime--;
+        }
+    }
 
 }

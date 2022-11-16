@@ -18,7 +18,7 @@ public class Stalfos : IEnemy
     private IEnemySprite sprite;
     private const int height = 48;
     private const int width = 48;
-    private const int enemySpeed = 1;
+    private const int enemySpeed = 10;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -39,7 +39,7 @@ public class Stalfos : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 20;
+        bufferVals[2] = 50;
     }
 
     /*
@@ -124,5 +124,10 @@ public class Stalfos : IEnemy
     public int getSpeed()
     {
         return enemySpeed;
+    }
+
+    public void shootProjectile()
+    {
+        throw new NotImplementedException();
     }
 }
