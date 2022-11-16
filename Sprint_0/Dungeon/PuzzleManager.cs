@@ -20,15 +20,20 @@ public class PuzzleManager
         
     }
 
+    //Manage puzzles
     public void managePuzzles()
     {
         int currentRoom = manager.currentRoom.getIndex();
         switch (currentRoom)
         {
             case 11:
+
+                //Open the door in the push block room
                 manager.currentRoom.unlockDoor(3);
                 break;
             case 6:
+
+                //Open the door after all the enemies have been killed
                 manager.currentRoom.unlockDoor(1);
                 break;
         }

@@ -111,7 +111,22 @@ public class Inventory
         if (numBombs == 0)
         {
             secondaryWeaponManager.secondaryWeaponList.Remove(secondaryWeaponManager.secondaryWeapons.Bomb);
-            secondaryWeaponManager.secondaryWeapon = null;
+            if (secondaryWeaponManager.secondaryWeaponList.Count == 0)
+            {
+                secondaryWeaponManager.secondaryWeapon = null;
+            }
+            else if(secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Bow))
+            {
+                secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.getSecondaryWeaponTypeByInt(2);
+            }
+            else if (secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Boomerang))
+            {
+                secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.getSecondaryWeaponTypeByInt(0);
+            }
+            else if (secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Fire))
+            {
+                secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.getSecondaryWeaponTypeByInt(3);
+            }
         }
     }
 

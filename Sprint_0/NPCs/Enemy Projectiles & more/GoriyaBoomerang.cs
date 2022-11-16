@@ -37,7 +37,7 @@ public class GoriyaBoomerang : IEnemy
         yPos = goriya.yPos + goriya.getWidth() / 2;
         startXPos = xPos;
         startYPos = yPos;
-        health = 100000000;
+        randTime = 1000;
         /*
          * [x limit right, x limit left, y limit down, y limit up]
          */

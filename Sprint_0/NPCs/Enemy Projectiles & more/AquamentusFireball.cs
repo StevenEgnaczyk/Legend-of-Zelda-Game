@@ -5,7 +5,7 @@ using Sprint_0.Interfaces;
 using System;
 using System.Data.Common;
 using System.Reflection.Metadata;
-public class DeathAnimation : IEnemy
+public class AquamentusFireball : IEnemy
 {
 
     public IEnemyState state { get; set; }
@@ -16,37 +16,50 @@ public class DeathAnimation : IEnemy
 
     /* Properties that reference or get referenced frequently*/
     private IEnemySprite sprite;
-
     private const int height = 16;
     private const int width = 16;
-    private const int enemySpeed = 0;
+    private const int enemySpeed = 20;
     private EnemyManager man;
 
+    private int fireballnum;
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
+    private int bufferMax = 30;
 
-    public DeathAnimation(EnemyManager manager,IEnemy enemy)
+    public AquamentusFireball(EnemyManager manager, IEnemy aquamentus, int fireballNum)
     {
-        xPos = enemy.xPos;
-        yPos = enemy.yPos;
+        state = new LeftMovingEnemyState(this);
+        xPos = aquamentus.xPos;
+        yPos = aquamentus.yPos - (aquamentus.getHeight() / 2);
 
-        sprite = EnemySpriteFactory.instance.CreateDeathSprite();
-        randTime = 0;
+        sprite = EnemySpriteFactory.instance.CreateAquamentusFireballSprite();
         man = manager;
+
+        fireballnum = fireballNum;
+        randTime = 0;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        bufferVals[2] = 30;
+        bufferVals[2] = bufferMax;
     }
 
-    public void moveLeft() { }
+    public void moveLeft()
+    {
+        state.moveLeft(this);
+    }
 
     public void moveRight() { }
 
-    public void moveUp() { }
+    public void moveUp()
+    {
+        state.moveUp(this);
+    }
 
-    public void moveDown() { }
+    public void moveDown()
+    {
+        state.moveDown(this);
+    }
 
     public void hurt() { }
 
@@ -56,7 +69,6 @@ public class DeathAnimation : IEnemy
 
     public void die()
     {
-
         man.removeEnemy(this);
     }
 
@@ -64,10 +76,28 @@ public class DeathAnimation : IEnemy
     {
         if (Buffer.itemBuffer(bufferVals))
         {
-            sprite.update(xPos, yPos, 0, 0);
-            randTime++;
+            if(fireballnum != 1 && randTime % 2 == 0)
+            {
+                if(fireballnum == 0)
+                {
 
-            if (randTime == 5)
+                    state.moveUp(this);
+
+                } else
+                {
+
+                    state.moveDown(this);
+
+                }
+            }  else
+            {
+                state.moveLeft(this);
+            }
+
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
+            randTime++;
+            
+            if(randTime == 150)
             {
                 die();
             }

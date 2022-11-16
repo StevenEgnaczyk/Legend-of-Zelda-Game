@@ -51,7 +51,7 @@ namespace Sprint_0.GameStates
                 if (alpha <= 0)
                 {
                     game.roomManager.loadRoom(game.link.currentRoom);
-                    //game.roomManager.loadRoom(11);
+                    //game.roomManager.loadRoom(12);
                     command.Execute();
                 }
             } else

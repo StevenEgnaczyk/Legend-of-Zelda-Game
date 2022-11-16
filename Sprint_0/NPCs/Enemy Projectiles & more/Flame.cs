@@ -74,7 +74,6 @@ public class Flame : IEnemy
             sprite.update(xPos, yPos, 0, 0);
 
         }
-
     }
 
     public void draw(SpriteBatch sb)

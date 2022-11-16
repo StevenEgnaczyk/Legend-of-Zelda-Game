@@ -29,6 +29,7 @@ public class OldMan : IEnemy
 
         sprite = EnemySpriteFactory.instance.CreateOldManSprite();
         man = manager;
+        man.addEnemy(this);
     }
 
     public void moveLeft() { }
@@ -43,7 +44,12 @@ public class OldMan : IEnemy
 
     public void idle() { }
 
-    public void update() { }
+    public void update() {
+
+            state.update();
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
+
+    }
 
     public void draw(SpriteBatch sb)
     {

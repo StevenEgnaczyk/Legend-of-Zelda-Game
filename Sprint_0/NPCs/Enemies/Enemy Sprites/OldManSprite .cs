@@ -16,7 +16,6 @@ public class OldManSprite : IEnemySprite
         this.OldManTexture = spritesheet;
 
         this.destinationRectangle = new Rectangle(0, 0, 32, 32);
-
         this.frame0Rectangle = new Rectangle(132, 90, 16, 16);
 
     }
