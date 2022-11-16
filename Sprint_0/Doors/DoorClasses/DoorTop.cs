@@ -19,6 +19,7 @@ public class DoorTop : IDoor
 
     private bool isTeleport;
     private bool isLocked;
+    private bool isBombed;
 
     private IDoor.state doorState;
 
@@ -67,7 +68,8 @@ public class DoorTop : IDoor
         }
 
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open || this.doorState == IDoor.state.bombed);
+        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -109,6 +111,11 @@ public class DoorTop : IDoor
     public bool Locked()
     {
         return isLocked;
+    }
+
+    public bool Bombed()
+    {
+        return isBombed;
     }
 
     /* Setters for the tiles x and y positions */
