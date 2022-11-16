@@ -33,8 +33,8 @@ public class Aquamentus : IEnemy
     public Aquamentus(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
-        xPos = 576;
-        yPos = 320 + 100;
+        xPos = 600;
+        yPos = 484;
         health = 3;
 
         randTime = 0;
@@ -101,7 +101,7 @@ public class Aquamentus : IEnemy
      
         if (Buffer.itemBuffer(bufferVals))
         {
-            if( xPos < 512)
+            if( xPos < 564)
             {
                 
                 state.moveRight(this);
