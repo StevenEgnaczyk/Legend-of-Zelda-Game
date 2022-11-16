@@ -58,7 +58,7 @@ public class UpMovingEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(500, 1000);
+            enemy.randTime = r.Next(5, 20);
 
             enemy.changeToRandState();
 
