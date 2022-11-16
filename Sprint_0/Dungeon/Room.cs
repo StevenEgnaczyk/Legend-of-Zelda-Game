@@ -12,14 +12,13 @@ public class Room
     private int currentRoomIndex;
     List<List<List<int>>> roomInformation;
 
+    //Managers for room entities
     private DoorManager doorManager;
     private EnemyManager enemyManager;
     private TileManager tileManager;
     private ItemManager itemManager;
 
-
     private Link link;
-
     RoomManager roomManager;
 
     public Room(int roomIndex, SpriteBatch spriteBatch, Link link, RoomManager roomManager)
@@ -28,9 +27,11 @@ public class Room
         this.link = link;
         this.roomManager = roomManager;
 
+        //If the room has been previously opened
         if (roomManager.doorMemory.ContainsKey(currentRoomIndex))
         {
 
+            //Load in the room information from memory
             doorManager = new DoorManager(spriteBatch);
             doorManager.doorList = roomManager.doorMemory[currentRoomIndex];
 
@@ -47,6 +48,8 @@ public class Room
         }
         else
         {
+
+            //Load in the room information from the correct file
             roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
 
             doorManager = new DoorManager(spriteBatch);
@@ -64,6 +67,7 @@ public class Room
 
     }
 
+    //Populate the item manager with items
     private void populateItems(List<List<int>> itemInformation)
     {
         List<IItem> items = new List<IItem>();
@@ -79,6 +83,7 @@ public class Room
         }
     }
 
+    //Populate the tile manager with tiles
     private void populateTiles(List<List<int>> tileInformation)
     {
         List<ITile> tiles = new List<ITile>();
@@ -91,6 +96,7 @@ public class Room
         }
     }
 
+    //Populate the door manager with doors
     private void populateDoors(List<List<int>> doorInformation)
     {
         for (int row = 0; row < doorInformation.Count; row++)
@@ -103,6 +109,7 @@ public class Room
         }
     }
 
+    //populate the enemy manager with enemies
     private void populateEnemies(List<List<int>> enemyInformation, SpriteBatch spriteBatch)
     {
         List<IEnemy> enemies = new List<IEnemy>();  
@@ -118,6 +125,7 @@ public class Room
         }
     }
 
+    //Draw all entities
     internal void draw(SpriteBatch spriteBatch)
 
     {
@@ -129,13 +137,23 @@ public class Room
 
     }
 
+    //Update all relevant entities
     public void Update()
     {
         doorManager.Update();
         enemyManager.Update();
+
+        //Manage collisions
         CollisionManager.instance.manageCollisions(link, doorManager.doorList, enemyManager.enemiesList, tileManager.tileList, tileManager.pushBlockList, itemManager.itemList, link.inventory);
     }
 
+    /* Unlock a particular door */
+    internal void unlockDoor(int v)
+    {
+        doorManager.doorList[v].Unlock();
+    }
+
+    /* Getters and Setters */
     internal int getIndex()
     {
         return currentRoomIndex;
@@ -169,10 +187,5 @@ public class Room
     public DoorManager getDoorManager()
     {
         return this.doorManager;
-    }
-
-    internal void unlockDoor(int v)
-    {
-        doorManager.doorList[v].Unlock();
     }
 }

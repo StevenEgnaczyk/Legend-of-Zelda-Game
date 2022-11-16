@@ -105,6 +105,12 @@ public  class EnemyManager
             case 27:
                 new Gel(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
+            case 28:
+                new OldMan(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
+            case 29:
+                new Flame(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             default:
                 break;
 

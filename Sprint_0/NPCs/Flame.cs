@@ -37,15 +37,6 @@ public class Flame : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-    }
-    
-    public void Update()
-    {
-        throw new NotImplementedException();
-    }
-    public void Draw(SpriteBatch _spriteBatch)
-    {
-
         bufferVals[2] = 20;
     }
 
@@ -69,7 +60,6 @@ public class Flame : IEnemy
             sprite.update(xPos, yPos, 0, 0);
 
         }
-
     }
 
     public void draw(SpriteBatch sb)
