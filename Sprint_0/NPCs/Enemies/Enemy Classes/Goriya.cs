@@ -100,9 +100,7 @@ public class Goriya : IEnemy
         int facingDirection = state.facingDirection;
         state.idle(this);
         state.facingDirection = facingDirection;
-        
-        
-
+         
     }
 
     public void update()

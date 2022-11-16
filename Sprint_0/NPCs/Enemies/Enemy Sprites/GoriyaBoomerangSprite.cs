@@ -48,17 +48,7 @@ public class GoriyaBoomerangSprite : IEnemySprite
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
-        if(time % 3 == 0)
-        {
-            frame = 0;
-        }
-        else if(time % 3 == 1)
-        {
-            frame = 1;
-        }
-        else
-        {
-            frame = 2;
-        }
+        
+        frame = time % 3;
     }
 }

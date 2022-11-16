@@ -69,6 +69,10 @@ public  class EnemyManager
         enemiesList.Remove(gb);
     }
 
+    public void removeEnemy(AquamentusFireball AF) {
+        enemiesList.Remove(AF);
+    }
+
     public void Update()
     {
         for (int i = 0; i < enemiesList.Count; i++)
