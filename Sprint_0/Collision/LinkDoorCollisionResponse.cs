@@ -169,7 +169,7 @@ public class LinkDoorCollisionResponse
             }
         }
 
-        if (door.Bombed())
+        if (door.Cracked())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);
             switch (collisionFace)

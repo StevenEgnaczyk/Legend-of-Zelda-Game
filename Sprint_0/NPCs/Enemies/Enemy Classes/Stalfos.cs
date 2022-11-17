@@ -21,6 +21,9 @@ public class Stalfos : IEnemy
     private const int enemySpeed = 10;
     private EnemyManager man;
 
+    private bool damaged;
+    private int damageBuffer;
+
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
 
@@ -29,7 +32,7 @@ public class Stalfos : IEnemy
         state = new LeftMovingEnemyState(this);
         xPos = startX;
         yPos = startY;
-        health = 1;
+        health = 2;
 
         randTime = 0;
 
@@ -40,6 +43,8 @@ public class Stalfos : IEnemy
         man.addEnemy(this);
 
         bufferVals[2] = 50;
+
+        damaged = false;
     }
 
     /*
@@ -72,7 +77,12 @@ public class Stalfos : IEnemy
 
     public void hurt()
     {
-        state.hurt(this);
+        if (!damaged)
+        {
+            state.hurt(this);
+            damaged = true;
+            damageBuffer = 100;
+        }
 
         if (health == 0)
         {
@@ -95,6 +105,15 @@ public class Stalfos : IEnemy
             state.update();
             sprite.update(xPos, yPos, state.facingDirection, randTime);
 
+        }
+
+        if (damageBuffer > 0)
+        {
+            damageBuffer--;
+            if (damageBuffer == 0)
+            {
+                damaged = false;
+            }
         }
     }
 

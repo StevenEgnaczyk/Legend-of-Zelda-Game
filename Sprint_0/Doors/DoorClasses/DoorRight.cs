@@ -44,7 +44,7 @@ public class DoorRight : IDoor
                 doorState = IDoor.state.closed;
                 break;
             case 4:
-                doorState = IDoor.state.bombed;
+                doorState = IDoor.state.cracked;
                 break;
             case 5:
                 doorState = IDoor.state.invisible;
@@ -114,9 +114,9 @@ public class DoorRight : IDoor
     {
         return isLocked;
     }
-    public bool Bombed()
+    public bool Cracked()
     {
-        return isBombed;
+        return this.doorState == (IDoor.state.cracked);
     }
 
     /* Setters for the tiles x and y positions */
@@ -137,10 +137,17 @@ public class DoorRight : IDoor
         doorState = IDoor.state.open;
     }
 
+    public void Bomb()
+    {
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        doorState = IDoor.state.bombed;
+    }
+
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isTeleport = (this.doorState == IDoor.state.open) || (this.doorState == IDoor.state.bombed);
         this.isBombed = (this.doorState == IDoor.state.bombed);
     }
     public bool Closed()

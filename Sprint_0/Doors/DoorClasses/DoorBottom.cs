@@ -45,7 +45,7 @@ public class DoorBottom : IDoor
                 doorState = IDoor.state.closed;
                 break;
             case 4:
-                doorState = IDoor.state.bombed;
+                doorState = IDoor.state.cracked;
                 break;
             case 5:
                 doorState = IDoor.state.invisible;
@@ -56,7 +56,7 @@ public class DoorBottom : IDoor
         }
 
         //Set the width and height based on the locked/unlocked state
-        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed || this.doorState == IDoor.state.bombed)
+        if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed || this.doorState == IDoor.state.cracked)
         {
             this.width = GlobalVariables.DOOR_FULL_WIDTH;
             this.height = GlobalVariables.DOOR_FULL_HEIGHT;
@@ -70,7 +70,6 @@ public class DoorBottom : IDoor
         //Set the locked and teleport variables
         this.isLocked = (this.doorState == IDoor.state.locked);
         this.isTeleport = (this.doorState == IDoor.state.open);
-        this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -114,9 +113,9 @@ public class DoorBottom : IDoor
         return isLocked;
     }
 
-    public bool Bombed()
+    public bool Cracked()
     {
-        return isBombed;
+        return this.doorState == (IDoor.state.cracked);
     }
 
     /* Setters for the tiles x and y positions */
@@ -136,11 +135,17 @@ public class DoorBottom : IDoor
         this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
         doorState = IDoor.state.open;
     }
+    public void Bomb()
+    {
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        doorState = IDoor.state.bombed;
+    }
 
     public void Update()
     {
         this.isLocked = (this.doorState == IDoor.state.locked);
-        this.isTeleport = (this.doorState == IDoor.state.open);
+        this.isTeleport = (this.doorState == IDoor.state.open) || (this.doorState == IDoor.state.bombed);
         this.isBombed = (this.doorState == IDoor.state.bombed);
     }
 

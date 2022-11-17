@@ -27,7 +27,7 @@ public class WeaponDoorCollisionResponse
         else
         {
             string collisionFace = CollisionDetection.collides(weaponRec, doorRect);
-            if (door.Bombed())
+            if (door.Cracked())
             {
                
                 switch (collisionFace)
@@ -35,21 +35,21 @@ public class WeaponDoorCollisionResponse
                     case "Top":
 
                         //Unlock the door if link has keys, if not turn him away
-                           door.Unlock();
+                           door.Bomb();
                         break;
 
                     case "Left":
 
                         //Unlock the door if link has keys, if not turn him away
                        
-                            door.Unlock();
+                            door.Bomb();
                         break;
 
                     case "Right":
 
                         //Unlock the door if link has keys, if not turn him away
 
-                            door.Unlock();
+                            door.Bomb();
 
                         break;
 
@@ -57,7 +57,7 @@ public class WeaponDoorCollisionResponse
 
                         //Unlock the door if link has keys, if not turn him away
 
-                            door.Unlock();
+                            door.Bomb();
 
                         break;
                 }
