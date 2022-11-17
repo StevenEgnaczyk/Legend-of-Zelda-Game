@@ -20,6 +20,5 @@ Time Taken: 5 minutes
 Comments: The quality of code in the EnemyManager class is good. The removeEnemy with random
 		  drop rates of items looks good, and the randomStateGenerator also works very well.
 Change: On this specific class, I would maybe alter the randomStateGenerator to a switch statement
-		instead of a bunch of if else's, but it's not like that's super necessary, so overall 
-		very quality code.
+		instead of a bunch of if else's, just something to nitpick, but it's not like that's exactly necessary.
 		
