@@ -7,8 +7,8 @@ File Author: RJ Zanotti
 Quality Review: Code quality is good. Everything is working as intended.
                 It's similar to how all other enemies are implemented. I
                 don't have much to complain about here. I think it's good
-                and I can't think of anything else that needs to change,
-                it dies, it can change states. There's not much to ask from 
+                and I can't think of anything else that needs to change.
+                It dies and it can change states. There's not much to ask from 
                 an enemy class.
 
 

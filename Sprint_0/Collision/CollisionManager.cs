@@ -58,7 +58,7 @@ public class CollisionManager
         foreach (ITile tile in tiles)
         {
             //Link collisions
-            CollisionResponse.collisionResponse(link, tile, game, tiles);
+            CollisionResponse.collisionResponse(link, tile, game);
 
             //Weapon collisions
             if (userInv.UsingWeapon())
@@ -66,17 +66,16 @@ public class CollisionManager
                 CollisionResponse.collisionResponse(userInv, tile);
             }
 
-            // foreach (ITile pushTile in pushTiles)
-            // {
-            //     CollisionResponse.collisionResponse(pushTile, tile);
-            // }
+            foreach (ITile pushTile in pushTiles)
+            {
+                CollisionResponse.collisionResponse(pushTile, tile);
+            }
 
         }
 
         foreach (ITile pushTile in pushTiles)
         {
-            CollisionResponse.collisionResponse(link, pushTile, game, tiles);
-
+            CollisionResponse.collisionResponse(link, pushTile, game);
         }
 
         //Collisions for items between link
@@ -98,6 +97,11 @@ public class CollisionManager
             foreach (IEnemy enemy in enemies.ToArray())
             {
                 CollisionResponse.collisionResponse(enemy, door);
+            }
+
+            foreach (ITile pushTile in pushTiles)
+            {
+                CollisionResponse.collisionResponse(pushTile, door);
             }
             
         }

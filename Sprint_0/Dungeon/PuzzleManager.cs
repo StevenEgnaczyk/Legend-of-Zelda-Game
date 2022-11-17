@@ -36,6 +36,12 @@ public class PuzzleManager
                 //Open the door after all the enemies have been killed
                 manager.currentRoom.unlockDoor(1);
                 break;
+                
+            case 14:
+
+                //Open the door after all the enemies have been killed
+                manager.currentRoom.unlockDoor(1);
+                break;
         }
         
 

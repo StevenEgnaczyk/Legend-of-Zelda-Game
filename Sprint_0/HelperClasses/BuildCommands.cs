@@ -87,7 +87,6 @@ public class BuildCommands
         RegisterGameplayCommand(Keys.D0, _quitCommand);
         RegisterGameplayCommand(Keys.NumPad0, _quitCommand);
         RegisterGameplayCommand(Keys.Q, _quitCommand);
-        RegisterGameplayCommand(Keys.R, resetCommand);
 
         RegisterGameplayCommand(Keys.Left, turnPlayerLeftCommand);
         RegisterGameplayCommand(Keys.Right, turnPlayerRightCommand);
