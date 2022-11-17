@@ -12,6 +12,7 @@ public interface IDoor
         open,
         locked,
         closed,
+        cracked,
         bombed,
         invisible,
     }
@@ -29,8 +30,10 @@ public interface IDoor
     public void Draw(SpriteBatch _spriteBatch);
     bool Locked();
 
-    bool Bombed();
+    bool Cracked();
     void Unlock();
+
+    void Bomb();
 
     void Update();
     bool Closed();
