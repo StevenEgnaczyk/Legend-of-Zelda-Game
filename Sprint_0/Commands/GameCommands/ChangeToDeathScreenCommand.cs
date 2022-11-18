@@ -6,6 +6,7 @@ public class ChangeToDeathScreenCommand : ICommand
 {
 
     private Game1 game;
+    private RoomManager roomManager;
 
     public ChangeToDeathScreenCommand(Game1 game)
     {
@@ -14,6 +15,7 @@ public class ChangeToDeathScreenCommand : ICommand
 
     public void Execute()
     {
-        game.currentGameState = new Sprint_0.GameStates.DeathScreenState(game);
+        game.currentGameState = new Sprint_0.GameStates.StartupScreenState(game);
+        //this.roomManager.reset();
     }
 }

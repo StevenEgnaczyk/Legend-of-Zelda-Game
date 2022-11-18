@@ -11,19 +11,23 @@ public class Link
     public ILinkState state;
     public Inventory inventory;
     public int currentRoom;
+    public RoomManager roomManager;
 
     public float xPos, yPos;
     public int linkSpeed = 3;
     private float linkHealth;
     private float linkMaxHealth = 3.0f;
+    private ChangeToDeathScreenCommand deathScreen;
 
     
 
-    public Link(SpriteBatch spriteBatch)
+    public Link(SpriteBatch spriteBatch, Sprint_0.Game1 game)
     {
 
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
+        roomManager = new RoomManager(spriteBatch, this, 1);
+        deathScreen = new ChangeToDeathScreenCommand(game);
 
         linkHealth = linkMaxHealth;
 
@@ -59,10 +63,13 @@ public class Link
 
     public void Die()
     {
+        state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
         linkHealth = linkMaxHealth;
         xPos = 500;
         yPos = 500;
+        this.roomManager.reset();
+        deathScreen.Execute();
     }
 
     public void Draw(SpriteBatch _spriteBatch)
@@ -122,6 +129,7 @@ public class Link
         {
             AudioStorage.GetLinkDie().Play();
             Die();
+            
         }
     }
     public void gainHealth()
