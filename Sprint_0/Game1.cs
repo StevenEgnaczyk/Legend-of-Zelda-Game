@@ -47,7 +47,7 @@ namespace Sprint_0
             //Set up game variables that are needed
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionManager = new CollisionManager(this);
-            link = new Link(spriteBatch);
+            link = new Link(spriteBatch, this);
             roomManager = new RoomManager(spriteBatch, link, 1);
             HUD = new HUDManager(link, link.inventory);
             currentGameState = new StartupScreenState(this);

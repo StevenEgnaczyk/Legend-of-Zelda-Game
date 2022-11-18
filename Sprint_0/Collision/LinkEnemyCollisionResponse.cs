@@ -19,7 +19,7 @@ public class LinkEnemyCollisionResponse
         Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 64, 64);
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
 
-        ChangeToDeathScreenCommand die = new ChangeToDeathScreenCommand(game);
+        //ChangeToDeathScreenCommand die = new ChangeToDeathScreenCommand(game);
 
         /*
          * Pushes Link and enemy back so that the he is not overtop the enemy, then changes his
@@ -47,7 +47,7 @@ public class LinkEnemyCollisionResponse
 
                     if (link.getHealth() <= 0)
                     {
-                        die.Execute();
+                        //die.Execute();
                     } 
                     break;
 
@@ -66,7 +66,7 @@ public class LinkEnemyCollisionResponse
 
                     if (link.getHealth() <= 0)
                     {
-                        die.Execute();
+                        //die.Execute();
                     }
                     break;
 
@@ -85,7 +85,7 @@ public class LinkEnemyCollisionResponse
                    //Make link look hurt
                    if (link.getHealth() <= 0)
                    {
-                        die.Execute();
+                        //die.Execute();
                     }
                     break;
     
@@ -106,7 +106,7 @@ public class LinkEnemyCollisionResponse
                     //Make link look hurt
                     if (link.getHealth() <= 0)
                     {
-                        die.Execute();
+                        //die.Execute();
                     }
                     break;
             }
