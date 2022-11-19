@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
+using System.Security.Cryptography;
 
 public class AquamentusSprite : IEnemySprite
 {
@@ -51,6 +52,32 @@ public class AquamentusSprite : IEnemySprite
         }else if(frame == 5 || frame == 9)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
+
+        }
+    }
+
+    public void drawHurt(SpriteBatch sb)
+    {
+        AquamentusTexture = Texture2DStorage.getBossSpritesheet();
+
+        if (frame == 11)
+        {
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan);
+
+        }
+        else if (frame == 12)
+        {
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.SandyBrown);
+
+        }
+        else if (frame == 4 || frame == 8)
+        {
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.Cyan);
+
+        }
+        else if (frame == 5 || frame == 9)
+        {
+            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.SandyBrown);
 
         }
     }

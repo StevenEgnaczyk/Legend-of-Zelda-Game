@@ -27,6 +27,11 @@ public class BladeTrapSprite : IEnemySprite
         sb.Draw(BladeTrapTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Blade Trap doesnt take damage
+    }
+
     public void update(int xPos, int yPos, int facingDirection, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);

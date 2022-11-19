@@ -48,6 +48,10 @@ public class AquamentusFireballSprite : IEnemySprite
         }
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Aquamentus Fireball does not take damage
+    }
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 48, 48);

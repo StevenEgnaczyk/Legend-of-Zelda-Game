@@ -26,6 +26,8 @@ public class Aquamentus : IEnemy
     private const int width = 64;
     private const int enemySpeed = 5;
     private EnemyManager man;
+    private bool damaged;
+    private int damageBuffer;
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
@@ -35,7 +37,7 @@ public class Aquamentus : IEnemy
         state = new LeftMovingEnemyState(this);
         xPos = 600;
         yPos = 484;
-        health = 3;
+        health = 5;
 
         randTime = 0;
 
@@ -46,6 +48,7 @@ public class Aquamentus : IEnemy
         man.addEnemy(this);
 
         bufferVals[2] = 50;
+        damaged = false;
     }
 
     /*
@@ -80,7 +83,12 @@ public class Aquamentus : IEnemy
 
     public void hurt()
     {
-        state.hurt(this);
+        if (!damaged)
+        {
+            state.hurt(this);
+            damaged = true;
+            damageBuffer = 50;
+        }
 
         if (health == 0)
         {
@@ -117,11 +125,26 @@ public class Aquamentus : IEnemy
             sprite.update(xPos, yPos, state.facingDirection, randTime);
             
         }
+        if (damageBuffer > 0)
+        {
+            damageBuffer--;
+            if (damageBuffer == 0)
+            {
+                damaged = false;
+            }
+        }
     }
 
-    public void draw(SpriteBatch _spriteBatch)
+    public void draw(SpriteBatch sb)
     {
-        sprite.draw(_spriteBatch);
+        if (damaged == false)
+        {
+            sprite.draw(sb);
+        }
+        else
+        {
+            sprite.drawHurt(sb);
+        }
     }
 
     public void changeToRandState()

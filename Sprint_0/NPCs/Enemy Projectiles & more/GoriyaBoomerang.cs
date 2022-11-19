@@ -19,7 +19,7 @@ public class GoriyaBoomerang : IEnemy
     //8x8 on spritesheet
     private const int height = 16;
     private const int width = 16;
-    private const int enemySpeed = 10;
+    private const int enemySpeed = 30;
     private EnemyManager man;
     private int startXPos;
     private int startYPos;
@@ -41,10 +41,10 @@ public class GoriyaBoomerang : IEnemy
         /*
          * [x limit right, x limit left, y limit down, y limit up]
          */
-        limit[0] = xPos + 200;
-        limit[1] = xPos - 200;
-        limit[2] = yPos + 200;
-        limit[3] = yPos - 200;
+        limit[0] = xPos + 400;
+        limit[1] = xPos - 400;
+        limit[2] = yPos + 400;
+        limit[3] = yPos - 400;
 
         sprite = EnemySpriteFactory.instance.CreateGoyiraBoomerangSprite();
         man = manager;

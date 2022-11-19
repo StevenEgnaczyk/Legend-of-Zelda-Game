@@ -40,6 +40,11 @@ public class KeeseSprite : IEnemySprite
         }
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Only has 1 health so no damaged state drawn
+    }
+
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         destinationRectangle = new Rectangle(xPos, yPos, 64, 64);

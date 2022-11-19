@@ -54,6 +54,10 @@ public class DeathSprite : IEnemySprite
         }
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Does not take damage
+    }
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 48, 64);
