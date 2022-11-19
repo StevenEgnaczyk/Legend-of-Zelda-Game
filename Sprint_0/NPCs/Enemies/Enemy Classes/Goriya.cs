@@ -21,7 +21,8 @@ public class Goriya : IEnemy
     private const int enemySpeed = 10;
     private EnemyManager man;
     private IEnemy boomerang;
-
+    private bool damaged;
+    private int damageBuffer;
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
 
@@ -32,7 +33,7 @@ public class Goriya : IEnemy
         xPos = startX;
         yPos = startY;
         
-        health = 2;
+        health = 3;
 
         randTime = 0;
 
@@ -43,6 +44,7 @@ public class Goriya : IEnemy
         man.addEnemy(this);
         
         bufferVals[2] = 50;
+        damaged = false;
         
     }
 
@@ -76,7 +78,12 @@ public class Goriya : IEnemy
 
     public void hurt()
     {
-        state.hurt(this);
+        if (!damaged)
+        {
+            state.hurt(this);
+            damaged = true;
+            damageBuffer = 50;
+        }
 
         if (health == 0)
         {
@@ -112,11 +119,27 @@ public class Goriya : IEnemy
             sprite.update(xPos, yPos, state.facingDirection, randTime);
 
         }
+
+        if (damageBuffer > 0)
+        {
+            damageBuffer--;
+            if (damageBuffer == 0)
+            {
+                damaged = false;
+            }
+        }
     }
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(sb);
+        if(damaged == false)
+        {
+            sprite.draw(sb);
+        }
+        else
+        {
+            sprite.drawHurt(sb);
+        }       
     }
 
     public void changeToRandState()

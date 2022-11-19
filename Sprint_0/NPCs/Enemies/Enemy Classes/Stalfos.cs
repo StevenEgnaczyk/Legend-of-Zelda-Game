@@ -81,7 +81,7 @@ public class Stalfos : IEnemy
         {
             state.hurt(this);
             damaged = true;
-            damageBuffer = 100;
+            damageBuffer = 50;
         }
 
         if (health == 0)
@@ -119,7 +119,15 @@ public class Stalfos : IEnemy
 
     public void draw(SpriteBatch sb)
     {
-        sprite.draw(sb);
+        if(damaged == false)
+        {
+            sprite.draw(sb);
+        }
+        else
+        {
+            sprite.drawHurt(sb);
+        }
+        
     }
 
     public void changeToRandState()

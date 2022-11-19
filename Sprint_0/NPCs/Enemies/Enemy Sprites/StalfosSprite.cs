@@ -37,6 +37,22 @@ public class StalfosSprite : IEnemySprite
 
         }
     }
+    public void drawHurt(SpriteBatch sb)
+    {
+        stalfosTexture = Texture2DStorage.getEnemySpritesheet();
+        float zero = 0.0F;
+
+        if (frame == 0)
+        {
+            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.SandyBrown);
+
+        }
+        else
+        {
+            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+    }
 
     public void update(int xPos, int yPos, int facingDirections, int time)
     {

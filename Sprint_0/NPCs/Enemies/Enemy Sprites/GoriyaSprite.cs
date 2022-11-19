@@ -51,6 +51,24 @@ public class GoriyaSprite : IEnemySprite
 
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
+
+        if (this.flip)
+        {
+
+            drawHurtFlipped(sb);
+
+        }
+        else
+        {
+
+            drawHurtNormal(sb);
+
+        }
+    }
+
     public void drawNormal(SpriteBatch sb)
     {
 
@@ -97,6 +115,55 @@ public class GoriyaSprite : IEnemySprite
         else if (frame == 13 || frame == 1)
         {
             sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+    }
+
+    public void drawHurtFlipped(SpriteBatch sb)
+    {
+        float zero = 0.0F;
+        if (frame == 8)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.Blue, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+        else if (frame == 11 || frame == 9)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.Lime, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+        else if (frame == 14 || frame == 2)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.Blue, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+        else if (frame == 13 || frame == 1)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.Lime, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+        }
+    }
+
+    public void drawHurtNormal(SpriteBatch sb)
+    {
+        if (frame == 4)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.Blue);
+
+        }
+        else if (frame == 5 || frame == 7)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.Lime);
+
+        }
+        else if (frame == 14 || frame == 2)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.Blue);
+
+        }
+        else if (frame == 13 || frame == 1)
+        {
+            sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.Lime);
 
         }
     }

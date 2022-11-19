@@ -40,6 +40,11 @@ public class GelSprite : IEnemySprite
         }
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Only has 1 health damage not drawn
+    }
+
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
