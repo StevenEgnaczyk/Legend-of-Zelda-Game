@@ -83,6 +83,7 @@ public class Goriya : IEnemy
             state.hurt(this);
             damaged = true;
             damageBuffer = 50;
+            AudioStorage.GetEnemyHit().Play();
         }
 
         if (health == 0)
