@@ -8,6 +8,9 @@ public class EnemyTileCollisionResponse
 {
     public static void collisionResponse(IEnemy enemy, ITile tile)
     {
+
+        bool isWallmaster = enemy.GetType().toString().equals("Wallmaster");
+
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
@@ -19,7 +22,7 @@ public class EnemyTileCollisionResponse
          * Stops enemies and tiles occupying the same space, then makes sure the enemy 
          * turns away and doesn't collide again (not the same for collisions with link)
          */
-        if (!tile.Walkable())
+        if (!tile.Walkable() && !isWallmaster)
         {
             string collisionFace = CollisionDetection.collides(enemyRec, tileRec);
             switch (collisionFace)

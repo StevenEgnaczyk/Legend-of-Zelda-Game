@@ -13,9 +13,6 @@ public class LinkEnemyCollisionResponse
 
         bool isNonLethal = enemy.GetType().ToString().Equals("DeathAnimation"); 
 
-        /*
-         * See EnemyTileCollisionResponse for explaination and suggestions.
-         */
         Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 64, 64);
         Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
 
@@ -28,6 +25,7 @@ public class LinkEnemyCollisionResponse
          * Need: A method that causes Link (and/or enemies) to slide back when hurt
          */
         if(!isNonLethal) { 
+            
             string collisionFace = CollisionDetection.collides(linkRec, enemyRec);
             switch (collisionFace)
             {
@@ -108,6 +106,9 @@ public class LinkEnemyCollisionResponse
                     {
                         //die.Execute();
                     }
+                    break;
+              case "No Collision":
+                    
                     break;
             }
         }

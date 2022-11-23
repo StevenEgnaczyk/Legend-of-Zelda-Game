@@ -20,60 +20,63 @@ public class CollisionResponse
     }
 
 
-    /* Link Tile Collisions */
+    /* 
+     * Link Collisions
+     */
     public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
     {
         LinkTileCollisionResponse.collisionResponse(link, tile, game);
     }
 
-    /* Link Enemy Collisions */
     public static void collisionResponse(Link link, IEnemy enemy, Game1 game)
     {
         LinkEnemyCollisionResponse.collisionResponse(link, enemy, game);
     }
 
-    /* Link Item Collisions */
     public static void collisionResponse(Link link, IItem item)
     {
         LinkItemCollisionResponse.collisionResponse(link, item);
     }
 
-    /* Enemy Tile Collisions */
-    public static void collisionResponse(IEnemy enemy, ITile tile)
-    {
-        EnemyTileCollisionResponse.collisionResponse(enemy, tile);
-    }
-
-    /* Enemy Link Collisions */
-    public static void collisionResponse(IEnemy enemy, Link link)
-    {
-        EnemyWeaponCollisionResponse.collisionResponse(enemy, link);
-    }
-
-    /* Weapon Tile Collisions */
-    public static void collisionResponse(Inventory userInv, ITile tile)
-    {
-        WeaponTileCollisionResponse.collisionResponse(userInv, tile);
-    }
-
-    /* Link Door Collisions */
     public static void collisionResponse(Link link, IDoor door, Sprint_0.Game1 game)
     {
         LinkDoorCollisionResponse.collisionResponse(link, door, game);
     }
 
-    /* Weapon Door Collisions */
+    /* 
+     * Enemy Collisions
+     */
+    public static void collisionResponse(IEnemy enemy, ITile tile)
+    {
+        EnemyTileCollisionResponse.collisionResponse(enemy, tile);
+    }
+
+    public static void collisionResponse(IEnemy enemy, Link link)
+    {
+        EnemyWeaponCollisionResponse.collisionResponse(enemy, link);
+    }
+
+    public static void collisionResponse(IEnemy enemy, IDoor door)
+    {
+        EnemyDoorCollisionResponse.collisionResponse(enemy, door);
+    }
+
+    /*
+     *  Weapon Collisions 
+     */
     public static void collisionResponse(Inventory userInv, IDoor door)
     {
         WeaponDoorCollisionResponse.collisionResponse(userInv, door);
     }
 
-    /* Enemy Door Collisions */
-    public static void collisionResponse(IEnemy enemy, IDoor door)
+    public static void collisionResponse(Inventory userInv, ITile tile)
     {
-        EnemyDoorCollisionResponse.collisionResponse(enemy, door);
+        WeaponTileCollisionResponse.collisionResponse(userInv, tile);
     }
     
+    /* 
+     * Tile Collisions
+     */
     public static void collisionResponse(ITile tile1, ITile tile2)
     {
         TileTileCollisionResponse.collisionResponse(tile1, tile2);

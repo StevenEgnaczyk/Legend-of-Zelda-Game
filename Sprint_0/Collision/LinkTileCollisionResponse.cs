@@ -10,9 +10,6 @@ public class LinkTileCollisionResponse
 {
     public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
     {
-        /*
-         * See EnemyTileCollisionResponse for explaination and suggestions.
-         */
         Rectangle linkRec = new Rectangle((int)link.xPos + GlobalVariables.HITBOX_OFFSET, (int)link.yPos + GlobalVariables.HITBOX_OFFSET, link.getWidth(), link.getHeight());
         Rectangle tileRec = new Rectangle(tile.getXPos(), tile.getYPos(), tile.getWidth(), tile.getHeight());
 
@@ -23,7 +20,6 @@ public class LinkTileCollisionResponse
          * Link doesn't turn when hitting a wall, so this just stops his x or y position
          * from moving further into the block (instead of turning) 
          * 
-         * Need: A special method for the block that gets pushed
          */
 
         //If the tile is a teleporter
