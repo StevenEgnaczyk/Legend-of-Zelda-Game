@@ -38,6 +38,10 @@ public class WallmasterSprite : IEnemySprite
         }
     }
 
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Only has 1 health so hurt state not drawn
+    }
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
         destinationRectangle = new Rectangle(xPos, yPos, 64, 64);

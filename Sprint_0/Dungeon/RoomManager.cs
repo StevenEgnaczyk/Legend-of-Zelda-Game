@@ -64,7 +64,13 @@ public class RoomManager
     public void reset()
     {
         roomNumber = 1;
+        link.currentRoom = roomNumber;
+        doorMemory = new Dictionary<int, List<IDoor>>();
+        tileMemory = new Dictionary<int, List<ITile>>();
+        enemyMemory = new Dictionary<int, List<IEnemy>>();
+        itemMemory = new Dictionary<int, List<IItem>>();
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
+        puzzleManager = new PuzzleManager(this);
     }
 
     public void drawBackground(SpriteBatch spriteBatch)

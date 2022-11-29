@@ -14,7 +14,7 @@ public class GoriyaBoomerangSprite : IEnemySprite
     private Rectangle frame1Rectangle;
     private Rectangle frame2Rectangle;
 
-    
+
 
     public GoriyaBoomerangSprite(Texture2D spritesheet)
     {
@@ -35,14 +35,19 @@ public class GoriyaBoomerangSprite : IEnemySprite
         {
             sb.Draw(this.GoriyaBoomerangTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
         }
-        else if(frame == 1) 
+        else if (frame == 1)
         {
-            sb.Draw(this.GoriyaBoomerangTexture, this.destinationRectangle, this.frame1Rectangle, Color.White); 
+            sb.Draw(this.GoriyaBoomerangTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
         }
         else
         {
             sb.Draw(this.GoriyaBoomerangTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
-        }     
+        }
+    }
+
+    public void drawHurt(SpriteBatch sb)
+    {
+        //Does not take damage.
     }
 
     public void update(int xPos, int yPos, int facingDirections, int time)
