@@ -74,6 +74,7 @@ public class CollisionResponse
         EnemyDoorCollisionResponse.collisionResponse(enemy, door);
     }
     
+    /* Tile to Tile collision */
     public static void collisionResponse(ITile tile1, ITile tile2)
     {
         TileTileCollisionResponse.collisionResponse(tile1, tile2);

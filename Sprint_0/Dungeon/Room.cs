@@ -31,6 +31,8 @@ public class Room
         if (roomManager.doorMemory.ContainsKey(currentRoomIndex))
         {
 
+            roomManager.setBackground(roomManager.backgroundMemory[currentRoomIndex]);
+
             //Load in the room information from memory
             doorManager = new DoorManager(spriteBatch);
             doorManager.doorList = roomManager.doorMemory[currentRoomIndex];
@@ -52,17 +54,19 @@ public class Room
             //Load in the room information from the correct file
             roomInformation = RoomLoader.getRoomInformation(currentRoomIndex);
 
+            roomManager.setBackground(roomInformation[0][0][0]);
+
             doorManager = new DoorManager(spriteBatch);
-            populateDoors(roomInformation[0]);
+            populateDoors(roomInformation[1]);
 
             tileManager = new TileManager(spriteBatch);
-            populateTiles(roomInformation[1]);
+            populateTiles(roomInformation[2]);
 
             enemyManager = new EnemyManager(spriteBatch);
-            populateEnemies(roomInformation[2], spriteBatch);
+            populateEnemies(roomInformation[3], spriteBatch);
 
             itemManager = new ItemManager(this, spriteBatch);
-            populateItems(roomInformation[3]);
+            populateItems(roomInformation[4]);
         }
 
     }

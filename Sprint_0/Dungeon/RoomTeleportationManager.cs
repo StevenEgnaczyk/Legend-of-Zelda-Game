@@ -65,6 +65,7 @@ public static class RoomTeleportationManager
     {
         return currentRoomNum switch
         {
+            1 => 19,
             4 => 1,
             5 => 4,
             8 => 5,

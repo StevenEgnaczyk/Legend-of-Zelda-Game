@@ -44,6 +44,10 @@ public static class HUDRectStorage
     private static Rectangle bombDigit1Destination = new Rectangle(104 * 4, 40 * 4, 8 * 4, 8 * 4);
     private static Rectangle bombDigit2Destination = new Rectangle(112 * 4, 40 * 4, 8 * 4, 8 * 4);
 
+    private static Rectangle xDaTokenIconDestination = new Rectangle(96 * 4, 4 * 4, 8 * 4, 8 * 4);
+    private static Rectangle daTokenDigit1Destination = new Rectangle(104 * 4, 4 * 4, 8 * 4, 8 * 4);
+    private static Rectangle daTokenDigit2Destination = new Rectangle(112 * 4, 4 * 4, 8 * 4, 8 * 4);
+
     private static Rectangle primaryWeaponDestRect = new Rectangle(152 * 4, 24 * 4, 8 * 4, 16 * 4);
     private static Dictionary<String, Rectangle> primaryWeaponSourceRectangles = new Dictionary<string, Rectangle>()
     {
@@ -101,6 +105,21 @@ public static class HUDRectStorage
     internal static Rectangle getBombXDestRect()
     {
         return xBombIconDestination;
+    }
+
+    internal static Rectangle getDaTokensDigit1DestRect()
+    {
+        return daTokenDigit1Destination;
+    }
+
+    internal static Rectangle getDaTokensDigit2DestRect()
+    {
+        return daTokenDigit2Destination;
+    }
+
+    internal static Rectangle getDaTokensXDestRect()
+    {
+        return xDaTokenIconDestination;
     }
 
     internal static Rectangle getDigit(int digit)
