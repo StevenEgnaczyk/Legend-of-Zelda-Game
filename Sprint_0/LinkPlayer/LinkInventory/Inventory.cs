@@ -12,6 +12,7 @@ public class Inventory
     public secondaryWeaponManager secondaryWeaponManager;
     public InventoryManager inventoryManager;
 
+    private int numDaTokens;
     private int numBombs;
     private int numRupees;
     private int numKeys;
@@ -23,9 +24,11 @@ public class Inventory
     {
         this.Link = link;
 
+        numDaTokens = 0;
         numBombs = 0;
         numKeys = 0;
         numRupees = 0;
+
         hasMap = false;
         hasCompass = false;
         primaryWeaponManager = new primaryWeaponManager(link);
@@ -76,8 +79,20 @@ public class Inventory
             case WoodenBoomerang:
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Boomerang);
                 break;
+            case DaCoin:
+                this.addDaTokens();
+                if (this.numDaTokens >= 5)
+                {
+                    PuzzleManager.instance.managePuzzles();
+                }
+                break;
 
         }
+    }
+
+    private void addDaTokens()
+    {
+       numDaTokens++;
     }
 
     private void addKeys()
@@ -195,5 +210,10 @@ public class Inventory
     internal void removeKey()
     {
         numKeys--;
+    }
+
+    internal int getDaTokens()
+    {
+        return numDaTokens;
     }
 }

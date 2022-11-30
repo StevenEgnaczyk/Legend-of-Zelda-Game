@@ -11,22 +11,24 @@ public static class RoomRectStorage
 
     private static List<Rectangle> basicRoomRect = new List<Rectangle>()
     {
+        new Rectangle(421, 1009, 256, 160),
         new Rectangle(521, 11, 256, 176),
-        new Rectangle(421, 1009, 256, 160)
+        new Rectangle(912, 818, 256, 176),
+        
     };
 
     private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
     private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
-    public static Rectangle getBasicRoom(int index)
+    public static Rectangle getBasicRoom(int backgroundIndex)
     {
-        if (index < 18)
-        {
-            return basicRoomRect[0];
-        } else
-        {
-            return basicRoomRect[1];
-        }
 
+        return backgroundIndex switch
+        {
+            0 => basicRoomRect[0],
+            1 => basicRoomRect[1],
+            2 => basicRoomRect[2],
+            _ => basicRoomRect[0],
+        };
     }
 
     internal static Rectangle getDoorSourceRect(IDoor.state doorState, int doorPos)

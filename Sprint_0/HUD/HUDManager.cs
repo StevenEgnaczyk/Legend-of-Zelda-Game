@@ -124,10 +124,43 @@ namespace Sprint_0.HUD
 
         private void DrawItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
+            DrawDaTokens(spriteBatch, xOffset, yOffset);
             DrawRupees(spriteBatch, xOffset, yOffset);
             DrawKeys(spriteBatch, xOffset, yOffset);
             DrawBombs(spriteBatch, xOffset, yOffset);
             
+        }
+
+        private void DrawDaTokens(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        {
+            int numDaTokens = link.inventory.getDaTokens();
+            Rectangle digit1SourceRect;
+            Rectangle digit2SourceRect;
+
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle xSourceRect = HUDRectStorage.getXIcon();
+            Rectangle xDestRect = HUDRectStorage.getDaTokensXDestRect();
+            xDestRect.Offset(xOffset, yOffset);
+
+            if (numDaTokens > 10)
+            {
+                digit1SourceRect = HUDRectStorage.getDigit(numDaTokens / 10);
+                digit2SourceRect = HUDRectStorage.getDigit(numDaTokens % 10);
+            }
+            else
+            {
+                digit1SourceRect = HUDRectStorage.getDigit(numDaTokens);
+                digit2SourceRect = HUDRectStorage.getBlank();
+            }
+
+            Rectangle digit1DestRect = HUDRectStorage.getDaTokensDigit1DestRect();
+            digit1DestRect.Offset(xOffset, yOffset);
+            Rectangle digit2DestRect = HUDRectStorage.getDaTokensDigit2DestRect();
+            digit2DestRect.Offset(xOffset, yOffset);
+
+            spriteBatch.Draw(basicHUD, xDestRect, xSourceRect, Color.White);
+            spriteBatch.Draw(basicHUD, digit1DestRect, digit1SourceRect, Color.White);
+            spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
         private void DrawBombs(SpriteBatch spriteBatch, int xOffset, int yOffset)

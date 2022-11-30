@@ -17,7 +17,9 @@ public class RoomManager
     SpriteBatch spriteBatch;
     public static int NUM_ROOMS = 18;
     private static int HUD_SIZE = 224;
+    private int background;
 
+    public Dictionary<int, int> backgroundMemory;
     public Dictionary<int, List<IDoor>> doorMemory;
     public Dictionary<int, List<ITile>> tileMemory;
     public Dictionary<int, List<IEnemy>> enemyMemory;
@@ -31,6 +33,7 @@ public class RoomManager
         this.link.currentRoom = roomNum;
         this.roomNumber = roomNum;
 
+        backgroundMemory = new Dictionary<int, int>();
         doorMemory = new Dictionary<int, List<IDoor>>();
         tileMemory = new Dictionary<int, List<ITile>>();
         enemyMemory = new Dictionary<int, List<IEnemy>>();
@@ -62,10 +65,11 @@ public class RoomManager
     {
         roomNumber = 1;
         link.currentRoom = roomNumber;
-        doorMemory = new Dictionary<int, List<IDoor>>();
-        tileMemory = new Dictionary<int, List<ITile>>();
-        enemyMemory = new Dictionary<int, List<IEnemy>>();
-        itemMemory = new Dictionary<int, List<IItem>>();
+        this.backgroundMemory.Clear();
+        this.doorMemory.Clear();
+        this.tileMemory.Clear();
+        this.enemyMemory.Clear();
+        this.itemMemory.Clear();
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
         puzzleManager = new PuzzleManager(this);
     }
@@ -73,7 +77,7 @@ public class RoomManager
     public void drawBackground(SpriteBatch spriteBatch)
     {
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
-        Rectangle bgRect = RoomRectStorage.getBasicRoom(this.link.currentRoom);
+        Rectangle bgRect = RoomRectStorage.getBasicRoom(this.background);
         Rectangle destRect = new(0, HUD_SIZE + ((176 - bgRect.Height) * 4), bgRect.Width * 4, bgRect.Height * 4);
         spriteBatch.Draw(dungeonTiles, destRect, bgRect, Color.White);
 
@@ -84,11 +88,17 @@ public class RoomManager
         int roomNum = currentRoom.getIndex();
         if (!doorMemory.ContainsKey(roomNum))
         {
+            backgroundMemory.Add(roomNum, background);
             doorMemory.Add(roomNum, currentRoom.getDoors());
             tileMemory.Add(roomNum, currentRoom.getTiles());
             enemyMemory.Add(roomNum, currentRoom.getEnemies());
             itemMemory.Add(roomNum, currentRoom.getItems());
         }
+    }
+
+    internal void setBackground(int backgroundIndex)
+    {
+        background = backgroundIndex;
     }
 }
 

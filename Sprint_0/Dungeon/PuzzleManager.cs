@@ -26,6 +26,11 @@ public class PuzzleManager
         int currentRoom = manager.currentRoom.getIndex();
         switch (currentRoom)
         {
+            case 1:
+                //Open the door if you have 5 DaTokens
+                manager.currentRoom.unlockDoor(2);
+                break;
+
             case 11:
 
                 //Open the door in the push block room
