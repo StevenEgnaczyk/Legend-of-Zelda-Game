@@ -10,8 +10,8 @@ public class Link
 {
     public ILinkState state;
     public Inventory inventory;
+    public Sprint_0.Game1 game;
     public int currentRoom;
-    public RoomManager roomManager;
 
     public float xPos, yPos;
     public int linkSpeed = 3;
@@ -26,9 +26,8 @@ public class Link
 
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
-        roomManager = new RoomManager(spriteBatch, this, 1);
         deathScreen = new ChangeToDeathScreenCommand(game);
-
+        this.game = game;
         linkHealth = linkMaxHealth;
 
         xPos = 500;
@@ -68,7 +67,7 @@ public class Link
         linkHealth = linkMaxHealth;
         xPos = 500;
         yPos = 500;
-        this.roomManager.reset();
+        game.roomManager.reset();
         deathScreen.Execute();
     }
 
