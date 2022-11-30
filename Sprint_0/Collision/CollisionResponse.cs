@@ -21,7 +21,7 @@ public class CollisionResponse
 
 
     /* Link Tile Collisions */
-    public static void collisionResponse(Link link, ITile tile, Sprint_0.Game1 game)
+    public static void collisionResponse(Link link, ITile tile, Game1 game)
     {
         LinkTileCollisionResponse.collisionResponse(link, tile, game);
     }
@@ -79,6 +79,8 @@ public class CollisionResponse
     {
         TileTileCollisionResponse.collisionResponse(tile1, tile2);
     }
+
+    /* Tile door collisions */
     public static void collisionResponse(ITile tile, IDoor door)
     {
         TileDoorCollisionResponse.collisionResponse(tile, door);
