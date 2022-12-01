@@ -6,7 +6,6 @@ public class ChangeToDeathScreenCommand : ICommand
 {
 
     private Game1 game;
-    private RoomManager roomManager;
 
     public ChangeToDeathScreenCommand(Game1 game)
     {
