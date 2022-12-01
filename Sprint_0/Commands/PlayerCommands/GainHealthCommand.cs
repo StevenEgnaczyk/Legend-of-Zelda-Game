@@ -15,6 +15,7 @@ public class GainHealthCommand : ICommand
 
 	public void Execute()
 	{
+		//calls gainHealth method for link
 		linkPlayer.gainHealth();
     }
 }

@@ -27,7 +27,7 @@ public class DoorBottom : IDoor
 
         this.xPosition = xPos;
         this.yPosition = yPos;
-        this.location = 2;
+        this.location = GlobalVariables.DOOR_BOTTOM_LOCATION;
 
         //Set the state of the door
         switch (index)
@@ -63,8 +63,8 @@ public class DoorBottom : IDoor
         } else
         {
             this.width = GlobalVariables.DOOR_FULL_WIDTH;
-            this.yPosition += GlobalVariables.DOOR_FULL_WIDTH/2;
-            this.height = GlobalVariables.DOOR_FULL_WIDTH/2;
+            this.yPosition += GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
+            this.height = GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
         }
 
         //Set the locked and teleport variables
@@ -131,14 +131,14 @@ public class DoorBottom : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
-        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
         doorState = IDoor.state.open;
     }
     public void Bomb()
     {
-        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
-        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
         doorState = IDoor.state.bombed;
     }
 

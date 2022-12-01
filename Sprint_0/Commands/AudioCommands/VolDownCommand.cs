@@ -9,6 +9,7 @@ public class VolDownCommand : ICommand
 
 	public void Execute()
 	{
-		MediaPlayer.Volume -= 0.01f;
+		//decrement mediaPlayer volume by a small amound to make volume control smooth
+		MediaPlayer.Volume -= GlobalVariables.VOLUME_CHANGE;
 	}
 }

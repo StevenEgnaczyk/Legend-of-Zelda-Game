@@ -30,22 +30,26 @@ public class DoorManager
         sb = spriteBatch;
     }
 
+    //add door to door list
     public void addDoor(IDoor door)
     {
         doorList.Add(door);
     }
 
+    //remove door from door list
     public void removeDoor(IDoor door)
     {
         doorList.Remove(door);
     }
 
+    //changes door list to reflect the unlocking of a door
     public void unlockDoor(int doorIndex)
     {
         Rectangle doorRect = RoomRectStorage.getDoorDestinationRect(doorIndex);
         this.doorList[doorIndex] = new DoorLeft(doorRect.X, doorRect.Y, doorIndex);
     }
 
+    //gets correct door from an integer index
     public IDoor getDoorByIndex(int doorIndex, int row, int col)
     {
 
@@ -66,6 +70,7 @@ public class DoorManager
         }
     }
 
+    //draws all doors in doorlist
     public void DrawDoors(SpriteBatch spriteBatch)
     {
         foreach (IDoor door in doorList)
@@ -73,6 +78,8 @@ public class DoorManager
             door.Draw(spriteBatch);
         }
     }
+
+    //updates all doors in doorlist
     public void Update()
     {
         foreach (IDoor door in doorList)

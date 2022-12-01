@@ -27,7 +27,7 @@ public class DoorTop : IDoor
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
-        this.location = 0;
+        this.location = GlobalVariables.DOOR_TOP_LOCATION;
 
         //Set the state of the door
         switch (index)
@@ -138,13 +138,13 @@ public class DoorTop : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.height -= GlobalVariables.DOOR_FULL_HEIGHT/2;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT/GlobalVariables.TWO;
         doorState = IDoor.state.open;
     }
     public void Bomb()
     {
-        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
-        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
         doorState = IDoor.state.bombed;
     }
     public bool Closed()

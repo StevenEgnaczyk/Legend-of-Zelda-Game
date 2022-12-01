@@ -40,7 +40,7 @@ public class CollisionManager
             {
                 CollisionResponse.collisionResponse(enemy, tile);
             }
-
+            //Push tile collision
             foreach (ITile pushTile in pushTiles)
             {
                 CollisionResponse.collisionResponse(enemy, pushTile);
@@ -65,14 +65,14 @@ public class CollisionManager
             {
                 CollisionResponse.collisionResponse(userInv, tile);
             }
-
+            //Tile and pushtile collision
             foreach (ITile pushTile in pushTiles)
             {
                 CollisionResponse.collisionResponse(pushTile, tile);
             }
 
         }
-
+        //Link and push tile collision
         foreach (ITile pushTile in pushTiles)
         {
             CollisionResponse.collisionResponse(link, pushTile, game);
@@ -98,7 +98,7 @@ public class CollisionManager
             {
                 CollisionResponse.collisionResponse(enemy, door);
             }
-
+            // Tile Collisions
             foreach (ITile pushTile in pushTiles)
             {
                 CollisionResponse.collisionResponse(pushTile, door);
