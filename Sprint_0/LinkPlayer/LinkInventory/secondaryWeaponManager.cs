@@ -46,7 +46,6 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             if (secondaryWeaponList.Count == 0)
             {
-                boomerang = new Boomerang(link);
                 secondaryWeapon = getSecondaryWeaponTypeByEnum(weapon);
                 if(weapon == secondaryWeapons.Bomb)
                 {
@@ -201,6 +200,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
             secondaryWeaponList = new List<secondaryWeapons>();
             secondaryWeapon = null;   
+        }
+
+        internal void setSecondaryWeaponTypeByInt(int selectedWeaponIndex)
+        {
+            throw new NotImplementedException();
         }
     }
 }
