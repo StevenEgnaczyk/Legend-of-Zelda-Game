@@ -20,6 +20,7 @@ public class GoriyaBoomerang : IEnemy
     private const int height = 16;
     private const int width = 16;
     private const int enemySpeed = 30;
+    private int timeUntilDeath;
     private EnemyManager man;
     private int startXPos;
     private int startYPos;
@@ -38,6 +39,7 @@ public class GoriyaBoomerang : IEnemy
         startXPos = xPos;
         startYPos = yPos;
         randTime = 1000;
+        timeUntilDeath = 0;
         /*
          * [x limit right, x limit left, y limit down, y limit up]
          */
@@ -56,19 +58,19 @@ public class GoriyaBoomerang : IEnemy
 
     private void getGoriyaDirection(IEnemy goriya)
     {
-        if (goriya.state.facingDirection == 14)
+        if (goriya.state.facingDirection == 14 || goriya.state.facingDirection == 2)
         {
             state = new UpMovingEnemyState(this);
         }
-        else if (goriya.state.facingDirection == 13)
+        else if (goriya.state.facingDirection == 13 || goriya.state.facingDirection == 1)
         {
             state = new DownMovingEnemyState(this);
         }
-        else if (goriya.state.facingDirection == 11)
+        else if (goriya.state.facingDirection == 11 || goriya.state.facingDirection == 8)
         {
             state = new LeftMovingEnemyState(this);
         }
-        else if (goriya.state.facingDirection == 7)
+        else if (goriya.state.facingDirection == 7 || goriya.state.facingDirection == 4)
         {
             state = new RightMovingEnemyState(this);
         }
@@ -107,11 +109,11 @@ public class GoriyaBoomerang : IEnemy
 
     public void update()
     {
+        timeUntilDeath++;
         if (Buffer.itemBuffer(bufferVals))
         {
             state.update();
             sprite.update(xPos, yPos, state.facingDirection, randTime);
-
             if (xPos >= limit[0])
             {
                 //change right to left
@@ -132,7 +134,7 @@ public class GoriyaBoomerang : IEnemy
             //change up to down
             state.moveDown(this);
             }
-            else if(startXPos == xPos && startYPos == yPos)
+            else if((startXPos == xPos && startYPos == yPos) || timeUntilDeath == 500)
             {
                 die();
             }          
