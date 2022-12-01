@@ -149,7 +149,7 @@ public class InventoryManager
         {
             Texture2D baseInventory = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle weaponBoxSource = InventoryRectStorage.GetWeaponBoxSource();
-            Rectangle secondaryWeaponDest = InventoryRectStorage.GetSecondaryWeaponDestRect(selectedWeaponIndex);
+            Rectangle secondaryWeaponDest = InventoryRectStorage.GetSecondaryWeaponDestRect(inventory.secondaryWeaponManager.secondaryWeapon);
             secondaryWeaponDest.Offset(xOffset, yOffset);
             spriteBatch.Draw(baseInventory, secondaryWeaponDest, weaponBoxSource, Color.White);
         }
@@ -180,6 +180,7 @@ public class InventoryManager
                 selectedWeaponIndex = 0;
             }
         }
+        inventory.secondaryWeaponManager.setSecondaryWeaponTypeByInt(selectedWeaponIndex);
     }
 
     internal void cycleItemLeft()

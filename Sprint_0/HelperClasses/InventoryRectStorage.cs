@@ -204,6 +204,18 @@ public static class InventoryRectStorage
         };
     }
 
+    internal static Rectangle GetSecondaryWeaponDestRect(ISecondaryWeapon secondaryWeapon)
+    {
+        return secondaryWeapon.GetType().ToString().Split(".")[3].ToString() switch
+        {
+            "Fire" => new Rectangle(204 * 4, 48 * 4, 8 * 4, 16 * 4),
+            "Bow" => new Rectangle(176 * 4, 48 * 4, 16 * 4, 16 * 4),
+            "Bomb" => new Rectangle(156 * 4, 48 * 4, 8 * 4, 16 * 4),
+            "Boomerang" => new Rectangle(132 * 4, 48 * 4, 8 * 4, 16 * 4),
+            _ => new Rectangle(0, 0, 16, 16),
+        };
+    }
+
     internal static Rectangle GetSecondaryWeaponSourceRect(secondaryWeaponManager.secondaryWeapons secondaryWeapon)
     {
         return secondaryWeapon switch
