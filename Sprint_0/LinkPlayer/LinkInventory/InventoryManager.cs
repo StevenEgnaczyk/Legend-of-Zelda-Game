@@ -200,5 +200,6 @@ public class InventoryManager
                 selectedWeaponIndex = 3;
             }
         }
+        inventory.secondaryWeaponManager.setSecondaryWeaponTypeByInt(selectedWeaponIndex);
     }
 }
