@@ -35,8 +35,8 @@ public class LinkEnemyCollisionResponse
 
                    //push both objects away so they don't occupy the same space
                     if (!enemy.GetType().ToString().Equals("GoriyaBoomerang")){
-                        link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                        enemy.yPos += enemy.getSpeed();
+                        link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                        enemy.yPos -= enemy.getSpeed();
                         link.TurnDown();
                     }
                
@@ -94,8 +94,8 @@ public class LinkEnemyCollisionResponse
                     //push both objects away so they don't occupy the same space
                     if (!enemy.GetType().ToString().Equals("GoriyaBoomerang"))
                     {
-                        link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                         enemy.yPos -= enemy.getSpeed();
+                        link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
+                        enemy.yPos += enemy.getSpeed();
                         link.TurnUp();
                     }
                     
