@@ -20,8 +20,8 @@ public class GelSprite : IEnemySprite
         frame = 0;
 
         destinationRectangle = new Rectangle(0, 0, 32, 32);
-        frame0Rectangle = new Rectangle(1, 11, 8, 16);
-        frame1Rectangle = new Rectangle(10, 11, 8, 16);
+        frame0Rectangle = new Rectangle(1, 16, 8, 8);
+        frame1Rectangle = new Rectangle(11, 15, 6, 9);
 
     }
 
@@ -47,12 +47,11 @@ public class GelSprite : IEnemySprite
 
     public void update(int xPos, int yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+        this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
 
         if (time % 2 == 0)
         {
             frame = 0;
-
         }
         else
         {

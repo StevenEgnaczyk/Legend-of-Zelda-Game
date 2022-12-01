@@ -40,7 +40,16 @@ public class Rupee : IItem
         Texture2D rupee = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getRupeeSprites(currentIndex);
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(rupee, destRect, sourceRect, Color.White);
+        Update();
+        if(currentIndex % 2 == 0)
+        {
+            spriteBatch.Draw(rupee, destRect, sourceRect, Color.White);
+        }
+        else
+        {
+            spriteBatch.Draw(rupee, destRect, sourceRect, Color.LightSkyBlue);
+        }
+        
 
     }
 

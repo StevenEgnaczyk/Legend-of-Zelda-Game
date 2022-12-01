@@ -12,7 +12,7 @@ public class Heart : IItem
     private int xPos;
     private int yPos;
     private int Width = 24;
-    private int Height = 48;
+    private int Height = 24;
 
     private int[] bufferInts;
     private int currentIndex;
@@ -42,9 +42,18 @@ public class Heart : IItem
         Texture2D heart = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getHeartSprites(currentIndex);
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
-        spriteBatch.Draw(heart, destRect, sourceRect, Color.White);
-    }
+        Update();
+        if (currentIndex % 2 == 0)
+        {
+            spriteBatch.Draw(heart, destRect, sourceRect, Color.White);
+        }
+        else
+        {
+            spriteBatch.Draw(heart, destRect, sourceRect, Color.Blue);
+        }
+        
 
+    }
     public int getHeight()
     {
         return this.Height;
@@ -66,9 +75,9 @@ public class Heart : IItem
     }
     public void Update()
     {
-       /*
-        bufferInts = Buffer.itemBuffer(bufferInts);
-       */
+        /*
+         bufferInts = Buffer.itemBuffer(bufferInts);
+        */
         if (currentIndex == 0)
         {
             bufferIndex++;
