@@ -19,6 +19,7 @@ public class AquamentusFireball : IEnemy
     private const int height = 16;
     private const int width = 16;
     private const int enemySpeed = 20;
+    private int timeUntilDeath;
     private EnemyManager man;
 
     private int fireballnum;
@@ -38,6 +39,7 @@ public class AquamentusFireball : IEnemy
 
         fireballnum = fireballNum;
         randTime = 0;
+        timeUntilDeath = 0;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
@@ -74,6 +76,7 @@ public class AquamentusFireball : IEnemy
 
     public void update()
     {
+        timeUntilDeath++;
         if (Buffer.itemBuffer(bufferVals))
         {
             if(fireballnum != 1 && randTime % 2 == 0)
@@ -97,7 +100,7 @@ public class AquamentusFireball : IEnemy
             sprite.update(xPos, yPos, state.facingDirection, randTime);
             randTime++;
             
-            if(randTime == 150)
+            if(randTime == 150 || timeUntilDeath == 1000)
             {
                 die();
             }

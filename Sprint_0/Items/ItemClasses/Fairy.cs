@@ -36,11 +36,11 @@ public class Fairy : IItem
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        Texture2D fairy = Texture2DStorage.GetItemSpritesheet();
-        Rectangle sourceRect = ItemRectStorage.getFairySprites(currentIndex);
+        Texture2D fairy = Texture2DStorage.GetItemSpritesheet();       
         Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Update();
+        Rectangle sourceRect = ItemRectStorage.getFairySprites(currentIndex);
         spriteBatch.Draw(fairy, destRect, sourceRect, Color.White);
-
     }
 
     public int getHeight()
