@@ -51,6 +51,7 @@ public class RoomManager
 
     }
 
+    //updates current room
     public void Update()
     {
         currentRoom.Update();
