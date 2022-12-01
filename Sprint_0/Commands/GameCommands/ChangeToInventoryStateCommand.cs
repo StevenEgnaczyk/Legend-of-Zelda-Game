@@ -14,6 +14,7 @@ public class ChangeToInventoryStateCommand : ICommand
 
     public void Execute()
     {
+        //change current game state to inventory state
         theGame.currentGameState = new Sprint_0.GameStates.InventoryState(theGame);
         
     }

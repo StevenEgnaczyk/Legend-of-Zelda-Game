@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 
 public interface IDoor
 {
+    //door type list
     public enum state
     {
         blank,
@@ -17,6 +18,7 @@ public interface IDoor
         invisible,
     }
 
+    //IDoor var properties
     public int getXPos();
     public int getYPos();
     public void setXPos(int x);

@@ -15,6 +15,7 @@ public class TurnPlayerDownCommand : ICommand
 
 	public void Execute()
 	{
+		//change linkstate to down
 		linkPlayer.TurnDown();
     }
 }

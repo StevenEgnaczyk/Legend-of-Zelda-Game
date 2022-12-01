@@ -15,6 +15,7 @@ public class UsePrimaryWeaponCommand : ICommand
 
 	public void Execute()
 	{
+		//calls primary weapon method for link
 		linkPlayer.UsePrimaryWeapon();
     }
 }
