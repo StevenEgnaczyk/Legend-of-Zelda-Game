@@ -168,7 +168,7 @@ public class LinkDoorCollisionResponse
                     break;
             }
         }
-
+        //If the door is cracked
         if (door.Cracked())
         {
             string collisionFace = CollisionDetection.collides(linkRec, tileRec);

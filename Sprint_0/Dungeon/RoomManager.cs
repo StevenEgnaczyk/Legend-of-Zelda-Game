@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 public class RoomManager
 {
+    //
     private Link link;
     private int roomNumber;
     public Room currentRoom;
@@ -50,6 +51,7 @@ public class RoomManager
 
     }
 
+    //updates current room
     public void Update()
     {
         currentRoom.Update();

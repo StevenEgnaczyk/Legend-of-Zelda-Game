@@ -9,6 +9,7 @@ public class ChangeRoomStateCommand : ICommand
 
     public ChangeRoomStateCommand(Game1 game)
     {
+        //theGame local var is set to the esisting game state
         this.theGame = game;
     }
 
@@ -19,7 +20,8 @@ public class ChangeRoomStateCommand : ICommand
     }
 
     internal void Execute(Link link, int roomToTeleportTo)
-    {
+    {   
+        //current game state set to the new room
         theGame.currentGameState = new Sprint_0.GameStates.RoomTransitionState(theGame, roomToTeleportTo);
     }
 }

@@ -16,6 +16,7 @@ public class CycleInventoryLeft : ICommand
 
     public void Execute()
     {
+        //moved selected inventory item to the left
         inventory.inventoryManager.cycleItemLeft();
     }
 }

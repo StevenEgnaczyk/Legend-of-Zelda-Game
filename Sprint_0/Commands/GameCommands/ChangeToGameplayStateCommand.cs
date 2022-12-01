@@ -14,7 +14,9 @@ public class ChangeToGameplayStateCommand : ICommand
 
     public void Execute()
     {
+        //change current game state to the gameplay state from one of the screen states
         game.currentGameState = new Sprint_0.GameStates.GameplayState(game);
+        //change selected secondary weapon to the one selected from the inventory while in inventory state
         game.link.inventory.secondaryWeaponManager.SetSecondaryWeapon(game.link.inventory.inventoryManager.getSelectedSecondaryWeaponIndex());
         
     }

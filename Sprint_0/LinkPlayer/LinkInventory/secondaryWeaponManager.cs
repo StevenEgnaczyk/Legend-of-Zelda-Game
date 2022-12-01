@@ -204,7 +204,13 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         internal void setSecondaryWeaponTypeByInt(int selectedWeaponIndex)
         {
-            throw new NotImplementedException();
+            switch(selectedWeaponIndex)
+            {
+                case 0: secondaryWeapon = new Boomerang(link); break;
+                case 1: secondaryWeapon = new Bomb(link); break;
+                case 2: secondaryWeapon = new Bow(link); break;
+                case 3: secondaryWeapon = new Fire(link); break;
+            }
         }
     }
 }

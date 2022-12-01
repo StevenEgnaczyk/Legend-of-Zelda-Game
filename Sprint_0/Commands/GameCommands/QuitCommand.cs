@@ -10,6 +10,7 @@ public class QuitCommand : ICommand
 
 	public void Execute()
 	{
+		//quits whole game
 		Environment.Exit(0);
 	}
 }

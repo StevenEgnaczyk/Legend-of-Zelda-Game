@@ -15,6 +15,7 @@ public class LoadRoomCommand : ICommand
 
     public void Execute(int roomNumber)
     {
+        //loads room into the manager
         roomManager.loadRoom(roomNumber);
     }
 

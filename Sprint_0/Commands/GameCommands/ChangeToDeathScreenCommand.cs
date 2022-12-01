@@ -14,6 +14,7 @@ public class ChangeToDeathScreenCommand : ICommand
 
     public void Execute()
     {
+        //change game state to death
         game.currentGameState = new Sprint_0.GameStates.StartupScreenState(game);
         //this.roomManager.reset();
     }
