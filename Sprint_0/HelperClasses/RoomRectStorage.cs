@@ -20,6 +20,9 @@ public static class RoomRectStorage
 
     private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
     private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
+
+    private static Rectangle gameOverSourceRect = new Rectangle(0, 0, 1280, 1280);
+    private static Rectangle gameOverDestRect = new Rectangle(225, 350, 720, 720);
     
     //get methods for rectangles, some of which also serve to store the rectangles
     public static Rectangle getBasicRoom(int backgroundIndex)
@@ -179,5 +182,15 @@ public static class RoomRectStorage
     internal static Rectangle getStartupDestRect()
     {
         return startupDestRect;
+    }
+
+    internal static Rectangle getGameOverSourceRect()
+    {
+        return gameOverSourceRect;
+    }
+
+    internal static Rectangle getGameOverDestRect()
+    {
+        return gameOverDestRect;
     }
 }
