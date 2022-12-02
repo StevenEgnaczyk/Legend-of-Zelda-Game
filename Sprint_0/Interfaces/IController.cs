@@ -3,7 +3,7 @@ using System;
 
 public interface IController
 {
-
-	void ProcessInput(IState gameplayState);
+    //required methods for interface
+    void ProcessInput(IState gameplayState);
 
 }

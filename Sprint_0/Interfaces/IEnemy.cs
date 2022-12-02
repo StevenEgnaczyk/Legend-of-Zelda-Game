@@ -6,12 +6,14 @@ using System.Reflection.Metadata;
 
 public interface IEnemy
 {
+    //required type properties
     public IEnemyState state { get; set; }
     public int xPos { get; set; }
     public int yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
+    //required methods for interface
     void draw(SpriteBatch _spriteBatch);
     void update();
     void moveUp();
