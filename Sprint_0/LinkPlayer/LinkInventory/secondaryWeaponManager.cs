@@ -13,9 +13,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class secondaryWeaponManager
     {
+        //manager attributes
         public ISecondaryWeapon secondaryWeapon{ get; set; }
         public bool hasSecondaryWeapon = false;
 
+        //weapon list
         public enum secondaryWeapons
         {
             Boomerang,
@@ -35,6 +37,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         public bool weaponIsBomb = false;
         private Link link;
 
+        //sets default
         public secondaryWeaponManager(Link link)
         {
             this.link = link;
@@ -42,6 +45,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             secondaryWeapon = null;
         }
 
+        //adds weapon to link inventory
         public void AddSecondaryWeapon(secondaryWeapons weapon)
         {
             if (secondaryWeaponList.Count == 0)
@@ -57,12 +61,12 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //update manager for selected weapon or new weapons
         public void Update()
         {
             if (usingSecondaryWeapon)
             {
                 usingSecondaryWeapon = true;
-                //AudioStorage.GetArrow().Play();
                 secondaryWeapon.Update();
             }
 
@@ -75,6 +79,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //returns weapon type from the list above
         public ISecondaryWeapon getSecondaryWeaponTypeByEnum(secondaryWeapons secondaryWeapon)
         {
             return secondaryWeapon switch
@@ -87,7 +92,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             };
         }
             
-
+        //returns weapon type from integer index
         public ISecondaryWeapon getSecondaryWeaponTypeByInt(int secondaryWeapon)
         {
             return secondaryWeapon switch
@@ -100,6 +105,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             };
         }
 
+        //returns weapon respective integer index from the list above
         public int getSecondaryWeaponIndexByEnum(secondaryWeapons weapon)
         {
             return weapon switch
@@ -112,6 +118,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             };
         }
 
+        //returns weapon respective integer index from input of weapon type(not from list)
         public int getSecondaryWeaponIndexByEnum(ISecondaryWeapon weapon)
         {
             return weapon switch
@@ -124,6 +131,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             };
         }
 
+        //checks if the specified weapon type is selected
         internal bool HasSelectedWeapon(int selectedWeaponIndex)
         {
             return selectedWeaponIndex switch
@@ -146,21 +154,25 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //sets using var to false
         internal void stopUsingWeapon()
         {
             usingSecondaryWeapon = false;
         }
 
+        //returns current selected secondary weapon
         public ISecondaryWeapon getSecondaryWeapon()
         {
             return secondaryWeapon;
         }
 
+        //returns current selected secondary weapon's index
         public int getSecondaryWeaponIndex()
         {
             return getSecondaryWeaponIndexByEnum(secondaryWeapon);
         }
 
+        //initiates attack for respective selected weapon
         public void UseSecondaryWeapon()
         {
             if (!usingSecondaryWeapon && !link.inventory.primaryWeaponManager.usingPrimaryWeapon && secondaryWeapon != null)
@@ -170,11 +182,13 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //returns rectangle for selected weapon
         internal Rectangle getRect()
         {
             return new Rectangle(secondaryWeapon.getXPos(), secondaryWeapon.getYPos(), secondaryWeapon.getWidth(), secondaryWeapon.getHeight());
         }
 
+        //sets secondary weapon if it is in link's inventory, accounts for one time use of bomb
         internal void SetSecondaryWeapon(int weapon)
         {
             if (HasSelectedWeapon(weapon))
@@ -191,17 +205,20 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //returns if the selected weapon is a bomb or not
         public bool bombSelected()
         {
             return weaponIsBomb;
         }
 
+        //resets secondary weapons
         public void reset()
         {
             secondaryWeaponList = new List<secondaryWeapons>();
             secondaryWeapon = null;   
         }
 
+        //sets the secondary weapon from integer index
         internal void setSecondaryWeaponTypeByInt(int selectedWeaponIndex)
         {
             switch(selectedWeaponIndex)

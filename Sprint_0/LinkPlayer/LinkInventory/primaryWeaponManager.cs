@@ -14,6 +14,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class primaryWeaponManager
     { 
+        //manager attributes
         public IPrimaryWeapon primaryWeapon { get; set;}
 
         public WoodenSword woodenSword;
@@ -23,12 +24,15 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private Link link;
 
+        //sets default
         public primaryWeaponManager(Link link)
         {
             this.link = link;
             woodenSword = new WoodenSword(link);
             primaryWeapon = woodenSword;
         }
+
+        //initiates use of the wooden sword and plays audio
         public void UseWoodenSword()
         {
             if (!usingPrimaryWeapon)
@@ -40,6 +44,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //initiates use of the sword beam and plays audio
         public void UseSwordBeam()
         {
             if (!usingPrimaryWeapon)
@@ -59,6 +64,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //calls draw for respective weapon
         public void Draw(SpriteBatch spriteBatch)
         {
             if (usingPrimaryWeapon)
@@ -68,6 +74,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
+        //sets using var to false
         internal void stopUsingWeapon()
         {
             usingPrimaryWeapon = false;
@@ -78,6 +85,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return primaryWeapon;
         }
 
+        //checks to make sure link can use the weapon before initating it
         internal void UsePrimaryWeapon()
         {
             if (!usingPrimaryWeapon && !link.inventory.secondaryWeaponManager.usingSecondaryWeapon)
