@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class WoodenBoomerang : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -30,6 +30,7 @@ public class WoodenBoomerang : IItem
         man.removeItem(this);
     }
 
+    //draw method for the item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D woodenBoomerang = Texture2DStorage.GetItemSpritesheet();
@@ -39,6 +40,7 @@ public class WoodenBoomerang : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;
@@ -58,6 +60,8 @@ public class WoodenBoomerang : IItem
     {
         return this.yPos;
     }
+
+    //update for animation
     public void Update()
     {
         if (currentIndex == 0)

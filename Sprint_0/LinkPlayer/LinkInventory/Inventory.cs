@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class Inventory
 {
+    //inventory properties
     private Link Link;
     public primaryWeaponManager primaryWeaponManager;
     public secondaryWeaponManager secondaryWeaponManager;
@@ -36,6 +37,7 @@ public class Inventory
         inventoryManager = new InventoryManager(link, this);
     }
 
+    //adds item to inventory
     public void addItem(IItem item)
     {
         AudioStorage.GetGetItem().Play();
@@ -90,11 +92,13 @@ public class Inventory
         }
     }
 
+    //adds to count for DaBaby tokens
     private void addDaTokens()
     {
        numDaTokens++;
     }
 
+    //adds to count for keys
     private void addKeys()
     {
         numKeys++;
@@ -110,16 +114,19 @@ public class Inventory
         return numBombs;
     }
 
+    //adds to conut for bombs
     public void addBombs()
     {
         numBombs++;
     }
 
+    //adds to count for rupees
     public void addRupee()
     {
         numRupees++;
     }
 
+    //removes bomb, and deals with secondary weapon manager
     public void removeBombs()
     {
         numBombs--;
@@ -145,6 +152,7 @@ public class Inventory
         }
     }
 
+    //get methods
     public int getRupees()
     {
         return numRupees;

@@ -8,9 +8,9 @@ namespace Sprint_0.Interfaces
 {
     public interface IPrimaryWeapon
     {
+        //required methods for interface
         void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch);
         void Update();
-
         int getXPos();
         int getYPos();
         int getHeight();

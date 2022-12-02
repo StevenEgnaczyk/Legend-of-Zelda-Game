@@ -28,6 +28,7 @@ public class Arrow : IItem
         throw new NotImplementedException();
     }
 
+    //draw arrow item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D arrow = Texture2DStorage.GetItemSpritesheet();
@@ -36,7 +37,7 @@ public class Arrow : IItem
         spriteBatch.Draw(arrow, destRect, sourceRect, Color.White);
 
     }
-
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

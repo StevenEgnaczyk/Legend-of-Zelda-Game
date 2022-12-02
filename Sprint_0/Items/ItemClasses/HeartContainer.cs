@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class HeartContainer : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -29,6 +29,7 @@ public class HeartContainer : IItem
         throw new NotImplementedException();
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D heartContainer = Texture2DStorage.GetItemSpritesheet();
@@ -37,6 +38,8 @@ public class HeartContainer : IItem
         spriteBatch.Draw(heartContainer, destRect, sourceRect, Color.White);
 
     }
+
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

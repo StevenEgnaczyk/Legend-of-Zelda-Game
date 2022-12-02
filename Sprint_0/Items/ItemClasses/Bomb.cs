@@ -28,6 +28,7 @@ public class Bomb : IItem
         man.removeItem(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D bomb = Texture2DStorage.GetItemSpritesheet();
@@ -36,6 +37,7 @@ public class Bomb : IItem
         spriteBatch.Draw(bomb, destRect, sourceRect, Color.White);
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

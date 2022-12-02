@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Bow : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -26,7 +26,8 @@ public class Bow : IItem
     {
         man.removeItem(this);
     }
-
+    
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D bow = Texture2DStorage.GetItemSpritesheet();
@@ -36,6 +37,7 @@ public class Bow : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

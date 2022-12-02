@@ -9,16 +9,19 @@ public class DamagedLinkState : ILinkState
 {
     private Link link;
 
+    //buffers for animation
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 20;
 
+    //set default
     public DamagedLinkState(Link link)
     {
         this.link = link;
         currentIndex = 0;
     }
 
+    //action methods empty because link cannot make an action while damaged
     public void TurnLeft()
     {
     }
@@ -51,6 +54,7 @@ public class DamagedLinkState : ILinkState
 
     }
 
+    //update for animation
     public void Update()
     {
         bufferIndex++;
