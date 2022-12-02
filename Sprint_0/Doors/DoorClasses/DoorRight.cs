@@ -26,7 +26,7 @@ public class DoorRight : IDoor
     {
         this.xPosition = xPos;
         this.yPosition = yPos;
-        this.location = 1;
+        this.location = GlobalVariables.DOOR_RIGHT_LOCATION;
 
         //Set the state of the door
         switch (index)
@@ -58,14 +58,14 @@ public class DoorRight : IDoor
         //Set the width and height based on the locked/unlocked state
         if (this.doorState == IDoor.state.locked || this.doorState == IDoor.state.blank || this.doorState == IDoor.state.closed || this.doorState == IDoor.state.bombed)
         {
-            this.width = GlobalVariables.DOOR_FULL_WIDTH/2;
-            this.height = GlobalVariables.DOOR_FULL_HEIGHT/2;
+            this.width = GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT/GlobalVariables.TWO;
         }
         else
         {
-            this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/4;
-            this.width = GlobalVariables.DOOR_FULL_WIDTH/2;
-            this.height = GlobalVariables.DOOR_FULL_HEIGHT/2;
+            this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/(GlobalVariables.TWO*GlobalVariables.TWO);
+            this.width = GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
+            this.height = GlobalVariables.DOOR_FULL_HEIGHT/GlobalVariables.TWO;
         }
 
         //Set the locked and teleport variables
@@ -132,15 +132,15 @@ public class DoorRight : IDoor
     /* Extraneous commands */
     public void Unlock()
     {
-        this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/2;
-        this.width -= GlobalVariables.DOOR_FULL_HEIGHT/2;
+        this.xPosition += GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
+        this.width -= GlobalVariables.DOOR_FULL_HEIGHT/GlobalVariables.TWO;
         doorState = IDoor.state.open;
     }
 
     public void Bomb()
     {
-        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / 2;
-        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / 2;
+        this.height -= GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
+        this.yPosition += GlobalVariables.DOOR_FULL_HEIGHT / GlobalVariables.TWO;
         doorState = IDoor.state.bombed;
     }
 

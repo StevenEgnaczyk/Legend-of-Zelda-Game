@@ -15,6 +15,7 @@ public class UseSecondaryWeaponCommand : ICommand
 
 	public void Execute()
 	{
+		//calls secondary weapon method for link
 		linkPlayer.UseSecondaryWeapon();
     }
 }

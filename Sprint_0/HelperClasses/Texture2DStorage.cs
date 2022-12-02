@@ -61,6 +61,7 @@ public static class Texture2DStorage
 
     }
 
+	//get methods for spritesheets
 	public static Texture2D GetDaBaby()
 	{
 		return black;

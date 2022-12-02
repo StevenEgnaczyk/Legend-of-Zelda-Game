@@ -15,6 +15,7 @@ public class TurnPlayerUpCommand : ICommand
 
 	public void Execute()
 	{
+		//change link state to up
 		linkPlayer.TurnUp();
     }
 }

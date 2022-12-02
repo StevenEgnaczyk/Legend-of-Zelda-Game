@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public static class LinkRectStorage
 {
+    //declare lists of rectangles for link and link's uses
     private static List<Rectangle> damagedLinkSprites = new List<Rectangle>()
     {
         new Rectangle(214, 11, 13, 16),
@@ -161,6 +162,8 @@ public static class LinkRectStorage
             new Rectangle(23, 97, 3, 11),
         };
 
+
+    //get methods for link rectangle lists
     public static Rectangle getDamagedLinkSprites(int index)
     {
         return damagedLinkSprites[index];

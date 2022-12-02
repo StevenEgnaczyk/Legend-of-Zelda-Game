@@ -11,6 +11,7 @@ namespace Sprint_0.GameStates
 {
     public class StartupScreenState : IState
     {
+        //state properties
         private Game1 game;
         private bool transitioning;
         private ChangeToGameplayStateCommand command;
@@ -25,12 +26,14 @@ namespace Sprint_0.GameStates
 
         }
 
+        //set transition
         public void changeToTransitioning()
         {
             this.transitioning = true;
 
         }
 
+        //draw screen
         public void Draw(SpriteBatch spriteBatch)
         {
             if (transitioning)
@@ -43,6 +46,7 @@ namespace Sprint_0.GameStates
             spriteBatch.Draw(startUpScreen, startupDestRect, startupSourceRect,new Color(Color.White, (int) alpha));
         }
 
+        //wait for input then execute transition
         public void Update()
         {
             if (transitioning)

@@ -15,6 +15,7 @@ public class TurnPlayerRightCommand : ICommand
 
 	public void Execute()
 	{
+		//change link state to right
 		linkPlayer.TurnRight();
     }
 }

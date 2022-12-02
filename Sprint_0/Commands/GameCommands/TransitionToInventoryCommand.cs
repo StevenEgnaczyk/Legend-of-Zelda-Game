@@ -16,6 +16,7 @@ namespace Sprint_0.Commands.GameCommands
 
         public void Execute()
         {
+            //begin transition animaiton from game to inventory
             theGame.currentGameState.changeToTransitioning();
 
         }

@@ -9,6 +9,7 @@ public class MuteCommand : ICommand
 
 	public void Execute()
 	{
+		//change mediaplayer volume to zero
 		MediaPlayer.Volume = 0.0f;
 	}
 }

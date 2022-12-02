@@ -98,4 +98,9 @@ public class ItemManager
     {
         new Rupee(room.getItemManager(), xPos, yPos);
     }
+
+    internal void dropDaCoin(int xPos, int yPos)
+    {
+        new DaCoin(room.getItemManager(), xPos, yPos);
+    }
 }

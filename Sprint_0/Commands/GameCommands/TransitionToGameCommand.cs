@@ -14,6 +14,7 @@ public class TransitionToGameCommmand : ICommand
 
     public void Execute()
     {
+        //begin transition animation going from inventory to game
         theGame.currentGameState.changeToTransitioning();
         
     }

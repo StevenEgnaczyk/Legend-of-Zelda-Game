@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 public static class HUDRectStorage
 {
+    //declare rectangles and rectangle lists for all HUD uses
     private static Rectangle basicHUD = new Rectangle(258, 11, 256, 56);
     private static Rectangle mapIcon = new Rectangle(519, 126, 4, 4);
 
@@ -82,6 +83,7 @@ public static class HUDRectStorage
 
     private static Rectangle emptyWeaponSourceRect = new Rectangle(484, 112, 8, 16);
 
+    //get methods for the HUD rectangles
     public static Rectangle getBasicHUD()
     {
         return basicHUD;
