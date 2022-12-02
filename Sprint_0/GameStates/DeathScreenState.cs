@@ -9,6 +9,7 @@ namespace Sprint_0.GameStates
 {
     public class DeathScreenState : IState
     {
+        //state properties
         private Game1 game;
         private bool transitioning;
         private int currentOffset;
@@ -27,6 +28,7 @@ namespace Sprint_0.GameStates
 
         }
 
+        //drawing death state
         public void Draw(SpriteBatch spriteBatch)
         {
             game.roomManager.drawRoom(spriteBatch);
@@ -42,6 +44,7 @@ namespace Sprint_0.GameStates
             }
         }
 
+        //updating state to see transition or stable state
         public void Update()
         {
 

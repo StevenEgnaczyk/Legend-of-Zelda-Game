@@ -11,14 +11,15 @@ namespace Sprint_0.GameStates
 {
     public class RoomTransitionState : IState
     {
-
+        //state properties
         private Game1 game;
         private bool fadeOut;
         private ChangeToGameplayStateCommand command;
         private int room;
 
         float alpha;
-
+        
+        //transition between rooms
         public RoomTransitionState(Game1 game, int roomToTeleport)
         {
             this.game = game;
@@ -29,6 +30,7 @@ namespace Sprint_0.GameStates
 
         }
 
+        //set transition
         public void changeToTransitioning()
         {
             this.alpha = 255;

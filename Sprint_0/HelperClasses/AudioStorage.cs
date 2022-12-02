@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 public static class AudioStorage
 {
+    //declare public sounds
     public static Song song;
     public static SoundEffect sword_Slash;
     public static SoundEffect sword_Shoot;
@@ -24,6 +25,7 @@ public static class AudioStorage
     public static SoundEffect get_item;
     public static SoundEffect lets_go;
 
+    //construct sounds from content loader
     public static void LoadAllSounds(ContentManager content)
     {
         song = content.Load<Song>("LOZ_title");
@@ -40,6 +42,7 @@ public static class AudioStorage
         lets_go = content.Load<SoundEffect>("Lets_go");
     }
 
+    //get methods
     public static Song GetSong()
     {
         return song;

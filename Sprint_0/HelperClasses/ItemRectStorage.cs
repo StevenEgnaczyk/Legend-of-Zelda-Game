@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public static class ItemRectStorage
 {
+    //declare rectangle lists for all items
     private static List<Rectangle> upArrowSprite = new List<Rectangle>()
     {
         new Rectangle(154, 0, 5, 16)
@@ -99,7 +100,7 @@ public static class ItemRectStorage
     private static Rectangle candleSprite = new Rectangle(160, 0, 8, 16);
     private static Rectangle daCoin = new Rectangle(0, 18, 32, 32);
 
-
+    //get methods for item rectangles
     public static Rectangle getUpArrowSprite()
     {
         return upArrowSprite[0];
