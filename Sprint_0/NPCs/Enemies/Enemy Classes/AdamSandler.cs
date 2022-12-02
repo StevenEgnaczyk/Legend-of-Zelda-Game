@@ -81,7 +81,7 @@ public class AdamSandler : IEnemy
 
     public void shootProjectile()
     {
-        //No projectiles for Mr. Sandler
+        //No projectiles for Mr. Sandler maybe add something funny
     }
 
     public void hurt()
