@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public static class RoomTeleportationManager
 {
+    //room progression for the top door
     public static int topTeleporter(int currentRoomNum)
     {
         return currentRoomNum switch
@@ -27,6 +28,7 @@ public static class RoomTeleportationManager
 
     }
 
+    //room progression for the right door
     public static int rightTeleporter(int currentRoomNum)
     {
         return currentRoomNum switch
@@ -50,6 +52,7 @@ public static class RoomTeleportationManager
 
     }
 
+    //room progression for left door
     public static int leftTeleporter(int currentRoomNum)
     {
         return currentRoomNum switch
@@ -72,6 +75,7 @@ public static class RoomTeleportationManager
         };
     }
 
+    //room progression for bottom door
     public static int bottomTeleporter(int currentRoomNum)
     {
         return currentRoomNum switch

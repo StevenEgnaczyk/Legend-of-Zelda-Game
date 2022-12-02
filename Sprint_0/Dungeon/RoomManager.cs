@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 public class RoomManager
 {
-    //
+    //room attributes
     private Link link;
     private int roomNumber;
     public Room currentRoom;
@@ -20,6 +20,7 @@ public class RoomManager
     private static int HUD_SIZE = 224;
     private int background;
 
+    //lists for room memory
     public Dictionary<int, int> backgroundMemory;
     public Dictionary<int, List<IDoor>> doorMemory;
     public Dictionary<int, List<ITile>> tileMemory;
@@ -63,6 +64,7 @@ public class RoomManager
         currentRoom = new Room(roomNumber, spriteBatch, this.link, this);
     }
 
+    //reset memory for death
     public void reset()
     {
         roomNumber = 1;
@@ -76,6 +78,7 @@ public class RoomManager
         puzzleManager = new PuzzleManager(this);
     }
 
+    //draws tiles
     public void drawBackground(SpriteBatch spriteBatch)
     {
         Texture2D dungeonTiles = Texture2DStorage.GetDungeonTileset();
@@ -85,6 +88,7 @@ public class RoomManager
 
     }
 
+    //save memory for each room
     internal void saveRoomInfo()
     {
         int roomNum = currentRoom.getIndex();

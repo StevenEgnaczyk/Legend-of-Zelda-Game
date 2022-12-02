@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public static class RoomRectStorage
 {
+    //int for the HUD offset
     private static int HUDHeight = 224;
 
     private static List<Rectangle> basicRoomRect = new List<Rectangle>()
@@ -19,6 +20,8 @@ public static class RoomRectStorage
 
     private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
     private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
+    
+    //get methods for rectangles, some of which also serve to store the rectangles
     public static Rectangle getBasicRoom(int backgroundIndex)
     {
 
