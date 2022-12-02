@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -12,59 +13,52 @@ namespace Sprint_0.GameStates
         //state properties
         private Game1 game;
         private bool transitioning;
-        private int currentOffset;
-        private ChangeToDeathScreenCommand command;
+        private ChangeToGameplayStateCommand command;
+        float a;
 
         public DeathScreenState(Game1 game)
         {
             this.game = game;
-            //this.transitioning = false;
-            command = new ChangeToDeathScreenCommand(game);
+            this.transitioning = false;
+            command = new ChangeToGameplayStateCommand(game);
+            a = 255f;
 
         }
 
         public void changeToTransitioning()
         {
-
+            this.transitioning = true;
         }
 
         //drawing death state
         public void Draw(SpriteBatch spriteBatch)
         {
-            game.roomManager.drawRoom(spriteBatch);
-            game.link.Draw(spriteBatch);
-
             if (transitioning)
             {
-                game.HUD.Draw(spriteBatch, 0, 704 + currentOffset);
-                game.link.inventory.Draw(spriteBatch, 0, currentOffset);
-            } else
-            {
-                game.HUD.Draw(spriteBatch, 0, currentOffset);
+                game.roomManager.drawRoom(spriteBatch);
             }
+            Texture2D startUpScreen = Texture2DStorage.GetDeeathScreenSheet();
+            Rectangle gameOverSourceRect = RoomRectStorage.getGameOverSourceRect();
+            Rectangle gameOverDestRect = RoomRectStorage.getGameOverDestRect();
+            spriteBatch.Draw(startUpScreen, gameOverDestRect, gameOverSourceRect,new Color(Color.White, (int) a));
         }
 
         //updating state to see transition or stable state
         public void Update()
         {
-
-
             if (transitioning)
             {
-                this.currentOffset+=10;
-                if (this.currentOffset >= 0)
+                a -= 5f;
+                if (a <= 0)
                 {
-                    this.transitioning = false;
-                    this.command.Execute();
+                    game.roomManager.loadRoom(game.link.currentRoom);
+                    //game.roomManager.loadRoom(12);
+                    command.Execute();
                 }
             } else
             {
                 //Process Keyboard Input
                 game.keyboardController.ProcessInput(this);
-                game.mouseController.ProcessInput(this);
-
-                game.link.Update();
-                game.roomManager.Update();
             }
         }
     }

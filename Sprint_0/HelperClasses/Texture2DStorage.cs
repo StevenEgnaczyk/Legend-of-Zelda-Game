@@ -22,6 +22,7 @@ public static class Texture2DStorage
 	private static Texture2D deathSpriteSheet;
 	private static Texture2D daBabySpriteSheet;
 	private static Texture2D startupSpriteSheet;
+	private static Texture2D deathScreen;
 	private static Texture2D black;
 
     // More private static Texture2D fields follow
@@ -39,25 +40,8 @@ public static class Texture2DStorage
 		deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
 		daBabySpriteSheet = content.Load<Texture2D>("DaBaby");
 		startupSpriteSheet = content.Load<Texture2D>("TitleScreen");
+		deathScreen = content.Load<Texture2D>("DeathScreen");
 		black = content.Load<Texture2D>("Black");
-
-
-
-        /*
-		 * item1Sprite = content.Load<Texture2D>("item1");
-			item2Sprite = content.Load<Texture2D>("item2");
-			item4Sprite = content.Load<Texture2D>("item4");
-			item5Sprite = content.Load<Texture2D>("item5");
-			item6Sprite = content.Load<Texture2D>("item6");
-			item7Sprite = content.Load<Texture2D>("item7");
-			item8Sprite = content.Load<Texture2D>("item8");
-			item9Sprite = content.Load<Texture2D>("item9");
-			item10Sprite = content.Load<Texture2D>("item10");
-			item11Sprite = content.Load<Texture2D>("item11");
-			item12Sprite = content.Load<Texture2D>("item12");
-			item13Sprite = content.Load<Texture2D>("item13");
-		 * 
-		 */
 
     }
 
@@ -109,5 +93,10 @@ public static class Texture2DStorage
 	internal static Texture2D GetStartupSpriteSheet()
 	{
 		return startupSpriteSheet;
+	}
+
+	internal static Texture2D GetDeeathScreenSheet()
+	{
+		return deathScreen;
 	}
 }
