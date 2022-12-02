@@ -9,7 +9,7 @@ namespace Sprint_0.GameStates
 {
     public class GameplayState : IState
     {
-
+        //gameplay state properties
         private Game1 game;
         private bool transitioning;
         private int currentOffset;
@@ -23,12 +23,14 @@ namespace Sprint_0.GameStates
 
         }
 
+        //set transition
         public void changeToTransitioning()
         {
             this.transitioning = true;
             this.currentOffset = -704;
         }
 
+        //call room manager to get room drawn and handle transition to inventory
         public void Draw(SpriteBatch spriteBatch)
         {
             game.roomManager.drawRoom(spriteBatch);

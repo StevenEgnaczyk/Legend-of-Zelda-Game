@@ -9,7 +9,7 @@ namespace Sprint_0.GameStates
 {
     public interface IState
     {
-
+        //IState required methods
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
 

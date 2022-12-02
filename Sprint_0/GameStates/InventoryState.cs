@@ -9,7 +9,7 @@ namespace Sprint_0.GameStates
 {
     public class InventoryState : IState
     {
-
+        //state properties
         private Game1 game;
         private bool transitioning;
         private int currentOffset;
@@ -22,12 +22,14 @@ namespace Sprint_0.GameStates
 
         }
 
+        //set transition
         public void changeToTransitioning()
         {
             this.transitioning = true;
             this.currentOffset = 0;
         }
 
+        //handles drawing transition or inventory drawing
         public void Draw(SpriteBatch spriteBatch)
         {
 
