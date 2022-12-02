@@ -134,7 +134,6 @@ public class DoorLeft : IDoor
     {
         this.width -= GlobalVariables.DOOR_FULL_WIDTH/2;
         this.doorState = IDoor.state.open;
-        Update();
     }
 
     public void Bomb()
