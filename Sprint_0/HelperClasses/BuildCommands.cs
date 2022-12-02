@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 public class BuildCommands
 {
+
+    //declare commands
     public Dictionary<Keys, ICommand> gameplayControllerMappings;
     public Dictionary<Keys, ICommand> inventoryControllerMappings;
     public Dictionary<Keys, ICommand> startupControllerMappings;
@@ -52,6 +54,7 @@ public class BuildCommands
 
     public Keys[] state;
 
+    //construct commands and register them
     public BuildCommands(Link linkPlayer, Game1 game)
     {
         gameplayControllerMappings = new Dictionary<Keys, ICommand>();
@@ -113,16 +116,19 @@ public class BuildCommands
 
     }
 
+    //method to add commands to gameplay dictionary
     public void RegisterGameplayCommand(Keys key, ICommand command)
     {
         gameplayControllerMappings.Add(key, command);
     }
 
+    //method to add commands to inventory dictionary
     public void RegisterInventoryCommand(Keys key, ICommand command)
     {
         inventoryControllerMappings.Add(key, command);
     }
 
+    //methjod to add commands to startup dictionary
     public void RegisterStartupCommand(Keys key, ICommand command)
     {
         startupControllerMappings.Add(key, command);

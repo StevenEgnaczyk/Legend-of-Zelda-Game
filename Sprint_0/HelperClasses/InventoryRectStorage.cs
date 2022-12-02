@@ -11,6 +11,7 @@ using static Sprint_0.LinkPlayer.LinkInventory.secondaryWeaponManager;
 
 public static class InventoryRectStorage
 {
+    //declare rectangles and rectangle lists for all inventory uses
     private static Rectangle baseInventoryDestRect = new Rectangle(0 * 4, 0 * 4, 256 * 4, 89 * 4);
     private static Rectangle baseInventorySourceRect = new Rectangle(1, 11, 256, 88);
 
@@ -116,7 +117,8 @@ public static class InventoryRectStorage
         new Rectangle((177 * 4), (47 * 4), (16 * 4), (16 * 4)),
         new Rectangle((201 * 4), (47 * 4), (16 * 4), (16 * 4)),
     };
-
+    
+    //get methods for inventory rectangles
     public static Rectangle getDungeonMapDestinationRectangles(int x, int y)
     {
         return new Rectangle((128 + (x * 8)) * 4, ((8 + (y * 8)) * 4) + baseInventoryDestRect.Height, 8 * 4, 8 * 4);

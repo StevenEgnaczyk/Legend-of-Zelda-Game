@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public static class Buffer
 {
-    
+    //buffer class for animation
     public static bool itemBuffer(int[] bufferInts)
     {
         bool ready = false;

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public static class GlobalVariables
 {
+    //declare global veriables to remove magic numbers from other classes
     public static int HITBOX_OFFSET = 8;
     public static int LINK_STARTING_X_ENTERING_BOTTOM = 475;
     public static int LINK_STARTING_Y_ENTERING_BOTTOM = 350;
