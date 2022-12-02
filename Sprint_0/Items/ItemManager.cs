@@ -32,16 +32,19 @@ public class ItemManager
         sb = spriteBatch;
     }
 
+    //add item to list
     public void addItem(IItem item)
     {
         itemList.Add(item);
     }
 
+    //remove item to list
     public void removeItem(IItem item)
     {
        itemList.Remove(item);
     }
 
+    //return item found by index
     public void getItemByIndex(ItemManager itemManager, int itemIndex, int row, int col)
     {
         switch (itemIndex)
@@ -74,6 +77,7 @@ public class ItemManager
         }
     }
 
+    //calls the respective draws for each item
     public void Draw(SpriteBatch spriteBatch)
     {
 
@@ -84,16 +88,19 @@ public class ItemManager
 
     }
 
+    //creates a new key in the defined position
     internal void dropKey(int xPos, int yPos)
     {
         new Key(room.getItemManager(), xPos, yPos);
     }
 
+    //creates a new heart in the defined position
     internal void dropHeart(int xPos, int yPos)
     {
         new Heart(room.getItemManager(), xPos, yPos);
     }
 
+    //creates a new rupee in the defined position
     internal void dropRupee(int xPos, int yPos)
     {
         new Rupee(room.getItemManager(), xPos, yPos);

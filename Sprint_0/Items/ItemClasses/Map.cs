@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Map : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 32;
@@ -29,6 +29,7 @@ public class Map : IItem
         man.removeItem(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D map = Texture2DStorage.GetItemSpritesheet();
@@ -38,6 +39,7 @@ public class Map : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

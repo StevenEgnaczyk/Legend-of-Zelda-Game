@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Key : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -28,6 +28,7 @@ public class Key : IItem
         man.removeItem(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D key = Texture2DStorage.GetItemSpritesheet();
@@ -36,6 +37,8 @@ public class Key : IItem
         spriteBatch.Draw(key, destRect, sourceRect, Color.White);
 
     }
+
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

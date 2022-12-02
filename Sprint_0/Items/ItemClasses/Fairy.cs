@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Fairy : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -34,6 +34,7 @@ public class Fairy : IItem
         throw new NotImplementedException();
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D fairy = Texture2DStorage.GetItemSpritesheet();       
@@ -43,6 +44,7 @@ public class Fairy : IItem
         spriteBatch.Draw(fairy, destRect, sourceRect, Color.White);
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;
@@ -63,6 +65,7 @@ public class Fairy : IItem
         return this.yPos;
     }
 
+    //update for animation
     public void Update()
     {
         if (currentIndex == 0)
