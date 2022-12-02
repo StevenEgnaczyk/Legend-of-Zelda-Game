@@ -90,4 +90,9 @@ public class EnemySpriteFactory
 		return new AquamentusFireballSprite(bossSpritesheet);
 	}
 
+	public IEnemySprite CreateAdamSandlerSprite()
+	{
+		return new AdamSandlerSprite(enemySpritesheet);
+	}
+
 }
