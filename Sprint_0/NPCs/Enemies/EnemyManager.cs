@@ -63,7 +63,7 @@ public  class EnemyManager
 
 
     }
-
+    //seperate remove Enemy methods to prevent extra items from dropping
     public void removeEnemy(GoriyaBoomerang gb)
     {
         enemiesList.Remove(gb);
@@ -71,6 +71,22 @@ public  class EnemyManager
 
     public void removeEnemy(AquamentusFireball AF) {
         enemiesList.Remove(AF);
+    }
+
+    public void removeEnemy(DeathAnimation da)
+    {
+        enemiesList.Remove(da);
+        if (enemiesList.Count == 0)
+        {
+            ItemManager.instance.dropKey(da.xPos, da.yPos);
+            PuzzleManager.instance.managePuzzles();
+        }
+    }
+
+    public void removeEnemy(AdamSandler sandler)
+    {
+        enemiesList.Remove(sandler);
+        ItemManager.instance.dropDaCoin(sandler.xPos, sandler.yPos);
     }
 
     public void Update()
@@ -122,6 +138,9 @@ public  class EnemyManager
                 break;
             case 29:
                 new Flame(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
+            case 40:
+                new AdamSandler(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
             default:
                 break;

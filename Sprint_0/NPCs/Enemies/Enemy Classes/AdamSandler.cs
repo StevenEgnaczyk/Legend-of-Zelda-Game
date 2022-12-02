@@ -24,7 +24,7 @@ public class AdamSandler : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 5;
+    private const int enemySpeed = 100;
     private EnemyManager man;
     private bool damaged;
     private int damageBuffer;
@@ -41,7 +41,7 @@ public class AdamSandler : IEnemy
 
         randTime = 0;
 
-        sprite = EnemySpriteFactory.instance.CreateAquamentusSprite();
+        sprite = EnemySpriteFactory.instance.CreateAdamSandlerSprite();
         man = manager;
 
         //Enemy adds itself to the list of enemies
@@ -64,9 +64,15 @@ public class AdamSandler : IEnemy
         state.moveRight(this);
     }
 
-    public void moveUp() { }
+    public void moveUp()
+    {
+        state.moveUp(this);
+    }
 
-    public void moveDown() { }
+    public void moveDown() 
+    {
+        state.moveDown(this);
+    }
 
     public void idle()
     {
@@ -75,10 +81,7 @@ public class AdamSandler : IEnemy
 
     public void shootProjectile()
     {
-        IEnemy fireball1 = new AquamentusFireball(man, this, 0);
-        IEnemy fireball2 = new AquamentusFireball(man, this, 1);
-        IEnemy fireball3 = new AquamentusFireball(man, this, 2);
-
+        //No projectiles for Mr. Sandler
     }
 
     public void hurt()
@@ -110,17 +113,7 @@ public class AdamSandler : IEnemy
      
         if (Buffer.itemBuffer(bufferVals))
         {
-            if( xPos < 564)
-            {
-                
-                state.moveRight(this);
-
-            } else if (xPos > 704)
-            {
-                
-                state.moveLeft(this);
-
-            }
+            
 
             state.update();
             sprite.update(xPos, yPos, state.facingDirection, randTime);
