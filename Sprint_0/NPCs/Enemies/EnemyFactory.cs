@@ -95,4 +95,8 @@ public class EnemySpriteFactory
 		return new AdamSandlerSprite(enemySpritesheet);
 	}
 
+	public IEnemySprite CreateAdamSandlerGolfBallSprite()
+	{
+		return new AdamSandlerGolfBallSprite(bossSpritesheet);
+	}
 }

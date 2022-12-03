@@ -150,7 +150,7 @@ public class Aquamentus : IEnemy
 
     public void changeToRandState()
     {
-        man.randomStateGenerator(this, 2, 5);
+        man.randomStateGenerator(this, 2, 7);
     }
 
 
