@@ -81,7 +81,11 @@ public class AdamSandler : IEnemy
 
     public void shootProjectile()
     {
-        //No projectiles for Mr. Sandler maybe add something funny
+        IEnemy golfball1 = new AdamSandlerGolfBall(man, this, 0);
+        IEnemy golfball2 = new AdamSandlerGolfBall(man, this, 1);
+        IEnemy golfball3 = new AdamSandlerGolfBall(man, this, 2);
+        IEnemy golfball4 = new AdamSandlerGolfBall(man, this, 3);
+
     }
 
     public void hurt()
@@ -143,7 +147,7 @@ public class AdamSandler : IEnemy
 
     public void changeToRandState()
     {
-        man.randomStateGenerator(this, 2, 5);
+        man.randomStateGenerator(this, 0, 7);
     }
 
 

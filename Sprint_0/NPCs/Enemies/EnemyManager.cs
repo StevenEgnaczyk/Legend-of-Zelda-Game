@@ -69,10 +69,13 @@ public  class EnemyManager
         enemiesList.Remove(gb);
     }
 
-    public void removeEnemy(AquamentusFireball AF) {
-        enemiesList.Remove(AF);
+    public void removeEnemy(AquamentusFireball af) {
+        enemiesList.Remove(af);
     }
-
+    public void removeEnemy(AdamSandlerGolfBall gb)
+    {
+        enemiesList.Remove(gb);
+    }
     public void removeEnemy(DeathAnimation da)
     {
         enemiesList.Remove(da);
@@ -173,8 +176,17 @@ public  class EnemyManager
 
             e.state.moveRight(e);
 
-        } else if (randVal == 4)
+        }else if (randVal == 4)
         {
+
+            e.shootProjectile();
+        }else if(randVal == 5)
+        {
+
+            e.shootProjectile();
+        }else if(randVal == 6)
+        {
+
             e.shootProjectile();
         }
     }
