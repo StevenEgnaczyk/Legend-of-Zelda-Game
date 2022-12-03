@@ -12,6 +12,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class Fire : ISecondaryWeapon
     {
+        //weapon properties
         private Link link;
         private Vector2 start;
         private Vector2 end;
@@ -32,6 +33,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private int bufferIndex = 0;
         private int bufferMax = 20;
 
+        //state list
         enum startingState
         {
             Down,
@@ -54,6 +56,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             this.link = link;
         }
 
+        //gets target rect
         private Vector2 getTargetRect(Vector2 startRect)
         {
             Vector2 targetRect = new Vector2();
@@ -88,6 +91,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return targetRect;
         }
 
+        //gets starting rect
         private Vector2 getStartingRect()
         {
             Vector2 startingRect = new Vector2();
@@ -129,6 +133,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //update for animation
         public void Update()
         {
 
@@ -204,6 +209,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return width;
         }
 
+        //attacks with link's direction
         public void Attack()
         {
             if (link.state.ToString().Equals("DownMovingLinkState"))

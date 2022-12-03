@@ -12,6 +12,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class Boomerang : ISecondaryWeapon
     {
+        //weapon properties
         private Link link;
         private Vector2 start;
         private Vector2 end;
@@ -59,6 +60,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //draw for weapon
         public void Draw(SpriteBatch spriteBatch)
         {
             boomerang = Texture2DStorage.GetItemSpritesheet();
@@ -69,6 +71,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //updates for animation
         public void Update()
         {
             if (goingOut && Math.Abs(end.X - current.X) < 1 && Math.Abs(end.Y - current.Y) < 1)
@@ -155,6 +158,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //gets the target rectangle
         public Vector2 getTargetRect(Vector2 startRect)
         {
             Vector2 targetRect = new Vector2();
@@ -190,6 +194,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //gets the starting rectangle
         public Vector2 getStartingRect()
         {
             Vector2 startingRect = new Vector2();
@@ -252,6 +257,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return width;
         }
 
+        //attacks from links correct state direction
         public void Attack()
         {
 

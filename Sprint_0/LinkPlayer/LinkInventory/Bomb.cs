@@ -12,6 +12,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class Bomb : ISecondaryWeapon
     {
+        //bomb properties
         private Link link;
         private Texture2D bomb;
         private Vector2 startingRect;
@@ -23,7 +24,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private int maxFrames = 4;
         private int bufferIndex = 0;
         private int bufferMax = 50;
-
+        
+        //list of states
         enum startingState
         {
             Down,
@@ -47,6 +49,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         { 
             this.link = link;
         }
+
+        //gets starting rect
         private Vector2 getStartingRect()
         {
             Vector2 startingRect = new();
@@ -90,6 +94,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+//update for animation, also plays sound
         public void Update()
         {
             if (bombSpriteIndex == 0)
@@ -145,6 +150,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             return width;
         }
 
+        //attacks checking starting direction
         public void Attack()
         {
                 if (link.state.ToString().Equals("DownMovingLinkState"))

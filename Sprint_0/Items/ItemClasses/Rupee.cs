@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Rupee : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -35,6 +35,7 @@ public class Rupee : IItem
         this.man.removeItem(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D rupee = Texture2DStorage.GetItemSpritesheet();
@@ -53,6 +54,7 @@ public class Rupee : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;
@@ -72,6 +74,8 @@ public class Rupee : IItem
     {
         return this.yPos;
     }
+
+    //update for animation
     public void Update()
     {
         if (currentIndex == 0)

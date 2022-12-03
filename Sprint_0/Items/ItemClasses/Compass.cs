@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Compass : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -27,6 +27,7 @@ public class Compass : IItem
         man.removeItem(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D compass = Texture2DStorage.GetItemSpritesheet();
@@ -36,6 +37,7 @@ public class Compass : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

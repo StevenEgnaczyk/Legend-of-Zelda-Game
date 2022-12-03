@@ -9,16 +9,19 @@ public class UpMovingLinkState : ILinkState
 {
     private Link link;
 
+    //buffer for animation
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
+    //set defaults
     public UpMovingLinkState(Link link)
     {
         this.link = link;
         currentIndex = 0;
     }
 
+    //action methods for state change
     public void TurnLeft()
     {
         link.state = new LeftMovingLinkState(link);
@@ -29,6 +32,7 @@ public class UpMovingLinkState : ILinkState
         link.state = new RightMovingLinkState(link);
     }
 
+    //handles animation for walking up
     public void TurnUp()
     {
         link.yPos -= link.linkSpeed;

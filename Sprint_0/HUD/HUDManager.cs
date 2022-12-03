@@ -22,6 +22,7 @@ namespace Sprint_0.HUD
 
         }
 
+        //draws all HUD aspects with default placement
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawBasicHUD(spriteBatch, 0, 0);
@@ -32,7 +33,8 @@ namespace Sprint_0.HUD
             DrawLife(spriteBatch, 0, 0);
 
         }
-
+        
+        //draws all HUD aspects with defined offset
         public void Draw(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             DrawBasicHUD(spriteBatch, xOffset, yOffset);
@@ -44,6 +46,7 @@ namespace Sprint_0.HUD
             
         }
 
+        //Draws text for HUD with defined offset
         private void DrawLevelText(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
@@ -60,6 +63,7 @@ namespace Sprint_0.HUD
 
         }
 
+        //Draws health bar
         private void DrawLife(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
@@ -97,6 +101,7 @@ namespace Sprint_0.HUD
             }
         }
 
+        //Draws weapon selection for link HUD
         private void DrawWeapons(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             DrawPrimaryWeapon(spriteBatch, xOffset, yOffset);
@@ -122,6 +127,7 @@ namespace Sprint_0.HUD
             
         }
 
+        //draws item inventory for HUD
         private void DrawItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             DrawDaTokens(spriteBatch, xOffset, yOffset);
@@ -131,6 +137,7 @@ namespace Sprint_0.HUD
             
         }
 
+        //draw DaBaby tokens for inventory
         private void DrawDaTokens(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numDaTokens = link.inventory.getDaTokens();
@@ -163,6 +170,7 @@ namespace Sprint_0.HUD
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
+        //draws bomb storage for HUD
         private void DrawBombs(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numBombs = link.inventory.getBombs();
@@ -195,6 +203,7 @@ namespace Sprint_0.HUD
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
+        //Draws key number in inventory for HUD
         private void DrawKeys(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numKeys = link.inventory.getKeys();
@@ -227,6 +236,7 @@ namespace Sprint_0.HUD
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
 
+        //draws number of rupees for HUD
         private void DrawRupees(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             int numRupees = link.inventory.getRupees();
@@ -259,7 +269,7 @@ namespace Sprint_0.HUD
             spriteBatch.Draw(basicHUD, digit2DestRect, digit2SourceRect, Color.White);
         }
     
-
+        //draws map for HUD
         private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
@@ -269,6 +279,7 @@ namespace Sprint_0.HUD
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
         }
 
+        //draws basic HUD elements
         public void DrawBasicHUD(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();

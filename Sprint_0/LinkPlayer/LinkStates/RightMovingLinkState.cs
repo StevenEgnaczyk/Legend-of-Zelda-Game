@@ -9,21 +9,25 @@ public class RightMovingLinkState : ILinkState
 {
     private Link link;
 
+    //buffer for animation
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
+    //set defaults
     public RightMovingLinkState(Link link)
     {
         this.link = link;
         currentIndex = 0;
     }
 
+    //action methods for state change
     public void TurnLeft()
     {
         link.state = new LeftMovingLinkState(link);
     }
 
+    //handles animation for walking right
     public void TurnRight()
     {
         link.xPos += link.linkSpeed;
