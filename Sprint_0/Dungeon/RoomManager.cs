@@ -16,7 +16,7 @@ public class RoomManager
     public PuzzleManager puzzleManager;
 
     SpriteBatch spriteBatch;
-    public static int NUM_ROOMS = 18;
+    public static int NUM_ROOMS = 24;
     private static int HUD_SIZE = 224;
     private int background;
 

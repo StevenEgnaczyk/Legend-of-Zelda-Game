@@ -24,7 +24,7 @@ public class Aquamentus : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 5;
+    private const int enemySpeed = 1;
     private EnemyManager man;
     private bool damaged;
     private int damageBuffer;
@@ -107,25 +107,23 @@ public class Aquamentus : IEnemy
 
     public void update()
     {
-     
-        if (Buffer.itemBuffer(bufferVals))
+
+        if (xPos < 564)
         {
-            if( xPos < 564)
-            {
-                
-                state.moveRight(this);
 
-            } else if (xPos > 704)
-            {
-                
-                state.moveLeft(this);
+            state.moveRight(this);
 
-            }
-
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-            
         }
+        else if (xPos > 704)
+        {
+
+            state.moveLeft(this);
+
+        }
+
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
+            
         if (damageBuffer > 0)
         {
             damageBuffer--;

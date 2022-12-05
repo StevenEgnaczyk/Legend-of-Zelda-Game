@@ -101,8 +101,8 @@ public class Stalfos : IEnemy
 
     public void update()
     {
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
 
         if (damageBuffer > 0)
         {

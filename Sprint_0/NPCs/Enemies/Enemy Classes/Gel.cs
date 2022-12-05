@@ -19,7 +19,7 @@ public class Gel : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 8;
+    private const int enemySpeed = 2;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -93,13 +93,9 @@ public class Gel : IEnemy
 
     public void update()
     {
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
 
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-            
-        }
     }
 
     public void draw(SpriteBatch sb)

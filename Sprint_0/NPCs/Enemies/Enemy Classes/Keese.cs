@@ -90,12 +90,9 @@ public class Keese : IEnemy
     public void update()
     {
 
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
 
-        }
     }
 
     public void draw(SpriteBatch sb)

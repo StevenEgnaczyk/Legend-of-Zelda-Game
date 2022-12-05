@@ -24,7 +24,7 @@ public class AdamSandler : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 1;
+    private const int enemySpeed = 2;
     private EnemyManager man;
     private bool damaged;
     private int damageBuffer;
