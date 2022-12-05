@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Clock : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -27,6 +27,7 @@ public class Clock : IItem
         throw new NotImplementedException();
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D clock = Texture2DStorage.GetItemSpritesheet();
@@ -36,6 +37,7 @@ public class Clock : IItem
 
     }
 
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;

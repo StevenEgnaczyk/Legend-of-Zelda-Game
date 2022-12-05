@@ -7,6 +7,8 @@ using System.Reflection.Metadata;
 
     public interface IItem
     {
+
+    //required methods for the type
     void Draw(SpriteBatch spriteBatch);
     void Update();
 

@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 
 public class Link
 {
+    //link properties
     public ILinkState state;
     public Inventory inventory;
     public Sprint_0.Game1 game;
@@ -20,7 +21,7 @@ public class Link
     private ChangeToDeathScreenCommand deathScreen;
 
     
-
+    //set link defaults
     public Link(SpriteBatch spriteBatch, Sprint_0.Game1 game)
     {
 
@@ -34,6 +35,7 @@ public class Link
         yPos = 500;
     }
 
+    //action methods for state change
     public void TurnLeft()
     {
         state.TurnLeft();
@@ -54,12 +56,14 @@ public class Link
         state.TurnDown();
     }
 
+    //update call for state and inventory
     public void Update()
     {
         state.Update();
         inventory.Update();
     }
 
+    //reset everything upon death
     public void Die()
     {
         state = new DownMovingLinkState(this);
@@ -71,6 +75,7 @@ public class Link
         deathScreen.Execute();
     }
 
+    //calls respective draws for weapons and link states
     public void Draw(SpriteBatch _spriteBatch)
     {
         if (inventory.primaryWeaponManager.usingPrimaryWeapon)
@@ -99,6 +104,7 @@ public class Link
         _spriteBatch.Draw(linkSprite, destinationRect, sourceRect, Color.White);
     }
 
+    //initiate use of weapon
     internal void UseSecondaryWeapon()
     {
         inventory.secondaryWeaponManager.UseSecondaryWeapon();
@@ -109,6 +115,7 @@ public class Link
         inventory.primaryWeaponManager.UsePrimaryWeapon();
     }
 
+    //gets for heath
     public float getHealth()
     {
         return linkHealth;
@@ -119,6 +126,7 @@ public class Link
         return linkMaxHealth;
     }
 
+    //subtracts from link's health and checks for if he should die
     public void takeDamage()
     {
         linkHealth -= 0.5f;
@@ -131,6 +139,8 @@ public class Link
             
         }
     }
+    
+    //adds to link health, making sure it does not go over link's maximum health
     public void gainHealth()
     {
         linkHealth++;
@@ -140,11 +150,13 @@ public class Link
         }
     }
 
+    //checks if link has keys
     internal bool hasKeys()
     {
         return inventory.getKeys() > 0;
     }
 
+    //gets for link's width and height
     internal int getWidth()
     {
         return 48;

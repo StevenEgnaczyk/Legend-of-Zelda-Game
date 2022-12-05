@@ -53,6 +53,7 @@ public class InventoryManager
         spriteBatch.Draw(baseMapSection, secondaryWeaponDest, secondaryWeaponSource, Color.White);
     }
 
+    //draws map if map item has been collected, same with compass
     private void DrawMapSection(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D baseMapSection = Texture2DStorage.GetHUDSpriteSheet();
@@ -82,6 +83,7 @@ public class InventoryManager
 
     }
 
+    //draw for when the compass has not been collected
     private void DrawEmptyCompassIcon(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -91,6 +93,7 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, emptyCompassDest, emptyCompassSource, Color.White);
     }
 
+    //draw for when compass has been collected
     private void DrawCompassIcon(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -100,6 +103,7 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, compassDest, compassSource, Color.White);
     }
 
+    //draw for when map has not been collected
     private void DrawEmptyMapIcon(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -109,6 +113,7 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, emptyMapSource, emptyMapDest, Color.White);
     }
 
+    //draw for when map has been collected
     private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -123,6 +128,7 @@ public class InventoryManager
 
     }
 
+    //draws icon for map
     private void DrawMapIcon(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -132,7 +138,7 @@ public class InventoryManager
         spriteBatch.Draw(HUDSpritesheet, mapDest, mapSource, Color.White);
     }
 
-
+    //draw for general inventory
     private void DrawInventoryItems(SpriteBatch spriteBatch, int xOffset, int yOffset)
     {
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
@@ -154,7 +160,8 @@ public class InventoryManager
             spriteBatch.Draw(baseInventory, secondaryWeaponDest, weaponBoxSource, Color.White);
         }
     }
-
+    
+    //get and set methods to find secondary weapon's index
     public int getSelectedSecondaryWeaponIndex()
     {
         return selectedWeaponIndex;
@@ -164,6 +171,7 @@ public class InventoryManager
         selectedWeaponIndex = index;
     }
 
+    //cycle for secondary weapon switching
     internal void cycleItemRight()
     {
         int startingIndex = selectedWeaponIndex;

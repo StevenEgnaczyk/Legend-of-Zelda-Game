@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 public class Heart : IItem
 {
-
+    //item properties
     private int xPos;
     private int yPos;
     private int Width = 24;
@@ -37,6 +37,7 @@ public class Heart : IItem
         man.itemList.Remove(this);
     }
 
+    //draw method for item
     public void Draw(SpriteBatch spriteBatch)
     {
         Texture2D heart = Texture2DStorage.GetItemSpritesheet();
@@ -54,6 +55,8 @@ public class Heart : IItem
         
 
     }
+
+    //get classes for the item
     public int getHeight()
     {
         return this.Height;
@@ -73,6 +76,8 @@ public class Heart : IItem
     {
         return this.yPos;
     }
+
+    //update for animation
     public void Update()
     {
         /*

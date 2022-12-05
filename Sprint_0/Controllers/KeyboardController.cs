@@ -74,6 +74,22 @@ public class KeyboardController : IController
                 }
                 buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
                 break;
+            
+            //Death Screen
+            case "Sprint_0.GameStates.DeathScreenState":
+                foreach (Keys key in pressedKeys)
+                {
+                    //checks for registered commands
+                    if (buildCommands.startupControllerMappings.ContainsKey(key))
+                    {
+                        if (buildCommands.state.Contains(key)) //checks for the commands in state
+                        {
+                            buildCommands.startupControllerMappings[key].Execute();
+                        }
+                    }
+                }
+                buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+                break;
         }
 	}
 }

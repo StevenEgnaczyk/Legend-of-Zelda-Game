@@ -6,8 +6,10 @@ using System.Reflection.Metadata;
 
 public interface IEnemyState
 {
+    //required type properties
     public int facingDirection { get; set; }
 
+    //required methods for interface
     void update();
     void moveLeft(IEnemy e);
     void moveRight(IEnemy e);

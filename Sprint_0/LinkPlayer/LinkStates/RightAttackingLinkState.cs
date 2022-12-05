@@ -10,12 +10,14 @@ public class RightAttackingLinkState : ILinkState
 {
     private Link link;
 
+    //buffer for animation
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 5;
 
     private String weapon;
 
+    //set defaults
     public RightAttackingLinkState(Link link, String weapon)
     {
         this.link = link;
@@ -23,6 +25,7 @@ public class RightAttackingLinkState : ILinkState
         bufferIndex = 0;
     }
 
+    //action methods for state change
     public void TurnLeft()
     {
         link.state = new LeftMovingLinkState(link);
@@ -63,6 +66,7 @@ public class RightAttackingLinkState : ILinkState
         link.state = new DamagedLinkState(link);
     }
 
+    //draws link for respective weapon type
     public void Draw(SpriteBatch spriteBatch)
     {
         if (this.weapon == "Wooden")
@@ -79,6 +83,7 @@ public class RightAttackingLinkState : ILinkState
         }
     }
 
+    //update for animation
     public void Update()
     {
         bufferIndex++;

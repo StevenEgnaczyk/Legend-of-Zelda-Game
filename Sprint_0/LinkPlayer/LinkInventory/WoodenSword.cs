@@ -12,6 +12,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 {
     public class WoodenSword : IPrimaryWeapon
     {
+        //weapon properties
         private Link link;
         private Texture2D woodenSword;
 
@@ -28,6 +29,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private int bufferIndex = 0;
         private int bufferMax = 5;
 
+        //state list
         enum startingState
         {
             Down,
@@ -38,7 +40,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         private startingState linkState;
 
-
+        //sets state, gets sprite and rects
         public WoodenSword(Link link)
         {
             if (link.state.ToString().Equals("DownMovingLinkState"))
@@ -64,6 +66,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             woodenSword = Texture2DStorage.GetLinkSpriteSheet();
             startingRect = getStartingRect();
         }
+
+        //finds starting rect
         private Vector2 getStartingRect()
         {
             Vector2 startingRect = new();
@@ -97,6 +101,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //draw for weapon accounting for link direction
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRect = new Rectangle();
@@ -128,6 +133,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
 
         }
 
+        //update for animation
         public void Update()
         {
             bufferIndex++;

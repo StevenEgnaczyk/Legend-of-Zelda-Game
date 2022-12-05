@@ -11,16 +11,19 @@ public class DownMovingLinkState : ILinkState
 {
     private Link link;
 
+    //buffer for animation
     private int currentIndex;
     private int bufferIndex;
     private int bufferMax = 10;
 
+    //set defaults
     public DownMovingLinkState(Link link)
     {
         this.link = link;
         currentIndex = 0;
     }
 
+    //action methods to change state
     public void TurnLeft()
     {
         link.state = new LeftMovingLinkState(link);
@@ -56,6 +59,7 @@ public class DownMovingLinkState : ILinkState
         link.state = new DownAttackingLinkState(link, "Bow");
     }
 
+    //deals with walking in the same direction animation
     public void TurnDown()
     {
         link.yPos+= link.linkSpeed;
