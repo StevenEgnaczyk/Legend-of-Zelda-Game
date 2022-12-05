@@ -107,7 +107,7 @@ public class AdamSandler : IEnemy
     public void die()
     {
         IEnemy deathAnimation = new DeathAnimation(man, this);
-        AudioStorage.GetEnemyDie().Play();
+        AudioStorage.GetAdamDie().Play();
         man.removeEnemy(this);
 
     }
