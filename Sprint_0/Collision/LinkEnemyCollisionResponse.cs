@@ -18,7 +18,7 @@ public class LinkEnemyCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 64, 64);
-        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, enemy.getWidth(), enemy.getHeight());
 
         //ChangeToDeathScreenCommand die = new ChangeToDeathScreenCommand(game);
 

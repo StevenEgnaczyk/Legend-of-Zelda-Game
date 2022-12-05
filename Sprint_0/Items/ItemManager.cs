@@ -89,24 +89,24 @@ public class ItemManager
     }
 
     //creates a new key in the defined position
-    internal void dropKey(int xPos, int yPos)
+    internal void dropKey(float xPos, float yPos)
     {
         new Key(room.getItemManager(), xPos, yPos);
     }
 
     //creates a new heart in the defined position
-    internal void dropHeart(int xPos, int yPos)
+    internal void dropHeart(float xPos, float yPos)
     {
         new Heart(room.getItemManager(), xPos, yPos);
     }
 
     //creates a new rupee in the defined position
-    internal void dropRupee(int xPos, int yPos)
+    internal void dropRupee(float xPos, float yPos)
     {
         new Rupee(room.getItemManager(), xPos, yPos);
     }
 
-    internal void dropDaCoin(int xPos, int yPos)
+    internal void dropDaCoin(float xPos, float yPos)
     {
         new DaCoin(room.getItemManager(), xPos, yPos);
     }

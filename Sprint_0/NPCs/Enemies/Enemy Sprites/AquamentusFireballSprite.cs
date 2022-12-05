@@ -52,9 +52,9 @@ public class AquamentusFireballSprite : IEnemySprite
     {
         //Aquamentus Fireball does not take damage
     }
-    public void update(int xPos, int yPos, int facingDirections, int time)
+    public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 48, 48);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 48, 48);
         
         frame = time % 4;
     }

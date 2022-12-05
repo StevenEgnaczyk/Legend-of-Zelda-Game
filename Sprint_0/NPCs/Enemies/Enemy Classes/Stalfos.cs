@@ -9,8 +9,8 @@ public class Stalfos : IEnemy
 {
     /* Properties that change, the heart of the enemy*/
     public IEnemyState state {  get;  set; }
-    public int xPos { get; set; }
-    public int yPos { get; set; }
+    public float xPos { get; set; }
+    public float yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
@@ -18,7 +18,7 @@ public class Stalfos : IEnemy
     private IEnemySprite sprite;
     private const int height = 48;
     private const int width = 48;
-    private const int enemySpeed = 1;
+    private const float enemySpeed = 1;
     private EnemyManager man;
 
     private bool damaged;
@@ -33,7 +33,6 @@ public class Stalfos : IEnemy
         xPos = startX;
         yPos = startY;
         health = 2;
-
         randTime = 0;
 
         sprite = EnemySpriteFactory.instance.CreateStalfosSprite();
@@ -145,7 +144,7 @@ public class Stalfos : IEnemy
         return width;
     }
 
-    public int getSpeed()
+    public float getSpeed()
     {
         return enemySpeed;
     }

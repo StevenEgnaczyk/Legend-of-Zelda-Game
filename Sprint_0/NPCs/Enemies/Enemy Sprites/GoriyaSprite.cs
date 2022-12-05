@@ -168,9 +168,9 @@ public class GoriyaSprite : IEnemySprite
         }
     }
 
-    public void update(int xPos, int yPos, int facingDirections, int time)
+    public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+        destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
 
         frame = facingDirections;
 

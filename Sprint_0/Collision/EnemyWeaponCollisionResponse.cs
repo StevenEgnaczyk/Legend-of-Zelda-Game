@@ -15,7 +15,7 @@ public class EnemyWeaponCollisionResponse
         /*
          * Use sprite destination rectangles as hitboxes. 
          */
-        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, enemy.getWidth(), enemy.getHeight());
         Rectangle weaponRec = link.inventory.getWeapon();
 
         /* 

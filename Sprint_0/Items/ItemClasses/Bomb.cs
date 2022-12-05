@@ -7,8 +7,8 @@ using System.Reflection.Metadata;
 public class Bomb : IItem
 {
 
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 24;
     private int Height = 48;
     private ItemManager man;
@@ -33,7 +33,7 @@ public class Bomb : IItem
     {
         Texture2D bomb = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getBombSprite();
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         spriteBatch.Draw(bomb, destRect, sourceRect, Color.White);
     }
 
@@ -48,12 +48,12 @@ public class Bomb : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

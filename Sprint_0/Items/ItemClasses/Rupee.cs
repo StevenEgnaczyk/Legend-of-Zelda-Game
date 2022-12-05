@@ -9,8 +9,8 @@ using System.Reflection.Metadata;
 public class Rupee : IItem
 {
     //item properties
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 24;
     private int Height = 48;
 
@@ -20,7 +20,7 @@ public class Rupee : IItem
 
     private ItemManager man;
 
-    public Rupee(ItemManager manager, int xPosition, int yPosition)
+    public Rupee(ItemManager manager, float xPosition, float yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
@@ -40,7 +40,7 @@ public class Rupee : IItem
     {
         Texture2D rupee = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getRupeeSprites(currentIndex);
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         Update();
         if(currentIndex % 2 == 0)
         {
@@ -65,12 +65,12 @@ public class Rupee : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

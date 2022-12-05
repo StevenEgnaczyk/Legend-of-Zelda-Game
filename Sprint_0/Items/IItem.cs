@@ -14,7 +14,7 @@ using System.Reflection.Metadata;
 
     int getWidth();
     int getHeight();
-    int getX();
-    int getY();
+    float getX();
+    float getY();
     void delete();
 }

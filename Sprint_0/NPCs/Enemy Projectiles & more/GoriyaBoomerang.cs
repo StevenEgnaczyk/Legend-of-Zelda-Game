@@ -9,8 +9,8 @@ public class GoriyaBoomerang : IEnemy
 {
     
     public IEnemyState state { get; set; }
-    public int xPos { get; set; }
-    public int yPos { get; set; }
+    public float xPos { get; set; }
+    public float yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
@@ -19,18 +19,18 @@ public class GoriyaBoomerang : IEnemy
     //8x8 on spritesheet
     private const int height = 16;
     private const int width = 16;
-    private const int enemySpeed = 30;
+    private const float enemySpeed = 30;
     private int timeUntilDeath;
     private EnemyManager man;
-    private int startXPos;
-    private int startYPos;
+    private float startXPos;
+    private float startYPos;
 
     /* Buffer properties*/
     private int[] bufferVals = new int[3];
     private int bufferMax = 40;
     private int[] limit = new int[4];
 
-    public GoriyaBoomerang(EnemyManager manager, int startX, int startY, IEnemy goriya)
+    public GoriyaBoomerang(EnemyManager manager, float startX, float startY, IEnemy goriya)
     {
         state = new LeftMovingEnemyState(this);
         getGoriyaDirection(goriya);
@@ -43,10 +43,10 @@ public class GoriyaBoomerang : IEnemy
         /*
          * [x limit right, x limit left, y limit down, y limit up]
          */
-        limit[0] = xPos + 400;
-        limit[1] = xPos - 400;
-        limit[2] = yPos + 400;
-        limit[3] = yPos - 400;
+        limit[0] = (int) xPos + 400;
+        limit[1] = (int) xPos - 400;
+        limit[2] = (int) yPos + 400;
+        limit[3] = (int) yPos - 400;
 
         sprite = EnemySpriteFactory.instance.CreateGoyiraBoomerangSprite();
         man = manager;
@@ -164,7 +164,7 @@ public class GoriyaBoomerang : IEnemy
         return width;
     }
 
-    public int getSpeed()
+    public float getSpeed()
     {
         return enemySpeed;
     }

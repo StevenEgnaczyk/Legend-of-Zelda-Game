@@ -9,8 +9,8 @@ using System.Reflection.Metadata;
 public class Heart : IItem
 {
     //item properties
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 24;
     private int Height = 24;
 
@@ -21,7 +21,7 @@ public class Heart : IItem
 
     private ItemManager man;
 
-    public Heart(ItemManager manager, int xPosition, int yPosition)
+    public Heart(ItemManager manager, float xPosition, float yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
@@ -42,7 +42,7 @@ public class Heart : IItem
     {
         Texture2D heart = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getHeartSprites(currentIndex);
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         Update();
         if (currentIndex % 2 == 0)
         {
@@ -67,12 +67,12 @@ public class Heart : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

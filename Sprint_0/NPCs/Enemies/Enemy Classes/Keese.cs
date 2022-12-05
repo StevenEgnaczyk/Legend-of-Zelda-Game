@@ -8,8 +8,8 @@ public class Keese : IEnemy
 {
    /* Properties that change, the heart of the enemy*/
     public IEnemyState state {  get;  set; }
-    public int xPos { get; set; }
-    public int yPos { get; set; }
+    public float xPos { get; set; }
+    public float yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
@@ -17,7 +17,7 @@ public class Keese : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 1;
+    private const float enemySpeed = 1;
     private EnemyManager man;
 
     /* Buffer properties*/
@@ -118,7 +118,7 @@ public class Keese : IEnemy
         return width;
     }
 
-    public int getSpeed()
+    public float getSpeed()
     {
         return enemySpeed;
     }

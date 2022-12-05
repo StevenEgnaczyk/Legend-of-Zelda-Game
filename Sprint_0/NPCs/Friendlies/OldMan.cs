@@ -8,8 +8,8 @@ public class OldMan : IEnemy
 
     //public OldManSprite sprite;
     public IEnemyState state { get; set; }
-    public int xPos { get; set; }
-    public int yPos { get; set; }
+    public float xPos { get; set; }
+    public float yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
@@ -17,7 +17,7 @@ public class OldMan : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 3;
+    private const float enemySpeed = 3;
     private SpriteBatch _spriteBatch;
     private EnemyManager man;
 
@@ -71,7 +71,7 @@ public class OldMan : IEnemy
         return width;
     }
 
-    public int getSpeed()
+    public float getSpeed()
     {
         return enemySpeed;
     }

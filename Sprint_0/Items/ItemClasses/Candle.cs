@@ -9,8 +9,8 @@ using System.Threading;
 public class Candle : IItem
 {
     //item properties
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 24;
     private int Height = 48;
 
@@ -37,7 +37,7 @@ public class Candle : IItem
 
         Texture2D flame = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getCandleSprite();
-        Rectangle destRect = new Rectangle(this.xPos + 20, this.yPos + 8, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos + 20, (int)this.yPos + 8, this.Width, this.Height);
         spriteBatch.Draw(flame, destRect, sourceRect, Color.White);
 
     }
@@ -53,12 +53,12 @@ public class Candle : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }
