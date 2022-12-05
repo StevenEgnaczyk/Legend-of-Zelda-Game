@@ -18,7 +18,7 @@ public class Stalfos : IEnemy
     private IEnemySprite sprite;
     private const int height = 48;
     private const int width = 48;
-    private const int enemySpeed = 10;
+    private const int enemySpeed = 1;
     private EnemyManager man;
 
     private bool damaged;
@@ -101,12 +101,8 @@ public class Stalfos : IEnemy
 
     public void update()
     {
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-
-        }
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
 
         if (damageBuffer > 0)
         {

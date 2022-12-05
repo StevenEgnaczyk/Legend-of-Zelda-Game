@@ -166,9 +166,23 @@ public class InventoryManager
     {
         return selectedWeaponIndex;
     }
-    public void setSelectedSecondaryWeaponIndex(int index)
+    public void setSelectedSecondaryWeaponIndex(secondaryWeaponManager.secondaryWeapons weapon)
     {
-        selectedWeaponIndex = index;
+        switch (weapon)
+        {
+            case secondaryWeaponManager.secondaryWeapons.Boomerang: 
+                selectedWeaponIndex = 0;
+                break;
+            case secondaryWeaponManager.secondaryWeapons.Bomb:
+                selectedWeaponIndex = 1;
+                break;
+            case secondaryWeaponManager.secondaryWeapons.Bow:
+                selectedWeaponIndex = 2;
+                break;
+            case secondaryWeaponManager.secondaryWeapons.Fire:
+                selectedWeaponIndex = 3;
+                break;
+        }
     }
 
     //cycle for secondary weapon switching

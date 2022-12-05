@@ -18,7 +18,7 @@ public class Goriya : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 10;
+    private const int enemySpeed = 3;
     private EnemyManager man;
     private IEnemy boomerang;
     private bool damaged;
@@ -114,12 +114,8 @@ public class Goriya : IEnemy
     public void update()
     {
 
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-
-        }
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
 
         if (damageBuffer > 0)
         {

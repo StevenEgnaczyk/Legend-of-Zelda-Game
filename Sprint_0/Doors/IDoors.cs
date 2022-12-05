@@ -16,6 +16,7 @@ public interface IDoor
         cracked,
         bombed,
         invisible,
+        dababy,
     }
 
     //IDoor var properties

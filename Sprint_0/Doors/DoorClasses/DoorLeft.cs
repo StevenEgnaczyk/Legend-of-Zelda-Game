@@ -49,6 +49,9 @@ public class DoorLeft : IDoor
             case 5:
                 doorState = IDoor.state.invisible;
                 break;
+            case 6:
+                doorState = IDoor.state.dababy;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;
@@ -134,7 +137,6 @@ public class DoorLeft : IDoor
     {
         this.width -= GlobalVariables.DOOR_FULL_WIDTH/GlobalVariables.TWO;
         this.doorState = IDoor.state.open;
-        Update();
     }
 
     public void Bomb()
