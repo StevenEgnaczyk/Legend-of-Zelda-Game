@@ -61,6 +61,10 @@ public class Link
     {
         state.Update();
         inventory.Update();
+        if(OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
+        {
+            Die();
+        }
     }
 
     //reset everything upon death
