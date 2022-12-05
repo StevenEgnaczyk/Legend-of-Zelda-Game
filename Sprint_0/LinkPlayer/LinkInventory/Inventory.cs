@@ -39,49 +39,59 @@ public class Inventory
 
     //adds item to inventory
     public void addItem(IItem item)
-    {
+    {   
         AudioStorage.GetGetItem().Play();
         switch(item)
         {
             case Candle:
+                AudioStorage.GetGetItem().Play();
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Fire);
                 break;
             case Bow:
+                AudioStorage.GetGetItem().Play();
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Bow);
                 break;
             case Arrow:
 
                 break;
             case Bomb:
+                AudioStorage.GetGetItem().Play();
                 this.addBombs();
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Bomb);
                 break;
             case Clock:
                 break;
             case Compass:
+                AudioStorage.GetGetItem().Play();
                 this.hasCompass = true;
                 break;
             case Fairy:
                 break;
             case Heart:
+                AudioStorage.GetGetItem().Play();
                 this.Link.gainHealth();
                 break;
             case HeartContainer:
 
                 break;
             case Key:
+                AudioStorage.GetGetItem().Play();
                 this.addKeys();
                 break;
             case Map:
+                AudioStorage.GetGetItem().Play();
                 this.hasMap = true;
                 break;
             case Rupee:
+                AudioStorage.GetGetItem().Play();
                 this.addRupee();
                 break;
             case WoodenBoomerang:
+                AudioStorage.GetGetItem().Play();
                 this.secondaryWeaponManager.AddSecondaryWeapon(secondaryWeaponManager.secondaryWeapons.Boomerang);
                 break;
             case DaCoin:
+                AudioStorage.GetLetsGo2().Play();
                 this.addDaTokens();
                 if (this.numDaTokens >= 5)
                 {

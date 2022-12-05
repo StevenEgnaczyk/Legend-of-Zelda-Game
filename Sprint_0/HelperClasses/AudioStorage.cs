@@ -13,6 +13,7 @@ public static class AudioStorage
 {
     //declare public sounds
     public static Song song;
+    public static Song suge;
     public static SoundEffect sword_Slash;
     public static SoundEffect sword_Shoot;
     public static SoundEffect arrow;
@@ -24,11 +25,16 @@ public static class AudioStorage
     public static SoundEffect link_die;
     public static SoundEffect get_item;
     public static SoundEffect lets_go;
+    public static SoundEffect lets_go2;
+    public static SoundEffect golf_hit;
+    public static SoundEffect adam_die;
+    public static SoundEffect golf_kill;
 
     //construct sounds from content loader
     public static void LoadAllSounds(ContentManager content)
     {
         song = content.Load<Song>("LOZ_title");
+        suge = content.Load<Song>("suge");
         sword_Slash = content.Load<SoundEffect>("LOZ_Sword_Slash");
         sword_Shoot = content.Load<SoundEffect>("LOZ_Sword_Shoot");
         arrow = content.Load<SoundEffect>("LOZ_Arrow_Boomerang");
@@ -40,6 +46,10 @@ public static class AudioStorage
         link_die = content.Load<SoundEffect>("LOZ_Link_Die");
         get_item = content.Load<SoundEffect>("LOZ_Get_Item");
         lets_go = content.Load<SoundEffect>("Lets_go");
+        lets_go2 = content.Load<SoundEffect>("lets_go2");
+        golf_hit = content.Load<SoundEffect>("sorry");
+        golf_kill = content.Load<SoundEffect>("suck");
+        adam_die = content.Load<SoundEffect>("nonono");
     }
 
     //get methods
@@ -101,5 +111,25 @@ public static class AudioStorage
     public static SoundEffect GetLetsGo()
     {
         return lets_go;
+    }
+
+    public static SoundEffect GetLetsGo2()
+    {
+        return lets_go2;
+    }
+
+    public static SoundEffect GetGolfHit()
+    {
+        return golf_hit;
+    }
+
+    public static SoundEffect GetGolfKill()
+    {
+        return golf_kill;
+    }
+
+    public static SoundEffect GetAdamDie()
+    {
+        return adam_die;
     }
 }

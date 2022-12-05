@@ -127,6 +127,12 @@
 /processorParam:Quality=Best
 /build:Lets_go.wav
 
+#begin lets_go2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:lets_go2.wav
+
 #begin Link.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -205,6 +211,12 @@
 /processorParam:Quality=Best
 /build:LOZ_title.mp3
 
+#begin nonono.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:nonono.wav
+
 #begin NPCSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,6 +228,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPCSpriteSheet.png
+
+#begin sorry.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sorry.wav
+
+#begin suck.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:suck.wav
 
 #begin suge.mp3
 /importer:Mp3Importer
