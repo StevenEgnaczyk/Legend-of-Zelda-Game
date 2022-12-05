@@ -17,7 +17,7 @@ public class Keese : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 10;
+    private const int enemySpeed = 1;
     private EnemyManager man;
 
     /* Buffer properties*/

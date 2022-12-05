@@ -135,7 +135,7 @@ public class Inventory
             secondaryWeaponManager.secondaryWeaponList.Remove(secondaryWeaponManager.secondaryWeapons.Bomb);
             if (secondaryWeaponManager.secondaryWeaponList.Count == 0)
             {
-                secondaryWeaponManager.secondaryWeapon = null;
+                secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.secondaryWeapons.None;
             }
             else if(secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Bow))
             {

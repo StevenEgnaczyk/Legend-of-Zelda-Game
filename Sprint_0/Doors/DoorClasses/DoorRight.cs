@@ -49,6 +49,9 @@ public class DoorRight : IDoor
             case 5:
                 doorState = IDoor.state.invisible;
                 break;
+            case 6:
+                doorState = IDoor.state.dababy;
+                break;
             default:
                 doorState = IDoor.state.blank;
                 break;

@@ -111,7 +111,7 @@ namespace Sprint_0.HUD
         private void DrawSecondaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
-            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.secondaryWeapon);
+            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.currentWeaponInterface);
             Rectangle secondaryWeaponDestRect = HUDRectStorage.GetSecondaryWeaponDestRect();
             secondaryWeaponDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, secondaryWeaponDestRect, secondaryWeaponSourceRect, Color.White);

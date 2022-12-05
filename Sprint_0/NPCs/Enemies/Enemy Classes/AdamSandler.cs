@@ -24,7 +24,7 @@ public class AdamSandler : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const int enemySpeed = 100;
+    private const int enemySpeed = 1;
     private EnemyManager man;
     private bool damaged;
     private int damageBuffer;
@@ -35,8 +35,8 @@ public class AdamSandler : IEnemy
     public AdamSandler(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
-        xPos = 600;
-        yPos = 484;
+        xPos = startX;
+        yPos = startY;
         health = 5;
 
         randTime = 0;
@@ -114,15 +114,8 @@ public class AdamSandler : IEnemy
 
     public void update()
     {
-     
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            
-
-            state.update();
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-            
-        }
+        state.update();
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
         if (damageBuffer > 0)
         {
             damageBuffer--;
