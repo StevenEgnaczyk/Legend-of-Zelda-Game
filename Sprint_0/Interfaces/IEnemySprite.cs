@@ -5,7 +5,7 @@ using System;
 public interface IEnemySprite
 {
     //required methods for interface
-    void update(int xPos, int yPos, int facingDirections, int time);
+    void update(float xPos, float yPos, int facingDirections, int time);
 
     void draw(SpriteBatch sb);
 

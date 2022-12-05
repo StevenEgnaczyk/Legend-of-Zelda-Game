@@ -9,8 +9,8 @@ using System.Reflection.Metadata;
 public class Map : IItem
 {
     //item properties
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 32;
     private int Height = 64;
 
@@ -34,7 +34,7 @@ public class Map : IItem
     {
         Texture2D map = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getMapSprite();
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         spriteBatch.Draw(map, destRect, sourceRect, Color.White);
 
     }
@@ -50,12 +50,12 @@ public class Map : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

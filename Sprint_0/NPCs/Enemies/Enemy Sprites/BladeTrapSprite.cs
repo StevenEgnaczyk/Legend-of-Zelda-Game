@@ -32,8 +32,8 @@ public class BladeTrapSprite : IEnemySprite
         //Blade Trap doesnt take damage
     }
 
-    public void update(int xPos, int yPos, int facingDirection, int time)
+    public void update(float xPos, float yPos, int facingDirection, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
     }
 }

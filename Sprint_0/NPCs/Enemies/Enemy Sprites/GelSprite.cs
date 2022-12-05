@@ -45,9 +45,9 @@ public class GelSprite : IEnemySprite
         //Only has 1 health damage not drawn
     }
 
-    public void update(int xPos, int yPos, int facingDirections, int time)
+    public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 32, 32);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 32, 32);
 
         if (time % 2 == 0)
         {

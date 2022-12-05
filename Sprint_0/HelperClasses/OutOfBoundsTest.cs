@@ -37,4 +37,19 @@ public static class OutOfBoundsTest
 
         return false;
     }
+
+    public static bool linkOutOfBounds(float xPos, float yPos)
+    {
+        if (xPos < 35 || xPos > (1024-35))
+        {
+            return true;
+        }
+
+        if (yPos > 849 || yPos < 252)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

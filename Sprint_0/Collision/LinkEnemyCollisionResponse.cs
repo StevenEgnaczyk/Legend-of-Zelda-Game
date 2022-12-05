@@ -18,7 +18,7 @@ public class LinkEnemyCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int) link.xPos, (int) link.yPos, 64, 64);
-        Rectangle enemyRec = new Rectangle(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+        Rectangle enemyRec = new Rectangle((int)enemy.xPos, (int)enemy.yPos, enemy.getWidth(), enemy.getHeight());
 
         //ChangeToDeathScreenCommand die = new ChangeToDeathScreenCommand(game);
 
@@ -44,7 +44,17 @@ public class LinkEnemyCollisionResponse
 
                     //Make link look hurt
                     link.takeDamage();
-                
+                    if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
+                    {
+                        if (link.getHealth() <= 1)
+                        {
+                            AudioStorage.GetGolfKill().Play();
+                        }
+                        else
+                        {
+                            AudioStorage.GetGolfHit().Play();
+                        }
+                    }
 
                     if (link.getHealth() <= 0)
                     {
@@ -68,6 +78,18 @@ public class LinkEnemyCollisionResponse
                         }
                         //Make link look hurt
                         link.takeDamage();
+                        link.takeDamage();
+                        if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
+                        {
+                            if (link.getHealth() <= 1)
+                            {
+                                AudioStorage.GetGolfKill().Play();
+                            }
+                            else
+                            {
+                                AudioStorage.GetGolfHit().Play();
+                            }
+                        }
 
                         if (link.getHealth() <= 0)
                         {
@@ -92,7 +114,18 @@ public class LinkEnemyCollisionResponse
                             link.TurnLeft();
                         }
                         link.takeDamage();
-
+                        link.takeDamage();
+                        if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
+                        {
+                            if (link.getHealth() <= 1)
+                            {
+                                AudioStorage.GetGolfKill().Play();
+                            }
+                            else
+                            {
+                                AudioStorage.GetGolfHit().Play();
+                            }
+                        }
 
                         //Make link look hurt
                         if (link.getHealth() <= 0)
@@ -114,7 +147,18 @@ public class LinkEnemyCollisionResponse
                     
 
                     link.takeDamage();
-               
+                    link.takeDamage();
+                    if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
+                    {
+                        if (link.getHealth() <= 1)
+                        {
+                            AudioStorage.GetGolfKill().Play();
+                        }
+                        else
+                        {
+                            AudioStorage.GetGolfHit().Play();
+                        }
+                    }
 
                     //Make link look hurt
                     if (link.getHealth() <= 0)

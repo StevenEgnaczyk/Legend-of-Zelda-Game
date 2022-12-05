@@ -51,12 +51,12 @@ public class WoodenBoomerang : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

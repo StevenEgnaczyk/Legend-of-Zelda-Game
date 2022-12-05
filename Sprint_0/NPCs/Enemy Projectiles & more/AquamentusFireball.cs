@@ -9,8 +9,8 @@ public class AquamentusFireball : IEnemy
 {
 
     public IEnemyState state { get; set; }
-    public int xPos { get; set; }
-    public int yPos { get; set; }
+    public float xPos { get; set; }
+    public float yPos { get; set; }
     public int health { get; set; }
     public int randTime { get; set; }
 
@@ -18,7 +18,7 @@ public class AquamentusFireball : IEnemy
     private IEnemySprite sprite;
     private const int height = 16;
     private const int width = 16;
-    private const int enemySpeed = 20;
+    private const float enemySpeed = 20;
     private int timeUntilDeath;
     private EnemyManager man;
 
@@ -128,7 +128,7 @@ public class AquamentusFireball : IEnemy
         return width;
     }
 
-    public int getSpeed()
+    public float getSpeed()
     {
         return enemySpeed;
     }

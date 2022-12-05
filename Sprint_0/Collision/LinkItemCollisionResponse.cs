@@ -12,7 +12,7 @@ public class LinkItemCollisionResponse
          * See EnemyTileCollisionResponse for explaination and suggestions.
          */
         Rectangle linkRec = new Rectangle((int)link.xPos, (int)link.yPos, link.getWidth(), link.getHeight());
-        Rectangle itemRec = new Rectangle(item.getX(), item.getY(), item.getWidth(), item.getHeight());
+        Rectangle itemRec = new Rectangle((int)item.getX(), (int)item.getY(), item.getWidth(), item.getHeight());
 
         /* 
          * If link collides with an item from any direction, he picks it up

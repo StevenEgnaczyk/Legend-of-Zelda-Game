@@ -9,13 +9,13 @@ using System.Reflection.Metadata;
 public class Key : IItem
 {
     //item properties
-    private int xPos;
-    private int yPos;
+    private float xPos;
+    private float yPos;
     private int Width = 24;
     private int Height = 48;
 
     private ItemManager man;
-    public Key(ItemManager manager, int xPosition, int yPosition)
+    public Key(ItemManager manager, float xPosition, float yPosition)
     {
         this.xPos = xPosition;
         this.yPos = yPosition;
@@ -33,7 +33,7 @@ public class Key : IItem
     {
         Texture2D key = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getKeySprite();
-        Rectangle destRect = new Rectangle(this.xPos, this.yPos, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         spriteBatch.Draw(key, destRect, sourceRect, Color.White);
 
     }
@@ -49,12 +49,12 @@ public class Key : IItem
         return this.Width;
     }
 
-    public int getX()
+    public float getX()
     {
         return this.xPos;
     }
 
-    public int getY()
+    public float getY()
     {
         return this.yPos;
     }

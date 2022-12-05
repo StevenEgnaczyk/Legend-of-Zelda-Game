@@ -58,9 +58,9 @@ public class DeathSprite : IEnemySprite
     {
         //Does not take damage
     }
-    public void update(int xPos, int yPos, int facingDirections, int time)
+    public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 48, 64);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 48, 64);
 
         frame++;
     }

@@ -31,8 +31,8 @@ public class OldManSprite : IEnemySprite
         //Cannot be damaged so no hurt drawn
     }
 
-    public void update(int xPos, int yPos, int facingDirection, int time)
+    public void update(float xPos, float yPos, int facingDirection, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
     }
 }

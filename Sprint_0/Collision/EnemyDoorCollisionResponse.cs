@@ -13,7 +13,7 @@ namespace Sprint_0.Collision
             /*
              * Use sprite destination rectangles as hitboxes. 
              */
-            Rectangle enemyRec = new(enemy.xPos, enemy.yPos, enemy.getWidth(), enemy.getHeight());
+            Rectangle enemyRec = new((int)enemy.xPos, (int)enemy.yPos, enemy.getWidth(), enemy.getHeight());
             Rectangle doorRect = new(door.getXPos(), door.getYPos(), door.getFullWidth(), door.getFullHeight());
 
 

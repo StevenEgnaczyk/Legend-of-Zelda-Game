@@ -54,9 +54,9 @@ public class AdamSandlerSprite : IEnemySprite
         }
     }
 
-    public void update(int xPos, int yPos, int facingDirections, int time)
+    public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle(xPos, yPos, 64, 64);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
 
         if (time % 2 == 0)
         {
