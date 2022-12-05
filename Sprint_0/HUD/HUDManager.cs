@@ -273,7 +273,7 @@ namespace Sprint_0.HUD
         private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
-            Rectangle sourceRect = HUDRectStorage.getMapIcon();
+            Rectangle sourceRect = HUDRectStorage.getMapIcon(link.currentRoom);
             Rectangle destinationRect = HUDRectStorage.getMapLocation(link.currentRoom);
             destinationRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);

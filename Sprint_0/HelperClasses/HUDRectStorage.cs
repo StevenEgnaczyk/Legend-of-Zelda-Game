@@ -12,7 +12,12 @@ public static class HUDRectStorage
 {
     //declare rectangles and rectangle lists for all HUD uses
     private static Rectangle basicHUD = new Rectangle(258, 11, 256, 56);
-    private static Rectangle mapIcon = new Rectangle(519, 126, 4, 4);
+    private static List<Rectangle> mapIcons = new List<Rectangle>
+    {
+        new Rectangle(520, 127, 4, 4),
+        new Rectangle(536, 126, 4, 4),
+        new Rectangle(528, 127, 4, 4),
+    };
 
     private static Rectangle levelTextSourceRect = new Rectangle(584, 1, 48, 7);
     private static Rectangle levelTextDestRect = new Rectangle(16 * 4, 7 * 4, 48 * 4, 7 * 4);
@@ -179,9 +184,14 @@ public static class HUDRectStorage
         return levelTextSourceRect;
     }
 
-    internal static Rectangle getMapIcon()
+    internal static Rectangle getMapIcon(int currentRoom)
     {
-        return mapIcon;
+        return (currentRoom) switch
+        {
+            18 => mapIcons[1],
+            23 => mapIcons[2],
+            _ => mapIcons[0],
+        };
     }
 
     internal static Rectangle getMapLocation(int currentRoom)
@@ -206,10 +216,10 @@ public static class HUDRectStorage
             16 => new Rectangle(46 * 4, 18 * 4, 4 * 4, 4 * 4),
             17 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
             18 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            19 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            20 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            21 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            22 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
+            19 => new Rectangle(51 * 4, 38 * 4, 4 * 4, 4 * 4),
+            20 => new Rectangle(36 * 4, 43 * 4, 4 * 4, 4 * 4),
+            21 => new Rectangle(61 * 4, 28 * 4, 4 * 4, 4 * 4),
+            22 => new Rectangle(36 * 4, 18 * 4, 4 * 4, 4 * 4),
             23 => new Rectangle(46 * 4, 48 * 4, 4 * 4, 4 * 4),
             _ => new Rectangle(0, 0, 16, 16),
         };
