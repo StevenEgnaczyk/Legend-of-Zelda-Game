@@ -24,8 +24,8 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         private int height;
         private int width;
 
-        private int distanceToTravel = 300;
-        private int incrementalDistance = 30;
+        private int distanceToTravel = 150;
+        private int incrementalDistance = 45;
 
         private int bufferFrame;
         private int maxFrames = 5;
@@ -136,6 +136,11 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         {
 
             if (goingOut && Math.Abs(end.X - current.X) < 10 && Math.Abs(end.Y - current.Y) < 10)
+            {
+                link.inventory.secondaryWeaponManager.stopUsingWeapon();
+            }
+
+            if (OutOfBoundsTest.itemOutOfBounds((int)current.X, (int)current.Y))
             {
                 link.inventory.secondaryWeaponManager.stopUsingWeapon();
             }
