@@ -11,8 +11,6 @@ public class RightMovingEnemyState : IEnemyState
     {
         enemy = e;
         facingDirection = 4;
-        enemy.xPos += enemy.getSpeed();
-
 
     }
 
@@ -57,7 +55,7 @@ public class RightMovingEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(5, 20);
+            enemy.randTime = r.Next(5, 75);
 
             enemy.changeToRandState();
 
@@ -65,7 +63,7 @@ public class RightMovingEnemyState : IEnemyState
         else
         {
             enemy.randTime--;
-            enemy.xPos += enemy.getSpeed();
+            moveRight(enemy);
         }
     }
 

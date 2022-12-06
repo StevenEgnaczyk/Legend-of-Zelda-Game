@@ -53,7 +53,7 @@ public class IdleEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(5, 20);
+            enemy.randTime = r.Next(5, 75);
 
             enemy.changeToRandState();
 

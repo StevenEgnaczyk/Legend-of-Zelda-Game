@@ -11,10 +11,12 @@ public class StalfosSprite : IEnemySprite
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
+    public int damageBuffer { get; set; }
 
     public StalfosSprite(Texture2D spritesheet)
     {
         frame = 0;
+        damageBuffer = -1;
         stalfosTexture = spritesheet;
         destinationRectangle = new Rectangle(0, 0, 32, 32);
         frame0Rectangle = new Rectangle(1, 59, 16, 16);
@@ -26,16 +28,23 @@ public class StalfosSprite : IEnemySprite
         stalfosTexture = Texture2DStorage.getEnemySpritesheet();
         float zero = 0.0F;
 
-        if (frame == 0)
+        if(damageBuffer < 0)
         {
-            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            if (frame == 0)
+            {
+                sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
-        }
-        else
+            }
+            else
+            {
+                sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+
+            }
+        } else
         {
-            sb.Draw(this.stalfosTexture, this.destinationRectangle, this.frame0Rectangle, Color.White, zero, new Vector2(0,0), SpriteEffects.FlipHorizontally, zero);
-
+            drawHurt(sb);
         }
+        
     }
     public void drawHurt(SpriteBatch sb)
     {
@@ -58,7 +67,12 @@ public class StalfosSprite : IEnemySprite
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
 
-        if (time % 2 == 0)
+        if (damageBuffer >= 0)
+        {
+            damageBuffer--;
+        }
+
+        if (0 <= (time % 40) && (time % 40) < 20)
         {
             frame = 0;
 
@@ -66,6 +80,7 @@ public class StalfosSprite : IEnemySprite
         else
         {
             frame = 1;
+
         }
     }
 }

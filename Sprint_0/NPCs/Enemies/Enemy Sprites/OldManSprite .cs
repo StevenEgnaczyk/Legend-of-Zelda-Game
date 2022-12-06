@@ -11,6 +11,9 @@ public class OldManSprite : IEnemySprite
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
 
+    public int damageBuffer { get; set; }
+
+
     public OldManSprite(Texture2D spritesheet)
     {
         this.OldManTexture = spritesheet;

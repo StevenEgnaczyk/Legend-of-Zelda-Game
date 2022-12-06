@@ -18,6 +18,8 @@ public class GoriyaSprite : IEnemySprite
     private bool flip;
     private int frame;
 
+    public int damageBuffer { get; set; }
+
     public GoriyaSprite(Texture2D spritesheet)
     {
         goriyaTexture = spritesheet;
@@ -29,22 +31,26 @@ public class GoriyaSprite : IEnemySprite
         downRectangle = new Rectangle(222, 11, 16, 16);
 
         frame = 0;
+        damageBuffer = -1;
     }
 
     public void draw(SpriteBatch sb)
     {
-        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
-
-        if (this.flip)
+        if (this.flip && damageBuffer < 0)
         {
 
             drawFlipped(sb);
 
         }
-        else
+        else if (!flip && damageBuffer < 0)
         {
 
             drawNormal(sb);
+
+        } else
+        {
+
+            drawHurt(sb);
 
         }
 
@@ -53,8 +59,6 @@ public class GoriyaSprite : IEnemySprite
 
     public void drawHurt(SpriteBatch sb)
     {
-        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
-
         if (this.flip)
         {
 
@@ -171,6 +175,11 @@ public class GoriyaSprite : IEnemySprite
     public void update(float xPos, float yPos, int facingDirections, int time)
     {
         destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
+
+        if(damageBuffer >= 0)
+        {
+            damageBuffer--;
+        }
 
         frame = facingDirections;
 

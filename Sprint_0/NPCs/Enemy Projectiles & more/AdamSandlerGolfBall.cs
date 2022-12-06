@@ -19,30 +19,40 @@ public class AdamSandlerGolfBall : IEnemy
     //8x8 on spritesheet
     private const int height = 16;
     private const int width = 16;
-    private const float enemySpeed = 30;
+    private const float enemySpeed = 3;
     private int timeUntilDeath;
     private EnemyManager man;
-    private int golfBall;
-
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-    private int bufferMax = 40;
-    private int[] limit = new int[4];
 
     public AdamSandlerGolfBall(EnemyManager manager, IEnemy AdamSandler, int golfBallNum)
     {
-        state = new LeftMovingEnemyState(this);
+        if (golfBallNum == 0)
+        {
+            state = new LeftMovingEnemyState(this);
+
+        } else if (golfBallNum == 1)
+        {
+            state = new RightMovingEnemyState(this);
+
+        } else if (golfBallNum == 2)
+        {
+            state = new DownMovingEnemyState(this);
+
+        } else
+        {
+            state = new UpMovingEnemyState(this);
+        }
+        
         xPos = AdamSandler.xPos + (AdamSandler.getHeight() / 2);
         yPos = AdamSandler.yPos + (AdamSandler.getWidth() / 2);
-        randTime = 1000;
+        
+        randTime = 0; 
         timeUntilDeath = 0;
-        golfBall = golfBallNum;
+
         sprite = EnemySpriteFactory.instance.CreateAdamSandlerGolfBallSprite();
         man = manager;
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        bufferVals[2] = bufferMax;
     }
 
     public void moveLeft()
@@ -73,38 +83,26 @@ public class AdamSandlerGolfBall : IEnemy
 
     public void die()
     {
-
         man.removeEnemy(this);
     }
 
     public void update()
     {
-        timeUntilDeath++;
-        if (Buffer.itemBuffer(bufferVals))
+        if (timeUntilDeath == 800)
         {
-            
-            if(golfBall == 0 && randTime % 2 == 0)
-            {
-                state.moveUp(this);
-            }else if(golfBall == 1 && randTime % 2 == 0)
-            {
-                state.moveDown(this);
-            }
-            else if(golfBall == 2 && randTime % 2 == 0)
-            {
-                state.moveLeft(this);
-            }else if(golfBall == 3 && randTime % 2 == 0)
-            {
-                state.moveRight(this);
-            }
+            die();
+
+        } else
+        {
             randTime++;
-            if (timeUntilDeath == 200)
-            {
-                die();
-            }
-            sprite.update(xPos, yPos, state.facingDirection, randTime);           
+            timeUntilDeath++;
+
+            state.update();
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
         }
-        
+
+
+
     }
 
     public void draw(SpriteBatch sb)

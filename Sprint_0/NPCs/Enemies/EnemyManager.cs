@@ -68,7 +68,6 @@ public  class EnemyManager
     {
         enemiesList.Remove(gb);
     }
-
     public void removeEnemy(AquamentusFireball af) {
         enemiesList.Remove(af);
     }
@@ -158,36 +157,24 @@ public  class EnemyManager
 
         if(randVal == 0)
         {
-
-            e.state.moveLeft(e);
+            e.state.moveUp(e);
 
         } else if (randVal == 1)
         {
-
             e.state.moveDown(e);
 
         } else if (randVal == 2)
         {
-
             e.state.moveLeft(e);
 
         } else if (randVal == 3)
         {
-
             e.state.moveRight(e);
 
-        }else if (randVal == 4)
+        }else if (randVal > 3)
         {
-
             e.shootProjectile();
-        }else if(randVal == 5)
-        {
 
-            e.shootProjectile();
-        }else if(randVal == 6)
-        {
-
-            e.shootProjectile();
         }
     }
 

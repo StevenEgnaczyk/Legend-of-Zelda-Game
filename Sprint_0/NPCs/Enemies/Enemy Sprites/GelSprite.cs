@@ -13,11 +13,14 @@ public class GelSprite : IEnemySprite
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
 
+    public int damageBuffer { get; set; }
+
     //1 hp no damaged animation
     public GelSprite(Texture2D spritsheet)
     {
         gelTexture = spritsheet;
         frame = 0;
+        damageBuffer = -1;
 
         destinationRectangle = new Rectangle(0, 0, 32, 32);
         frame0Rectangle = new Rectangle(1, 16, 8, 8);
@@ -49,13 +52,15 @@ public class GelSprite : IEnemySprite
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 32, 32);
 
-        if (time % 2 == 0)
+        if (0 <= (time % 40) && (time % 40) < 20)
         {
             frame = 0;
+
         }
         else
         {
             frame = 1;
+
         }
     }
 }

@@ -14,6 +14,8 @@ public class GoriyaBoomerangSprite : IEnemySprite
     private Rectangle frame1Rectangle;
     private Rectangle frame2Rectangle;
 
+    public int damageBuffer { get; set; }
+
 
 
     public GoriyaBoomerangSprite(Texture2D spritesheet)

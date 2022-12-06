@@ -7,11 +7,6 @@ using System.Reflection.Metadata;
 
 public class AdamSandler : IEnemy
 {
-    /*
-     * TO DO: Determine if aquamentus's state needs to be updated. 
-     * /
-
-
     /* Properties that change, the heart of the enemy*/
     public IEnemyState state {  get;  set; }
     public float xPos { get; set; }
@@ -26,11 +21,6 @@ public class AdamSandler : IEnemy
     private const int width = 64;
     private const int enemySpeed = 2;
     private EnemyManager man;
-    private bool damaged;
-    private int damageBuffer;
-
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
 
     public AdamSandler(EnemyManager manager, int startX, int startY)
     {
@@ -46,9 +36,6 @@ public class AdamSandler : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-
-        bufferVals[2] = 50;
-        damaged = false;
     }
 
     /*
@@ -81,22 +68,23 @@ public class AdamSandler : IEnemy
 
     public void shootProjectile()
     {
-        IEnemy golfball1 = new AdamSandlerGolfBall(man, this, 0);
-        IEnemy golfball2 = new AdamSandlerGolfBall(man, this, 1);
-        IEnemy golfball3 = new AdamSandlerGolfBall(man, this, 2);
-        IEnemy golfball4 = new AdamSandlerGolfBall(man, this, 3);
+        if(randTime % 3 == 0)
+        {
+            IEnemy golfball1 = new AdamSandlerGolfBall(man, this, 0);
+            IEnemy golfball2 = new AdamSandlerGolfBall(man, this, 1);
+            IEnemy golfball3 = new AdamSandlerGolfBall(man, this, 2);
+            IEnemy golfball4 = new AdamSandlerGolfBall(man, this, 3);
+        }
 
     }
 
     public void hurt()
     {
-        if (!damaged)
-        {
-            state.hurt(this);
-            damaged = true;
-            damageBuffer = 50;
-            AudioStorage.GetEnemyHit().Play();
-        }
+        
+        state.hurt(this);
+        sprite.damageBuffer = 50;
+        AudioStorage.GetEnemyHit().Play();
+        
 
         if (health == 0)
         {
@@ -116,31 +104,17 @@ public class AdamSandler : IEnemy
     {
         state.update();
         sprite.update(xPos, yPos, state.facingDirection, randTime);
-        if (damageBuffer > 0)
-        {
-            damageBuffer--;
-            if (damageBuffer == 0)
-            {
-                damaged = false;
-            }
-        }
+
     }
 
     public void draw(SpriteBatch sb)
     {
-        if (damaged == false)
-        {
-            sprite.draw(sb);
-        }
-        else
-        {
-            sprite.drawHurt(sb);
-        }
+        sprite.draw(sb);
     }
 
     public void changeToRandState()
     {
-        man.randomStateGenerator(this, 0, 7);
+        man.randomStateGenerator(this, 0, 5);
     }
 
 

@@ -19,6 +19,8 @@ public class AquamentusSprite : IEnemySprite
     private Rectangle frame3Rectangle;
     //2 hp but only can take damage from bombs add animation but allow for everything to do damage
 
+    public int damageBuffer { get; set; }
+
     public AquamentusSprite(Texture2D spritesheet)
     {
         AquamentusTexture = spritesheet;
@@ -31,29 +33,40 @@ public class AquamentusSprite : IEnemySprite
         frame3Rectangle = new Rectangle(76, 11, 24, 32);
 
         frame = 0;
+        damageBuffer = -1;
     }
 
     public void draw(SpriteBatch sb)
     {
         AquamentusTexture = Texture2DStorage.getBossSpritesheet();
 
-        if (frame == 11)
+        if(damageBuffer < 0)
         {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            if (frame == 11)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
-        }else if (frame == 12)
+            }
+            else if (frame == 12)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
+
+            }
+            else if (frame == 4 || frame == 8)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
+
+            }
+            else if (frame == 5 || frame == 9)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
+
+            }
+        } else
         {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
-
-        }else if (frame == 4 || frame == 8)
-        {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
-
-        }else if(frame == 5 || frame == 9)
-        {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
-
+            drawHurt(sb);
         }
+        
     }
 
     public void drawHurt(SpriteBatch sb)
@@ -86,6 +99,11 @@ public class AquamentusSprite : IEnemySprite
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 100, 128);
 
+        if(damageBuffer >= 0)
+        {
+            damageBuffer--;
+        }
+
         frame = facingDirections;
 
         if (time % 2 == 0) 
@@ -94,6 +112,17 @@ public class AquamentusSprite : IEnemySprite
             frame++;
 
         }
-        
+
+        if (0 <= (time % 30) && (time % 30) < 15)
+        {
+            frame = 0;
+
+        }
+        else
+        {
+            frame = 1;
+
+        }
+
     }
 }

@@ -18,12 +18,8 @@ public class Wallmaster : IEnemy
     private IEnemySprite sprite;
     private const int height = 48;
     private const int width = 48;
-    private const float enemySpeed = 8;
+    private const float enemySpeed = 1;
     private EnemyManager man;
-
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-
     public Wallmaster(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
@@ -39,7 +35,6 @@ public class Wallmaster : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 50;
     }
 
     /*
@@ -73,6 +68,7 @@ public class Wallmaster : IEnemy
     public void hurt()
     {
         state.hurt(this);
+        AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
         {
@@ -90,10 +86,7 @@ public class Wallmaster : IEnemy
 
     public void update()
     {
-        if (Buffer.itemBuffer(bufferVals))
-        {
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
-        }
+        sprite.update(xPos, yPos, state.facingDirection, randTime);
     }
 
     public void draw(SpriteBatch sb)
