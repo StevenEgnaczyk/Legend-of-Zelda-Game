@@ -32,7 +32,7 @@ public class AquamentusSprite : IEnemySprite
         frame2Rectangle = new Rectangle(51, 11, 24, 32);
         frame3Rectangle = new Rectangle(76, 11, 24, 32);
 
-        frame = 0;
+        frame = 2;
         damageBuffer = -1;
     }
 
@@ -42,22 +42,22 @@ public class AquamentusSprite : IEnemySprite
 
         if(damageBuffer < 0)
         {
-            if (frame == 11)
+            if (frame == 0)
             {
                 sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
             }
-            else if (frame == 12)
+            else if (frame == 1)
             {
                 sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
 
             }
-            else if (frame == 4 || frame == 8)
+            else if (frame == 2)
             {
                 sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
 
             }
-            else if (frame == 5 || frame == 9)
+            else if (frame == 3)
             {
                 sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
 
@@ -73,22 +73,22 @@ public class AquamentusSprite : IEnemySprite
     {
         AquamentusTexture = Texture2DStorage.getBossSpritesheet();
 
-        if (frame == 11)
+        if (frame == 0)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan);
 
         }
-        else if (frame == 12)
+        else if (frame == 1)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.SandyBrown);
 
         }
-        else if (frame == 4 || frame == 8)
+        else if (frame == 2)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.Cyan);
 
         }
-        else if (frame == 5 || frame == 9)
+        else if (frame == 3)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.SandyBrown);
 
@@ -105,25 +105,13 @@ public class AquamentusSprite : IEnemySprite
             damageBuffer--;
         }
 
-        frame = facingDirections;
+        frame = (time % 2) + 2;
 
-        if (time % 2 == 0) 
+        if (facingDirections >= 7 && facingDirections != 8)
         {
-
-            frame++;
-
+            frame -= 2;
         }
-
-        if (0 <= (time % 30) && (time % 30) < 15)
-        {
-            frame = 0;
-
-        }
-        else
-        {
-            frame = 1;
-
-        }
+        
 
     }
 }

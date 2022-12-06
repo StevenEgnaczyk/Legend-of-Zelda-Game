@@ -63,9 +63,12 @@ public class Aquamentus : IEnemy
 
     public void shootProjectile()
     {
-        IEnemy fireball1 = new AquamentusFireball(man, this, 0);
-        IEnemy fireball2 = new AquamentusFireball(man, this, 1);
-        IEnemy fireball3 = new AquamentusFireball(man, this, 2);
+        if (randTime % 3 == 0)
+        {
+            IEnemy fireball1 = new AquamentusFireball(man, this, 0);
+            IEnemy fireball2 = new AquamentusFireball(man, this, 1);
+            IEnemy fireball3 = new AquamentusFireball(man, this, 2);
+        }
 
     }
     public void hurt()
@@ -116,7 +119,7 @@ public class Aquamentus : IEnemy
 
     public void changeToRandState()
     {
-        man.randomStateGenerator(this, 2, 7);
+        man.randomStateGenerator(this, 2, 5);
     }
 
 

@@ -91,12 +91,16 @@ public class Goriya : IEnemy
 
     public void shootProjectile()
     {
-        //time boomerang is out
-        randTime = 25;
-        boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
-        int facingDirection = state.facingDirection;
-        state.idle(this);
-        state.facingDirection = facingDirection;
+        if(randTime % 3 == 0)
+        {
+            //time boomerang is out
+            randTime = 25;
+            boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
+            int facingDirection = state.facingDirection;
+            state.idle(this);
+            state.facingDirection = facingDirection;
+        }
+        
          
     }
 
@@ -104,6 +108,7 @@ public class Goriya : IEnemy
     {
         state.update();
         sprite.update(xPos, yPos, state.facingDirection, randTime);
+        
     }
 
     public void draw(SpriteBatch sb)
