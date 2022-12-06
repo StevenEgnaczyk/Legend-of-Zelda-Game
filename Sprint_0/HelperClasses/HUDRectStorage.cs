@@ -20,8 +20,8 @@ public static class HUDRectStorage
     };
 
     private static Rectangle levelTextSourceRect = new Rectangle(584, 1, 48, 7);
-    private static Rectangle levelTextDestRect = new Rectangle(16 * 4, 7 * 4, 48 * 4, 7 * 4);
-    private static Rectangle levelNumDestRect = new Rectangle(64 * 4, 7 * 4, 8 * 4, 8 * 4);
+    private static Rectangle levelTextDestRect = new Rectangle(16 * 4, 4, 48 * 4, 7 * 4);
+    private static Rectangle levelNumDestRect = new Rectangle(64 * 4, 4, 8 * 4, 8 * 4);
     private static Rectangle blankIcon = new Rectangle(654, 117, 8, 8);
     private static Rectangle xIcon = new Rectangle(519, 117, 8, 8);
     private static List<Rectangle> digitSourceRectangles = new List<Rectangle>
@@ -198,29 +198,30 @@ public static class HUDRectStorage
     {
         return (currentRoom) switch
         {
-            1 => new Rectangle(46 * 4, 43 * 4, 4 * 4, 4 * 4),
-            2 => new Rectangle(41 * 4, 43 * 4, 4 * 4, 4 * 4),
-            3 => new Rectangle(51 * 4, 43 * 4, 4 * 4, 4 * 4),
-            4 => new Rectangle(46 * 4, 38 * 4, 4 * 4, 4 * 4),
-            5 => new Rectangle(46 * 4, 33 * 4, 4 * 4, 4 * 4),
-            6 => new Rectangle(41 * 4, 33 * 4, 4 * 4, 4 * 4),
-            7 => new Rectangle(51 * 4, 33 * 4, 4 * 4, 4 * 4),
-            8 => new Rectangle(46 * 4, 28 * 4, 4 * 4, 4 * 4),
-            9 => new Rectangle(51 * 4, 28 * 4, 4 * 4, 4 * 4),
-            10 => new Rectangle(56 * 4, 28 * 4, 4 * 4, 4 * 4),
-            11 => new Rectangle(41 * 4, 28 * 4, 4 * 4, 4 * 4),
-            12 => new Rectangle(36 * 4, 28 * 4, 4 * 4, 4 * 4),
-            13 => new Rectangle(46 * 4, 23 * 4, 4 * 4, 4 * 4),
-            14 => new Rectangle(56 * 4, 23 * 4, 4 * 4, 4 * 4),
-            15 => new Rectangle(61 * 4, 23 * 4, 4 * 4, 4 * 4),
-            16 => new Rectangle(46 * 4, 18 * 4, 4 * 4, 4 * 4),
-            17 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            18 => new Rectangle(41 * 4, 18 * 4, 4 * 4, 4 * 4),
-            19 => new Rectangle(51 * 4, 38 * 4, 4 * 4, 4 * 4),
-            20 => new Rectangle(36 * 4, 43 * 4, 4 * 4, 4 * 4),
-            21 => new Rectangle(61 * 4, 28 * 4, 4 * 4, 4 * 4),
-            22 => new Rectangle(36 * 4, 18 * 4, 4 * 4, 4 * 4),
-            23 => new Rectangle(46 * 4, 48 * 4, 4 * 4, 4 * 4),
+            1 => new Rectangle(18 * 10, 29 * 6, 4 * 4, 4 * 4),
+            //2 => new Rectangle(41 * 10, 43 * 6, 4 * 4, 4 * 4),
+            2 => new Rectangle(14 * 10, 29 * 6, 4 * 4, 4 * 4),
+            3 => new Rectangle(22 * 10, 29 * 6, 4 * 4, 4 * 4),
+            4 => new Rectangle(18 * 10, 25 * 6, 4 * 4, 4 * 4),
+            5 => new Rectangle(18 * 10, 21 * 6, 4 * 4, 4 * 4),
+            6 => new Rectangle(14 * 10, 21 * 6, 4 * 4, 4 * 4),
+            7 => new Rectangle(22 * 10, 21 * 6, 4 * 4, 4 * 4),
+            8 => new Rectangle(18 * 10, 17 * 6, 4 * 4, 4 * 4),
+            9 => new Rectangle(22 * 10, 17 * 6, 4 * 4, 4 * 4),
+            10 => new Rectangle(26 * 10, 17 * 6, 4 * 4, 4 * 4),
+            11 => new Rectangle(14 * 10, 17 * 6, 4 * 4, 4 * 4),
+            12 => new Rectangle(10 * 10, 17 * 6, 4 * 4, 4 * 4),
+            13 => new Rectangle(18 * 10, 13 * 6, 4 * 4, 4 * 4),
+            14 => new Rectangle(26 * 10, 13 * 6, 4 * 4, 4 * 4),
+            15 => new Rectangle(30 * 10, 13 * 6, 4 * 4, 4 * 4),
+            16 => new Rectangle(18 * 10, 13 * 2, 4 * 4, 4 * 4),
+            17 => new Rectangle(14 * 10, 13 * 2, 4 * 4, 4 * 4),
+            18 => new Rectangle(14 * 10, 17 * 2, 4 * 4, 4 * 4),
+            19 => new Rectangle(22 * 10, 25 * 6, 4 * 4, 4 * 4),
+            20 => new Rectangle(10 * 10, 29 * 6, 4 * 4, 4 * 4),
+            21 => new Rectangle(30 * 10, 17 * 6, 4 * 4, 4 * 4),
+            22 => new Rectangle(10 * 10, 13 * 2, 4 * 4, 4 * 4),
+            23 => new Rectangle(18 * 10, 33 * 6, 4 * 4, 4 * 4),
             _ => new Rectangle(0, 0, 16, 16),
         };
     }

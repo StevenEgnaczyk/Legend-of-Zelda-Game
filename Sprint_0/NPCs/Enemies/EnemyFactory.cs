@@ -99,4 +99,9 @@ public class EnemySpriteFactory
 	{
 		return new AdamSandlerGolfBallSprite(bossSpritesheet);
 	}
+
+    internal IEnemySprite CreateDaBossBabySprite()
+    {
+		return new DaBossBabySprite(enemySpritesheet);
+    }
 }

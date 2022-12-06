@@ -27,7 +27,7 @@ namespace Sprint_0.HUD
         {
             DrawBasicHUD(spriteBatch, 0, 0);
             DrawLevelText(spriteBatch, 0, 0);
-            DrawMap(spriteBatch, 0, 0);
+            DrawLinkLocation(spriteBatch, 0, 0);
             DrawItems(spriteBatch, 0, 0);
             DrawWeapons(spriteBatch, 0, 0);
             DrawLife(spriteBatch, 0, 0);
@@ -39,7 +39,7 @@ namespace Sprint_0.HUD
         {
             DrawBasicHUD(spriteBatch, xOffset, yOffset);
             DrawLevelText(spriteBatch, xOffset, yOffset);
-            DrawMap(spriteBatch, xOffset, yOffset);
+            DrawLinkLocation(spriteBatch, xOffset, yOffset);
             DrawItems(spriteBatch, xOffset, yOffset);
             DrawWeapons(spriteBatch, xOffset, yOffset);
             DrawLife(spriteBatch, xOffset, yOffset);
@@ -270,13 +270,36 @@ namespace Sprint_0.HUD
         }
     
         //draws map for HUD
-        private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        private void DrawLinkLocation(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
+
+            if (link.inventory.HasMap())
+            {
+                DrawMap(spriteBatch, xOffset, yOffset);
+
+            }
+
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
             Rectangle sourceRect = HUDRectStorage.getMapIcon(link.currentRoom);
             Rectangle destinationRect = HUDRectStorage.getMapLocation(link.currentRoom);
             destinationRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
+
+        }
+
+        private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        {
+            Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle mapRoomRectSource = InventoryRectStorage.GetHUDMapRoomRectSource();
+
+            for (int i = 0; i < RoomManager.NUM_ROOMS - 1; i++)
+            {
+               
+                Rectangle mapRoomRectDest = InventoryRectStorage.GetHUDMapRoomRectDest(0, i);
+                mapRoomRectDest.Offset(xOffset, yOffset);
+                spriteBatch.Draw(HUDSpritesheet, mapRoomRectDest, mapRoomRectSource, Color.White);
+
+            }
         }
 
         //draws basic HUD elements

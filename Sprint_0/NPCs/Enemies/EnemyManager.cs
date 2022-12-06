@@ -142,6 +142,9 @@ public  class EnemyManager
             case 29:
                 new Flame(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
+            case 31:
+                new DaBossBaby(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
             case 40:
                 new AdamSandler(enemyManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
