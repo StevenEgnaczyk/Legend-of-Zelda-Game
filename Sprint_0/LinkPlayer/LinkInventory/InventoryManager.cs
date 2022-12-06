@@ -119,8 +119,8 @@ public class InventoryManager
         Texture2D HUDSpritesheet = Texture2DStorage.GetHUDSpriteSheet();
         for (int i = 0; i < RoomManager.NUM_ROOMS - 1; i++)
         {
-            Rectangle mapRoomRectSource = InventoryRectStorage.GetMapRoomRectSource(0, i);
-            Rectangle mapRoomRectDest = InventoryRectStorage.GetMapRoomRectDest(0, i);
+            Rectangle mapRoomRectSource = InventoryRectStorage.GetInventoryMapRoomRectSource(0, i);
+            Rectangle mapRoomRectDest = InventoryRectStorage.GetInventoryMapRoomRectDest(0, i);
             mapRoomRectDest.Offset(xOffset, yOffset);
             spriteBatch.Draw(HUDSpritesheet, mapRoomRectDest, mapRoomRectSource, Color.White);
 

@@ -55,6 +55,8 @@ public static class InventoryRectStorage
         new Rectangle(659, 107, 8, 8)
     };
 
+    private static Rectangle HUDMapSourceRect = new Rectangle(693, 103, 7, 3);
+
 
     private static List<List<Rectangle>> inventoryDungeonMapSourceRects = new List<List<Rectangle>>
     {
@@ -213,6 +215,87 @@ public static class InventoryRectStorage
         },
     };
 
+    private static List<List<Rectangle>> HUDDungeonMapDestinationRects = new List<List<Rectangle>>
+    {
+        //Dungeon 1 Rectangles
+        new List<Rectangle>
+        {
+            //Room 0
+            getHUDMapDestinationRectangles(3, 7),
+
+            //Room 1
+            getHUDMapDestinationRectangles(2, 7),
+
+            //Room 2
+            getHUDMapDestinationRectangles(4, 7),
+
+            //Room 3
+            getHUDMapDestinationRectangles(3, 6),
+
+            //Room 4
+            getHUDMapDestinationRectangles(3, 5),
+
+            //Room 5
+            getHUDMapDestinationRectangles(2, 5),
+
+            //Room 6
+            getHUDMapDestinationRectangles(4, 5),
+
+            //Room 7
+            getHUDMapDestinationRectangles(3, 4),
+
+            //Room 8
+            getHUDMapDestinationRectangles(4, 4),
+
+            //Room 9
+            getHUDMapDestinationRectangles(5, 4),
+
+            //Room 10
+            getHUDMapDestinationRectangles(2, 4),
+
+            //Room 11
+            getHUDMapDestinationRectangles(1, 4),
+
+            //Room 12
+            getHUDMapDestinationRectangles(3, 3),
+
+            //Room 13
+            getHUDMapDestinationRectangles(5, 3),
+
+            //Room 14
+            getHUDMapDestinationRectangles(6, 3),
+
+            //Room 15
+            getHUDMapDestinationRectangles(3, 2),
+
+            //Room 16
+            getHUDMapDestinationRectangles(2, 2),
+
+            //Room 17
+            getHUDMapDestinationRectangles(2, 3),
+
+            //Room 18
+            getHUDMapDestinationRectangles(4, 6),
+
+            //Room 19
+            getHUDMapDestinationRectangles(1, 7),
+
+            //Room 20
+            getHUDMapDestinationRectangles(6, 4),
+
+            //Room 21
+            getHUDMapDestinationRectangles(1, 2),
+
+            //Room 22
+            getHUDMapDestinationRectangles(3, 8),
+
+            //Room 23 
+            getHUDMapDestinationRectangles(2, 3),
+
+
+        },
+    };
+
 
 
     private static List<Rectangle> secondaryWeaponDestinationRectangles = new List<Rectangle>()
@@ -227,6 +310,11 @@ public static class InventoryRectStorage
     public static Rectangle getDungeonMapDestinationRectangles(int x, int y)
     {
         return new Rectangle((128 + (x * 8)) * 4, ((8 + (y * 8)) * 4) + ( baseInventoryDestRect.Height - 32), 8 * 4, 8 * 4);
+    }
+
+    public static Rectangle getHUDMapDestinationRectangles(int x, int y)
+    {
+        return new Rectangle(((x * 10) * 4) + 48, ((y * 6) * 4) + 1, 10 * 4, 6 * 4);
     }
 
     internal static Rectangle GetBaseInventoryDestRect()
@@ -284,12 +372,12 @@ public static class InventoryRectStorage
         return mapDestRect;
     }
 
-    internal static Rectangle GetMapRoomRectDest(int v, int i)
+    internal static Rectangle GetInventoryMapRoomRectDest(int v, int i)
     {
         return inventoryDungeonMapDestinationRects[v][i];
     }
 
-    internal static Rectangle GetMapRoomRectSource(int v, int i)
+    internal static Rectangle GetInventoryMapRoomRectSource(int v, int i)
     {
         return inventoryDungeonMapSourceRects[v][i];
     }
@@ -360,5 +448,15 @@ public static class InventoryRectStorage
     internal static Rectangle GetSecondaryWeaponDestRect(int index)
     {
         return secondaryWeaponDestinationRectangles[index];
+    }
+
+    internal static Rectangle GetHUDMapRoomRectDest(int v, int i)
+    {
+        return HUDDungeonMapDestinationRects[v][i];
+    }
+
+    internal static Rectangle GetHUDMapRoomRectSource()
+    {
+        return HUDMapSourceRect;
     }
 }

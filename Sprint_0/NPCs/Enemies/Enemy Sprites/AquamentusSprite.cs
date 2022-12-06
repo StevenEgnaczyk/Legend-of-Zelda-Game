@@ -85,6 +85,7 @@ public class AquamentusSprite : IEnemySprite
     public void update(float xPos, float yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 100, 128);
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 100, 128);
 
         frame = facingDirections;
 
