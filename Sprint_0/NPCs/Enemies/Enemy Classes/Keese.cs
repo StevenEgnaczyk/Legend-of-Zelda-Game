@@ -20,9 +20,6 @@ public class Keese : IEnemy
     private const float enemySpeed = 1;
     private EnemyManager man;
 
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-
     public Keese(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
@@ -37,8 +34,6 @@ public class Keese : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-
-        bufferVals[2] = 50;
     }
 
     /*
@@ -72,6 +67,7 @@ public class Keese : IEnemy
     public void hurt()
     {
         state.hurt(this);
+        AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
         {
@@ -89,7 +85,6 @@ public class Keese : IEnemy
 
     public void update()
     {
-
         state.update();
         sprite.update(xPos, yPos, state.facingDirection, randTime);
 

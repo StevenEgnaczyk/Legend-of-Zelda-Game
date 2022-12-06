@@ -13,10 +13,12 @@ public class WallmasterSprite : IEnemySprite
     private Rectangle frame1Rectangle;
 
     private int frame;
+    public int damageBuffer { get; set; }
 
     public WallmasterSprite(Texture2D spritsheet)
     {
         wallmasterTexture = spritsheet;
+        damageBuffer = -1;
 
         destinationRectangle = new Rectangle(0, 0, 32, 32);
         frame0Rectangle = new Rectangle(393, 11, 16, 16);
@@ -26,7 +28,7 @@ public class WallmasterSprite : IEnemySprite
     public void draw(SpriteBatch sb)
     {
         wallmasterTexture = Texture2DStorage.getEnemySpritesheet();
-        if ((frame % 2) == 0)
+        if (frame == 0)
         {
             sb.Draw(wallmasterTexture, destinationRectangle, frame0Rectangle, Color.White);
 
@@ -46,7 +48,7 @@ public class WallmasterSprite : IEnemySprite
     {
         destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
 
-        if (time % 2 == 0)
+        if (0 <= (time % 40) && (time % 40) < 20)
         {
             frame = 0;
 
@@ -54,6 +56,7 @@ public class WallmasterSprite : IEnemySprite
         else
         {
             frame = 1;
+
         }
     }
 }

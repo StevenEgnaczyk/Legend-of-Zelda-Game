@@ -15,13 +15,13 @@ public class AdamSandlerGolfBallSprite : IEnemySprite
     private Rectangle frame2Rectangle;
     private Rectangle frame3Rectangle;
 
-
+    public int damageBuffer { get; set; }
 
     public AdamSandlerGolfBallSprite(Texture2D spritesheet)
     {
         AdamSandlerGolfBallTexture = spritesheet;
 
-        destinationRectangle = new Rectangle(0, 0, 16, 16);
+        destinationRectangle = new Rectangle(0, 0, 12, 12);
 
         frame0Rectangle = new Rectangle(193, 218, 4, 4);
         frame1Rectangle = new Rectangle(199, 218, 4, 4);
@@ -33,19 +33,19 @@ public class AdamSandlerGolfBallSprite : IEnemySprite
 
     public void draw(SpriteBatch sb)
     {
-        if (frame == 0)
+        if ((0 <= frame % 16) || (frame % 16 < 4))
         {
             sb.Draw(this.AdamSandlerGolfBallTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
         }
-        else if (frame == 1)
+        else if ((4 <= frame % 16) || (frame % 16 < 8))
         {
             sb.Draw(this.AdamSandlerGolfBallTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
         }
-        else if(frame == 2)
+        else if ((8 <= frame % 16) || (frame % 16 < 12))
         {
             sb.Draw(this.AdamSandlerGolfBallTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
         }
-        else
+        else 
         {
             sb.Draw(this.AdamSandlerGolfBallTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
         }
@@ -58,8 +58,8 @@ public class AdamSandlerGolfBallSprite : IEnemySprite
 
     public void update(float xPos, float yPos, int facingDirections, int time)
     {
-        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 16, 16);
-        
-        frame = time % 4;
+        this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 12, 12);
+
+        frame++;
     }
 }

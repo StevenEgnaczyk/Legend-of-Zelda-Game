@@ -13,7 +13,7 @@ public class FlameSprite : IEnemySprite
     private Rectangle frame0Rectangle;
     private Rectangle frame1Rectangle;
 
-    //cant die add large number of hp so they cant die
+    public int damageBuffer { get; set; }
 
     public FlameSprite(Texture2D spritesheet)
     {

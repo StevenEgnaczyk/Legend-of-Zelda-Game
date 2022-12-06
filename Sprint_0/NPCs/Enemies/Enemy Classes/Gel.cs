@@ -19,12 +19,8 @@ public class Gel : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const float enemySpeed = 0.5f;
+    private const float enemySpeed = 1;
     private EnemyManager man;
-
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-    private int frame;
 
     public Gel(EnemyManager manager, int startX, int startY)
     {
@@ -40,8 +36,6 @@ public class Gel : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-
-        bufferVals[2] = 60;
     }
 
 
@@ -76,6 +70,7 @@ public class Gel : IEnemy
     public void hurt()
     {
         state.hurt(this);
+        AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
         {

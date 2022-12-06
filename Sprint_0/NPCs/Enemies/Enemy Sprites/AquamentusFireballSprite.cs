@@ -14,6 +14,8 @@ public class AquamentusFireballSprite : IEnemySprite
     private Rectangle frame1Rectangle;
     private Rectangle frame2Rectangle;
     private Rectangle frame3Rectangle;
+    public int damageBuffer { get; set; }
+
 
     public AquamentusFireballSprite(Texture2D spritesheet)
     {
