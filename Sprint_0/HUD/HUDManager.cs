@@ -83,12 +83,13 @@ namespace Sprint_0.HUD
                 heartIndex++;
             }
 
-            if (linkHealth > 0)
+            if (linkHealth % 1.0 == 0.5)
             {
                 Rectangle heartSourceRect = HUDRectStorage.GetHalfHeartSourceRect();
                 Rectangle heartDestRect = HUDRectStorage.GetHeartDestRect(heartIndex);
                 heartDestRect.Offset(xOffset, yOffset);
                 spriteBatch.Draw(basicHUD, heartDestRect, heartSourceRect, Color.White);
+                heartIndex++;
             }
 
             while (heartIndex < maxHealth)
