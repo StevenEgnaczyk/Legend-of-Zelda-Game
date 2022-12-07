@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 
 public class DaBossBabySprite : IEnemySprite
 {
+    public int damageBuffer{ get; set; }
     private Texture2D DaBossBabyTexture;
     private int frame;
 
