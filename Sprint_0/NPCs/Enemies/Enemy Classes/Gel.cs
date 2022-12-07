@@ -125,4 +125,8 @@ public class Gel : IEnemy
     {
         throw new NotImplementedException();
     }
+    public bool damaged()
+    {
+        return false;
+    }
 }

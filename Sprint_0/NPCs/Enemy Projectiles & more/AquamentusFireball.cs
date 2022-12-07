@@ -122,5 +122,9 @@ public class AquamentusFireball : IEnemy
     {
         return enemySpeed;
     }
+    public bool damaged()
+    {
+        return false;
+    }
 
 }
