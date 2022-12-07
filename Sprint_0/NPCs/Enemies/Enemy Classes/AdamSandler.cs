@@ -135,4 +135,9 @@ public class AdamSandler : IEnemy
     {
         return enemySpeed;
     }
+
+    public bool damaged()
+    {
+        return (sprite.damageBuffer >= 0);
+    }
 }

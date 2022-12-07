@@ -131,5 +131,8 @@ public class AdamSandlerGolfBall : IEnemy
     {
         return enemySpeed;
     }
-
+    public bool damaged()
+    {
+        return false;
+    }
 }

@@ -100,4 +100,9 @@ public class DeathAnimation : IEnemy
         return enemySpeed;
     }
 
+    public bool damaged()
+    {
+        return false;
+    }
+
 }

@@ -22,11 +22,14 @@ public interface IEnemy
     void moveRight();
     void idle();
     void hurt();
+
+    void die();
     void shootProjectile();
     void changeToRandState();
 
     int getHeight();
     int getWidth();
     float getSpeed();
+    bool damaged();
 
 }

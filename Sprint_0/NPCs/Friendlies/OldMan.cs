@@ -42,6 +42,8 @@ public class OldMan : IEnemy
 
     public void hurt() { }
 
+    public void die() { }
+
     public void idle() { }
 
     public void update() {
@@ -79,5 +81,10 @@ public class OldMan : IEnemy
     public void shootProjectile()
     {
         throw new NotImplementedException();
+    }
+
+    public bool damaged()
+    {
+        return false;
     }
 }

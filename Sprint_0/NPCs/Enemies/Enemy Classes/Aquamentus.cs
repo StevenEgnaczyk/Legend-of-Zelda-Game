@@ -140,4 +140,8 @@ public class Aquamentus : IEnemy
     {
         return enemySpeed;
     }
+    public bool damaged()
+    {
+        return (sprite.damageBuffer >= 0);
+    }
 }
