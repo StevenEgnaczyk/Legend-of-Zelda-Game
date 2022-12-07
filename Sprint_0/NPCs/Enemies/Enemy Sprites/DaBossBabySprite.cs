@@ -41,7 +41,7 @@ public class DaBossBabySprite : IEnemySprite
 
     public void drawHurt(SpriteBatch sb)
     {
-        DaBossBabyTexture = Texture2DStorage.getBossSpritesheet();
+        DaBossBabyTexture = Texture2DStorage.getEnemySpritesheet();
         sb.Draw(DaBossBabyTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan);
     }
 
