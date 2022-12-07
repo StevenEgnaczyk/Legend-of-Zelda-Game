@@ -67,6 +67,7 @@ public class Keese : IEnemy
     public void hurt()
     {
         state.hurt(this);
+        sprite.damageBuffer =  50;
         AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
@@ -121,5 +122,9 @@ public class Keese : IEnemy
     public void shootProjectile()
     {
         throw new NotImplementedException();
+    }
+    public bool damaged()
+    {
+        return false;
     }
 }

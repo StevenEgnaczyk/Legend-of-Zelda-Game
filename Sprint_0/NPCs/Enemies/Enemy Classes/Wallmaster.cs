@@ -118,4 +118,8 @@ public class Wallmaster : IEnemy
     {
         throw new NotImplementedException();
     }
+    public bool damaged()
+    {
+        return (sprite.damageBuffer >= 0);
+    }
 }

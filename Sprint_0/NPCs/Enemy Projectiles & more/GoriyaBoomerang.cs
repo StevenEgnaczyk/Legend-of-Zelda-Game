@@ -168,5 +168,9 @@ public class GoriyaBoomerang : IEnemy
     {
         return enemySpeed;
     }
+    public bool damaged()
+    {
+        return false;
+    }
 
 }
