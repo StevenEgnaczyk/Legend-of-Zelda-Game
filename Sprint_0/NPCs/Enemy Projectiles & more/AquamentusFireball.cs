@@ -18,21 +18,18 @@ public class AquamentusFireball : IEnemy
     private IEnemySprite sprite;
     private const int height = 16;
     private const int width = 16;
-    private const float enemySpeed = 20;
+    private const float enemySpeed = 2;
     private int timeUntilDeath;
     private EnemyManager man;
 
     private int fireballnum;
 
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-    private int bufferMax = 30;
 
     public AquamentusFireball(EnemyManager manager, IEnemy aquamentus, int fireballNum)
     {
         state = new LeftMovingEnemyState(this);
-        xPos = aquamentus.xPos;
-        yPos = aquamentus.yPos - (aquamentus.getHeight() / 2);
+        xPos = aquamentus.xPos - (aquamentus.getSpeed() / 2);
+        yPos = aquamentus.yPos + (aquamentus.getHeight() / 2);
 
         sprite = EnemySpriteFactory.instance.CreateAquamentusFireballSprite();
         man = manager;
@@ -43,7 +40,6 @@ public class AquamentusFireball : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        bufferVals[2] = bufferMax;
     }
 
     public void moveLeft()
@@ -76,37 +72,31 @@ public class AquamentusFireball : IEnemy
 
     public void update()
     {
-        timeUntilDeath++;
-        if (Buffer.itemBuffer(bufferVals))
+        if (timeUntilDeath == 800)
         {
-            if(fireballnum != 1 && randTime % 2 == 0)
-            {
-                if(fireballnum == 0)
-                {
+            die();
 
-                    state.moveUp(this);
-
-                } else
-                {
-
-                    state.moveDown(this);
-
-                }
-            }  else
-            {
-                state.moveLeft(this);
-            }
-
-            sprite.update(xPos, yPos, state.facingDirection, randTime);
+        }
+        else
+        {
             randTime++;
-            
-            if(randTime == 150 || timeUntilDeath == 1000)
+            timeUntilDeath++;
+
+            if(fireballnum == 0)
             {
-                die();
+                yPos--;
+
+            } else if (fireballnum == 2)
+            {
+                yPos++;
+
             }
+
+            state.update();
+            sprite.update(xPos, yPos, state.facingDirection, randTime);
         }
 
-    }
+}
 
     public void draw(SpriteBatch sb)
     {

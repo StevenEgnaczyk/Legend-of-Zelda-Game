@@ -19,6 +19,8 @@ public class AquamentusSprite : IEnemySprite
     private Rectangle frame3Rectangle;
     //2 hp but only can take damage from bombs add animation but allow for everything to do damage
 
+    public int damageBuffer { get; set; }
+
     public AquamentusSprite(Texture2D spritesheet)
     {
         AquamentusTexture = spritesheet;
@@ -30,52 +32,63 @@ public class AquamentusSprite : IEnemySprite
         frame2Rectangle = new Rectangle(51, 11, 24, 32);
         frame3Rectangle = new Rectangle(76, 11, 24, 32);
 
-        frame = 0;
+        frame = 2;
+        damageBuffer = -1;
     }
 
     public void draw(SpriteBatch sb)
     {
         AquamentusTexture = Texture2DStorage.getBossSpritesheet();
 
-        if (frame == 11)
+        if(damageBuffer < 0)
         {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            if (frame == 0)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
 
-        }else if (frame == 12)
+            }
+            else if (frame == 1)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
+
+            }
+            else if (frame == 2)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
+
+            }
+            else if (frame == 3)
+            {
+                sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
+
+            }
+        } else
         {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.White);
-
-        }else if (frame == 4 || frame == 8)
-        {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.White);
-
-        }else if(frame == 5 || frame == 9)
-        {
-            sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.White);
-
+            drawHurt(sb);
         }
+        
     }
 
     public void drawHurt(SpriteBatch sb)
     {
         AquamentusTexture = Texture2DStorage.getBossSpritesheet();
 
-        if (frame == 11)
+        if (frame == 0)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan);
 
         }
-        else if (frame == 12)
+        else if (frame == 1)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame1Rectangle, Color.SandyBrown);
 
         }
-        else if (frame == 4 || frame == 8)
+        else if (frame == 2)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame2Rectangle, Color.Cyan);
 
         }
-        else if (frame == 5 || frame == 9)
+        else if (frame == 3)
         {
             sb.Draw(AquamentusTexture, this.destinationRectangle, this.frame3Rectangle, Color.SandyBrown);
 
@@ -87,14 +100,18 @@ public class AquamentusSprite : IEnemySprite
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 100, 128);
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 100, 128);
 
-        frame = facingDirections;
-
-        if (time % 2 == 0) 
+        if(damageBuffer >= 0)
         {
+            damageBuffer--;
+        }
 
-            frame++;
+        frame = (time % 2) + 2;
 
+        if (facingDirections >= 7 && facingDirections != 8)
+        {
+            frame -= 2;
         }
         
+
     }
 }

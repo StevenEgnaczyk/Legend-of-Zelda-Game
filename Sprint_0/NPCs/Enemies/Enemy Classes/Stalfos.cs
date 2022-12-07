@@ -21,12 +21,6 @@ public class Stalfos : IEnemy
     private const float enemySpeed = 1;
     private EnemyManager man;
 
-    private bool damaged;
-    private int damageBuffer;
-
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
-
     public Stalfos(EnemyManager manager, int startX, int startY)
     {
         state = new LeftMovingEnemyState(this);
@@ -41,9 +35,6 @@ public class Stalfos : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        bufferVals[2] = 50;
-
-        damaged = false;
     }
 
     /*
@@ -76,13 +67,9 @@ public class Stalfos : IEnemy
 
     public void hurt()
     {
-        if (!damaged)
-        {
-            state.hurt(this);
-            damaged = true;
-            damageBuffer = 50;
-            AudioStorage.GetEnemyHit().Play();
-        }
+        state.hurt(this);
+        sprite.damageBuffer = 50;
+        AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
         {
@@ -100,30 +87,15 @@ public class Stalfos : IEnemy
 
     public void update()
     {
+
         state.update();
         sprite.update(xPos, yPos, state.facingDirection, randTime);
 
-        if (damageBuffer > 0)
-        {
-            damageBuffer--;
-            if (damageBuffer == 0)
-            {
-                damaged = false;
-            }
-        }
     }
 
     public void draw(SpriteBatch sb)
     {
-        if(damaged == false)
-        {
-            sprite.draw(sb);
-        }
-        else
-        {
-            sprite.drawHurt(sb);
-        }
-        
+        sprite.draw(sb);
     }
 
     public void changeToRandState()

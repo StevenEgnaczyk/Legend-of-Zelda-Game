@@ -12,9 +12,13 @@ public class AdamSandlerSprite : IEnemySprite
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
 
+    public int damageBuffer { get; set; }
+
+
     public AdamSandlerSprite(Texture2D spritesheet)
     {
         frame = 0;
+        damageBuffer = -1;
         adamSandlerTexture = spritesheet;
         destinationRectangle = new Rectangle(0, 0, 32, 32);
         frame0Rectangle = new Rectangle(163, 238, 17, 27);
@@ -26,16 +30,21 @@ public class AdamSandlerSprite : IEnemySprite
         adamSandlerTexture = Texture2DStorage.getEnemySpritesheet();
         float zero = 0.0F;
 
-        if (frame == 0)
+        if(damageBuffer < 0)
         {
-            sb.Draw(this.adamSandlerTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
-
-        }
-        else
+            if (frame == 0)
+            {
+                sb.Draw(this.adamSandlerTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+            }
+            else
+            {
+                sb.Draw(this.adamSandlerTexture, this.destinationRectangle, this.frame0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
+            }
+        } else
         {
-            sb.Draw(this.adamSandlerTexture, this.destinationRectangle, this.frame0Rectangle, Color.White, zero, new Vector2(0,0), SpriteEffects.FlipHorizontally, zero);
-
+            drawHurt(sb);
         }
+        
     }
     public void drawHurt(SpriteBatch sb)
     {
@@ -57,8 +66,13 @@ public class AdamSandlerSprite : IEnemySprite
     public void update(float xPos, float yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
+        
+        if(damageBuffer >= 0)
+        {
+            damageBuffer--;
+        }
 
-        if (time % 2 == 0)
+        if (0 <= (time % 40) && (time % 40) < 20)
         {
             frame = 0;
 
@@ -66,6 +80,7 @@ public class AdamSandlerSprite : IEnemySprite
         else
         {
             frame = 1;
+
         }
     }
 }

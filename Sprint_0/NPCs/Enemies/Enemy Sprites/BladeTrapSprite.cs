@@ -10,6 +10,8 @@ public class BladeTrapSprite : IEnemySprite
 
     private Rectangle destinationRectangle;
     private Rectangle frame0Rectangle;
+    public int damageBuffer { get; set; }
+
 
     public BladeTrapSprite(Texture2D spritesheet)
     {

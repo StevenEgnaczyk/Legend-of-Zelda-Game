@@ -16,6 +16,9 @@ public class DeathSprite : IEnemySprite
     private Rectangle frame2Rectangle;
     private Rectangle frame3Rectangle;
 
+    public int damageBuffer { get; set; }
+
+
     public DeathSprite(Texture2D spritesheet)
     {
         DeathTexture = spritesheet;
@@ -58,6 +61,7 @@ public class DeathSprite : IEnemySprite
     {
         //Does not take damage
     }
+
     public void update(float xPos, float yPos, int facingDirections, int time)
     {
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 48, 64);

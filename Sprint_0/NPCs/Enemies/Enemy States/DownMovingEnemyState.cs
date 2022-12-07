@@ -20,8 +20,6 @@ public class DownMovingEnemyState : IEnemyState
     {
         enemy = e;
         facingDirection = 1; // = 0001 = Walking down
-        enemy.yPos += enemy.getSpeed();
-
     }
 
     public void moveLeft(IEnemy enemy)
@@ -65,7 +63,7 @@ public class DownMovingEnemyState : IEnemyState
         if (enemy.randTime == 0)
         {
             Random r = new Random();
-            enemy.randTime = r.Next(5, 20);
+            enemy.randTime = r.Next(5, 75);
 
             enemy.changeToRandState();
 
@@ -73,7 +71,7 @@ public class DownMovingEnemyState : IEnemyState
         else
         {
             enemy.randTime--;
-            enemy.yPos += enemy.getSpeed();
+            moveDown(enemy);
         }
     }
 

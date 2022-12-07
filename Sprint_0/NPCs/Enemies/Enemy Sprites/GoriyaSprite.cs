@@ -18,6 +18,8 @@ public class GoriyaSprite : IEnemySprite
     private bool flip;
     private int frame;
 
+    public int damageBuffer { get; set; }
+
     public GoriyaSprite(Texture2D spritesheet)
     {
         goriyaTexture = spritesheet;
@@ -29,22 +31,26 @@ public class GoriyaSprite : IEnemySprite
         downRectangle = new Rectangle(222, 11, 16, 16);
 
         frame = 0;
+        damageBuffer = -1;
     }
 
     public void draw(SpriteBatch sb)
     {
-        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
-
-        if (this.flip)
+        if (this.flip && damageBuffer < 0)
         {
 
             drawFlipped(sb);
 
         }
-        else
+        else if (!flip && damageBuffer < 0)
         {
 
             drawNormal(sb);
+
+        } else
+        {
+
+            drawHurt(sb);
 
         }
 
@@ -53,8 +59,6 @@ public class GoriyaSprite : IEnemySprite
 
     public void drawHurt(SpriteBatch sb)
     {
-        goriyaTexture = Texture2DStorage.getEnemySpritesheet();
-
         if (this.flip)
         {
 
@@ -72,22 +76,22 @@ public class GoriyaSprite : IEnemySprite
     public void drawNormal(SpriteBatch sb)
     {
 
-        if (frame == 4)
+        if (frame == 0)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.White);
 
         }
-        else if (frame == 5 || frame == 7)
+        else if (frame == 1)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.White);
 
         }
-        else if (frame == 14 || frame == 2)
+        else if (frame == 2)
         {
             sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.White);
 
         }
-        else if (frame == 13 || frame == 1)
+        else if (frame == 3)
         {
             sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.White);
 
@@ -97,22 +101,23 @@ public class GoriyaSprite : IEnemySprite
     public void drawFlipped(SpriteBatch sb)
     {
         float zero = 0.0F;
-        if (frame == 8)
+
+        if (frame == 0)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 11 || frame == 9)
+        else if (frame == 1)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 14 || frame == 2)
+        else if (frame == 2)
         {
             sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 13 || frame == 1)
+        else if (frame == 3)
         {
             sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.White, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
@@ -122,22 +127,22 @@ public class GoriyaSprite : IEnemySprite
     public void drawHurtFlipped(SpriteBatch sb)
     {
         float zero = 0.0F;
-        if (frame == 8)
+        if (frame == 0)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.Blue, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 11 || frame == 9)
+        else if (frame == 1)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.Lime, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 14 || frame == 2)
+        else if (frame == 2)
         {
             sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.Blue, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
         }
-        else if (frame == 13 || frame == 1)
+        else if (frame == 3)
         {
             sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.Lime, zero, new Vector2(0, 0), SpriteEffects.FlipHorizontally, zero);
 
@@ -146,22 +151,22 @@ public class GoriyaSprite : IEnemySprite
 
     public void drawHurtNormal(SpriteBatch sb)
     {
-        if (frame == 4)
+        if (frame == 0)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk0Rectangle, Color.Blue);
 
         }
-        else if (frame == 5 || frame == 7)
+        else if (frame == 1)
         {
             sb.Draw(goriyaTexture, destinationRectangle, walk1Rectangle, Color.Lime);
 
         }
-        else if (frame == 14 || frame == 2)
+        else if (frame == 2)
         {
             sb.Draw(goriyaTexture, destinationRectangle, upRectangle, Color.Blue);
 
         }
-        else if (frame == 13 || frame == 1)
+        else if (frame == 3)
         {
             sb.Draw(goriyaTexture, destinationRectangle, downRectangle, Color.Lime);
 
@@ -172,27 +177,34 @@ public class GoriyaSprite : IEnemySprite
     {
         destinationRectangle = new Rectangle((int)xPos, (int)yPos, 64, 64);
 
-        frame = facingDirections;
-
-        if (frame == 8 || frame == 11)
+        if (damageBuffer >= 0)
         {
-            flip = true;
-        }
-        else if (frame > 11 || frame < 3)
-        {
-            flip = (time % 2 == 0);
-        } else
-        {
-            flip = false;
+            damageBuffer--;
         }
 
-        if (frame == 4 || frame == 8)
+        if (facingDirections == 1 || facingDirections == 13) //down
         {
-            if(time % 2 == 0)
+            frame = 3;
+            flip = ((0 < time % 40) && (time % 40 < 20));
+
+        }
+        else if (facingDirections == 2 || facingDirections == 14) //up
+        {
+            frame = 2;
+            flip = ((0 < time % 40) && (time % 40 < 20));
+
+        }
+        else //left or right
+        {
+            frame = 0;
+            flip = (facingDirections == 8 || facingDirections == 11);
+
+            if ((0 < time % 40) && (time % 40 < 20))
             {
-                frame++;
+                frame = 1;
             }
+
         }
-        
+
     }
 }

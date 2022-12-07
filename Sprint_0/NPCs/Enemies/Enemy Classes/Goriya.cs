@@ -18,13 +18,9 @@ public class Goriya : IEnemy
     private IEnemySprite sprite;
     private const int height = 64;
     private const int width = 64;
-    private const float enemySpeed = 3;
+    private const float enemySpeed = 1;
     private EnemyManager man;
     private IEnemy boomerang;
-    private bool damaged;
-    private int damageBuffer;
-    /* Buffer properties*/
-    private int[] bufferVals = new int[3];
 
     public Goriya(EnemyManager manager, int startX, int startY)
     {
@@ -42,9 +38,6 @@ public class Goriya : IEnemy
 
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
-        
-        bufferVals[2] = 50;
-        damaged = false;
         
     }
 
@@ -78,13 +71,9 @@ public class Goriya : IEnemy
 
     public void hurt()
     {
-        if (!damaged)
-        {
-            state.hurt(this);
-            damaged = true;
-            damageBuffer = 50;
-            AudioStorage.GetEnemyHit().Play();
-        }
+        state.hurt(this);
+        sprite.damageBuffer = 50;
+        AudioStorage.GetEnemyHit().Play();
 
         if (health == 0)
         {
@@ -102,41 +91,29 @@ public class Goriya : IEnemy
 
     public void shootProjectile()
     {
-        //time boomerang is out
-        randTime = 25;
-        boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
-        int facingDirection = state.facingDirection;
-        state.idle(this);
-        state.facingDirection = facingDirection;
+        if(randTime % 3 == 0)
+        {
+            //time boomerang is out
+            randTime = 25;
+            boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
+            int facingDirection = state.facingDirection;
+            state.idle(this);
+            state.facingDirection = facingDirection;
+        }
+        
          
     }
 
     public void update()
     {
-
         state.update();
         sprite.update(xPos, yPos, state.facingDirection, randTime);
-
-        if (damageBuffer > 0)
-        {
-            damageBuffer--;
-            if (damageBuffer == 0)
-            {
-                damaged = false;
-            }
-        }
+        
     }
 
     public void draw(SpriteBatch sb)
     {
-        if(damaged == false)
-        {
-            sprite.draw(sb);
-        }
-        else
-        {
-            sprite.drawHurt(sb);
-        }       
+        sprite.draw(sb);       
     }
 
     public void changeToRandState()
