@@ -39,10 +39,18 @@ public class LinkEnemyCollisionResponse
                         enemy.moveDown();
                         link.TurnDown();
                     }
-               
 
-                    //Make link look hurt
-                    link.takeDamage();
+                    //Make link look hurt   
+                    if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                    {
+                        link.takeDamage();
+                    }
+                    else
+                    {
+                        link.takeDamage();
+                        link.takeDamage();
+                    }
+                                    
                     if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                     {
                         if (link.getHealth() <= 1)
@@ -77,9 +85,18 @@ public class LinkEnemyCollisionResponse
                             link.xPos = newLinkLeftXPos;
                             link.TurnRight();
                         }
-                        //Make link look hurt
-                        link.takeDamage();
-                        link.takeDamage();
+
+                        //Make link look hurt   
+                        if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                        {
+                            link.takeDamage();
+                        }
+                        else
+                        {
+                            link.takeDamage();
+                            link.takeDamage();
+                        }
+
                         if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                         {
                             if (link.getHealth() <= 1)
@@ -116,8 +133,18 @@ public class LinkEnemyCollisionResponse
                             enemy.xPos += enemy.getSpeed();
                             link.TurnLeft();
                         }
-                        link.takeDamage();
-                        link.takeDamage();
+
+                        //Make link look hurt   
+                        if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                        {
+                            link.takeDamage();
+                        }
+                        else
+                        {
+                            link.takeDamage();
+                            link.takeDamage();
+                        }
+
                         if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                         {
                             if (link.getHealth() <= 1)
@@ -150,10 +177,18 @@ public class LinkEnemyCollisionResponse
                         enemy.moveUp();
                         link.TurnUp();
                     }
-                    
 
-                    link.takeDamage();
-                    link.takeDamage();
+                    //Make link look hurt   
+                    if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                    {
+                        link.takeDamage();
+                    }
+                    else
+                    {
+                        link.takeDamage();
+                        link.takeDamage();
+                    }
+
                     if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                     {
                         if (link.getHealth() <= 1)
