@@ -48,10 +48,13 @@ public class KeyboardController : IController
 			case "Sprint_0.GameStates.InventoryState":
                 foreach (Keys key in pressedKeys)
                 {
-                    if(!state.Contains(key))
+                    if (buildCommands.inventoryControllerMappings.ContainsKey(key))
+                    {
+                        if(!state.Contains(key))
                             {
                                 buildCommands.inventoryControllerMappings[key].Execute();
                             }
+                    }
                 }
                 state = pressedKeys;
                 break;
