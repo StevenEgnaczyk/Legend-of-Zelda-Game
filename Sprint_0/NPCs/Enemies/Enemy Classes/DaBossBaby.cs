@@ -70,7 +70,7 @@ public class DaBossBaby : IEnemy
 
     public void shootProjectile()
     {
-        if(randTime % 3 == 0)
+        if(randTime % 2 == 0)
         {
             IEnemy golfball1 = new AdamSandlerGolfBall(man, this, 0);
             IEnemy golfball2 = new AdamSandlerGolfBall(man, this, 1);
