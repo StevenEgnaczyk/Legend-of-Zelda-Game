@@ -1,0 +1,19 @@
+Code Review File
+
+Author of the code review: Steven Egnaczyk
+
+Date of the code review: 12/7/2022
+
+Sprint number: 5
+
+Name of the .cs file being reviewed: WinScreenState.cs
+
+Author of the .cs file being reviewed: Dan Flippo
+
+Specific comments on code quality:
+Code is really well formatted. It makes use of the design patterns really well to make a seamless transition from the game state to the win-state. 
+There are comments for everything and things are intuitive to understand.
+
+
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change:
+One change would be to make the transitioning a little more seamless. This would help when there are more than 5ish scenes to transition between.
