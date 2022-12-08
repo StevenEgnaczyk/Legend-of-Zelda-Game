@@ -67,9 +67,10 @@ public class BladeTrap : IEnemy
     {
     }
 
+    public void die() { }
+
     public void update()
     {
-    
         sprite.update(xPos, yPos, state.facingDirection, 0);
 
     }
@@ -104,5 +105,10 @@ public class BladeTrap : IEnemy
     public void shootProjectile()
     {
         throw new NotImplementedException();
+    }
+
+    public bool damaged()
+    {
+        return false;
     }
 }

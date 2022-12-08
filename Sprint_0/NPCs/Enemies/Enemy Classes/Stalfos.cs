@@ -125,4 +125,8 @@ public class Stalfos : IEnemy
     {
         throw new NotImplementedException();
     }
+    public bool damaged()
+    {
+        return (sprite.damageBuffer >= 0);
+    }
 }

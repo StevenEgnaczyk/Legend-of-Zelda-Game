@@ -26,7 +26,6 @@ public class LinkEnemyCollisionResponse
          * Pushes Link and enemy back so that the he is not overtop the enemy, then changes his
          * state to damaged, and turns him (I'm pretty sure he turns when hurt)
          * 
-         * Need: A method that causes Link (and/or enemies) to slide back when hurt
          */
         if(!isNonLethal) { 
             string collisionFace = CollisionDetection.collides(linkRec, enemyRec);
@@ -37,13 +36,21 @@ public class LinkEnemyCollisionResponse
                    //push both objects away so they don't occupy the same space
                     if (!enemy.GetType().ToString().Equals("GoriyaBoomerang")){
                         link.yPos += link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
-                        enemy.yPos -= enemy.getSpeed();
+                        enemy.moveDown();
                         link.TurnDown();
                     }
-               
 
-                    //Make link look hurt
-                    link.takeDamage();
+                    //Make link look hurt   
+                    if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                    {
+                        link.takeDamage();
+                    }
+                    else
+                    {
+                        link.takeDamage();
+                        link.takeDamage();
+                    }
+                                    
                     if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                     {
                         if (link.getHealth() <= 1)
@@ -54,6 +61,8 @@ public class LinkEnemyCollisionResponse
                         {
                             AudioStorage.GetGolfHit().Play();
                         }
+
+                        enemy.die();
                     }
 
                     if (link.getHealth() <= 0)
@@ -76,9 +85,18 @@ public class LinkEnemyCollisionResponse
                             link.xPos = newLinkLeftXPos;
                             link.TurnRight();
                         }
-                        //Make link look hurt
-                        link.takeDamage();
-                        link.takeDamage();
+
+                        //Make link look hurt   
+                        if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                        {
+                            link.takeDamage();
+                        }
+                        else
+                        {
+                            link.takeDamage();
+                            link.takeDamage();
+                        }
+
                         if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                         {
                             if (link.getHealth() <= 1)
@@ -89,6 +107,8 @@ public class LinkEnemyCollisionResponse
                             {
                                 AudioStorage.GetGolfHit().Play();
                             }
+
+                            enemy.die();
                         }
 
                         if (link.getHealth() <= 0)
@@ -113,8 +133,18 @@ public class LinkEnemyCollisionResponse
                             enemy.xPos += enemy.getSpeed();
                             link.TurnLeft();
                         }
-                        link.takeDamage();
-                        link.takeDamage();
+
+                        //Make link look hurt   
+                        if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                        {
+                            link.takeDamage();
+                        }
+                        else
+                        {
+                            link.takeDamage();
+                            link.takeDamage();
+                        }
+
                         if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                         {
                             if (link.getHealth() <= 1)
@@ -125,6 +155,8 @@ public class LinkEnemyCollisionResponse
                             {
                                 AudioStorage.GetGolfHit().Play();
                             }
+
+                            enemy.die();
                         }
 
                         //Make link look hurt
@@ -142,12 +174,21 @@ public class LinkEnemyCollisionResponse
                     {
                         link.yPos -= link.linkSpeed * GlobalVariables.GLOBAL_SPEED_MULTIPLIER;
                         enemy.yPos += enemy.getSpeed();
+                        enemy.moveUp();
                         link.TurnUp();
                     }
-                    
 
-                    link.takeDamage();
-                    link.takeDamage();
+                    //Make link look hurt   
+                    if (enemy.GetType().ToString().Equals("Keese") || enemy.GetType().ToString().Equals("Gel"))
+                    {
+                        link.takeDamage();
+                    }
+                    else
+                    {
+                        link.takeDamage();
+                        link.takeDamage();
+                    }
+
                     if (enemy.GetType().ToString().Equals("AdamSandlerGolfBall"))
                     {
                         if (link.getHealth() <= 1)
@@ -158,6 +199,8 @@ public class LinkEnemyCollisionResponse
                         {
                             AudioStorage.GetGolfHit().Play();
                         }
+
+                        enemy.die();
                     }
 
                     //Make link look hurt
@@ -165,6 +208,19 @@ public class LinkEnemyCollisionResponse
                     {
                         //die.Execute();
                     }
+                    break;
+                case "No Collision":
+
+                    if(enemy.GetType().ToString().Equals("Wallmaster"))
+                    {
+                        LinkSpecialEnemyCollisionResponse.LinkWallmasterCollision(link, enemy, game);
+
+                    } else if (enemy.GetType().ToString().Equals("BladeTrap"))
+                    {
+                        LinkSpecialEnemyCollisionResponse.LinkBladeTrapCollision(link, enemy, game);
+
+                    }
+                   
                     break;
             }
         }

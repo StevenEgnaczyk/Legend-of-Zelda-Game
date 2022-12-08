@@ -22,7 +22,7 @@ public class EnemyWeaponCollisionResponse
          * Weapons continue after colliding with an enemy (not the case for a collidable tile
          */
         string collisionFace = CollisionDetection.collides(enemyRec, weaponRec);
-        if (collisionFace != "No Collision")
+        if (collisionFace != "No Collision" && !enemy.damaged())
         {
             enemy.hurt();
                         

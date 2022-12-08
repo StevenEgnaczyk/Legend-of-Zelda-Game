@@ -94,7 +94,7 @@ public class Goriya : IEnemy
         if(randTime % 3 == 0)
         {
             //time boomerang is out
-            randTime = 25;
+            randTime = 500;
             boomerang = new GoriyaBoomerang(man, xPos, yPos, this);
             int facingDirection = state.facingDirection;
             state.idle(this);
@@ -137,5 +137,9 @@ public class Goriya : IEnemy
     public float getSpeed()
     {
         return enemySpeed;
+    }
+    public bool damaged()
+    {
+        return (sprite.damageBuffer >= 0);
     }
 }

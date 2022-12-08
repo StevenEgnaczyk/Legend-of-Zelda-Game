@@ -131,10 +131,10 @@ public class GoriyaBoomerang : IEnemy
             }
             else if(yPos <= limit[3])
             {
-            //change up to down
-            state.moveDown(this);
+                //change up to down
+                state.moveDown(this);
             }
-            else if((startXPos == xPos && startYPos == yPos) || timeUntilDeath == 500)
+            else if((startXPos == xPos && startYPos == yPos) || timeUntilDeath == 520)
             {
                 die();
             }          
@@ -167,6 +167,10 @@ public class GoriyaBoomerang : IEnemy
     public float getSpeed()
     {
         return enemySpeed;
+    }
+    public bool damaged()
+    {
+        return false;
     }
 
 }

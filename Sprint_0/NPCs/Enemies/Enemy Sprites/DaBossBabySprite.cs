@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 public class DaBossBabySprite : IEnemySprite
 {
-    public int damageBuffer{ get; set; }
+    
     private Texture2D DaBossBabyTexture;
     private int frame;
 
@@ -19,9 +19,12 @@ public class DaBossBabySprite : IEnemySprite
     private Rectangle frame2Rectangle;
     //2 hp but only can take damage from bombs add animation but allow for everything to do damage
 
+    public int damageBuffer { get; set; }
+
     public DaBossBabySprite(Texture2D spritesheet)
     {
         DaBossBabyTexture = spritesheet;
+        damageBuffer = -1;
 
         destinationRectangle = new Rectangle(300, 400, 100, 128);
 
@@ -35,13 +38,21 @@ public class DaBossBabySprite : IEnemySprite
     public void draw(SpriteBatch sb)
     {
         DaBossBabyTexture = Texture2DStorage.getEnemySpritesheet();
-        sb.Draw(DaBossBabyTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+        if (damageBuffer < 0)
+        {
+            sb.Draw(DaBossBabyTexture, this.destinationRectangle, this.frame0Rectangle, Color.White);
+        }
+        else
+        {
+            drawHurt(sb);
+        }
+        
 
     }
 
     public void drawHurt(SpriteBatch sb)
     {
-        DaBossBabyTexture = Texture2DStorage.getBossSpritesheet();
+        DaBossBabyTexture = Texture2DStorage.getEnemySpritesheet();
         sb.Draw(DaBossBabyTexture, this.destinationRectangle, this.frame0Rectangle, Color.Cyan);
     }
 
@@ -50,6 +61,11 @@ public class DaBossBabySprite : IEnemySprite
         this.destinationRectangle = new Rectangle((int)xPos, (int)yPos, 145, 135);
 
         frame = facingDirections;
+
+        if(damageBuffer >= 0)
+        {
+            damageBuffer--;
+        }
 
         if (time % 2 == 0) 
         {
