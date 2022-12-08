@@ -39,7 +39,6 @@ public  class EnemyManager
     {
         
         enemiesList.Remove(enemy);
-
         if (enemiesList.Count == 0)
         {
             ItemManager.instance.dropKey(enemy.xPos, enemy.yPos);
@@ -50,13 +49,18 @@ public  class EnemyManager
             Random rnd = new Random();
             int num = rnd.Next(0, 100);
 
-            if (num >= 0 && num < 30)
+            if (num >= 0 && num < 25)
             {
                 ItemManager.instance.dropRupee(enemy.xPos, enemy.yPos);
-            }
-            else if (num >= 30 && num < 50)
+            } else if (num >= 25 && num < 50)
+            {
+                ItemManager.instance.dropBomb(enemy.xPos, enemy.yPos);
+            } else if (num >= 50 && num < 75)
             {
                 ItemManager.instance.dropHeart(enemy.xPos, enemy.yPos);
+            }
+            else {
+                
             }
 
         }

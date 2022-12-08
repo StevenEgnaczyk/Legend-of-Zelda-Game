@@ -113,4 +113,9 @@ public class ItemManager
     {
         new DaCoin(room.getItemManager(), xPos, yPos);
     }
+
+    internal void dropBomb(float xPos, float yPos)
+    {
+        new Bomb(room.getItemManager(), (int)xPos, (int)yPos);
+    }
 }
