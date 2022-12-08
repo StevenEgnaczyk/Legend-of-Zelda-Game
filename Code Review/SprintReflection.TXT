@@ -1,6 +1,6 @@
-For our sprint 4, we divided up work based on what we wanted to impelment and what we thought we could do.
-We stayed organized in what we planned on doing and what got done. Some things were just a bit more difficult
-to implment than we originally planned for, and so we are behind schedule on what we wanted to get done. 
-However it's not that things have gone poorly for us, we were just a bit unprepared when trying to implment certain
-features that were in tandum with each other. As some features had to implemented before we continue on to other 
-features. We look to continue our progress and plan more accordingly as we near the end of the project.
+For our sprint 5, we divided up work based on what we wanted to impelment and what we thought we could do.
+We stayed organized in what we planned on doing and what got done. During the beginning of this sprint it
+ended up being a bit of catch up from previous sprints, fixing bugs and making sure the game was running 
+smoothly. After we had ironed out our kinks, our teammate John was really our creative inspiration for 
+adding the new enemies and for how they looked and acted, from there it was really just figuring out how
+to get everything working, and on that front I belive we have done well.
