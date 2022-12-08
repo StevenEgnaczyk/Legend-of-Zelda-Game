@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 
-public class DaCoin : IItem
+public class Album : IItem
 {
     //item properties
     private float xPos;
@@ -20,7 +20,7 @@ public class DaCoin : IItem
 
     private ItemManager man;
 
-    public DaCoin(ItemManager manager, float xPosition, float yPosition)
+    public Album(ItemManager manager, float xPosition, float yPosition)
     {
         this.xPos = xPosition + 8;
         this.yPos = yPosition + 8;
