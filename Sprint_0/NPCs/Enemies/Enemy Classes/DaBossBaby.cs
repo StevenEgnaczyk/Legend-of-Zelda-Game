@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 public class DaBossBaby : IEnemy
 {
     /* Properties that change, the heart of the enemy*/
-    public IEnemyState state {  get;  set; }
+    public IEnemyState state { get; set; }
     public float xPos { get; set; }
     public float yPos { get; set; }
     public int health { get; set; }
@@ -37,7 +37,7 @@ public class DaBossBaby : IEnemy
         //Enemy adds itself to the list of enemies
         man.addEnemy(this);
 
-        
+
     }
 
     /*
@@ -58,7 +58,7 @@ public class DaBossBaby : IEnemy
         state.moveUp(this);
     }
 
-    public void moveDown() 
+    public void moveDown()
     {
         state.moveDown(this);
     }
@@ -70,7 +70,7 @@ public class DaBossBaby : IEnemy
 
     public void shootProjectile()
     {
-        if(randTime % 2 == 0)
+        if (randTime % 3 == 0)
         {
             IEnemy golfball1 = new AdamSandlerGolfBall(man, this, 0);
             IEnemy golfball2 = new AdamSandlerGolfBall(man, this, 1);
@@ -81,11 +81,11 @@ public class DaBossBaby : IEnemy
 
     public void hurt()
     {
-   
+
         state.hurt(this);
         sprite.damageBuffer = 50;
         AudioStorage.GetEnemyHit().Play();
-        
+
         if (health == 0)
         {
             die();
@@ -95,7 +95,7 @@ public class DaBossBaby : IEnemy
     public void die()
     {
         IEnemy deathAnimation = new DeathAnimation(man, this);
-        AudioStorage.GetEnemyDie().Play();
+        AudioStorage.GetSugeEffect().Play();
         man.removeEnemy(this);
 
     }
