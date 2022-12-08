@@ -2,9 +2,9 @@ Code Review File
 
 Author of the code review: RJ Zanotti
 
-Date of the code review: 11/23/2022
+Date of the code review: 12/7/2022
 
-Sprint number: 4
+Sprint number: 5
 
 Name of the .cs file being reviewed: AudioStorage.cs
 
@@ -12,8 +12,8 @@ Author of the .cs file being reviewed: Dan Flippo
 
 Specific comments on code quality:
 Code formatted well for the AudioStorage. Each audio file is loaded in and is called in a specific audio file
-method for that particular sound that is needed. Each method will just return the needed audio for that sound.
+method for that particular sound that is needed. This allows the method to be called by other classes for their desired sound
 
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change:
-There's not much to change in regards of functionality, just made some comments that tell you when this audio is used 
-just to kind of keep things oganized, but not much to change here in terms of functionality or function quality. 
+A change that could be made is to organize the sounds by what they are used for. For example, organize all of Link's sounds into a group, the enemy sounds into a group, and put the
+HUD sounds into another group for easier readability and usability.
