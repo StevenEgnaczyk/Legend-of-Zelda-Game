@@ -19,6 +19,7 @@ public class Link
     private float linkHealth;
     private float linkMaxHealth = 3.0f;
     private ChangeToDeathScreenCommand deathScreen;
+    private ChangeToWinScreenCommand winScreen;
 
     
     //set link defaults
@@ -28,6 +29,7 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
         deathScreen = new ChangeToDeathScreenCommand(game);
+        winScreen = new ChangeToWinScreenCommand(game);
         this.game = game;
         linkHealth = linkMaxHealth;
 
@@ -64,6 +66,17 @@ public class Link
         if(OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
         {
             Die();
+        }
+        if (inventory.HasAlbum())
+        {
+            winScreen.Execute();
+            inventory.removeAlbum();
+            state = new DownMovingLinkState(this);
+            inventory = new Inventory(this);
+            linkHealth = linkMaxHealth;
+            xPos = 500;
+            yPos = 500;
+            game.roomManager.reset();
         }
     }
 

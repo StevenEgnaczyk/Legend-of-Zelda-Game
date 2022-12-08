@@ -95,7 +95,7 @@ public class DaBossBaby : IEnemy
     public void die()
     {
         IEnemy deathAnimation = new DeathAnimation(man, this);
-        AudioStorage.GetEnemyDie().Play();
+        AudioStorage.GetSugeEffect().Play();
         man.removeEnemy(this);
 
     }

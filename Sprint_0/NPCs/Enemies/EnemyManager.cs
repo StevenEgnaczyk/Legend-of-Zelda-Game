@@ -85,6 +85,12 @@ public  class EnemyManager
         }
     }
 
+    public void removeEnemy(DaBossBaby daBossBaby)
+    {
+        enemiesList.Remove(daBossBaby);
+        ItemManager.instance.dropAlbum(daBossBaby.xPos, daBossBaby.yPos);
+    }
+
     public void removeEnemy(AdamSandler sandler)
     {
         enemiesList.Remove(sandler);

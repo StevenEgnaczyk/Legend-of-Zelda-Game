@@ -36,6 +36,7 @@ public class ItemManager
     public void addItem(IItem item)
     {
         itemList.Add(item);
+        
     }
 
     //remove item to list
@@ -92,6 +93,12 @@ public class ItemManager
     internal void dropKey(float xPos, float yPos)
     {
         new Key(room.getItemManager(), xPos, yPos);
+    }
+
+    //creates a new key in the defined position
+    internal void dropAlbum(float xPos, float yPos)
+    {
+        new Album(room.getItemManager(), xPos, yPos);
     }
 
     //creates a new heart in the defined position

@@ -20,6 +20,7 @@ public class Inventory
 
     private bool hasMap;
     private bool hasCompass;
+    private bool hasAlbum;
 
     public Inventory(Link link)
     {
@@ -32,6 +33,8 @@ public class Inventory
 
         hasMap = false;
         hasCompass = false;
+        hasAlbum = false;
+
         primaryWeaponManager = new primaryWeaponManager(link);
         secondaryWeaponManager = new secondaryWeaponManager(link);
         inventoryManager = new InventoryManager(link, this);
@@ -97,6 +100,10 @@ public class Inventory
                 {
                     PuzzleManager.instance.managePuzzles();
                 }
+                break;
+
+            case Album:
+                hasAlbum= true;
                 break;
 
         }
@@ -176,6 +183,16 @@ public class Inventory
     public bool HasMap()
     {
         return hasMap;
+    }
+
+    public bool HasAlbum()
+    {
+        return hasAlbum;
+    }
+
+    public void removeAlbum()
+    {
+        hasAlbum = false;
     }
 
     public bool HasCompass()

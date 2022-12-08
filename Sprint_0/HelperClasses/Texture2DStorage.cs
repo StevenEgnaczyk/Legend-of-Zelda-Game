@@ -22,6 +22,7 @@ public static class Texture2DStorage
 	private static Texture2D deathSpriteSheet;
 	private static Texture2D daBabySpriteSheet;
 	private static Texture2D startupSpriteSheet;
+	private static Texture2D winSpriteSheet;
 	private static Texture2D deathScreen;
 	private static Texture2D black;
 
@@ -40,6 +41,7 @@ public static class Texture2DStorage
 		deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
 		daBabySpriteSheet = content.Load<Texture2D>("DaBaby");
 		startupSpriteSheet = content.Load<Texture2D>("TitleScreen");
+		winSpriteSheet = content.Load<Texture2D>("WinScreen2");
 		deathScreen = content.Load<Texture2D>("DeathScreen");
 		black = content.Load<Texture2D>("Black");
 
@@ -95,7 +97,12 @@ public static class Texture2DStorage
 		return startupSpriteSheet;
 	}
 
-	internal static Texture2D GetDeeathScreenSheet()
+    internal static Texture2D GetWinSpriteSheet()
+    {
+        return winSpriteSheet;
+    }
+
+    internal static Texture2D GetDeeathScreenSheet()
 	{
 		return deathScreen;
 	}

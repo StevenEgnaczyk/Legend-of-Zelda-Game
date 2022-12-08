@@ -99,6 +99,7 @@ public static class ItemRectStorage
 
     private static Rectangle candleSprite = new Rectangle(160, 0, 8, 16);
     private static Rectangle daCoin = new Rectangle(0, 18, 32, 32);
+    private static Rectangle album = new Rectangle(0, 52, 32, 32);
 
     //get methods for item rectangles
     public static Rectangle getUpArrowSprite()
@@ -205,5 +206,10 @@ public static class ItemRectStorage
     internal static Rectangle getDaCoinSourceRect()
     {
         return daCoin;
+    }
+
+    internal static Rectangle getAlbumSourceRect()
+    {
+        return album;
     }
 }

@@ -18,6 +18,9 @@ public static class RoomRectStorage
         
     };
 
+    private static Rectangle winSourceRect = new Rectangle(0, 0, 1024, 1024);
+    private static Rectangle winDestRect = new Rectangle(0, 0, 1024, 1024);
+
     private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
     private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
 
@@ -181,6 +184,16 @@ public static class RoomRectStorage
                 throw new NotImplementedException();
 
         }
+    }
+
+    internal static Rectangle getWinSourceRect()
+    {
+        return winSourceRect;
+    }
+
+    internal static Rectangle getWinDestRect()
+    {
+        return winDestRect;
     }
 
     internal static Rectangle getStartupSourceRect()
