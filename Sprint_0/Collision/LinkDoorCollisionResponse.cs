@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Content;
+using System.Diagnostics;
 
 public class LinkDoorCollisionResponse
 {
@@ -102,6 +103,7 @@ public class LinkDoorCollisionResponse
                         game.link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_TOP;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportTop);
+                        Debug.WriteLine(game.roomManager.currentRoom);
                     }
                     break;
 
@@ -141,6 +143,7 @@ public class LinkDoorCollisionResponse
                         link.yPos = GlobalVariables.LINK_STARTING_Y_ENTERING_BOTTOM;
                         game.roomManager.saveRoomInfo();
                         roomChange.Execute(link, roomToTeleportBottom);
+                        
                     }
                     break;
             }

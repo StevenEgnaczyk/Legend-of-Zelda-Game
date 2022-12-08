@@ -154,7 +154,10 @@ public class Room
     /* Unlock a particular door */
     internal void unlockDoor(int v)
     {
-        doorManager.doorList[v].Unlock();
+        if (v > 0)
+        {
+            doorManager.doorList[v].Unlock();
+        }
     }
 
     /* Getters and Setters */

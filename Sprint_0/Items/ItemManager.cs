@@ -74,6 +74,9 @@ public class ItemManager
             case 38:
                 new DaCoin(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
+            case 39:
+                new HeartContainer(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
+                break;
 
         }
     }

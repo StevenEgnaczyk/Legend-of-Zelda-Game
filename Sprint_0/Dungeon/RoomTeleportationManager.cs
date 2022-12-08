@@ -97,5 +97,69 @@ public static class RoomTeleportationManager
 
     }
 
+    internal static int manageLockedDoors(int teleportingFrom, int teleportingTo)
+    {
+        switch (teleportingFrom)
+        {
+            case 1:
+                if (teleportingTo == 4)
+                {
+                    return 2;
+                }
+                break;
+            case 6:
+                if (teleportingTo == 11)
+                {
+                    return 2;
+                }
+                break;
+            case 8:
+                if (teleportingTo == 9)
+                {
+                    return 3;
+                }
+                break;
+            case 9:
+                if (teleportingTo == 8)
+                {
+                    return 1;
+                }
+                break;
+            case 10:
+                if (teleportingTo == 14)
+                {
+                    return 2;
+                }
+                break;
+            case 11:
+                if (teleportingTo == 6)
+                {
+                    return 0;
+                }
+                break;
+            case 13:
+                if (teleportingTo == 16)
+                {
+                    return 2;
+                }
+                break;
+            case 14:
+                if (teleportingTo == 10)
+                {
+                    return 0;
+                }
+                break;
+            case 16:
+                if (teleportingTo == 13)
+                {
+                    return 0;
+                } else if (teleportingTo == 17)
+                {
+                    return 1;
+                }
+                break;
+        }
+        return -1;
+    }
 }
 
