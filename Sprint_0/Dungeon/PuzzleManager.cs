@@ -34,7 +34,10 @@ public class PuzzleManager
             case 11:
 
                 //Open the door in the push block room
-                manager.currentRoom.unlockDoor(3);
+                if (manager.currentRoom.getEnemies().Count() == 0)
+                {
+                    manager.currentRoom.unlockDoor(3);
+                }
                 break;
             case 6:
 
