@@ -1,0 +1,11 @@
+
+Author: Steven Egnaczyk
+Date: 12/07/2022
+Sprint No. 5
+File Name: Wallmaster.cs
+File Author: Ethan Halverson
+
+Read Review: The code is easy to follow and all variable names are 
+easily recognizable. Very simple methods and such.
+
+Time: 5 minutes
