@@ -15,15 +15,18 @@ public static class RoomRectStorage
         new Rectangle(421, 1009, 256, 160),
         new Rectangle(521, 11, 256, 176),
         new Rectangle(912, 818, 256, 176),
-        
+
     };
+
+    private static Rectangle winSourceRect = new Rectangle(0, 0, 1024, 1024);
+    private static Rectangle winDestRect = new Rectangle(0, 0, 1024, 1024);
 
     private static Rectangle startupSourceRect = new Rectangle(0, 0, 1280, 720);
     private static Rectangle startupDestRect = new Rectangle(0, 0, 1024, 1024);
 
     private static Rectangle gameOverSourceRect = new Rectangle(0, 0, 1280, 1280);
     private static Rectangle gameOverDestRect = new Rectangle(225, 350, 720, 720);
-    
+
     //get methods for rectangles, some of which also serve to store the rectangles
     public static Rectangle getBasicRoom(int backgroundIndex)
     {
@@ -39,10 +42,10 @@ public static class RoomRectStorage
 
     internal static Rectangle getDoorSourceRect(IDoor.state doorState, int doorPos)
     {
-        switch(doorPos)
+        switch (doorPos)
         {
             case 0:
-                switch(doorState)
+                switch (doorState)
                 {
                     case IDoor.state.blank:
                         return new Rectangle(815, 11, 32, 32);
@@ -139,7 +142,7 @@ public static class RoomRectStorage
         }
 
         return new Rectangle(0, 0, 0, 0);
-        
+
     }
 
     internal static Rectangle getBlockRect(int blockID)
@@ -162,7 +165,7 @@ public static class RoomRectStorage
 
     internal static Rectangle getDoorDestinationRect(int doorPos)
     {
-        switch(doorPos)
+        switch (doorPos)
         {
             case 0:
                 //Top
@@ -176,11 +179,21 @@ public static class RoomRectStorage
             case 3:
                 //Left
                 return new Rectangle(0, (72 * 4) + HUDHeight, 128, 128);
-                
+
             default:
                 throw new NotImplementedException();
 
         }
+    }
+
+    internal static Rectangle getWinSourceRect()
+    {
+        return winSourceRect;
+    }
+
+    internal static Rectangle getWinDestRect()
+    {
+        return winDestRect;
     }
 
     internal static Rectangle getStartupSourceRect()
