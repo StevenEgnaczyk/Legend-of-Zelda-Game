@@ -6,8 +6,8 @@ public class WoodenBoomerang : IItem
     //item properties
     private int xPos;
     private int yPos;
-    private int Width = 24;
-    private int Height = 48;
+    private int Width = 20;
+    private int Height = 32;
 
     private int currentIndex;
     private int bufferIndex;
@@ -17,8 +17,8 @@ public class WoodenBoomerang : IItem
 
     public WoodenBoomerang(ItemManager manager, int xPosition, int yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         currentIndex = 0;
         bufferIndex = 0;
         man = manager;

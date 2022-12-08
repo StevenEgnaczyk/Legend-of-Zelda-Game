@@ -55,9 +55,9 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         //adds weapon to link inventory
         public void AddSecondaryWeapon(secondaryWeapons weapon)
         {
+            secondaryWeaponList.Add(weapon);
             if (secondaryWeapon == secondaryWeapons.None)
             {
-                secondaryWeaponList.Add(weapon);
                 secondaryWeapon = weapon;
                 currentWeaponInterface = getSecondaryWeaponInterfaceByEnum(secondaryWeapon);
                 hasSecondaryWeapon = true;
@@ -67,7 +67,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 }
                 link.inventory.inventoryManager.setSelectedSecondaryWeaponIndex(weapon);
             }
-            secondaryWeaponList.Add(weapon);
+            
             
 
         }
@@ -139,10 +139,22 @@ namespace Sprint_0.LinkPlayer.LinkInventory
         //initiates attack for respective selected weapon
         public void UseSecondaryWeapon()
         {
-            if (!usingSecondaryWeapon && !link.inventory.primaryWeaponManager.usingPrimaryWeapon && currentWeaponInterface != null)
+            if (!usingSecondaryWeapon && !link.inventory.primaryWeaponManager.usingPrimaryWeapon && secondaryWeapon != secondaryWeapons.None)
             {
-                currentWeaponInterface.Attack();
-                usingSecondaryWeapon = true;
+                if (weaponIsBomb)
+                {
+                    if (link.inventory.getBombs() > 0)
+                    {
+                        currentWeaponInterface.Attack();
+                        usingSecondaryWeapon = true;
+                        link.inventory.removeBombs();
+                    }
+                }
+                else
+                {
+                    currentWeaponInterface.Attack();
+                    usingSecondaryWeapon = true;
+                }
             }
         }
 

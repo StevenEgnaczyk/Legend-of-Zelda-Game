@@ -86,6 +86,12 @@ public static class HUDRectStorage
         new Rectangle(232 * 4, 40 * 4, 8 * 4, 8 * 4),
     };
 
+    private static List<Rectangle> compassRects = new List<Rectangle>
+    {
+        new Rectangle(546, 127, 4, 4),
+        new Rectangle(555, 127, 4, 4),
+    };
+
     private static Rectangle emptyWeaponSourceRect = new Rectangle(484, 112, 8, 16);
 
     //get methods for the HUD rectangles
@@ -97,6 +103,17 @@ public static class HUDRectStorage
     internal static Rectangle getBlank()
     {
         return blankIcon;
+    }
+
+    internal static Rectangle getBlinkingLocation(int compassIndex)
+    {
+        if (compassIndex > 50)
+        {
+            return compassRects[0];
+        } else
+        {
+            return compassRects[1];
+        }
     }
 
     internal static Rectangle getBombDigit1DestRect()
@@ -112,6 +129,11 @@ public static class HUDRectStorage
     internal static Rectangle getBombXDestRect()
     {
         return xBombIconDestination;
+    }
+
+    internal static Rectangle getBossCompassLocation()
+    {
+        return new Rectangle(((5 * 10) * 4) + 60, ((3 * 6) * 4) + 5 , 4 * 4, 4 * 4);
     }
 
     internal static Rectangle getDaTokensDigit1DestRect()
@@ -261,16 +283,16 @@ public static class HUDRectStorage
         return secondaryWeaponDestRect;
     }
 
-    internal static Rectangle GetSecondaryWeaponSourceRect(ISecondaryWeapon secondaryWeapon)
+    internal static Rectangle GetSecondaryWeaponSourceRect(secondaryWeaponManager.secondaryWeapons secondaryWeapon)
     {
-        if (secondaryWeapon == null)
+        if (secondaryWeapon == secondaryWeaponManager.secondaryWeapons.None)
         {
             return emptyWeaponSourceRect;
         }
         else
         {
-            string[] secondaryWeaponInfo = secondaryWeapon.GetType().ToString().Split(".");
-            return secondaryWeaponSourceRectangles[secondaryWeaponInfo[3].ToString()];
+            string secondaryWeaponInfo = secondaryWeapon.ToString();
+            return secondaryWeaponSourceRectangles[secondaryWeaponInfo];
         }
     }
 

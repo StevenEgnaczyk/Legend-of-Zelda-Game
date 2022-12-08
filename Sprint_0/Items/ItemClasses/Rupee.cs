@@ -22,8 +22,8 @@ public class Rupee : IItem
 
     public Rupee(ItemManager manager, float xPosition, float yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         currentIndex = 0;
         bufferIndex = 0;
         man = manager;

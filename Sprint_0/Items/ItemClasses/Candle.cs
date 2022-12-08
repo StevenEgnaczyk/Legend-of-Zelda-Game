@@ -21,8 +21,8 @@ public class Candle : IItem
     private ItemManager man;
     public Candle(ItemManager manager, int xPosition, int yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         currentIndex = 0;
         bufferIndex = 0;
 
@@ -37,7 +37,7 @@ public class Candle : IItem
 
         Texture2D flame = Texture2DStorage.GetItemSpritesheet();
         Rectangle sourceRect = ItemRectStorage.getCandleSprite();
-        Rectangle destRect = new Rectangle((int)this.xPos + 20, (int)this.yPos + 8, this.Width, this.Height);
+        Rectangle destRect = new Rectangle((int)this.xPos, (int)this.yPos, this.Width, this.Height);
         spriteBatch.Draw(flame, destRect, sourceRect, Color.White);
 
     }
