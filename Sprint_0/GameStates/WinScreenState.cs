@@ -41,8 +41,8 @@ namespace Sprint_0.GameStates
                 game.roomManager.drawRoom(spriteBatch);
             }
             Texture2D winScreen = Texture2DStorage.GetWinSpriteSheet();
-            Rectangle winSourceRect = RoomRectStorage.getStartupSourceRect();
-            Rectangle winDestRect = RoomRectStorage.getStartupDestRect();
+            Rectangle winSourceRect = RoomRectStorage.getWinSourceRect();
+            Rectangle winDestRect = RoomRectStorage.getWinDestRect();
             spriteBatch.Draw(winScreen, winDestRect, winSourceRect, new Color(Color.White, (int)alpha));
         }
 
