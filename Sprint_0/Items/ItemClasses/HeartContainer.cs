@@ -11,8 +11,8 @@ public class HeartContainer : IItem
     //item properties
     private float xPos;
     private float yPos;
-    private int Width = 24;
-    private int Height = 48;
+    private int Width = 39;
+    private int Height = 39;
 
     private ItemManager man;
 

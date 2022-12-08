@@ -82,7 +82,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             }
         }
 
-        private ISecondaryWeapon getSecondaryWeaponInterfaceByEnum(secondaryWeapons secondaryWeapon)
+        public ISecondaryWeapon getSecondaryWeaponInterfaceByEnum(secondaryWeapons secondaryWeapon)
         {
             return secondaryWeapon switch
             {
@@ -93,7 +93,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
                 _ => null,
             };
         }
-            
+
         //returns weapon type from integer index
         public secondaryWeaponManager.secondaryWeapons getSecondaryWeaponTypeByInt(int secondaryWeapon)
         {
