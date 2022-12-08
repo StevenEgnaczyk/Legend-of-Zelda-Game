@@ -19,8 +19,9 @@ public class Link
     private float linkHealth;
     private float linkMaxHealth = 3.0f;
     private ChangeToDeathScreenCommand deathScreen;
+    private ChangeToWinScreenCommand winScreen;
 
-    
+
     //set link defaults
     public Link(SpriteBatch spriteBatch, Sprint_0.Game1 game)
     {
@@ -28,6 +29,7 @@ public class Link
         state = new DownMovingLinkState(this);
         inventory = new Inventory(this);
         deathScreen = new ChangeToDeathScreenCommand(game);
+        winScreen = new ChangeToWinScreenCommand(game);
         this.game = game;
         linkHealth = linkMaxHealth;
 
@@ -61,10 +63,20 @@ public class Link
     {
         state.Update();
         inventory.Update();
-        if(OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
+        if (OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
         {
+            Die();
+        }
+        if (inventory.HasAlbum())
+        {
+            winScreen.Execute();
+            inventory.removeAlbum();
+            state = new DownMovingLinkState(this);
+            inventory = new Inventory(this);
+            linkHealth = linkMaxHealth;
             xPos = 500;
             yPos = 500;
+            game.roomManager.reset();
         }
     }
 
@@ -86,7 +98,8 @@ public class Link
         if (inventory.primaryWeaponManager.usingPrimaryWeapon)
         {
             inventory.primaryWeaponManager.Draw(_spriteBatch);
-        } else if (inventory.secondaryWeaponManager.usingSecondaryWeapon)
+        }
+        else if (inventory.secondaryWeaponManager.usingSecondaryWeapon)
         {
             inventory.secondaryWeaponManager.Draw(_spriteBatch);
         }
@@ -94,7 +107,7 @@ public class Link
         {
             state.Draw(_spriteBatch);
         }
-        
+
     }
 
     public void DrawSprite(SpriteBatch _spriteBatch, Texture2D linkSprite, Rectangle sourceRect)
@@ -141,10 +154,10 @@ public class Link
         {
             AudioStorage.GetLinkDie().Play();
             Die();
-            
+
         }
     }
-    
+
     //adds to link health, making sure it does not go over link's maximum health
     public void gainHealth()
     {
@@ -170,10 +183,5 @@ public class Link
     internal int getHeight()
     {
         return 48;
-    }
-
-    internal void increaseMaxHealth()
-    {
-        linkMaxHealth++;
     }
 }
