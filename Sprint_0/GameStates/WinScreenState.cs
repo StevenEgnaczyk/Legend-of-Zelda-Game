@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_0.GameStates
 {
-    public class StartupScreenState : IState
+    public class WinScreenState : IState
     {
         //state properties
         private Game1 game;
@@ -17,7 +17,7 @@ namespace Sprint_0.GameStates
         private ChangeToGameplayStateCommand command;
         float alpha;
 
-        public StartupScreenState(Game1 game)
+        public WinScreenState(Game1 game)
         {
             this.game = game;
             this.transitioning = false;
@@ -40,10 +40,10 @@ namespace Sprint_0.GameStates
             {
                 game.roomManager.drawRoom(spriteBatch);
             }
-            Texture2D startUpScreen = Texture2DStorage.GetStartupSpriteSheet();
-            Rectangle startupSourceRect = RoomRectStorage.getStartupSourceRect();
-            Rectangle startupDestRect = RoomRectStorage.getStartupDestRect();
-            spriteBatch.Draw(startUpScreen, startupDestRect, startupSourceRect,new Color(Color.White, (int) alpha));
+            Texture2D winScreen = Texture2DStorage.GetWinSpriteSheet();
+            Rectangle winSourceRect = RoomRectStorage.getStartupSourceRect();
+            Rectangle winDestRect = RoomRectStorage.getStartupDestRect();
+            spriteBatch.Draw(winScreen, winDestRect, winSourceRect, new Color(Color.White, (int)alpha));
         }
 
         //wait for input then execute transition
@@ -58,7 +58,8 @@ namespace Sprint_0.GameStates
                     //game.roomManager.loadRoom(12);
                     command.Execute();
                 }
-            } else
+            }
+            else
             {
                 //Process Keyboard Input
                 game.keyboardController.ProcessInput(this);
