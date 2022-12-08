@@ -63,7 +63,8 @@ public class Link
         inventory.Update();
         if(OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
         {
-            Die();
+            xPos = 500;
+            yPos = 500;
         }
     }
 
