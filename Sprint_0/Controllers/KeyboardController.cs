@@ -14,9 +14,11 @@ public class KeyboardController : IController
 {
 
 	public BuildCommands buildCommands;
+    int index;
     public KeyboardController(Game1 game, ContentManager c, Link linkPlayer)
 	{
 		buildCommands = new BuildCommands(linkPlayer, game);
+        index = 0;
     }
 
 	public void ProcessInput(IState gameplayState)
@@ -47,14 +49,22 @@ public class KeyboardController : IController
 			case "Sprint_0.GameStates.InventoryState":
                 foreach (Keys key in pressedKeys)
                 {
-                    //checks for registered commands
-                    if (buildCommands.inventoryControllerMappings.ContainsKey(key))
+                    if (key.Equals(Keys.Left) || key.Equals(Keys.Right))
+                    {
+                        index += 1;
+                        if (index > 4)
+                        {
+                            buildCommands.inventoryControllerMappings[key].Execute();
+                            index = 0;
+                        }
+                    } else if (buildCommands.inventoryControllerMappings.ContainsKey(key))
                     {
                         if (buildCommands.state.Contains(key)) //checks for the commands in state
                         {
                             buildCommands.inventoryControllerMappings[key].Execute();
                         }
                     }
+
                 }
                 buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
                 break;
