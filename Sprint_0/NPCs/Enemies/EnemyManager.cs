@@ -6,16 +6,16 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public  class EnemyManager
+public class EnemyManager
 {
-    public  List<IEnemy> enemiesList { get; set; }
+    public List<IEnemy> enemiesList { get; set; }
     private static SpriteBatch sb;
 
     /* We only want one instance*/
-    public  static EnemyManager instance = new EnemyManager(sb);
+    public static EnemyManager instance = new EnemyManager(sb);
     private static int HUD_SIZE = 224;
 
-    public  static EnemyManager Instance
+    public static EnemyManager Instance
     {
         get
         {
@@ -23,7 +23,7 @@ public  class EnemyManager
         }
     }
 
-    
+
     public EnemyManager(SpriteBatch spritebatch)
     {
         enemiesList = new List<IEnemy>();
@@ -37,8 +37,9 @@ public  class EnemyManager
 
     public void removeEnemy(IEnemy enemy)
     {
-        
+
         enemiesList.Remove(enemy);
+
         if (enemiesList.Count == 0)
         {
             ItemManager.instance.dropKey(enemy.xPos, enemy.yPos);
@@ -49,18 +50,13 @@ public  class EnemyManager
             Random rnd = new Random();
             int num = rnd.Next(0, 100);
 
-            if (num >= 0 && num < 25)
+            if (num >= 0 && num < 30)
             {
                 ItemManager.instance.dropRupee(enemy.xPos, enemy.yPos);
-            } else if (num >= 25 && num < 50)
-            {
-                ItemManager.instance.dropBomb(enemy.xPos, enemy.yPos);
-            } else if (num >= 50 && num < 75)
+            }
+            else if (num >= 30 && num < 50)
             {
                 ItemManager.instance.dropHeart(enemy.xPos, enemy.yPos);
-            }
-            else {
-                
             }
 
         }
@@ -72,7 +68,8 @@ public  class EnemyManager
     {
         enemiesList.Remove(gb);
     }
-    public void removeEnemy(AquamentusFireball af) {
+    public void removeEnemy(AquamentusFireball af)
+    {
         enemiesList.Remove(af);
     }
     public void removeEnemy(AdamSandlerGolfBall gb)
@@ -87,6 +84,12 @@ public  class EnemyManager
             ItemManager.instance.dropKey(da.xPos, da.yPos);
             PuzzleManager.instance.managePuzzles();
         }
+    }
+
+    public void removeEnemy(DaBossBaby daBossBaby)
+    {
+        enemiesList.Remove(daBossBaby);
+        ItemManager.instance.dropAlbum(daBossBaby.xPos, daBossBaby.yPos);
     }
 
     public void removeEnemy(AdamSandler sandler)
@@ -162,23 +165,27 @@ public  class EnemyManager
         Random r = new Random();
         int randVal = r.Next(bound1, bound2);
 
-        if(randVal == 0)
+        if (randVal == 0)
         {
             e.state.moveUp(e);
 
-        } else if (randVal == 1)
+        }
+        else if (randVal == 1)
         {
             e.state.moveDown(e);
 
-        } else if (randVal == 2)
+        }
+        else if (randVal == 2)
         {
             e.state.moveLeft(e);
 
-        } else if (randVal == 3)
+        }
+        else if (randVal == 3)
         {
             e.state.moveRight(e);
 
-        }else if (randVal > 3)
+        }
+        else if (randVal > 3)
         {
             e.shootProjectile();
 
