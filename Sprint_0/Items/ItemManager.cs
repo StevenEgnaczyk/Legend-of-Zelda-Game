@@ -36,12 +36,13 @@ public class ItemManager
     public void addItem(IItem item)
     {
         itemList.Add(item);
+
     }
 
     //remove item to list
     public void removeItem(IItem item)
     {
-       itemList.Remove(item);
+        itemList.Remove(item);
     }
 
     //return item found by index
@@ -73,9 +74,6 @@ public class ItemManager
             case 38:
                 new DaCoin(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
                 break;
-            case 39:
-                new HeartContainer(itemManager, 64 + (col * 64), HUD_SIZE + 64 + (64 * row));
-                break;
 
         }
     }
@@ -97,6 +95,12 @@ public class ItemManager
         new Key(room.getItemManager(), xPos, yPos);
     }
 
+    //creates a new key in the defined position
+    internal void dropAlbum(float xPos, float yPos)
+    {
+        new Album(room.getItemManager(), xPos, yPos);
+    }
+
     //creates a new heart in the defined position
     internal void dropHeart(float xPos, float yPos)
     {
@@ -112,10 +116,5 @@ public class ItemManager
     internal void dropDaCoin(float xPos, float yPos)
     {
         new DaCoin(room.getItemManager(), xPos, yPos);
-    }
-
-    internal void dropBomb(float xPos, float yPos)
-    {
-        new Bomb(room.getItemManager(), (int)xPos, (int)yPos);
     }
 }
