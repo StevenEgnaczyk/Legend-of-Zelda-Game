@@ -20,6 +20,7 @@ public class Inventory
 
     private bool hasMap;
     private bool hasCompass;
+    private bool hasAlbum;
 
     public Inventory(Link link)
     {
@@ -32,6 +33,8 @@ public class Inventory
 
         hasMap = false;
         hasCompass = false;
+        hasAlbum = false;
+
         primaryWeaponManager = new primaryWeaponManager(link);
         secondaryWeaponManager = new secondaryWeaponManager(link);
         inventoryManager = new InventoryManager(link, this);
@@ -39,9 +42,9 @@ public class Inventory
 
     //adds item to inventory
     public void addItem(IItem item)
-    {   
+    {
         AudioStorage.GetGetItem().Play();
-        switch(item)
+        switch (item)
         {
             case Candle:
                 AudioStorage.GetGetItem().Play();
@@ -72,8 +75,7 @@ public class Inventory
                 this.Link.gainHealth();
                 break;
             case HeartContainer:
-                AudioStorage.GetGetItem().Play();
-                Link.increaseMaxHealth();
+
                 break;
             case Key:
                 AudioStorage.GetGetItem().Play();
@@ -99,13 +101,18 @@ public class Inventory
                     PuzzleManager.instance.managePuzzles();
                 }
                 break;
+
+            case Album:
+                hasAlbum = true;
+                break;
+
         }
     }
 
     //adds to count for DaBaby tokens
     private void addDaTokens()
     {
-       numDaTokens++;
+        numDaTokens++;
     }
 
     //adds to count for keys
@@ -142,13 +149,12 @@ public class Inventory
         numBombs--;
         if (numBombs == 0)
         {
-            secondaryWeaponManager.weaponIsBomb = false;
             secondaryWeaponManager.secondaryWeaponList.Remove(secondaryWeaponManager.secondaryWeapons.Bomb);
             if (secondaryWeaponManager.secondaryWeaponList.Count == 0)
             {
                 secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.secondaryWeapons.None;
             }
-            else if(secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Bow))
+            else if (secondaryWeaponManager.secondaryWeaponList.Contains(secondaryWeaponManager.secondaryWeapons.Bow))
             {
                 secondaryWeaponManager.secondaryWeapon = secondaryWeaponManager.getSecondaryWeaponTypeByInt(2);
             }
@@ -179,6 +185,16 @@ public class Inventory
         return hasMap;
     }
 
+    public bool HasAlbum()
+    {
+        return hasAlbum;
+    }
+
+    public void removeAlbum()
+    {
+        hasAlbum = false;
+    }
+
     public bool HasCompass()
     {
         return hasCompass;
@@ -189,10 +205,12 @@ public class Inventory
         if (primaryWeaponManager.usingPrimaryWeapon)
         {
             return primaryWeaponManager.getRect();
-        } else if (secondaryWeaponManager.usingSecondaryWeapon)
+        }
+        else if (secondaryWeaponManager.usingSecondaryWeapon)
         {
             return secondaryWeaponManager.getRect();
-        } else
+        }
+        else
         {
             return new Rectangle(0, 0, 0, 0);
         }

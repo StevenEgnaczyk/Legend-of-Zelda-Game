@@ -14,11 +14,10 @@ public class KeyboardController : IController
 {
 
 	public BuildCommands buildCommands;
-    int index;
+    private Keys[] state;
     public KeyboardController(Game1 game, ContentManager c, Link linkPlayer)
 	{
 		buildCommands = new BuildCommands(linkPlayer, game);
-        index = 0;
     }
 
 	public void ProcessInput(IState gameplayState)
@@ -49,24 +48,15 @@ public class KeyboardController : IController
 			case "Sprint_0.GameStates.InventoryState":
                 foreach (Keys key in pressedKeys)
                 {
-                    if (key.Equals(Keys.Left) || key.Equals(Keys.Right))
+                    if (buildCommands.inventoryControllerMappings.ContainsKey(key))
                     {
-                        index += 1;
-                        if (index > 4)
-                        {
-                            buildCommands.inventoryControllerMappings[key].Execute();
-                            index = 0;
-                        }
-                    } else if (buildCommands.inventoryControllerMappings.ContainsKey(key))
-                    {
-                        if (buildCommands.state.Contains(key)) //checks for the commands in state
-                        {
-                            buildCommands.inventoryControllerMappings[key].Execute();
-                        }
+                        if(!state.Contains(key))
+                            {
+                                buildCommands.inventoryControllerMappings[key].Execute();
+                            }
                     }
-
                 }
-                buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+                state = pressedKeys;
                 break;
 
 			//Startup Screen
@@ -87,6 +77,22 @@ public class KeyboardController : IController
             
             //Death Screen
             case "Sprint_0.GameStates.DeathScreenState":
+                foreach (Keys key in pressedKeys)
+                {
+                    //checks for registered commands
+                    if (buildCommands.startupControllerMappings.ContainsKey(key))
+                    {
+                        if (buildCommands.state.Contains(key)) //checks for the commands in state
+                        {
+                            buildCommands.startupControllerMappings[key].Execute();
+                        }
+                    }
+                }
+                buildCommands.state = pressedKeys; //sets state to compare to new pressed keys
+                break;
+
+            //Win Screen
+            case "Sprint_0.GameStates.WinScreenState":
                 foreach (Keys key in pressedKeys)
                 {
                     //checks for registered commands

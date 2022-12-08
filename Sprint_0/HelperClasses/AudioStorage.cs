@@ -13,7 +13,7 @@ public static class AudioStorage
 {
     //declare public sounds
     public static Song song;
-    public static Song suge;
+    //   public static Song suge;
     public static SoundEffect sword_Slash;
     public static SoundEffect sword_Shoot;
     public static SoundEffect arrow;
@@ -29,12 +29,13 @@ public static class AudioStorage
     public static SoundEffect golf_hit;
     public static SoundEffect adam_die;
     public static SoundEffect golf_kill;
+    public static SoundEffect suge_effect;
 
     //construct sounds from content loader
     public static void LoadAllSounds(ContentManager content)
     {
         song = content.Load<Song>("LOZ_title");
-        suge = content.Load<Song>("suge");
+        //        suge = content.Load<Song>("suge");
         sword_Slash = content.Load<SoundEffect>("LOZ_Sword_Slash");
         sword_Shoot = content.Load<SoundEffect>("LOZ_Sword_Shoot");
         arrow = content.Load<SoundEffect>("LOZ_Arrow_Boomerang");
@@ -50,6 +51,7 @@ public static class AudioStorage
         golf_hit = content.Load<SoundEffect>("sorry");
         golf_kill = content.Load<SoundEffect>("suck");
         adam_die = content.Load<SoundEffect>("nonono");
+        suge_effect = content.Load<SoundEffect>("suge");
     }
 
     //get methods
@@ -131,5 +133,10 @@ public static class AudioStorage
     public static SoundEffect GetAdamDie()
     {
         return adam_die;
+    }
+
+    public static SoundEffect GetSugeEffect()
+    {
+        return suge_effect;
     }
 }

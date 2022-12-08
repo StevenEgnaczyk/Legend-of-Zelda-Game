@@ -1,10 +1,12 @@
 Author: Jonathan Hom
 Date: 11/23/2022
 Sprint No. 4
-File Name: Gel.cs
+File Name: AdamSandler.cs
 File Author: RJ Zanotti
 
 Read Review: Code is pretty simple and easy to follow. All methods 
-             methods are pretty simple and easy to follow.
+             methods are pretty simple and easy to follow. Frequent
+             helpful comments are very useful when reading through
+             the class.
 
 Time: 2 minutes

@@ -1,25 +1,25 @@
 Readibility:
 Author: Daniel Flippo
-Date: 11/23/2022
-Sprint: 4
-File Name: PushTile.cs
+Date: 12/7/2022
+Sprint: 5
+File Name: DeathScreenState.cs
 File Author: John Hom
 Time Taken: 2 mins
-Comments: Everything in John's PushTile.cs class is readable. Each method is clear on
-		  what its purpose is and how it works. Very straightforward, readable code.
+Comments: Everything in John's DeathScreenState.cs class is readable. Each method is clear on
+		  what its purpose is and how it works, often assisted by Comments.
+		  Very straightforward, readable code.
 
 
 Code Quality:
 Author: Daniel Flippo
-Date: 11/23/2022
-Sprint: 4
-File Name: BlackTile.cs
+Date: 12/7/2022
+Sprint: 5
+File Name: DeathScreenState.cs
 File Author: John Hom
 Time Taken: 4 mins
 Comments: On the aspect of code quality, John's code is well organized, with
-		  the use of methods to get tile values such as booleans on whether or
-		  not the tile is walkable or pushable.
-Change: Not a lot I can say about makng any particular changes. Maybe have method 
-		that sets the blocks value using a vector instead of seperate methods of 
-		setting the x and y values. 
+		  the use of methods to draw the death screen, wait for dismissal of the screen
+		  or figure if the state is transitioning.
+Change: Not a lot I can say about makng any particular changes. Maybe the reset upon death
+		could be handled here, but I think that the way the code is arranged is good.
 		
