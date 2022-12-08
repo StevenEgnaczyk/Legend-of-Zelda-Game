@@ -17,8 +17,8 @@ public class Key : IItem
     private ItemManager man;
     public Key(ItemManager manager, float xPosition, float yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         man = manager;
         man.addItem(this);
     }

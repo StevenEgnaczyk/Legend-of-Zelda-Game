@@ -14,6 +14,7 @@ namespace Sprint_0.HUD
 
         private Link link;
         private Inventory linkInventory;
+        private int compassIndex;
 
         public HUDManager(Link player, Inventory inventory)
         {
@@ -112,7 +113,7 @@ namespace Sprint_0.HUD
         private void DrawSecondaryWeapon(SpriteBatch spriteBatch, int xOffset, int yOffset)
         {
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
-            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.currentWeaponInterface);
+            Rectangle secondaryWeaponSourceRect = HUDRectStorage.GetSecondaryWeaponSourceRect(linkInventory.secondaryWeaponManager.secondaryWeapon);
             Rectangle secondaryWeaponDestRect = HUDRectStorage.GetSecondaryWeaponDestRect();
             secondaryWeaponDestRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, secondaryWeaponDestRect, secondaryWeaponSourceRect, Color.White);
@@ -277,7 +278,11 @@ namespace Sprint_0.HUD
             if (link.inventory.HasMap())
             {
                 DrawMap(spriteBatch, xOffset, yOffset);
+            }
 
+            if (link.inventory.HasCompass())
+            {
+                DrawCompassLocation(spriteBatch, xOffset, yOffset);
             }
 
             Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
@@ -286,6 +291,20 @@ namespace Sprint_0.HUD
             destinationRect.Offset(xOffset, yOffset);
             spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
 
+        }
+
+        private void DrawCompassLocation(SpriteBatch spriteBatch, int xOffset, int yOffset)
+        {
+            Texture2D basicHUD = Texture2DStorage.GetHUDSpriteSheet();
+            Rectangle sourceRect = HUDRectStorage.getBlinkingLocation(compassIndex);
+            Rectangle destinationRect = HUDRectStorage.getBossCompassLocation();
+            destinationRect.Offset(xOffset, yOffset);
+            spriteBatch.Draw(basicHUD, destinationRect, sourceRect, Color.White);
+            compassIndex++;
+            if (compassIndex > 100)
+            {
+                compassIndex = 0;
+            }
         }
 
         private void DrawMap(SpriteBatch spriteBatch, int xOffset, int yOffset)

@@ -11,13 +11,13 @@ public class Compass : IItem
     //item properties
     private float xPos;
     private float yPos;
-    private int Width = 24;
-    private int Height = 48;
+    private int Width = 33;
+    private int Height = 36;
     private ItemManager man;
     public Compass(ItemManager manager, int xPosition, int yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         man = manager;
         man.addItem(this);
     }

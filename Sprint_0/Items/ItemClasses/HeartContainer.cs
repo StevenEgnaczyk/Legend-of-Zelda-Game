@@ -18,15 +18,15 @@ public class HeartContainer : IItem
 
     public HeartContainer(ItemManager manager, int xPosition, int yPosition)
     {
-        this.xPos = xPosition;
-        this.yPos = yPosition;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         man = manager;
         man.addItem(this);
     }
 
     public void delete()
     {
-        throw new NotImplementedException();
+        man.removeItem(this);
     }
 
     //draw method for item

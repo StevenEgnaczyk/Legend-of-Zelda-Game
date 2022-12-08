@@ -72,7 +72,8 @@ public class Inventory
                 this.Link.gainHealth();
                 break;
             case HeartContainer:
-
+                AudioStorage.GetGetItem().Play();
+                Link.increaseMaxHealth();
                 break;
             case Key:
                 AudioStorage.GetGetItem().Play();
@@ -98,7 +99,6 @@ public class Inventory
                     PuzzleManager.instance.managePuzzles();
                 }
                 break;
-
         }
     }
 
@@ -142,6 +142,7 @@ public class Inventory
         numBombs--;
         if (numBombs == 0)
         {
+            secondaryWeaponManager.weaponIsBomb = false;
             secondaryWeaponManager.secondaryWeaponList.Remove(secondaryWeaponManager.secondaryWeapons.Bomb);
             if (secondaryWeaponManager.secondaryWeaponList.Count == 0)
             {

@@ -30,7 +30,7 @@ public static class ItemRectStorage
 
     private static List<Rectangle> bombSprite = new List<Rectangle>()
     {
-        new Rectangle(136, 0, 8, 14)
+        new Rectangle(135, 0, 8, 14)
     };
 
     private static List<Rectangle> bowSprite = new List<Rectangle>()

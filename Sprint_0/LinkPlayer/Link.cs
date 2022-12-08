@@ -170,4 +170,9 @@ public class Link
     {
         return 48;
     }
+
+    internal void increaseMaxHealth()
+    {
+        linkMaxHealth++;
+    }
 }

@@ -10,15 +10,15 @@ public class Bomb : IItem
     private float xPos;
     private float yPos;
     private int Width = 24;
-    private int Height = 48;
+    private int Height = 42;
     private ItemManager man;
 
 
     public Bomb(ItemManager manager, int xPosition, int yPosition)
     {
 
-        this.xPos = xPosition + 24;
-        this.yPos = yPosition + 8;
+        this.xPos = ((GlobalVariables.BLOCK_SIZE - this.Width) / 2) + xPosition;
+        this.yPos = ((GlobalVariables.BLOCK_SIZE - this.Height) / 2) + yPosition;
         man = manager;
         man.addItem(this);
     }

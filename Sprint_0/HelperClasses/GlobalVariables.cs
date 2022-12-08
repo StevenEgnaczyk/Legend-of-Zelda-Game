@@ -41,4 +41,6 @@ public static class GlobalVariables
 
     public static int TWO = 2;
 
+    public static int BLOCK_SIZE = 64;
+
 }
