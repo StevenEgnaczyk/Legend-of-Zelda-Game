@@ -60,7 +60,7 @@ public static class OutOfBoundsTest
             return true;
         }
 
-        if (yPos > (1024 - 64) || yPos < (RoomRectStorage.HUDHeight - 32))
+        if (yPos > (1024 - 96) || yPos < (RoomRectStorage.HUDHeight + 64))
         {
             return true;
         }
