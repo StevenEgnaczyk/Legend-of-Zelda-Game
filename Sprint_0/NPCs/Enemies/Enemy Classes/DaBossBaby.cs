@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Diagnostics;
 using System.Reflection.Metadata;
@@ -96,6 +97,7 @@ public class DaBossBaby : IEnemy
     {
         IEnemy deathAnimation = new DeathAnimation(man, this);
         AudioStorage.GetSugeEffect().Play();
+        MediaPlayer.Stop();
         man.removeEnemy(this);
 
     }
