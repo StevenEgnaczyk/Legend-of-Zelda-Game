@@ -100,7 +100,7 @@ public class Link
     {
         state = new DownMovingLinkState(this);
         inventory.secondaryWeaponManager.reset();
-        inventory.resetBombs();
+        inventory = new Inventory(this);
         linkHealth = linkMaxHealth;
         xPos = 500;
         yPos = 500;
