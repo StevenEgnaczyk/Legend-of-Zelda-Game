@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Runtime.Versioning;
 
 public static class AudioStorage
 {
@@ -53,7 +54,7 @@ public static class AudioStorage
         adam_die = content.Load<SoundEffect>("nonono");
         suge_effect = content.Load<SoundEffect>("suge");
     }
-
+    
     //get methods
     public static Song GetSong()
     {
