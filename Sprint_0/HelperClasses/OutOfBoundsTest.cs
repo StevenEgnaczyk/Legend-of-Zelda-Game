@@ -40,7 +40,22 @@ public static class OutOfBoundsTest
 
     public static bool linkOutOfBounds(float xPos, float yPos)
     {
-        if (xPos < 35 || xPos > (1024-35))
+        if (xPos < 35 || xPos > (1024-128))
+        {
+            return true;
+        }
+
+        if (yPos > (1024 - 128) || yPos < RoomRectStorage.HUDHeight)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool enemyOutOfBounds(float xPos, float yPos)
+    {
+        if (xPos < 64 || xPos > (1024-64))
         {
             return true;
         }

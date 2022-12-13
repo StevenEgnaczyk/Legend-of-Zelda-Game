@@ -104,6 +104,10 @@ public class EnemyManager
         {
             IEnemy enemy = enemiesList[i];
             enemy.update();
+            if (OutOfBoundsTest.enemyOutOfBounds(enemy.xPos, enemy.yPos))
+            {
+                removeEnemy(enemy);
+            }
         }
     }
 
