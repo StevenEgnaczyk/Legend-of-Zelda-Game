@@ -40,12 +40,12 @@ public static class OutOfBoundsTest
 
     public static bool linkOutOfBounds(float xPos, float yPos)
     {
-        if (xPos < 35 || xPos > (1024-128))
+        if (xPos < 35 || xPos > (1024-35))
         {
             return true;
         }
 
-        if (yPos > (1024 - 128) || yPos < RoomRectStorage.HUDHeight)
+        if (yPos > 849 || yPos < 252)
         {
             return true;
         }
@@ -60,7 +60,7 @@ public static class OutOfBoundsTest
             return true;
         }
 
-        if (yPos > 849 || yPos < 252)
+        if (yPos > (1024 - 64) || yPos < (RoomRectStorage.HUDHeight - 32))
         {
             return true;
         }
