@@ -58,7 +58,7 @@ namespace Sprint_0.GameStates
                 {
                     game.roomManager.loadRoom(game.link.currentRoom);
                     //game.roomManager.loadRoom(12);
-                    MediaPlayer.Play(AudioStorage.GetSong();
+                    MediaPlayer.Play(AudioStorage.GetSong());
                     command.Execute();
                 }
             }
