@@ -106,6 +106,11 @@ public class Inventory
                 hasAlbum = true;
                 break;
 
+            case Triforce:
+                AudioStorage.GetGetItem().Play();
+                this.addTriforce();
+                break;
+
         }
     }
 
@@ -141,6 +146,12 @@ public class Inventory
     public void addRupee()
     {
         numRupees++;
+    }
+
+    public void addTriforce()
+    {
+        numRupees++;
+        Link.Die();
     }
 
     //removes bomb, and deals with secondary weapon manager
