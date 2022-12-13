@@ -57,6 +57,9 @@ public class EnemyManager
             else if (num >= 30 && num < 50)
             {
                 ItemManager.instance.dropHeart(enemy.xPos, enemy.yPos);
+            } else
+            {
+                ItemManager.instance.dropBomb(enemy.xPos, enemy.yPos);
             }
 
         }

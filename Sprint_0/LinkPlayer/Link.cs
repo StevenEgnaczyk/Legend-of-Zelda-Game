@@ -5,6 +5,7 @@ using Sprint_0.LinkPlayer.LinkInventory;
 using System;
 using System.Diagnostics;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 
 public class Link
 {
@@ -21,6 +22,9 @@ public class Link
     private ChangeToDeathScreenCommand deathScreen;
     private ChangeToWinScreenCommand winScreen;
 
+    private bool invincible;
+    private int invinsibilityCounter;
+
 
     //set link defaults
     public Link(SpriteBatch spriteBatch, Sprint_0.Game1 game)
@@ -32,6 +36,8 @@ public class Link
         winScreen = new ChangeToWinScreenCommand(game);
         this.game = game;
         linkHealth = linkMaxHealth;
+        invincible = false;
+
 
         xPos = 500;
         yPos = 500;
@@ -61,6 +67,15 @@ public class Link
     //update call for state and inventory
     public void Update()
     {
+        if (invincible)
+        {
+            invinsibilityCounter--;
+            if (invinsibilityCounter <= 0)
+            {
+                invincible = false;
+            }
+        }
+
         state.Update();
         inventory.Update();
         if (OutOfBoundsTest.linkOutOfBounds(xPos, yPos))
@@ -84,7 +99,8 @@ public class Link
     public void Die()
     {
         state = new DownMovingLinkState(this);
-        inventory = new Inventory(this);
+        inventory.secondaryWeaponManager.reset();
+        inventory.resetBombs();
         linkHealth = linkMaxHealth;
         xPos = 500;
         yPos = 500;
@@ -147,14 +163,19 @@ public class Link
     //subtracts from link's health and checks for if he should die
     public void takeDamage()
     {
-        linkHealth -= 0.5f;
-        state = new DamagedLinkState(this);
-        AudioStorage.GetLinkHurt().Play();
-        if (linkHealth <= 0)
+        if (!invincible)
         {
-            AudioStorage.GetLinkDie().Play();
-            Die();
+            invincible = true;
+            invinsibilityCounter = 20;
+            linkHealth -= 0.5f;
+            state = new DamagedLinkState(this);
+            AudioStorage.GetLinkHurt().Play();
+            if (linkHealth <= 0)
+            {
+                AudioStorage.GetLinkDie().Play();
+                Die();
 
+            }
         }
     }
 

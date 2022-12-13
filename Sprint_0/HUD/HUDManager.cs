@@ -184,7 +184,7 @@ namespace Sprint_0.HUD
             Rectangle xDestRect = HUDRectStorage.getBombXDestRect();
             xDestRect.Offset(xOffset, yOffset);
 
-            if (numBombs > 10)
+            if (numBombs >= 10)
             {
                 digit1SourceRect = HUDRectStorage.getDigit(numBombs / 10);
                 digit2SourceRect = HUDRectStorage.getDigit(numBombs % 10);

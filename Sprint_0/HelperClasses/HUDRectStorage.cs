@@ -221,7 +221,6 @@ public static class HUDRectStorage
         return (currentRoom) switch
         {
             1 => new Rectangle(18 * 10, 29 * 6, 4 * 4, 4 * 4),
-            //2 => new Rectangle(41 * 10, 43 * 6, 4 * 4, 4 * 4),
             2 => new Rectangle(14 * 10, 29 * 6, 4 * 4, 4 * 4),
             3 => new Rectangle(22 * 10, 29 * 6, 4 * 4, 4 * 4),
             4 => new Rectangle(18 * 10, 25 * 6, 4 * 4, 4 * 4),

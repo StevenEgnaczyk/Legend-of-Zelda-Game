@@ -195,6 +195,7 @@ namespace Sprint_0.LinkPlayer.LinkInventory
             secondaryWeaponList = new List<secondaryWeapons>();
             secondaryWeapon = secondaryWeapons.None;
             hasSecondaryWeapon = false;
+            usingSecondaryWeapon = false;
         }
 
         //sets the secondary weapon from integer index

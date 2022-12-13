@@ -259,9 +259,14 @@ public class Inventory
     {
         numKeys--;
     }
-
+    
     internal int getDaTokens()
     {
         return numDaTokens;
+    }
+
+    internal void resetBombs()
+    {
+        numBombs = 0;
     }
 }
