@@ -89,6 +89,12 @@ public static class ItemRectStorage
         new Rectangle(72, 16, 8, 16)
     };
 
+    private static List<Rectangle> triforceSprite = new List<Rectangle>()
+    {
+        new Rectangle(274, 1, 11, 13),
+        new Rectangle(274, 16, 11, 13)
+    };
+
     private static List<Rectangle> woodenBoomerangSprites = new List<Rectangle>()
     {
         new Rectangle(129, 3, 5, 8),
@@ -190,6 +196,10 @@ public static class ItemRectStorage
     {
         return rupeeSprites[index];
 
+    }
+    public static Rectangle getTriforceSprites(int index)
+    {
+        return triforceSprite[index];
     }
 
     public static Rectangle getWoodenBoomerangSprites(int index)
